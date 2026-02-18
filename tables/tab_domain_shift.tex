@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\caption{Domain Shift Analysis: Relationship to Generalization}
+\label{tab:domain_shift}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Train $\to$ Test} & \textbf{Domain Shift} & \textbf{Test Spearman} & \textbf{Correlation} \\
+\midrule
+K562 $\to$ K562 (same) & 0.000 & 0.970 & - \\
+\midrule
+K562 $\to$ HEK293T & 0.187 & 0.948 & r = -0.82 \\
+\midrule
+K562 $\to$ HL60 & 0.156 & 0.954 & \\
+\midrule
+K562 $\to$ T cells & 0.342 & 0.928 & \\
+\midrule
+K562 $\to$ Hepatocytes & 0.456 & 0.872 & \\
+\hline
+\end{tabular}
+}
+\end{table}

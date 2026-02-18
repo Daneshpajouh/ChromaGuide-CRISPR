@@ -1,0 +1,28 @@
+{
+    "org": "upstage",
+    "collections": [],
+    "models": [
+        {
+            "name": "upstage/solar-pro-preview-instruct",
+            "likes": "•",
+            "updated": "Sep 19, 2024",
+            "tags": [
+                "Text Generation",
+                "22B",
+                "Updated Sep 19, 2024"
+            ],
+            "link": "https://huggingface.co/upstage/solar-pro-preview-instruct"
+        },
+        {
+            "name": "upstage/SOLAR-10.7B-Instruct-v1.0",
+            "likes": "•",
+            "updated": "Sep 10, 2024",
+            "tags": [
+                "Text Generation",
+                "11B",
+                "Updated Sep 10, 2024"
+            ],
+            "link": "https://huggingface.co/upstage/SOLAR-10.7B-Instruct-v1.0"
+        }
+    ]
+}

@@ -1,0 +1,75 @@
+{
+    "org": "Salesforce",
+    "collections": [
+        {
+            "title": "xLAM models",
+            "link": "https://huggingface.co/collections/Salesforce/xlam-models"
+        },
+        {
+            "title": "BLIP3o-NEXT",
+            "link": "https://huggingface.co/collections/Salesforce/blip3o-next"
+        },
+        {
+            "title": "CoDA",
+            "link": "https://huggingface.co/collections/Salesforce/coda"
+        },
+        {
+            "title": "FARE",
+            "link": "https://huggingface.co/collections/Salesforce/fare"
+        }
+    ],
+    "models": [
+        {
+            "name": "Salesforce/xRouter",
+            "likes": "•",
+            "updated": "Nov 4",
+            "tags": [
+                "Text Generation",
+                "8B",
+                "Updated Nov 4"
+            ],
+            "link": "https://huggingface.co/Salesforce/xRouter"
+        },
+        {
+            "name": "Salesforce/xLAM-7b-r",
+            "likes": "•",
+            "updated": "Jul 24",
+            "tags": [
+                "Text Generation",
+                "7B",
+                "Updated Jul 24"
+            ],
+            "link": "https://huggingface.co/Salesforce/xLAM-7b-r"
+        },
+        {
+            "name": "Salesforce/xLAM-1b-fc-r",
+            "likes": "•",
+            "updated": "Jul 24",
+            "tags": [
+                "Text Generation",
+                "1B",
+                "Updated Jul 24"
+            ],
+            "link": "https://huggingface.co/Salesforce/xLAM-1b-fc-r"
+        },
+        {
+            "name": "Salesforce/BLIP3o-NEXT-SFT-3B",
+            "likes": "•",
+            "updated": "Nov 3",
+            "tags": [
+                "5B",
+                "Updated Nov 3"
+            ],
+            "link": "https://huggingface.co/Salesforce/BLIP3o-NEXT-SFT-3B"
+        },
+        {
+            "name": "Salesforce/Llama-Fin-8b",
+            "likes": "•",
+            "updated": "Oct 22",
+            "tags": [
+                "Updated Oct 22"
+            ],
+            "link": "https://huggingface.co/Salesforce/Llama-Fin-8b"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "org": "StabilityAI",
+    "collections": [
+        {
+            "title": "Stable Diffusion 3.5",
+            "link": "https://huggingface.co/collections/stabilityai/stable-diffusion-35"
+        },
+        {
+            "title": "Stable Code",
+            "link": "https://huggingface.co/collections/stabilityai/stable-code"
+        },
+        {
+            "title": "NVIDIA Optimized",
+            "link": "https://huggingface.co/collections/stabilityai/nvidia-optimized"
+        }
+    ],
+    "models": [
+        {
+            "name": "stabilityai/stable-diffusion-3.5-medium",
+            "likes": "•",
+            "updated": "Oct 31, 2024",
+            "tags": [
+                "Text-to-Image",
+                "Updated Oct 31, 2024",
+                "Efficiency"
+            ],
+            "link": "https://huggingface.co/stabilityai/stable-diffusion-3.5-medium"
+        },
+        {
+            "name": "stabilityai/stable-diffusion-xl-1.0-tensorrt",
+            "likes": "•",
+            "updated": "Oct 20",
+            "tags": [
+                "Text-to-Image",
+                "Updated Oct 20"
+            ],
+            "link": "https://huggingface.co/stabilityai/stable-diffusion-xl-1.0-tensorrt"
+        },
+        {
+            "name": "stabilityai/sp4d",
+            "likes": "•",
+            "updated": "Nov 4",
+            "tags": [
+                "Updated Nov 4"
+            ],
+            "link": "https://huggingface.co/stabilityai/sp4d"
+        }
+    ]
+}

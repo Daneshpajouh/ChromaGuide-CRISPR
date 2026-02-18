@@ -1,0 +1,25 @@
+SafeMamba: mamba_ssm not found. Using PyTorch fallback (MPS-Optimized).
+=== CRISPRO-MAMBA-X: Production Training ===
+Device: MPS
+Loading Dataset...
+Loading CRISPRoffT SOTA Database from /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/crisprofft/CRISPRoffT_all_targets.txt...
+/Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/src/data/crisprofft.py:28: DtypeWarning: Columns (1,2,4,10,12,14,15,16,17,18,19,20,27,29,30,31,32,35,36,45,51) have mixed types. Specify dtype option on import or set low_memory=False.
+  self.df = pd.read_csv(self.data_path, sep="\t", on_bad_lines='skip')
+Loaded 245848 records.
+Initializing Genome Loaders (hg38 + mm10)...
+Loading Genome: /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/hg38/hg38.fa.gz ...
+Reading /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/hg38/hg38.fa.gz into ByteTensors...
+Loaded 455 chromosomes.
+Loading Genome: /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/mm10/mm10.fa.gz ...
+Reading /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/mm10/mm10.fa.gz into ByteTensors...
+Loaded 66 chromosomes.
+Loaded 245848 rows (Full Dataset).
+Train Size: 196678
+Val Size:   49170
+Initializing Unified Model...
+found checkpoint: checkpoints/latest_checkpoint.pth. Resuming training...
+Checkpoint loaded successfully.
+Epoch 1/50:   0%|          | 0/3074 [00:00<?, ?it/s]/Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/src/train.py:51: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  if x['efficiency'] is not None and not torch.isnan(torch.tensor(x['efficiency'])):
+Epoch 1/50:   0%|          | 0/3074 [00:27<?, ?it/s, loss=0.00141]Epoch 1/50:   0%|          | 3/3074 [00:27<7:42:29,  9.04s/it, loss=0.00141]Epoch 1/50:   0%|          | 3/3074 [01:43<7:42:29,  9.04s/it, loss=0.000195]Epoch 1/50:   0%|          | 4/3074 [01:43<26:11:39, 30.72s/it, loss=0.000195]Epoch 1/50:   0%|          | 4/3074 [02:35<26:11:39, 30.72s/it, loss=3.46e-5] Epoch 1/50:   0%|          | 5/3074 [02:35<31:50:17, 37.35s/it, loss=3.46e-5]/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:324: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-9888z67e'}
+  warnings.warn(

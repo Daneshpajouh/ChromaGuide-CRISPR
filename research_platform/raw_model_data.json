@@ -1,0 +1,67 @@
+[
+    {
+        "org": "Qwen",
+        "models": [
+            {
+                "name": "Qwen/Qwen3-VL-235B-A22B-Thinking",
+                "likes": "•",
+                "updated": "22 days ago",
+                "tags": [
+                    "Image-Text-to-Text",
+                    "236B",
+                    "Updated 22 days ago",
+                    "14k"
+                ],
+                "link": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking"
+            },
+            {
+                "name": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+                "likes": "•",
+                "updated": "22 days ago",
+                "tags": [
+                    "Image-Text-to-Text",
+                    "236B",
+                    "Updated 22 days ago",
+                    "182k"
+                ],
+                "link": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct"
+            },
+            {
+                "name": "Qwen/Qwen3Guard-Gen-8B",
+                "likes": "•",
+                "updated": "Nov 7",
+                "tags": [
+                    "Text Generation",
+                    "8B",
+                    "Updated Nov 7",
+                    "13.4k"
+                ],
+                "link": "https://huggingface.co/Qwen/Qwen3Guard-Gen-8B"
+            },
+            {
+                "name": "Qwen/Qwen3Guard-Gen-4B",
+                "likes": "•",
+                "updated": "Nov 7",
+                "tags": [
+                    "Text Generation",
+                    "4B",
+                    "Updated Nov 7",
+                    "12.8k"
+                ],
+                "link": "https://huggingface.co/Qwen/Qwen3Guard-Gen-4B"
+            },
+            {
+                "name": "Qwen/Qwen3Guard-Gen-0.8B",
+                "likes": "•",
+                "updated": "Nov 7",
+                "tags": [
+                    "Text Generation",
+                    "0.8B",
+                    "Updated Nov 7",
+                    "148k"
+                ],
+                "link": "https://huggingface.co/Qwen/Qwen3Guard-Gen-0.8B"
+            }
+        ]
+    }
+]

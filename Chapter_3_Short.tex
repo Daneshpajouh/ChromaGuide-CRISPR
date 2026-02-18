@@ -1,0 +1,35 @@
+% ======================================================================
+% CHAPTER 3: LITERATURE REVIEW (SHORT VERSION)
+% ======================================================================
+
+\chapter{State-of-the-Art and Critical Limitations}
+
+\section{Evolution of CRISPR Prediction (2014-2025)}
+Computational prediction of CRISPR efficiency has evolved from simple linear models to complex deep learning architectures.
+
+\begin{itemize}
+    \item \textbf{2014 (Doench et al.):} Rule-based linear models ($R \approx 0.70$). Identified PAM-proximal importance but failed to capture non-linear interactions.
+    \item \textbf{2018-2019 (DeepHF):} RNN/CNN deep learning models ($R \approx 0.86$). Captured local sequence motifs but restricted to <50bp context.
+    \item \textbf{2020 (AttCRISPR):} Attention mechanisms ($R \approx 0.87$). Improved interpretability but still sequence-only.
+    \item \textbf{2025 (CRISPR-FMC):} The current SOTA. Uses pre-trained RNA-FM embeddings and cross-modal fusion ($R \approx 0.93$).
+\end{itemize}
+
+\section{The Persistence of Unexplained Variance}
+Despite reaching $R \approx 0.93$, current models leave approximately **14\% of variance unexplained**.
+
+\begin{figure}[h!]
+    \centering
+    \fbox{\parbox{0.9\textwidth}{\centering \vspace{1cm} \textbf{FIGURE PLACEHOLDER} \\ \textbf{File:} figures/fig\_3\_3.png \\ \textbf{Description:} The "Variance Gap": Sequence-only models (blue) have saturated. The remaining 14\% variance (red) is... \vspace{1cm}}}
+    \caption[Variance Gap]{The "Variance Gap": Sequence-only models (blue) have saturated. The remaining 14\% variance (red) is driven by Epigenomics and 3D Structure, which no current model integrates.}
+    \label{fig:variance_gap_short}
+\end{figure}
+
+\subsection{Critical Gaps in SOTA}
+Our analysis identifies three primary reasons for this plateau:
+\begin{enumerate}
+    \item \textbf{Sequence Tunnel Vision:} Models treat DNA as a 1D string, ignoring the 3D chromatin scaffold.
+    \item \textbf{Epigenomic Blindness:} Models ignore cell-type specific accessibility (ATAC, Methylation). A guide efficient in T-cells may fail in hepatocytes due to chromatin compaction.
+    \item \textbf{Short Context:} The 400bp window misses TAD-scale regulators (enhancers/promoters) located 100kb+ away.
+\end{enumerate}
+
+CRISPRO-MAMBA-X is explicitly designed to capture this "Missing 14\%".

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "deepseek-ai/DeepSeek-V3.2-Exp",
+        "likes": "•",
+        "updated": "about 1 month ago",
+        "tags": [
+            "Text Generation",
+            "685B"
+        ],
+        "link": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Exp"
+    },
+    {
+        "name": "deepseek-ai/DeepSeek-V3.2",
+        "likes": "•",
+        "updated": "17 days ago",
+        "tags": [
+            "Text Generation",
+            "685B"
+        ],
+        "link": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2"
+    },
+    {
+        "name": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+        "likes": "•",
+        "updated": "May 29",
+        "tags": [
+            "Text Generation",
+            "8B"
+        ],
+        "link": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+    }
+]

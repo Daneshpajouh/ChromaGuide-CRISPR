@@ -1,0 +1,22 @@
+\begin{tikzpicture}[scale=0.8]
+% DNA Helix
+\draw[thick, blue!60, decoration={snake, amplitude=3mm, segment length=1cm, post length=0mm}, decorate] (0,0) -- (10,0);
+\draw[thick, blue!60, decoration={snake, amplitude=3mm, segment length=1cm, post length=0mm, mirror}, decorate] (0,-0.5) -- (10,-0.5);
+
+% Cas9 Protein (Blob)
+\fill[gray!20, opacity=0.8, rounded corners=20pt] (2,-2) rectangle (8,2);
+\node at (5,1.5) {\textbf{Cas9 Protein}};
+
+% gRNA
+\draw[ultra thick, red, rounded corners] (3,0) -- (3,1) -- (7,1) -- (7,0);
+\node[red] at (5,0.7) {sgRNA Guide};
+
+% Target Site & Cut
+\draw[<-, ultra thick, black] (5.5, 0.2) -- (6.5, 2) node[above] {DSB Cut Site};
+\node[star, star points=10, star point ratio=2.25, fill=yellow, draw] at (5.5, -0.25) {};
+
+% Labels
+\node at (1,-1) {Genomic DNA};
+\node at (7.5, -0.2) {PAM};
+
+\end{tikzpicture}

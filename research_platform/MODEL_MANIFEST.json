@@ -1,0 +1,145 @@
+{
+    "platform_name": "Research Hub Specialist Matrix",
+    "version": "14.1",
+    "description": "Unified Triple-Tier PhD Specialist Hub (SOTA Integrity & High-Density Logic)",
+    "base_model_dir": "/Volumes/Elements/research_hub_models",
+    "deep_apex": [
+        {
+            "category": "reasoning",
+            "name": "DeepSeek-R1-Distill-Qwen-14B-Instruct",
+            "hf_id": "mlx-community/DeepSeek-R1-Distill-Qwen-14B-4bit",
+            "local_path": "deep/r1_14b",
+            "description": "Primary Analytical Brain - 14.1B Thinking-Instruct"
+        },
+        {
+            "category": "logic",
+            "name": "Nemotron-Cascade-14B-Thinking-Instruct",
+            "hf_id": "nvidia/Nemotron-Cascade-14B-Thinking",
+            "local_path": "deep/nemotron_14b",
+            "description": "Formal Math & Architecture - 14.8B Thinking-Instruct"
+        },
+        {
+            "category": "coding",
+            "name": "Qwen3-Coder-30B-A3B-Instruct",
+            "hf_id": "mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit",
+            "local_path": "deep/qwen3_coder_30b",
+            "description": "Apex MoE Software Engineering - 30.5B Instruct"
+        },
+        {
+            "category": "vision",
+            "name": "Qwen3-VL-30B-A3B-Thinking-Instruct",
+            "hf_id": "mlx-community/Qwen3-VL-30B-A3B-Thinking-4bit",
+            "local_path": "deep/qwen3_vl_30b_think",
+            "description": "Scientific Thinking-Vision - 31.1B MoE Instruct"
+        },
+        {
+            "category": "security",
+            "name": "DeepSeek-R1-Distill-Qwen-14B-Instruct",
+            "hf_id": "mlx-community/DeepSeek-R1-Distill-Qwen-14B-4bit",
+            "local_path": "deep/r1_14b",
+            "description": "Deep Security & Vulnerability Thinking-Audit"
+        },
+        {
+            "category": "verification",
+            "name": "DeepSeek-R1-Distill-Qwen-14B-Instruct",
+            "hf_id": "mlx-community/DeepSeek-R1-Distill-Qwen-14B-4bit",
+            "local_path": "deep/r1_14b",
+            "description": "Formal Logic Thinking-Verification"
+        }
+    ],
+    "regular_scientific": [
+        {
+            "category": "reasoning",
+            "name": "Qwen3-VL-8B-Thinking-Instruct",
+            "hf_id": "mlx-community/Qwen3-VL-8B-Thinking-4bit",
+            "local_path": "regular/qwen3_vl_8b_think",
+            "description": "Standard Reasoning & Vision - 8.8B T+V Instruct"
+        },
+        {
+            "category": "logic",
+            "name": "Qwen2.5-Math-7B-Instruct",
+            "hf_id": "mlx-community/Qwen2.5-Math-7B-Instruct-4bit",
+            "local_path": "regular/qwen_math_7b",
+            "description": "Standard Mathematical Instruct-Formalization"
+        },
+        {
+            "category": "coding",
+            "name": "Qwen3-Coder-7B-Instruct",
+            "hf_id": "mlx-community/Qwen3-Coder-7B-Instruct-4bit",
+            "local_path": "regular/qwen3_coder_7b",
+            "description": "Reliable Software Drafting - 7.4B Instruct"
+        },
+        {
+            "category": "vision",
+            "name": "Qwen3-VL-8B-Thinking-Instruct",
+            "hf_id": "mlx-community/Qwen3-VL-8B-Thinking-4bit",
+            "local_path": "regular/qwen3_vl_8b_think",
+            "description": "Standard Multi-Modal Analysis - 8.8B Instruct"
+        },
+        {
+            "category": "security",
+            "name": "Granite-Guardian-3.1-8B-Instruct",
+            "hf_id": "ibm-granite/granite-guardian-3.1-8b",
+            "local_path": "regular/granite_guard_8b",
+            "description": "Standard PhD Safety Audit - IBM 8B Guard"
+        },
+        {
+            "category": "verification",
+            "name": "Qwen3-8B-Instruct",
+            "hf_id": "mlx-community/Qwen3-8B-Instruct-4bit",
+            "local_path": "regular/qwen3_8b",
+            "description": "Standard Quality Instruct-Verification"
+        }
+    ],
+    "ultra_light_fast": [
+        {
+            "category": "reasoning",
+            "name": "Nanbeige4-3B-Thinking",
+            "hf_id": "Nanbeige/Nanbeige4-3B-Thinking-2511",
+            "local_path": "fast/logic_nanbeige",
+            "description": "Fast SOTA Thinking Specialist - 3.2B Thinking"
+        },
+        {
+            "category": "logic",
+            "name": "Gemma-3-4B-Instruct",
+            "hf_id": "mlx-community/gemma-3-4b-it-4bit",
+            "local_path": "fast/arch_gemma",
+            "description": "Fast SOTA Architectural Logic - Google 4B"
+        },
+        {
+            "category": "coding",
+            "name": "Qwen3-Coder-30B-A3B-Instruct",
+            "hf_id": "mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit",
+            "local_path": "fast/coder_qwen3_moe",
+            "description": "Fast Apex MoE Coding - 3B Active"
+        },
+        {
+            "category": "vision",
+            "name": "Qwen3-VL-2B-Thinking-Instruct",
+            "hf_id": "mlx-community/Qwen3-VL-2B-Thinking-4bit",
+            "local_path": "fast/qwen3_vl_2b_think",
+            "description": "Real-time Multi-Modal Logic - 2.2B T+V Instruct"
+        },
+        {
+            "category": "security",
+            "name": "Granite-Guardian-3.1-2B-Instruct",
+            "hf_id": "ibm-granite/granite-guardian-3.1-2b",
+            "local_path": "fast/granite_guard_2b",
+            "description": "Edge Policy Instruct-Enforcement (IBM 2B)"
+        },
+        {
+            "category": "verification",
+            "name": "Granite-4.0-h-micro-Instruct",
+            "hf_id": "mlx-community/granite-4.0-h-micro-4bit",
+            "local_path": "fast/granite_micro",
+            "description": "Hyper-Fast Instruct-Audit (IBM 0.8B)"
+        },
+        {
+            "category": "routing",
+            "name": "FunctionGemma-270m-it",
+            "hf_id": "mlx-community/functiongemma-270m-it-4bit",
+            "local_path": "fast/functiongemma_270m",
+            "description": "Google 270M Instruct-Router"
+        }
+    ]
+}

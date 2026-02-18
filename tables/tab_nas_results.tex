@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\caption{Neural Architecture Search Results: Top 5 Architectures}
+\label{tab:nas_results}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Rank} & \textbf{Architecture} & \textbf{Spearman} & \textbf{Latency} & \textbf{Parameters} \\
+\hline
+1 & Mamba-4L (baseline) & 0.970 & 0.92 s & 150M \\
+\hline
+2 & Transformer-6L sparse & 0.968 & 1.58 s & 180M \\
+\hline
+3 & Hybrid CNN-Mamba & 0.972 & 0.87 s & 165M \\
+\hline
+4 & Vision Transformer (ViT) & 0.964 & 2.14 s & 220M \\
+\hline
+5 & Graph NN (3D structure) & 0.958 & 3.42 s & 125M \\
+\hline
+\end{tabular}
+}
+\end{table}

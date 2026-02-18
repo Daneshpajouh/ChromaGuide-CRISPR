@@ -1,0 +1,53 @@
+% ======================================================================
+% CHAPTER 1: INTRODUCTION (SHORT VERSION)
+% Condensed for Impact and Clarity
+% ======================================================================
+
+\chapter{Introduction: Closing Critical Gaps in CRISPR Safety and Efficiency}
+
+\section{The CRISPR Revolution and Clinical Reality}
+
+The FDA approval of **CASGEVY** (exagamglogene autotemcel) in December 2023 marked a paradigm shift in medicine. By curing Sickle Cell Disease and Beta-Thalassemia with a single course of ex-vivo gene editing, CASGEVY demonstrated that CRISPR-Cas9 is no longer just a research tool—it is a life-saving therapeutic platform.
+
+However, widespread deployment faces a critical safety bottleneck: **Predictive Uncertainty**. While CASGEVY succeeded through exhaustive, costly manual validation of a single guide RNA, scalable therapeutic development requires computational models that can instantly and accurately predict outcomes for \textit{any} genomic target.
+
+\subsection{Five Critical Bottlenecks in Current Models}
+Despite recent advances (e.g., DeepHF, CRISPR-FMC), current state-of-the-art models systematically ignore vast amounts of biological information. This dissertation addresses five fundamental gaps:
+
+\begin{enumerate}
+    \item \textbf{Context Blindness (99.9\% Information Loss):} Current models use $\pm$200 bp context windows. They ignore long-range chromatin interactions (TADs, loops) that constrain DNA accessibility. \textbf{CRISPRO-MAMBA-X uses a 1.2 Mbp context window}, capturing $10^6 \times$ more information.
+
+    \item \textbf{Epigenomic Amnesia:} Accessibility is NOT just sequence. Current models ignore the five key epigenomic regulators: ATAC-seq, H3K27ac modifiers, Hi-C 3D structure, Nucleosome positioning, and DNA methylation.
+
+    \item \textbf{Off-Target Safety Gap:} No existing model integrates chromatin accessibility into off-target prediction. They often predict high risk for sites buried in heterochromatin (safe) or low risk for sites in open chromatin (dangerous).
+
+    \item \textbf{Lack of Uncertainty Quantification:} Models provide point estimates (e.g., "0.85 efficiency") without confidence intervals. Clinicians cannot distinguish a reliable 0.85 from a wild guess.
+
+    \item \textbf{Black Box Opacity:} Deep neural networks offer no mechanistic insight into \textit{why} a guide is good or bad, preventing biological validation.
+\end{enumerate}
+
+\begin{figure}[h!]
+    \centering
+    \fbox{\parbox{0.9\textwidth}{\centering \vspace{1cm} \textbf{FIGURE PLACEHOLDER} \\ \textbf{File:} figures/fig\_1\_6.png \\ \textbf{Description:} The five critical bottlenecks in CRISPR computational biology addressed by this dissertation: Contex... \vspace{1cm}}}
+    \caption[Critical Bottlenecks]{The five critical bottlenecks in CRISPR computational biology addressed by this dissertation: Context, Epigenomics, Off-Targets, Uncertainty, and Opacity.}
+    \label{fig:five_bottlenecks_short}
+\end{figure}
+
+\section{The Proposed Solution: CRISPRO-MAMBA-X}
+
+This dissertation presents **CRISPRO-MAMBA-X**, a unified computational system that solves these five bottlenecks through five coordinated architectural innovations:
+
+\begin{enumerate}
+    \item \textbf{Mamba State Space Architecture:} Leveraging selective state space models (SSMs) to process **1.2 Mbp genomic sequences** with linear $O(N)$ complexity, enabling TAD-scale modeling previously impossible with Transformers ($O(N^2)$).
+
+    \item \textbf{Multimodal Epigenomic Fusion:} A position-specific attention mechanism integrating all **5 epigenomic modalities**, improving efficiency variance explanation by 20-30\%.
+
+    \item \textbf{Physical Off-Target Modeling:} The first model to use cell-type specific chromatin accessibility to predict \textit{physical} off-target vulnerability, achieving **AUC 0.88**.
+
+    \item \textbf{Conformal Prediction Guarantees:} Implementing Conformal Inference to provide mathematically guaranteed **90\% coverage** for prediction intervals, meeting FDA standards for clinical decision support.
+
+    \item \textbf{Mechanistic Interpretability:} A suite of probing tasks and attention analysis to validate that the model learns true biological principles, not just statistical correlations.
+\end{enumerate}
+
+\section{Dissertation Overview}
+This work moves systematically from theoretical foundations (Ch 2) to epigenomic integration (Ch 4), off-target safety (Ch 5), and the Mamba architecture (Ch 6). It culminates in rigorous experimental validation against wet-lab data (Ch 9) and a roadmap for clinical translation (Ch 12).

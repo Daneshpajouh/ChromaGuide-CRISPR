@@ -1,0 +1,404 @@
+%   DOCUMENT CLASS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+%   Use the `sfuthesis` class to format your thesis.
+
+%
+
+%   For more information about thesis formatting requirements, go to
+
+%   http://www.lib.sfu.ca/help/publish/thesis or ask a thesis advisor at the
+
+%   SFU Research Commons.
+
+\documentclass{sfuthesis}
+
+%   DOCUMENT METADATA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+%   Fill in the following information for the title page and declaration of
+
+%   committee page. Please review the Declaration of Committee page
+
+%   instructions on the library's thesis website before completing this page:
+
+%   https://www.lib.sfu.ca/help/publish/thesis/format/declaration-committee
+
+%   Choose the \faculty entry below from the following list:
+
+%
+
+%       - Faculty of Applied Sciences
+
+%       - Faculty of Arts and Social Sciences
+
+%       - Beedie School of Business
+
+%       - Faculty of Communication, Art and Technology
+
+%       - Faculty of Education
+
+%       - Faculty of Environment
+
+%       - Faculty of Health Sciences
+
+%       - Faculty of Science
+
+\title{ChromaGuide: A Multi-Modal Deep Learning Framework for Comprehensive CRISPR-Cas9 Guide RNA Design and Efficacy Prediction}
+
+\thesistype{Proposal}
+
+\author{Amirhossein Daneshpajouh}
+
+\previousdegrees{%
+
+% Add previous degrees here if applicable
+
+% M.Sc., Example University, YYYY\\
+
+% B.Sc., Example University, YYYY
+
+}
+
+\degree{Doctor of Philosophy}
+
+\department{School of Computing Science}
+
+\faculty{Faculty of Applied Sciences}
+
+\copyrightyear{2026}
+\semester{Winter 2026}
+
+%   You may include up to six keywords or phrases. Keywords should be separated
+
+%   with semicolons. No punctuation at the end.
+
+\keywords{CRISPR-Cas9; On-Target Prediction; Epigenomic Features; Deep Learning; Transfer Learning; Conformal Prediction; Uncertainty Quantification}
+
+\committee{%
+
+    \chair{TBD}{TBD}
+
+    \member{Dr. Kay C.\ Wiese}{Supervisor \\ Professor, Computing Science}
+
+    \member{Dr. Maxwell W.\ Libbrecht}{Committee Member \\ Associate Professor, Computing Science}
+
+    \member{TBD}{Committee Member \\ TBD}
+
+    \member{TBD}{Examiner \\ TBD}
+
+    \member{TBD}{External Examiner \\ TBD \\ TBD \\ TBD}
+
+}
+
+%   PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+%   Add any packages you need for your thesis here.
+
+%   You don't need to call the following packages, which are already called in
+
+%   the sfuthesis class file:
+
+%
+
+%   - appendix
+
+%   - etoolbox
+
+%   - fontenc
+
+%   - geometry
+
+%   - lmodern
+
+%   - nowidow
+
+%   - setspace
+
+%   - tocloft
+
+%
+
+%   If you call one of the above packages (or one of their dependencies) with
+
+%   options, you may get a "Option clash" LaTeX error. If you get this error,
+
+%   you can fix it by removing your copy of \usepackage and passing the options
+
+%   you need by adding
+
+%
+
+%       \PassOptionsToPackage{<options>}{<package>}
+
+%
+
+%   before \documentclass{sfuthesis}.
+
+%
+
+%   The following packages are a few suggestions you might find useful.
+
+%
+
+%   (1) amsmath and amssymb are essential if you have math in your thesis;
+
+%       they provide useful commands like ``blackboard bold'' symbols and
+
+%       environments for aligning equations.
+
+%   (2) amsthm includes allows you to easily change the style and numbering of
+
+%       theorems. It also provides an environment for proofs.
+
+%   (3) graphicx allows you to add images with \includegraphics{filename}.
+
+%   (4) hyperref turns your citations and cross-references into clickable
+
+%       links, and adds metadata to the compiled PDF.
+
+%   (5) pdfpages lets you import pages of external PDFs using the command
+
+%       \includepdf{filename}. You will need to do this if your research
+
+%       requires an Ethics Statement.
+
+%
+
+\usepackage{amsmath}                            % (1)
+
+\usepackage{amssymb}                            % (1)
+
+\usepackage{amsthm}                             % (2)
+
+\usepackage{graphicx}                           % (3)
+
+\usepackage[pdfborder={0 0 0}]{hyperref}        % (4)
+
+\usepackage{natbib}                             % For bibliography
+
+\usepackage{algorithm}                           % For algorithms
+
+\usepackage{algorithmic}                        % For algorithms
+
+\usepackage{booktabs}                           % For better tables
+
+\usepackage{multirow}                            % For table cells spanning rows
+
+\usepackage{tabularx}                           % For tables with automatic column widths
+\newcolumntype{Y}{>{\raggedright\arraybackslash\hyphenpenalty=10000\exhyphenpenalty=10000}X}
+
+\usepackage{tikz}                               % For architecture diagrams
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+
+\usepackage{microtype}                          % Better justification / fewer overfull boxes
+\setlength{\emergencystretch}{2em}
+
+% \usepackage{pdfpages}                         % (5)
+
+% ...
+
+% ...
+
+% ...
+
+% ... add your own packages here!
+
+%   OTHER CUSTOMIZATIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+%   Add any packages you need for your thesis here. We've started you off with
+
+%   a few suggestions.
+
+%
+
+%   (1) Use a single word space between sentences. If you disable this, you
+
+%       will have to manually control spacing around abbreviations.
+
+%   (2) Correct the capitalization of "Chapter" and "Section" if you use the
+
+%       \autoref macro from the `hyperref` package.
+
+%   (3) The LaTeX thesis template defaults to one-and-a-half line spacing. If
+
+%       your supervisor prefers double-spacing, you can redefine the
+
+%       \defaultspacing command.
+
+%
+
+\frenchspacing                                    % (1)
+
+\renewcommand*{\chapterautorefname}{Chapter}      % (2)
+
+\renewcommand*{\sectionautorefname}{Section}      % (2)
+
+\renewcommand*{\subsectionautorefname}{Section}   % (2)
+
+% \renewcommand{\defaultspacing}{\doublespacing}  % (3)
+
+% Custom commands for CRISPR terminology
+
+\newcommand{\gRNA}{\text{gRNA}}
+
+\newcommand{\sgRNA}{\text{sgRNA}}
+
+\newcommand{\PAM}{\text{PAM}}
+
+\newcommand{\CasNine}{\text{Cas9}}
+
+\newcommand{\MI}{\text{MI}}
+
+\newcommand{\ECE}{\text{ECE}}
+
+% Theorem environments
+
+\theoremstyle{definition}
+
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{lemma}{Lemma}[section]
+
+\newtheorem{proposition}{Proposition}[section]
+
+\newtheorem{corollary}{Corollary}[section]
+
+\newtheorem{remark}{Remark}[section]
+
+\newtheorem{hypothesis}{Hypothesis}[chapter]
+
+% ...
+
+% ...
+
+% ...
+
+% ... add your own customizations here!
+
+%   FRONTMATTER  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+%   Title page, committee page, abstract, dedication, acknowledgements, table
+
+%   of contents, etc.
+
+%
+
+%   If your research requires an Ethics Statement, download the pdf from
+
+%   https://www.lib.sfu.ca/help/publish/thesis/regulations#ethics-statement
+
+%   to your thesis folder, then uncomment the appropriate lines below.
+
+\begin{document}
+
+\frontmatter
+
+\maketitle{}
+
+\makecommittee{}
+
+%\addtoToC{Ethics Statement}%
+
+%\includepdf[pagecommand={\thispagestyle{plain}}]{ethics_statement_piii.pdf}%
+
+%\clearpage
+
+\begin{abstract}
+
+Accurate CRISPR-Cas9 genome editing depends on choosing \gRNA{}s that (i) cut efficiently at the intended locus and (ii) avoid unintended cleavage elsewhere in the genome. However, many existing pipelines treat these requirements in isolation---separately scoring on-target efficacy and off-target risk---and often provide only point estimates, limiting decision support under dataset, protocol, and cell-line shift.
+
+This proposal introduces \textbf{ChromaGuide}, a multi-modal deep learning framework for comprehensive \sgRNA\ design built around three coupled components: (1) \textbf{on-target efficacy prediction}, which estimates editing outcomes in the \emph{relevant} chromatin context; (2) \textbf{off-target prediction}, which scores the likelihood and severity of unintended cleavage sites induced by a candidate guide; and (3) \textbf{\sgRNA\ design}, which integrates (1) and (2) to produce an overall design score that explicitly balances predicted on-target efficiency against off-target specificity.
+
+ChromaGuide integrates (a) sequence signals (e.g., ChromeCRISPR-style CNN--GRU and/or foundation-model embeddings), (b) optional \gRNA\ secondary-structure representations, and (c) epigenomic context features (accessibility and histone-mark tracks). It supports calibrated uncertainty for on-target predictions via a bounded-outcome head (e.g., Beta regression) and conformal prediction, and it ranks candidate guides by aggregating multi-site off-target risk with the on-target signal into a single, actionable \sgRNA\ score.
+
+We will evaluate ChromaGuide on DeepHF, CRISPRon, and CRISPR-FMC using leakage-controlled \textbf{gene-held-out} and \textbf{dataset/cell-line-held-out} splits to stress-test generalization. The expected contributions are: (1) a rigorously evaluated multi-modal architecture for on-target efficacy prediction, (2) an off-target prediction module that supports genome-wide unintended-site risk scoring, (3) an integrated \sgRNA\ design score for guide selection that balances efficiency and specificity, and (4) an evaluation protocol that makes failure modes under biological shift visible. If successful, ChromaGuide will enable more reliable, context-aware, and safety-aware \gRNA\ prioritization.
+
+\end{abstract}
+
+% \begin{dedication}
+% Optional dedication page
+% \end{dedication}
+
+\begin{acknowledgements}
+
+I thank my supervisor, Dr. Kay C. Wiese for his support, guidance and feedback, as well as my supervisory committee and colleagues at Simon Fraser University and the broader computational biology community for enabling this work through open datasets and tools. I am also grateful to my family and friends for their continued support.
+
+\end{acknowledgements}
+
+\addtoToC{Table of Contents}%
+
+\tableofcontents%
+
+\clearpage
+
+\addtoToC{List of Figures}%
+\listoffigures%
+\clearpage
+
+\addtoToC{List of Tables}%
+\listoftables%
+\clearpage
+
+%   MAIN MATTER  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+%   Start writing your thesis --- or start \include ing chapters --- here.
+
+%
+
+\mainmatter%
+
+\input{chapters/introduction}
+\input{chapters/research_questions}
+\input{chapters/background_litreview}
+\input{chapters/methodology}
+\input{chapters/expected_results}
+\input{chapters/timeline}
+\input{chapters/broader_impacts}
+
+
+%   BACK MATTER  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+%   References and appendices. Appendices come after the bibliography and
+
+%   should be in the order that they are referred to in the text.
+
+%
+
+%   If you include figures, etc. in an appendix, be sure to use
+
+%
+
+%       \caption[]{...}
+
+%
+
+%   to make sure they are not listed in the List of Figures.
+
+%
+
+\backmatter%
+
+    \addtoToC{Bibliography}
+
+    \bibliographystyle{plainnat}
+
+    \bibliography{references}
+
+
+
+\end{document}

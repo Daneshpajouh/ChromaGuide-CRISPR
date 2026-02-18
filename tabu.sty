@@ -1,0 +1,11 @@
+\ProvidesPackage{tabu}
+\RequirePackage{array}
+\RequirePackage{longtable} % tabu interacts with longtable
+\newenvironment{tabu}[2][]{%
+  % Simplistic mapping to tabular, might break with 'to \linewidth' syntax if not stripped
+  % We might need to gobble arguments if it uses 'to X'.
+  % For now, assume standard usage or try to swallow.
+  \begin{tabular}{#2}
+}{%
+  \end{tabular}
+}

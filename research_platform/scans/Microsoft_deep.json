@@ -1,0 +1,56 @@
+{
+    "org": "Microsoft",
+    "collections": [
+        {
+            "title": "Phi-4",
+            "link": "https://huggingface.co/collections/microsoft/phi-4"
+        },
+        {
+            "title": "BitNet",
+            "link": "https://huggingface.co/collections/microsoft/bitnet"
+        },
+        {
+            "title": "MAI-DS-R1",
+            "link": "https://huggingface.co/collections/microsoft/mai-ds-r1"
+        },
+        {
+            "title": "Phi-3.5",
+            "link": "https://huggingface.co/collections/microsoft/phi-35-66c836d548ad72037637f943"
+        }
+    ],
+    "models": [
+        {
+            "name": "microsoft/bitnet-b1.58-2B-4T",
+            "likes": "•",
+            "updated": "1 day ago",
+            "tags": [
+                "Text Generation",
+                "0.8B",
+                "Updated 1 day ago"
+            ],
+            "link": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T"
+        },
+        {
+            "name": "microsoft/mai-ds-r1-v1",
+            "likes": "•",
+            "updated": "2 days ago",
+            "tags": [
+                "Text Generation",
+                "685B",
+                "Updated 2 days ago"
+            ],
+            "link": "https://huggingface.co/microsoft/mai-ds-r1-v1"
+        },
+        {
+            "name": "microsoft/Phi-3.5-MoE-instruct",
+            "likes": "•",
+            "updated": "8 days ago",
+            "tags": [
+                "Text Generation",
+                "42B",
+                "Updated 8 days ago"
+            ],
+            "link": "https://huggingface.co/microsoft/Phi-3.5-MoE-instruct"
+        }
+    ]
+}

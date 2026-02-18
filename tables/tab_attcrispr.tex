@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\caption{AttCRISPR Performance}
+\label{tab:attcrispr}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|l|}
+\hline
+\textbf{Variant} & \textbf{Spearman} & \textbf{MSE} & \textbf{Features} \\
+\hline
+SpAC (Sequence) & 0.857 & N/A & Sequence only \\
+\hline
+TAC (Thermodynamics) & 0.862 & N/A & Sequence + thermo \\
+\hline
+EnAC (Ensemble) & 0.868 & N/A & Multiple feature sets \\
+\hline
+EnAC + Bio & 0.868 & N/A & + secondary structure \\
+\hline
+StAC + Bio (Best) & 0.872 & N/A & Stacking + structure \\
+\hline
+\end{tabular}
+}
+\end{table}

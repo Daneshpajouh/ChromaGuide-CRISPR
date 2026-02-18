@@ -1,0 +1,99 @@
+\chapter{Timeline and Work Plan}
+
+\section[Timeline and Milestones]{Timeline and Milestones}
+
+\textbf{Scope.} Accelerated 42
+execution window (February 2026--December 2026). Dates below are stated explicitly to avoid ambiguity.
+
+\subsection{February 2026: Proposal and scoping}
+
+\textbf{Milestone 1 (by February 26, 2026): Finalized proposal + execution checklist}
+\begin{itemize}
+\item Deliverable: finalized evaluation protocol and leakage-controlled splits specification (Split A primary; Splits B/C optional stress tests)
+\item Deliverable: concrete implementation plan (data, preprocessing, model, calibration, reporting) and compute budget
+\end{itemize}
+
+\subsection{March--April 2026: Implementation and baseline reproduction}
+
+\textbf{Milestone 2 (by April 30, 2026): Working training/evaluation pipeline + baselines}
+\begin{itemize}
+\item Deliverable: reproducible pipeline for preprocessing, splitting, training, and evaluation
+\item Deliverable: baseline reproduction on the same splits (ChromeCRISPR~\citep{daneshpajouh2025chromecrispr}, DeepSpCas9~\citep{kim2019deepspcas9}; CRISPRon~\citep{xiang2021} where comparable inputs exist)
+\item Deliverable: first ChromaGuide prototype (sequence encoder + epigenomic feature extraction + simple fusion)
+\end{itemize}
+
+\subsection{May--July 2026: Final experiments and ablation analysis}
+
+\textbf{Milestone 3 (by July 31, 2026): Completed experiments and ablation results}
+\begin{itemize}
+\item Deliverable: final experiments and ablations (epigenomics, fusion choice, calibration), reported on the primary gene-held-out test split
+\item Deliverable: uncertainty reporting (conformal prediction intervals; empirical coverage and interval width)
+\end{itemize}
+
+\subsection{August--September 2026: Thesis writing and results integration}
+
+\textbf{Milestone 3b (by September 30, 2026): Thesis-ready results package}
+\begin{itemize}
+  \item Deliverable: thesis chapters drafted---methods, evaluation protocol, results, and limitations
+  \item Deliverable: all figures, tables, and supplementary material assembled
+\end{itemize}
+
+\subsection{October 2026--December 2026: Defense preparation and submission}
+
+\textbf{Milestone 4 (by December 11, 2026): Defense-ready thesis and presentation
+\begin{itemize}
+\item Deliverable: full thesis polish, formatting, and final submission package
+\item Deliverable: defense slides + practice talk(s) + committee feedback incorporated
+\end{itemize}
+
+% Timeline figure omitted for concision.
+
+\section{Computational Resources}
+
+\textbf{HPC Cluster:} Digital Research Alliance Canada (NVIDIA V100/A100 GPUs)
+
+\textbf{Training Time:} $\sim$20 seconds per iteration on V100 (estimated 100--200 hours total)
+
+\textbf{Memory:} 32GB GPU memory per node
+
+% Table omitted for concision.
+
+\section{Data Resources}
+
+\begin{itemize}
+
+\item \textbf{ENCODE:} Public epigenomic tracks (100+ cell types), or similar resources providing accessibility and histone-mark signals.
+
+\item \textbf{DeepHF/CRISPRon/CRISPR-FMC:} Public datasets (and related datasets), subject to compatibility with the proposed inputs and evaluation protocol.
+
+\item \textbf{PRIDICT/PrimeNet:} Public models and datasets (or comparable alternatives) that may be used for initialization or transfer studies, pending feasibility analysis.
+
+\item \textbf{Supplementary sources (as needed):} The above may be supplemented with additional public screens, cell-line-specific epigenomic tracks, or curated subsets when required for robustness analyses.
+
+\end{itemize}
+
+\section{Risk Assessment and Mitigation}
+
+\begingroup
+\let\oldsection\section
+\let\oldsubsection\subsection
+\renewcommand{\section}{\oldsubsection}
+\renewcommand{\subsection}{\oldsubsubsection}
+
+\section{Key risks and mitigations}
+
+\begin{description}
+\item[Epigenomic coverage (missing tracks).] Use modality dropout and/or hierarchical imputation; report results with and without imputed contexts, and treat missing-modality robustness as a primary analysis dimension.
+\item[Transfer learning adds no value.] Keep transfer as an optional, fully ablated extension; gate it by a simple similarity/shift analysis and prioritize a strong in-domain baseline.
+\item[Coverage violations under batch effects.] Use weighted conformal calibration and report coverage stratified by dataset/cell line; when coverage degrades, include failure-mode analyses rather than aggregating away the issue.
+\item[Performance plateau.] Focus contributions on (i) leakage-controlled evaluation, (ii) context integration, and (iii) calibrated uncertainty; ensure publishable outcomes even when ranking gains are modest.
+\end{description}
+
+\section{Success criteria (operational)}
+
+\begin{itemize}
+\item \textbf{Minimum:} Match ChromeCRISPR's reported Spearman (0.876; reported under a random 85/15 split) and re-evaluate the ChromeCRISPR baseline on our leakage-controlled Split~A for a fair like-for-like comparison~\citep{daneshpajouh2025chromecrispr}, while producing calibrated prediction intervals with audited empirical coverage.
+\item \textbf{Target:} Achieve 0.88--0.92 Spearman on Split A with empirical coverage within $\pm 0.02$ of the target level (e.g., 0.90), under the February--March 2026 scope.
+\end{itemize}
+
+\endgroup

@@ -1,0 +1,36 @@
+\chapter{Broader Impacts}\label{chap:broader-impacts}
+
+ChromaGuide is intended as a \emph{computational decision-support} framework for prioritizing \gRNA{}s in CRISPR-Cas9 workflows. Its broader impact derives from integrating chromatin context into prediction and from reporting calibrated uncertainty, which together can improve downstream decision making under biological shift.
+
+\section{Translational relevance and decision support}
+
+By combining sequence with epigenomic accessibility/state features, ChromaGuide aims to reduce failed experiments caused by locus-specific chromatin effects and to improve robustness when the deployment cell context differs from the training data. Outputs are intended for \emph{guide triage and hypothesis generation} (not clinical decision making) and should be used alongside standard validation, safety review, and domain expertise.
+
+\section{Scientific and methodological impact (reproducibility and evaluation)}
+
+A central contribution is a leakage-controlled evaluation protocol (gene-held-out plus dataset/cell-line-held-out stress tests) that makes failure modes under biological shift explicit. Conformal prediction intervals add an outcome that can be audited quantitatively (empirical coverage and interval width), complementing standard ranking metrics.
+
+\section{Responsible use, governance, and limitations}
+
+\begin{itemize}
+\item \textbf{Reliability and communication:} Report uncertainty (coverage, \ECE{}, interval width) and clearly state the split/protocol; avoid overclaiming accuracy outside evaluated domains.
+\item \textbf{Representativeness and bias:} Public datasets over-represent common cell lines and protocols; therefore, report performance under cross-domain stress tests and avoid implying general clinical validity without evidence.
+\item \textbf{Data governance:} For patient-derived or proprietary screens, document provenance, permitted uses, and what is excluded from release.
+\item \textbf{Dual-use awareness:} Any release should include a scope statement, limitations, and guidance against harmful use; controlled distribution of trained models is an option if risk warrants.
+\item \textbf{Non-causality and shift limits:} Learned associations are not causal, and strong batch effects/unmeasured confounders can degrade calibration even with weighted conformal methods; these are treated as first-class failure modes to monitor.
+\end{itemize}
+
+\section{Ethics and biosafety considerations}
+
+Because CRISPR-Cas9 is a powerful genome-editing tool with direct implications for human health and agriculture, any computational framework that improves guide design carries inherent dual-use risk. We address this through four complementary safeguards:
+
+\begin{itemize}
+  \item \textbf{Scope limitation:} ChromaGuide is designed and evaluated exclusively on publicly available research-grade datasets (e.g., DeepHF, CRISPRon) derived from well-characterized cell lines. The tool is not intended for direct clinical application; any therapeutic use would require independent experimental validation and regulatory review.
+  \item \textbf{Biosafety alignment:} All training and evaluation data originate from published studies that operated under institutional biosafety protocols. No new wet-lab experiments involving CRISPR-Cas9 are conducted as part of this thesis; therefore, no institutional biosafety committee (IBC) or research ethics board (REB) approval is required for the computational work.
+  \item \textbf{Off-target risk transparency:} The off-target module explicitly quantifies genome-wide unintended cleavage risk, providing users with actionable safety information rather than optimizing on-target activity alone. This design choice reflects a commitment to safer guide selection.
+  \item \textbf{Model release policy:} Trained model weights and code will be released under an open-source license with documentation emphasizing research-only intended use, known limitations (e.g., species and cell-line coverage), and guidance against applying predictions to clinical or germline editing without additional safeguards.
+\end{itemize}
+
+\section{Conclusion}
+
+Overall, ChromaGuide aims to make \gRNA{} prioritization more context-aware and more transparent about uncertainty, while emphasizing evaluation protocols that support reproducible, shift-aware reporting. The expected contributions of this work---including an open-source multi-modal scoring tool, a leakage-controlled benchmark suite, and evidence-based guidelines on when epigenomic context adds value---are detailed in Section~\ref{sec:expected-contributions}.

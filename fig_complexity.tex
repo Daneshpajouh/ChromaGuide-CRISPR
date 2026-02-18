@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Sequence Length ($L$)},
+    ylabel={Computational Cost},
+    legend pos=north west,
+    grid=major,
+    width=10cm,
+    height=7cm,
+    domain=0:10000,
+    samples=50,
+    ymin=0, ymax=100000000,
+    yticklabels={,,}, % Hide y numbers for conceptual view
+    xtick={0, 2000, 4000, 6000, 8000, 10000},
+    scaled ticks=false
+]
+
+% Mamba: Linear O(L)
+\addplot[blue, thick] {1000 * x};
+\addlegendentry{Mamba / SSM ($O(L)$)}
+
+% Transformer: Quadratic O(L^2)
+\addplot[red, thick, dashed] {x^2};
+\addlegendentry{Transformer ($O(L^2)$)}
+
+% Annotation
+\node[anchor=west] at (axis cs: 5000, 80000000) {Quadratic Explosion};
+\node[anchor=north] at (axis cs: 8000, 10000000) {Linear Efficiency};
+
+\end{axis}
+\end{tikzpicture}

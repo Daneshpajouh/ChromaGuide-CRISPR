@@ -1,0 +1,23 @@
+SafeMamba: mamba_ssm not found. Using PyTorch fallback (MPS-Optimized).
+=== CRISPRO-MAMBA-X: Production Training ===
+Device: MPS
+Loading Dataset...
+Loading CRISPRoffT SOTA Database from /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/mini/crisprofft/mini_crisprofft.txt...
+Loaded 999 records.
+Initializing Genome Loaders (hg38 + mm10)...
+Loading Genome: /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/hg38/hg38.fa.gz ...
+Reading /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/hg38/hg38.fa.gz into ByteTensors...
+Loaded 455 chromosomes.
+Loading Genome: /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/mm10/mm10.fa.gz ...
+Reading /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/mm10/mm10.fa.gz into ByteTensors...
+Loaded 66 chromosomes.
+Loaded 999 rows (Full Dataset).
+Train Size: 799
+Val Size:   200
+Initializing Unified Model...
+found checkpoint: checkpoints/latest_checkpoint.pth. Resuming training...
+Checkpoint loaded successfully.
+Epoch 1/50:   0%|          | 0/13 [00:00<?, ?it/s]/Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/src/train.py:51: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  if x['efficiency'] is not None and not torch.isnan(torch.tensor(x['efficiency'])):
+Epoch 1/50:   0%|          | 0/13 [00:27<?, ?it/s, loss=0.00204]Epoch 1/50:   8%|▊         | 1/13 [00:27<05:25, 27.14s/it, loss=0.00204]Epoch 1/50:   8%|▊         | 1/13 [00:53<05:25, 27.14s/it, loss=0.0809] Epoch 1/50:  15%|█▌        | 2/13 [00:53<04:56, 26.94s/it, loss=0.0809]Epoch 1/50:  15%|█▌        | 2/13 [01:45<04:56, 26.94s/it, loss=0.00086]Epoch 1/50:  23%|██▎       | 3/13 [01:45<06:22, 38.27s/it, loss=0.00086]/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:324: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-0t_u9ka2'}
+  warnings.warn(

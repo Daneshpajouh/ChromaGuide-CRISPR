@@ -1,0 +1,61 @@
+# Playwright Plus MCP Symlink Deployment Log
+
+## Deployment Date
+Sun Dec 14 15:49:03 PST 2025
+
+## Configuration Applied
+- Symlink: ~/Library/Caches/ms-playwright/mcp-chrome-profile-shared
+- Points to: ~/Library/Application Support/Google/Chrome/Default
+- MCP Server: @ai-coding-labs/playwright-mcp-plus@latest
+- Flags: --project-isolation, --user-data-dir=/Users/studio/Library/Caches/ms-playwright/mcp-chrome-profile-shared
+
+## Backup Created
+- Config backup: ~/playwright-mcp-backup.txt
+- Rollback guide: ~/ROLLBACK_INSTRUCTIONS.txt
+
+## Symlink Creation
+✅ Symlink created successfully
+- Location: /Users/studio/Library/Caches/ms-playwright/mcp-chrome-profile-shared
+- Target: /Users/studio/Library/Application Support/Google/Chrome/Default
+- Verified: Readable and accessible
+
+## Configuration Update
+✅ Cursor MCP configuration updated
+- File: ~/.cursor/mcp.json
+- Added: --user-data-dir flag pointing to symlink
+- Username: studio
+
+## Tests Performed
+- ✅ Symlink creation: Verified
+- ✅ Chrome status: Running
+- ✅ Configuration updated: Confirmed
+- ⏳ Single window auth: Pending Cursor restart
+- ⏳ Multi-window auth: Pending Cursor restart
+
+## Next Steps
+1. Restart Cursor (user action required)
+2. Test single window authentication
+3. Test multi-window authentication
+4. Verify all windows share authentication
+
+## Result
+⏳ DEPLOYMENT IN PROGRESS - Awaiting Cursor restart for final testing
+
+## How to Use After Restart
+- Open any Cursor window
+- Use browser_navigate to authenticated sites (Perplexity, etc.)
+- All windows should share authentication automatically
+- No manual login required per window
+
+## Support
+If issues occur:
+1. Check Chrome is running: `ps aux | grep "Google Chrome" | grep -v grep`
+2. Verify symlink: `ls -la ~/Library/Caches/ms-playwright/mcp-chrome-profile-shared`
+3. Check Cursor logs: ~/Library/Application Support/Cursor/logs/
+4. Review ROLLBACK_INSTRUCTIONS.txt if needed
+5. Check configuration: `cat ~/.cursor/mcp.json`
+
+## Notes
+- Chrome kept running during deployment (no interruption to active sessions)
+- Original Playwright MCP (extension mode) still configured as backup
+- Both MCP servers available: playwright-plus (with symlink) and playwright (extension mode)

@@ -1,0 +1,36 @@
+% ======================================================================
+% CHAPTER 8: CLINICAL DEPLOYMENT (SHORT VERSION)
+% ======================================================================
+
+\chapter{System Architecture and Clinical Deployment}
+
+This chapter details the translation of the CRISPRO-MAMBA-X model into a production-grade clinical system, designed to meet FDA Software as a Medical Device (SaMD) requirements.
+
+\section{End-to-End Clinical System}
+The system integrates the Mamba architecture, epigenomic data processing, and conformal prediction into a unified pipeline:
+
+\begin{figure}[h!]
+    \centering
+    \fbox{\parbox{0.9\textwidth}{\centering \vspace{1cm} \textbf{FIGURE PLACEHOLDER} \\ \textbf{File:} figures/fig\_8\_1.png \\ \textbf{Description:} The Clinical Workflow. (1) Patient Sequencing, (2) CRISPRO Analysis (Input: Guide + Cell Type), (3)... \vspace{1cm}}}
+    \caption[Clinical Workflow]{The Clinical Workflow. (1) Patient Sequencing, (2) CRISPRO Analysis (Input: Guide + Cell Type), (3) Safety Simulation, (4) GMP Manufacturing. The system enables "in silico clinical trials" before any reagent touches a patient.}
+    \label{fig:clinical_cycle_short}
+\end{figure}
+
+\section{FDA Regulatory Pathway}
+We align with the FDA's "V-Model" for software validation, pursuing 510(k) premarket notification as a Class II medical device (Diagnostic Decision Support).
+
+\begin{figure}[h!]
+    \centering
+    \fbox{\parbox{0.9\textwidth}{\centering \vspace{1cm} \textbf{FIGURE PLACEHOLDER} \\ \textbf{File:} figures/fig\_8\_2.png \\ \textbf{Description:} Alignment with FDA V-Model. Every software requirement (left side) is mapped to a specific verificat... \vspace{1cm}}}
+    \caption[FDA V-Model]{Alignment with FDA V-Model. Every software requirement (left side) is mapped to a specific verification test (right side). Conformal prediction provides the rigorous "Confidence Estimation" required by recent FDA AI/ML guidance.}
+    \label{fig:v_model_short}
+\end{figure}
+
+\section{Clinical Decision Support Interface}
+The final output is not just a raw score, but a structured clinical report:
+\begin{itemize}
+    \item \textbf{On-Target Efficiency:} with 90\% confidence interval.
+    \item \textbf{Off-Target Risk:} Worst-case upper bound across relevant tissues.
+    \item \textbf{Safety Flag:} Automatic layout of interactions with known oncogenes (e.g., TP53).
+\end{itemize}
+This transparent reporting empowers clinicians to make risk-based decisions on patient-specific therapies.

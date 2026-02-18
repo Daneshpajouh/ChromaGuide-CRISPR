@@ -1,0 +1,24 @@
+SafeMamba: mamba_ssm not found. Using PyTorch fallback (MPS-Optimized).
+=== CRISPRO-MAMBA-X: Production Training ===
+Device: MPS
+Loading Dataset...
+Loading CRISPRoffT SOTA Database from /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/mini/crisprofft/mini_crisprofft.txt...
+Loaded 999 records.
+Initializing Genome Loaders (hg38 + mm10)...
+Loading Genome: /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/hg38/hg38.fa.gz ...
+Reading /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/hg38/hg38.fa.gz into ByteTensors...
+Loaded 455 chromosomes.
+Loading Genome: /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/mm10/mm10.fa.gz ...
+Reading /Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/data/raw/genomes/mm10/mm10.fa.gz into ByteTensors...
+Loaded 66 chromosomes.
+Loaded 999 rows (Full Dataset).
+Micro-Dataset Active: 100 samples
+Train Size: 80
+Val Size:   20
+Initializing Unified Model...
+found checkpoint: checkpoints/latest_checkpoint.pth. Resuming training...
+Checkpoint loaded successfully.
+Epoch 1/50:   0%|          | 0/10 [00:00<?, ?it/s]/Users/studio/Desktop/PhD/Project/CRISPRO-MAMBA-X/src/train.py:55: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  if x['efficiency'] is not None and not torch.isnan(torch.tensor(x['efficiency'])):
+Epoch 1/50:   0%|          | 0/10 [00:51<?, ?it/s, loss=0.0013]Epoch 1/50:  10%|█         | 1/10 [00:51<07:47, 51.91s/it, loss=0.0013]Epoch 1/50:  10%|█         | 1/10 [01:18<07:47, 51.91s/it, loss=0.000299]Epoch 1/50:  20%|██        | 2/10 [01:18<04:57, 37.15s/it, loss=0.000299]Epoch 1/50:  20%|██        | 2/10 [01:45<04:57, 37.15s/it, loss=5.31e-5] Epoch 1/50:  30%|███       | 3/10 [01:45<03:46, 32.38s/it, loss=5.31e-5]Epoch 1/50:  30%|███       | 3/10 [02:12<03:46, 32.38s/it, loss=2.07e-5]Epoch 1/50:  40%|████      | 4/10 [02:12<03:00, 30.13s/it, loss=2.07e-5]/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:324: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-q5nqm6c6'}
+  warnings.warn(

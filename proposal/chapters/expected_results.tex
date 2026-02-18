@@ -1,0 +1,62 @@
+\chapter{Expected Results and Contributions}
+
+This chapter summarizes expected, \emph{testable} outcomes under the leakage-controlled protocol (Split A primary; Splits B/C stress tests).
+
+\section{Expected results (empirical)}
+
+\begin{sloppypar}
+\begin{itemize}
+\item \textbf{Primary ranking performance:} On Split~A (gene-held-out), achieve at least $\Delta\rho\geq 0.03$ improvement over the ChromeCRISPR baseline when both are evaluated on the \emph{same} leakage-controlled splits. (ChromeCRISPR's reported $\rho=0.876$ was obtained under a random 85/15 split; we will re-evaluate the baseline under Split~A for like-for-like comparison.) See~\citep{daneshpajouh2025chromecrispr}. \textbf{Rationale:} This target derives from empirical evidence that chromatin accessibility features contribute 3--5\% additional predictive power beyond sequence-only models in comparable CRISPR prediction tasks~\citep{kim2020deepcrispr}, and recent multi-modal fusion approaches demonstrate similar gains when integrating epigenomic signals~\citep{belghazi2018,cheng2020}. 9
+The \textbf{SOTA comparison:} This target is designed to \emph{surpass all current state-of-the-art models} on the leakage-controlled benchmark. The $\Delta\rho \geq 0.03$ represents a \emph{conservative minimum bound}---we anticipate achieving higher performance given the synergistic integration of chromatin context with sequence features, but commit to this floor to ensure robust, reproducible advancement over existing methods. The resulting 9
+($\rho \geq 0.906$, vs.\ ChromeCRISPR's $\rho=0.876$) that is statistically distinguishable with adequate power ($n \geq 1000$, $\alpha=0.001$).
+\item \textbf{Statistical significance:} All performance claims will be validated using paired statistical tests (Wilcoxon signed-rank test or paired $t$-test where appropriate) with significance threshold $p < 0.001$, ensuring improvements are not due to random variation. We will report effect sizes (Cohen's $d$) alongside $p$-values.
+\item \textbf{Reliable uncertainty under shift:} Achieve empirical interval coverage within $\pm 0.02$ of the target level (e.g., 0.90) \emph{under the exchangeability assumption} and report coverage/width stratified by dataset and cell line (Splits B/C).
+\end{itemize}
+\end{sloppypar}
+
+
+\section{Expected contributions}\label{sec:expected-contributions}
+
+This work targets publishable contributions by combining (i) multi-modal modeling and uncertainty quantification under biological shift with (ii) leakage-controlled, reproducible evaluation and tooling for chromatin-aware \gRNA\ scoring.
+
+\subsection{Contributions to Computer Science and Machine Learning}
+
+\begin{itemize}
+\item \textbf{Multi-modal fusion with an explicit non-redundancy objective (MINE/CLUB).} We will develop and ablate a fusion mechanism that is expressive (e.g., gating/attention/MLP fusion) while explicitly discouraging redundant sequence--epigenomic representations~\citep{belghazi2018,cheng2020}.
+\item \textbf{Shift-aware uncertainty via weighted conformal prediction.} We will adapt and evaluate \emph{weighted} conformal calibration as a practical uncertainty layer for genomic predictors under covariate shift and batch effects. Since weighted conformal methods rely on (estimated) importance weights / likelihood ratios, we will clearly report where coverage holds and where it degrades.
+\item \textbf{Bounded-outcome regression with distribution-free intervals.} We pair a bounded head (Beta regression for $y\in(0,1)$) with split/weighted conformal prediction to produce calibrated intervals with coverage \emph{under the exchangeability assumption} that remain meaningful near the boundaries.
+\item \textbf{Shift-focused benchmark protocol.} We provide standardized evaluation across gene-held-out, dataset-held-out, and cell-line-held-out splits with consistent reporting of ranking and interval metrics.
+\end{itemize}
+
+\subsection{Contributions to Computational Biology}
+\begin{itemize}
+\item \textbf{Missing-modality robustness via modality dropout.} We treat uneven epigenomic availability as a first-class setting and report sequence-only vs. multi-modal behavior under controlled masking.
+\item \textbf{Transfer protocol (optional; ablated).} We evaluate initialization/fine-tuning from strong sequence-only encoders to context-aware models when context features become available.
+\item \textbf{Reusable pipeline for chromatin-aware \gRNA\ scoring.} We deliver an end-to-end workflow for context feature extraction, multi-modal training, and calibrated inference.
+\end{itemize}
+
+\subsection{Contributions to Bioinformatics}
+
+\begin{itemize}
+\item \textbf{Leakage-controlled split construction.} We specify gene-held-out, dataset-held-out, and cell-line-held-out splits with deduplication and tuning restrictions to reduce optimistic bias.
+\item \textbf{Auditable preprocessing for heterogeneous screens.} We standardize sequence extraction, coordinate handling, outcome scaling/clipping for bounded regression, and training-only normalization for epigenomic tracks.
+\item \textbf{Reproducibility artifacts.} We package the pipeline as reproducible workflows/checkpoints/configs to enable re-running ablations and comparisons.
+\item \textbf{Benchmark data products.} We provide processed tables (or scripts to generate them) with explicit split assignments and metadata for fair comparison.
+\end{itemize}
+
+\subsection{Contributions to Biology and Genomics}
+
+\begin{itemize}
+\item \textbf{Quantifying context value beyond sequence.} Through controlled ablations, we estimate the incremental contribution of accessibility/histone-mark context over sequence-only baselines across genes and cell contexts.
+\item \textbf{Interpretability for mechanistic hypotheses.} We report sequence- and context-level attributions (e.g., PAM/seed sensitivity; accessibility/histone-mark saliency) to support qualitative error analysis and hypothesis generation.
+\item \textbf{Decision support with intervals.} The model outputs a score and a calibrated interval to support risk-aware guide selection and explicit performance--reliability trade-offs.
+\item \textbf{When context matters most.} Under cell-line-held-out and dataset-held-out tests, we characterize regimes where chromatin context yields larger gains versus regimes where sequence dominates.
+\end{itemize}
+
+\section{Responsible use and limitations (brief)}
+
+\begin{itemize}
+\item \textbf{Data coverage:} When matched epigenomic tracks are unavailable, results are reported with and without the affected contexts; missingness robustness is treated explicitly.
+\item \textbf{Calibration limits under batch effects:} Weighted conformal methods can fail under severe non-exchangeability; coverage is audited across held-out domains and failures are analyzed.
+\item \textbf{Scope and governance:} Outputs are intended for \gRNA\ prioritization and hypothesis generation (not clinical decisions); releases include limitations, validation guidance, and dual-use-aware documentation.
+\end{itemize}

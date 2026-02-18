@@ -1,0 +1,122 @@
+# ============================================================================
+# DATA DIRECTORIES (ALWAYS EXCLUDE - LARGE FILES)
+# ============================================================================
+data/
+data_raw/
+checkpoints/
+models/
+logs/
+results*/
+experiments/
+runs/
+outputs/
+
+# Raw sequence data (CRITICAL - never track)
+fastq/
+fasta/
+*.fastq
+*.fastq.gz
+*.fasta
+*.fasta.gz
+*.fa
+*.fa.gz
+
+# Large metadata and reference files
+research_platform/scans/RAW_METADATA*.json
+RAW_METADATA*.json
+CRISPRoffT_all_targets.txt
+
+# PDFs (all of them - use external storage)
+*.pdf
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.bz2
+*.7z
+
+# Large model/checkpoint files
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+env.bak/
+venv.bak/
+**/venv_*/
+.conda/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE & Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-*
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Cache directories
+.cache/
+.pytest_cache/
+.mypy_cache/
+.tox/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# ============================================================================
+# MUST KEEP - TRACKED FILES
+# ============================================================================
+!requirements.txt
+!README.md
+!.gitignore

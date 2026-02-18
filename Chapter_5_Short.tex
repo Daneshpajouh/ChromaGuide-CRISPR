@@ -1,0 +1,39 @@
+% ======================================================================
+% CHAPTER 5: OFF-TARGET SAFETY FRAMEWORK (SHORT VERSION)
+% ======================================================================
+
+\chapter{Off-Target Safety Prediction Methodology}
+
+The primary safety bottleneck for CRISPR therapeutics is off-target editing—unintended cleavage at similar genomic sites, leading to translocations or oncogenesis. Current models (CRISPRnet) rely solely on sequence matching. We introduce a physically-grounded framework.
+
+\section{The Four Pillars of Off-Target Safety}
+CRISPRO-MAMBA-X improves off-target prediction through four architectural innovations:
+
+\begin{enumerate}
+    \item \textbf{Long-Context Genomics (1.2 Mbp):} Standard models use 100bp. We use 1.2 Mbp to capture TAD-scale context, identifying distal heterochromatin that protects otherwise "risky" sequences.
+
+    \item \textbf{Chromatin Accessibility Gate:}
+    A perfect sequence match in \textit{heterochromatin} is safe (physically inaccessible). An imperfect match in \textit{euchromatin} is dangerous.
+    \begin{equation}
+    P(\text{cut}) \propto P(\text{sequence match}) \times P(\text{accessibility})
+    \end{equation}
+
+    \item \textbf{Thermodynamic Binding:} Enhanced modeling of PAM-proximal vs. distal mismatches using kinetic proofreading principles.
+
+    \item \textbf{Cell-Type Specificity:} A guide safe in T-cells (target) may be lethal in Hepatocytes (bystander) due to different chromatin states. Our model predicts risk profiles for \textbf{both}.
+\end{enumerate}
+
+\section{Genome-Wide Risk Stratification}
+We define a "Genomic Risk Score" $R_{genomic}$ by aggregating probabilities across all potential off-target sites:
+\begin{equation}
+R_{genomic} = \sum_{i} P(\text{cut}_i | \text{guide}, \text{cell type})
+\end{equation}
+
+\begin{figure}[h!]
+    \centering
+    \fbox{\parbox{0.9\textwidth}{\centering \vspace{1cm} \textbf{FIGURE PLACEHOLDER} \\ \textbf{File:} figures/fig\_5\_4.png \\ \textbf{Description:} Genome-Wide Risk Map. Red bands indicate "Risk Hotspots"—regions with high predicted off-target acti... \vspace{1cm}}}
+    \caption[Risk Map]{Genome-Wide Risk Map. Red bands indicate "Risk Hotspots"—regions with high predicted off-target activity. CRISPRO-MAMBA-X flags guides that hit oncogenes (e.g., TP53) even if the total risk score is low.}
+    \label{fig:risk_map_short}
+\end{figure}
+
+This continuous risk scoring allows clinicians to select guides that maximize on-target efficiency while minimizing oncogenic risk below a strict safety threshold.

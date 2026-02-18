@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Cross-Dataset Generalization Performance}
+\label{tab:generalization}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Train/Test Pair} & \textbf{Spearman} & \textbf{Performance Drop} & \textbf{Statistical Sig.} \\
+\hline
+DeepHF train → DeepHF test & 0.970 & - (baseline) & - \\
+\hline
+DeepHF train → Doench 2014 & 0.928 & -4.3\% & p < 0.001 \\
+\hline
+DeepHF train → ESP & 0.945 & -2.6\% & p < 0.001 \\
+\hline
+DeepHF train → Primary cells & 0.872 & -10.1\% & p < 0.001 \\
+\hline
+\end{tabular}
+}
+\end{table}

@@ -1,0 +1,59 @@
+{
+    "org": "allenai",
+    "collections": [],
+    "models": [
+        {
+            "name": "allenai/Molmo-7B-D-0924",
+            "likes": "•",
+            "updated": "Sep 25",
+            "tags": [
+                "Image-Text-to-Text",
+                "7B"
+            ],
+            "link": "https://huggingface.co/allenai/Molmo-7B-D-0924"
+        },
+        {
+            "name": "allenai/SAGE-MM-Qwen3-VL-8B-SFT",
+            "likes": "•",
+            "updated": "1 day ago",
+            "tags": [
+                "Video-Text-to-Text",
+                "9B",
+                "Updated 1 day ago"
+            ],
+            "link": "https://huggingface.co/allenai/SAGE-MM-Qwen3-VL-8B-SFT"
+        },
+        {
+            "name": "allenai/Olmo-3-1025-7B",
+            "likes": "•",
+            "updated": "16 days ago",
+            "tags": [
+                "Text Generation",
+                "7B",
+                "Updated 16 days ago"
+            ],
+            "link": "https://huggingface.co/allenai/Olmo-3-1025-7B"
+        },
+        {
+            "name": "allenai/SAGE-MM-Molmo2-8B-SFT",
+            "likes": "•",
+            "updated": "1 day ago",
+            "tags": [
+                "Video-Text-to-Text",
+                "9B"
+            ],
+            "link": "https://huggingface.co/allenai/SAGE-MM-Molmo2-8B-SFT"
+        },
+        {
+            "name": "allenai/olmOCR-2-7B-1025-FP8",
+            "likes": "•",
+            "updated": "9 days ago",
+            "tags": [
+                "Image-to-Text",
+                "8B",
+                "Updated 9 days ago"
+            ],
+            "link": "https://huggingface.co/allenai/olmOCR-2-7B-1025-FP8"
+        }
+    ]
+}

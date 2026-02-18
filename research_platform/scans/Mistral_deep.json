@@ -1,0 +1,66 @@
+{
+    "org": "MistralAI",
+    "collections": [
+        {
+            "title": "Devstral 2",
+            "link": "https://huggingface.co/collections/mistralai/devstral-2"
+        },
+        {
+            "title": "Ministral 3",
+            "link": "https://huggingface.co/collections/mistralai/ministral-3"
+        },
+        {
+            "title": "Speech Evals",
+            "link": "https://huggingface.co/collections/mistralai/speech-evals"
+        },
+        {
+            "title": "Mistral Large 3",
+            "link": "https://huggingface.co/collections/mistralai/mistral-large-3"
+        },
+        {
+            "title": "Ministral 3 - Additional Checkpoints",
+            "link": "https://huggingface.co/collections/mistralai/ministral-3-additional-checkpoints"
+        }
+    ],
+    "models": [
+        {
+            "name": "mistralai/Devstral-Small-2-24B-Instruct-2512",
+            "likes": "•",
+            "updated": "2 days ago",
+            "tags": [
+                "24B",
+                "Updated 2 days ago"
+            ],
+            "link": "https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512"
+        },
+        {
+            "name": "mistralai/Devstral-2-123B-Instruct-2512",
+            "likes": "•",
+            "updated": "4 days ago",
+            "tags": [
+                "125B",
+                "Updated 4 days ago"
+            ],
+            "link": "https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512"
+        },
+        {
+            "name": "mistralai/Ministral-3-3B-Instruct-2512",
+            "likes": "•",
+            "updated": "13 days ago",
+            "tags": [
+                "4B",
+                "Updated 13 days ago"
+            ],
+            "link": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512"
+        },
+        {
+            "name": "mistralai/Mistral-Large-3-675B-Instruct-2512-BF16",
+            "likes": "•",
+            "updated": "14 days ago",
+            "tags": [
+                "Updated 14 days ago"
+            ],
+            "link": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512-BF16"
+        }
+    ]
+}

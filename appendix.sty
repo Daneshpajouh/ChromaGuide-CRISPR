@@ -1,0 +1,6 @@
+\ProvidesPackage{appendix}
+\DeclareOption*{\PackageWarning{appendix}{Option `\CurrentOption` ignored}}
+\ProcessOptions\relax
+\newenvironment{appendices}{\appendix\setcounter{chapter}{0}\renewcommand{\thechapter}{\Alph{chapter}}}{}
+\newcommand{\appendixpage}{}
+\newcommand{\addappheadtotoc}{}

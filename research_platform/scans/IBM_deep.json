@@ -1,0 +1,65 @@
+{
+    "org": "IBM",
+    "collections": [
+        {
+            "title": "Granite 4.0 Language Models",
+            "link": "https://huggingface.co/collections/ibm-granite/granite-40-language-models"
+        },
+        {
+            "title": "Granite 3.1 Language Models",
+            "link": "https://huggingface.co/collections/ibm-granite/granite-31-language-models"
+        },
+        {
+            "title": "Granite 4.0 Nano Language Models",
+            "link": "https://huggingface.co/collections/ibm-granite/granite-40-nano-language-models"
+        },
+        {
+            "title": "Granite Docling",
+            "link": "https://huggingface.co/collections/ibm-granite/granite-docling"
+        }
+    ],
+    "models": [
+        {
+            "name": "ibm-granite/granite-4.0-1b-GGUF",
+            "likes": "•",
+            "updated": "about 6 hours ago",
+            "tags": [
+                "2B",
+                "Updated about 6 hours ago"
+            ],
+            "link": "https://huggingface.co/ibm-granite/granite-4.0-1b-GGUF"
+        },
+        {
+            "name": "ibm-granite/granite-4.0-h-1b-base",
+            "likes": "•",
+            "updated": "Oct 23",
+            "tags": [
+                "Text Generation",
+                "1B",
+                "Updated Oct 23"
+            ],
+            "link": "https://huggingface.co/ibm-granite/granite-4.0-h-1b-base"
+        },
+        {
+            "name": "ibm-granite/granite-4.0-h-350m-base",
+            "likes": "•",
+            "updated": "Oct 23",
+            "tags": [
+                "Text Generation",
+                "0.3B",
+                "Updated Oct 23"
+            ],
+            "link": "https://huggingface.co/ibm-granite/granite-4.0-h-350m-base"
+        },
+        {
+            "name": "ibm-granite/granite-embedding-english-r2",
+            "likes": "•",
+            "updated": "Nov 6",
+            "tags": [
+                "Feature Extraction",
+                "Updated Nov 6"
+            ],
+            "link": "https://huggingface.co/ibm-granite/granite-embedding-english-r2"
+        }
+    ]
+}

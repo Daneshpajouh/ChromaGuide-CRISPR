@@ -1,0 +1,36 @@
+{
+    "org": "databricks",
+    "collections": [],
+    "models": [
+        {
+            "name": "databricks/dolly-v2-12b",
+            "likes": "•",
+            "updated": "Jun 30, 2023",
+            "tags": [
+                "Text Generation",
+                "12B"
+            ],
+            "link": "https://huggingface.co/databricks/dolly-v2-12b"
+        },
+        {
+            "name": "databricks/dolly-v2-7b",
+            "likes": "•",
+            "updated": "Jun 30, 2023",
+            "tags": [
+                "Text Generation",
+                "7B"
+            ],
+            "link": "https://huggingface.co/databricks/dolly-v2-7b"
+        },
+        {
+            "name": "databricks/dolly-v2-3b",
+            "likes": "•",
+            "updated": "Jun 30, 2023",
+            "tags": [
+                "Text Generation",
+                "3B"
+            ],
+            "link": "https://huggingface.co/databricks/dolly-v2-3b"
+        }
+    ]
+}

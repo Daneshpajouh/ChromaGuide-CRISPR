@@ -1,0 +1,70 @@
+{
+    "org": "BAAI",
+    "collections": [
+        {
+            "title": "Emu3.5",
+            "link": "https://huggingface.co/collections/BAAI/emu35"
+        },
+        {
+            "title": "RoboBrain-X0",
+            "link": "https://huggingface.co/collections/BAAI/robobrain-x0"
+        },
+        {
+            "title": "Video-XL",
+            "link": "https://huggingface.co/collections/BAAI/video-xl"
+        },
+        {
+            "title": "OpenSeek",
+            "link": "https://huggingface.co/collections/BAAI/openseek"
+        },
+        {
+            "title": "BGE",
+            "link": "https://huggingface.co/collections/BAAI/bge"
+        }
+    ],
+    "models": [
+        {
+            "name": "BAAI/Emu3.5-Image",
+            "likes": "•",
+            "updated": "Nov 5",
+            "tags": [
+                "Text-to-Image",
+                "34B",
+                "Updated Nov 5"
+            ],
+            "link": "https://huggingface.co/BAAI/Emu3.5-Image"
+        },
+        {
+            "name": "BAAI/Emu3.5",
+            "likes": "•",
+            "updated": "Nov 5",
+            "tags": [
+                "Any-to-Any",
+                "34B",
+                "Updated Nov 5"
+            ],
+            "link": "https://huggingface.co/BAAI/Emu3.5"
+        },
+        {
+            "name": "BAAI/URSA-0.6B-FSQ320",
+            "likes": "•",
+            "updated": "Nov 1",
+            "tags": [
+                "Text-to-Video",
+                "Updated Nov 1"
+            ],
+            "link": "https://huggingface.co/BAAI/URSA-0.6B-FSQ320"
+        },
+        {
+            "name": "BAAI/RoboBrain-X0-Preview",
+            "likes": "•",
+            "updated": "Oct 19",
+            "tags": [
+                "Robotics",
+                "4B",
+                "Updated Oct 19"
+            ],
+            "link": "https://huggingface.co/BAAI/RoboBrain-X0-Preview"
+        }
+    ]
+}

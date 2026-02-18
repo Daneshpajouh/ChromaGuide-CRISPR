@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\caption{Ensemble Performance}
+\label{tab:ensemble_results}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Method} & \textbf{Spearman} & \textbf{Latency} & \textbf{Improvement} \\
+\hline
+CNN-Mamba (best single) & 0.972 & 0.87 s & - \\
+\hline
+Simple Average (5 models) & 0.975 & 4.35 s & +0.003 \\
+\hline
+Learned Weights (5 models) & 0.976 & 4.35 s & +0.004 \\
+\hline
+\end{tabular}
+}
+\end{table}

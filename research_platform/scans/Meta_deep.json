@@ -1,0 +1,67 @@
+{
+    "org": "Meta",
+    "collections": [
+        {
+            "title": "Llama 4",
+            "link": "https://huggingface.co/collections/meta-llama/llama-4"
+        },
+        {
+            "title": "Llama 3.3 Evals",
+            "link": "https://huggingface.co/collections/meta-llama/llama-33-evals"
+        },
+        {
+            "title": "Llama 3.3",
+            "link": "https://huggingface.co/collections/meta-llama/llama-33"
+        },
+        {
+            "title": "Llama 3.2",
+            "link": "https://huggingface.co/collections/meta-llama/llama-32"
+        }
+    ],
+    "models": [
+        {
+            "name": "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+            "likes": "•",
+            "updated": "May 22",
+            "tags": [
+                "Any-to-Any",
+                "402B",
+                "Updated May 22"
+            ],
+            "link": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+        },
+        {
+            "name": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+            "likes": "•",
+            "updated": "May 22",
+            "tags": [
+                "Any-to-Any",
+                "109B",
+                "Updated May 22"
+            ],
+            "link": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+        },
+        {
+            "name": "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+            "likes": "•",
+            "updated": "May 22",
+            "tags": [
+                "Any-to-Any",
+                "402B",
+                "Updated May 22"
+            ],
+            "link": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"
+        },
+        {
+            "name": "meta-llama/Llama-3.2-1B-Instruct",
+            "likes": "•",
+            "updated": "Oct 24, 2024",
+            "tags": [
+                "Text Generation",
+                "1B",
+                "Updated Oct 24, 2024"
+            ],
+            "link": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct"
+        }
+    ]
+}
