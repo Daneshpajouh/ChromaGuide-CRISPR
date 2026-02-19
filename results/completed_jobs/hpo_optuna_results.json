@@ -1,0 +1,16 @@
+{
+  "best_trial_number": 7,
+  "best_validation_rho": 0.1389748367428169,
+  "best_hyperparameters": {
+    "lr": 2.3426581058204037e-05,
+    "hidden1": 512.0,
+    "hidden2": 256.0,
+    "epi_hidden": 256.0,
+    "dropout1": 0.5,
+    "dropout2": 0.30000000000000004,
+    "batch_size": 32.0
+  },
+  "test_spearman_rho": -0.011836152736745651,
+  "test_p_value": 0.8698894792599283,
+  "n_trials": 50
+}

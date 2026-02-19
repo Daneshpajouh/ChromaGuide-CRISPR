@@ -1,0 +1,17 @@
+{
+  "concatenation": {
+    "test_spearman_rho": 0.039411931479662904,
+    "test_p_value": 0.5853346043581242,
+    "validation_spearman": -0.1037121599811046
+  },
+  "gated_attention": {
+    "test_spearman_rho": 0.001103655705439798,
+    "test_p_value": 0.9878145365242663,
+    "validation_spearman": 0.17481487313396932
+  },
+  "cross_attention": {
+    "test_spearman_rho": -0.01339425490913125,
+    "test_p_value": 0.8529442842993366,
+    "validation_spearman": -0.09675935038293818
+  }
+}

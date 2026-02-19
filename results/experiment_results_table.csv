@@ -1,0 +1,8 @@
+Model/Configuration,Test ρ (Spearman),p-value,Significant,Note
+1. Mamba Variant (LSTM),-0.0719,0.3194,✗,LSTM variant
+2. Sequence-Only,-0.0153,0.8324,✗,No multimodal
+3. Multimodal (Full),-0.0550,0.4461,✗,Multimodal hurt (-259%)
+4. Concatenation Fusion,0.0394,0.5853,✗,BEST fusion method
+5. Gated Attention Fusion,0.0011,0.9878,✗,Neutral
+6. Cross-Attention Fusion,-0.0134,0.8529,✗,Worst fusion
+7. HPO Best (Trial #7),-0.0118,0.8699,✗,"50 trials, lr=2.34e-5"

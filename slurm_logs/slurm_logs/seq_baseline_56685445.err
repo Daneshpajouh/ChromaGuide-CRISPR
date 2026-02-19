@@ -1,0 +1,22 @@
+2026-02-18 10:47:39,443 - ================================================================================
+2026-02-18 10:47:39,443 - SEQUENCE-ONLY BASELINE TRAINING
+2026-02-18 10:47:39,443 - ================================================================================
+2026-02-18 10:47:39,634 - Device: cuda
+2026-02-18 10:47:39,653 - GPU Memory: 42.4 GB
+2026-02-18 10:47:39,653 - Loading DNABERT-2 model...
+Encountered exception while importing einops: No module named 'einops'
+Traceback (most recent call last):
+  File "<stdin>", line 38, in <module>
+  File "/tmp/venv_seq_only_56685445/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 356, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/venv_seq_only_56685445/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 572, in get_class_from_dynamic_module
+    final_module = get_cached_module_file(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/venv_seq_only_56685445/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 410, in get_cached_module_file
+    modules_needed = check_imports(resolved_module_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/venv_seq_only_56685445/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 258, in check_imports
+    raise ImportError(
+ImportError: This modeling file requires the following packages that were not found in your environment: einops. Run `pip install einops`
+/localscratch/spool/slurmd/job56685445/slurm_script: line 226: logger.info: command not found

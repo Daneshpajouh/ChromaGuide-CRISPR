@@ -1,0 +1,22 @@
+2026-02-18 22:16:34,897 - ================================================================================
+2026-02-18 22:16:34,897 - CHROMAGUIDE FULL MODEL TRAINING
+2026-02-18 22:16:34,897 - ================================================================================
+2026-02-18 22:16:35,180 - Device: cuda
+2026-02-18 22:16:35,180 - Loading DNABERT-2...
+Encountered exception while importing triton: No module named 'triton'
+Traceback (most recent call last):
+  File "<stdin>", line 38, in <module>
+  File "/tmp/venv_chromaguide_full_56706056/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 356, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/venv_chromaguide_full_56706056/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 572, in get_class_from_dynamic_module
+    final_module = get_cached_module_file(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/venv_chromaguide_full_56706056/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 450, in get_cached_module_file
+    get_cached_module_file(
+  File "/tmp/venv_chromaguide_full_56706056/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 410, in get_cached_module_file
+    modules_needed = check_imports(resolved_module_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/venv_chromaguide_full_56706056/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 258, in check_imports
+    raise ImportError(
+ImportError: This modeling file requires the following packages that were not found in your environment: triton. Run `pip install triton`

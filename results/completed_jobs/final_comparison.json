@@ -1,0 +1,62 @@
+[
+  {
+    "Model": "seq_only_baseline",
+    "Description": "Sequence-only baseline (DNABERT-2 frozen)",
+    "Status": "Pending",
+    "Spearman \u03c1": "",
+    "P-value": "",
+    "Test predictions": "",
+    "Mean pred": "",
+    "Std pred": ""
+  },
+  {
+    "Model": "chromaguide_full",
+    "Description": "ChromaGuide Full (Seq + Epigenomics + Fusion)",
+    "Status": "Pending",
+    "Spearman \u03c1": "",
+    "P-value": "",
+    "Test predictions": "",
+    "Mean pred": "",
+    "Std pred": ""
+  },
+  {
+    "Model": "mamba_variant",
+    "Description": "Mamba SSM variant (LSTM fallback)",
+    "Status": "Results Available",
+    "Spearman \u03c1": "-0.071864",
+    "P-value": "3.19e-01",
+    "Test predictions": 194,
+    "Mean pred": "0.295096",
+    "Std pred": "0.003618"
+  },
+  {
+    "Model": "ablation_fusion",
+    "Description": "Ablation: Concat vs Gated vs Cross-attention",
+    "Status": "Results Available",
+    "Spearman \u03c1": "",
+    "P-value": "",
+    "Test predictions": "",
+    "Mean pred": "",
+    "Std pred": ""
+  },
+  {
+    "Model": "ablation_modality",
+    "Description": "Ablation: Sequence-only vs Multimodal",
+    "Status": "Results Available",
+    "Spearman \u03c1": "Seq: -0.015289 | Multi: -0.055023",
+    "P-value": "Seq: 8.32e-01 | Multi: 4.46e-01",
+    "Test predictions": "",
+    "Mean pred": "",
+    "Std pred": ""
+  },
+  {
+    "Model": "hpo_optuna",
+    "Description": "Hyperparameter optimization (50 trials)",
+    "Status": "Results Available",
+    "Spearman \u03c1": "-0.011836",
+    "P-value": "8.70e-01",
+    "Test predictions": 0,
+    "Mean pred": "",
+    "Std pred": ""
+  }
+]

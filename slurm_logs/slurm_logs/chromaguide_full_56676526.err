@@ -1,0 +1,9 @@
+Lmod has detected the following error: These module(s) or extension(s) exist
+but cannot be loaded as requested: "cuda/11.8"
+   Try: "module spider cuda/11.8" to see how to load the module(s).
+
+
+
+Traceback (most recent call last):
+  File "<stdin>", line 20, in <module>
+ModuleNotFoundError: No module named 'pyBigWig'

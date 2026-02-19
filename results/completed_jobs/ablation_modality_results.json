@@ -1,0 +1,10 @@
+{
+  "sequence_only": {
+    "test_spearman_rho": -0.01528928845845677,
+    "test_p_value": 0.8324259007367152
+  },
+  "multimodal": {
+    "test_spearman_rho": -0.05502253742198189,
+    "test_p_value": 0.4460599669855375
+  }
+}

@@ -1,0 +1,7 @@
+Model,Description,Status,Spearman ρ,P-value,Test predictions,Mean pred,Std pred
+seq_only_baseline,Sequence-only baseline (DNABERT-2 frozen),Pending,,,,,
+chromaguide_full,ChromaGuide Full (Seq + Epigenomics + Fusion),Pending,,,,,
+mamba_variant,Mamba SSM variant (LSTM fallback),Results Available,-0.071864,3.19e-01,194,0.295096,0.003618
+ablation_fusion,Ablation: Concat vs Gated vs Cross-attention,Results Available,,,,,
+ablation_modality,Ablation: Sequence-only vs Multimodal,Results Available,Seq: -0.015289 | Multi: -0.055023,Seq: 8.32e-01 | Multi: 4.46e-01,,,
+hpo_optuna,Hyperparameter optimization (50 trials),Results Available,-0.011836,8.70e-01,0,,

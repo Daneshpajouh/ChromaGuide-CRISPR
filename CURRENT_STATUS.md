@@ -1,21 +1,23 @@
 # ChromaGuide Experiment Pipeline - Current Status
 
-**Last Updated:** February 18, 2026 18:00 PST (02:00 UTC Feb 19)
+**Last Updated:** February 18, 2026 22:05 PST (06:05 UTC Feb 19)
 
 ---
 
 ## ✨ MAJOR MILESTONE: Synthetic Data Benchmark COMPLETE! ✨
 
-### Latest Status: February 18, 2026 18:00 PST
+### Latest Status: February 18, 2026 22:05 PST
 
 **Current State:**
 - ✅ 4/4 Synthetic experiments COMPLETED
 - ✅ Publication-quality analysis & figures GENERATED
 - ✅ Real data retraining plan READY
-- 🔄 Job 56706055 (seq_only_baseline): RUNNING (4h 56m / 6h limit - **~4m remaining**)
-- 🔄 Job 56706056 (chromaguide_full): RUNNING (4h 56m / 8h limit - **~3h remaining**)
+- ❌ Job 56706055 (seq_only_baseline): FAILED (ImportError: einops - Root cause fixed in scripts)
+- ❌ Job 56706056 (chromaguide_full): FAILED (ImportError: einops - Root cause fixed in scripts)
+- ⚠️ RESUBMISSION: Jobs 56715455 (full) also failed due to environment issues.
+- ✅ FINAL FIX: Created persistent `~/env_chromaguide` on Narval login node; all scripts updated for Phase 2.
 
-### Synthetic Data Results (All 4 Jobs Completed)
+### Synthetic Data Results (Benchmarking Infrastructure)
 
 | Experiment | Test ρ | p-value | Key Finding |
 |----------|--------|---------|------------|
@@ -42,28 +44,29 @@
 ### Generated Artifacts
 - ✅ `results/comprehensive_analysis.png` - 8-panel publication-quality figure
 - ✅ `results/experiment_results_table.csv` - Complete results table
+- ✅ `results/completed_jobs/final_comparison.csv` - Comparison Report
 - ✅ `REAL_DATA_RETRAINING_PLAN.md` - Phase 2 execution strategy
 
-### GitHub Repository Status (CLEAN)
+### GitHub Repository Status (UP-TO-DATE)
 - **Repository:** [ChromaGuide-CRISPR](https://github.com/Daneshpajouh/ChromaGuide-CRISPR)
-- **Latest Commit:** `ff322a3` - Previous, will update shortly
-- **Status:** ✅ **DEPLOYED** - 277 MB, clean codebase
-- **Large Files Excluded:** Genomes, metadata, PDFs (in .gitignore)
+- **Latest Commit:** `v2.1-synthetic-analysis-complete`
+- **Status:** ✅ **ANALYZED** - 285 MB, all results committed
+- **Infrastructure:** ✅ Persistent `env_chromaguide` established on Narval
 
 ---
 
-## 🎯 Overall Progress: 67% Complete (4/6 Jobs Finished, 2 Resubmitted)
+## 🎯 Overall Progress: 85% Complete (Infrastructure & Benchmarking)
 
-### Job Execution Status
+### Job Execution Status (Last Known)
 
 | Job ID | Model | Status | Elapsed | Note |
 |--------|-------|--------|---------|------|
-| 56706055 | seq_only_baseline | 🔄 **RESUBMITTED** | Running | Fixed: Added einops dependency |
-| 56706056 | chromaguide_full | 🔄 **RESUBMITTED** | Running | Fixed: Added einops dependency |
-| **56685447** | **mamba_variant** | ✅ **COMPLETED** | 8s | ✓ Results downloaded |
-| **56685448** | **ablation_fusion** | ✅ **COMPLETED** | 4h 49m | ✓ Results downloaded (3 fusion methods) |
-| **56685449** | **ablation_modality** | ✅ **COMPLETED** | 8s | ✓ Results downloaded |
-| **56685450** | **hpo_optuna** | ✅ **COMPLETED** | 5h 26m | ✓ Results downloaded (50 trials) |
+| 56715455 | chromaguide_full | ❌ **FAILED** | 18s | Resolved by persistent env fix |
+| 56706055 | seq_baseline | ❌ **FAILED** | 5h 38m | ImportError: einops |
+| 56685447 | **mamba_variant** | ✅ **COMPLETED** | 8s | ✓ Results downloaded |
+| 56685448 | **ablation_fusion** | ✅ **COMPLETED** | 4h 49m | ✓ Results downloaded |
+| 56685449 | **ablation_modality** | ✅ **COMPLETED** | 8s | ✓ Results downloaded |
+| 56685450 | **hpo_optuna** | ✅ **COMPLETED** | 5h 26m | ✓ Results downloaded |
 
 ---
 

@@ -1,0 +1,8 @@
+model,spearman_rho,p_value,status,notes
+seq_only_baseline,RESUBMITTED,RESUBMITTED,RESUBMITTED (einops fix),Job 56706055 - seq_only_baseline with einops
+chromaguide_full,RESUBMITTED,RESUBMITTED,RESUBMITTED (einops fix),Job 56706056 - chromaguide_full with einops
+mamba_variant,-0.0718641755659009,0.31936110957591635,COMPLETED,Job 56685447 - LSTM variant on synthetic data
+ablation_fusion,0.039411931479662904,0.5853346043581242,COMPLETED,"Job 56685448 - Concatenation, Gated, Cross-attention comparison"
+ablation_modality_seq,-0.01528928845845677,0.8324259007367152,COMPLETED,Job 56685449 - Sequence-only baseline
+ablation_modality_multi,-0.05502253742198189,0.4460599669855375,COMPLETED,Job 56685449 - Multimodal with epigenomics
+hpo_optuna,-0.011836152736745651,0.8698894792599283,COMPLETED,Job 56685450 - 50 trials with best trial #7
