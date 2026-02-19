@@ -35,7 +35,7 @@
 
 **Expected Real Data Performance:**
 - Literature (DeepHF): ρ ≈ 0.73
-- Literature (CRISPRnature): ρ ≈ 0.75  
+- Literature (CRISPRnature): ρ ≈ 0.75
 - **Expected ChromaGuide:** ρ ≈ 0.70-0.78 (6-10x improvement!)
 
 ### Generated Artifacts
@@ -82,7 +82,7 @@
   - Mean prediction = 0.295 ± 0.0036
   - LSTM variant of Mamba architecture
   - Runtime: 8 seconds
-  
+
 - ✅ Downloaded ablation_modality results (223 bytes) [Job 56685449]
   - Sequence-only: ρ = -0.0153 (p=0.832)
   - Multimodal: ρ = -0.0550 (p=0.446)
@@ -95,7 +95,7 @@
   - Cross-Attention: ρ = -0.0134 (p=0.853)
   - Best method: Concatenation fusion
   - Runtime: 4h 49m
-  
+
 - ✅ Downloaded hpo_optuna results (392 bytes) [Job 56685450]
   - Best Trial #7: validation ρ = 0.139
   - Test Spearman ρ = -0.0118 (p=0.870)
@@ -106,12 +106,12 @@
 - ✅ Generated comprehensive visualizations
   - analysis_plots.png: Updated with all 4 job results
   - results_summary.csv: All job metrics and status
-  
+
 ### Issue Resolution 🔧 Root Cause: Missing einops Dependency
 - **Problem:** Jobs 56685445 and 56685446 failed with ImportError: No module named 'einops'
 - **Root Cause:** DNABERT-2 model dynamic modules require einops, which wasn't in pip install list
 - **Solution:** Added einops + optuna + pybigwig to all SLURM scripts
-- **Action Taken:** 
+- **Action Taken:**
   - Fixed slurm_seq_only_baseline.sh
   - Fixed slurm_chromaguide_full.sh
   - Also updated ablation_fusion.sh and hpo_optuna.sh for consistency
@@ -340,7 +340,7 @@ Two jobs completed successfully but the monitoring script's SCP download failed.
 scp narval:/home/amird/chromaguide_experiments/results/ablation_fusion/results.json \
     /Users/studio/Desktop/PhD/Proposal/results/completed_jobs/ablation_fusion_results.json
 
-# Download hpo_optuna results  
+# Download hpo_optuna results
 scp narval:/home/amird/chromaguide_experiments/results/hpo_optuna/results.json \
     /Users/studio/Desktop/PhD/Proposal/results/completed_jobs/hpo_optuna_results.json
 ```
@@ -392,6 +392,6 @@ nohup python3 scripts/monitor_jobs_background.py > monitoring.log 2>&1 &
 
 ---
 
-**Status Dashboard Last Verified:** 2026-02-18T12:55:00Z (After manual downloads & resubmission)  
-**Resubmitted Jobs:** 56706055, 56706056 (Both running with einops fix)  
+**Status Dashboard Last Verified:** 2026-02-18T12:55:00Z (After manual downloads & resubmission)
+**Resubmitted Jobs:** 56706055, 56706056 (Both running with einops fix)
 **System State:** ✅ 4/6 jobs completed & downloaded, 2 jobs resubmitted with fixes, ready for analysis on completion

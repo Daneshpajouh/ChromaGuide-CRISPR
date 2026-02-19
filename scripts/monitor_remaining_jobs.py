@@ -29,7 +29,7 @@ def check_job_status(job_id):
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
         if result.returncode != 0:
             return None, None, None
-        
+
         lines = result.stdout.strip().split('\n')
         if lines:
             state, exit_code, elapsed = lines[0].split('|')
@@ -44,11 +44,11 @@ def download_job_results(job_id):
         "56706055": "seq_only_baseline",
         "56706056": "chromaguide_full"
     }
-    
+
     job_name = job_names.get(job_id, f"job_{job_id}")
     narval_path = f"{NARVAL_RESULTS_DIR}{job_name}/"
     local_path = LOCAL_RESULTS_DIR / job_name
-    
+
     print(f"  📥 Downloading {job_name} from Narval...")
     try:
         cmd = [
@@ -70,65 +70,65 @@ def main():
     print(f"\n{'='*80}")
     print("MONITORING JOBS 56706055 & 56706056")
     print(f"{'='*80}\n")
-    
+
     completed_jobs = set()
     started_time = datetime.now()
-    
+
     while len(completed_jobs) < len(JOBS_TO_MONITOR):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         elapsed_hours = (datetime.now() - started_time).total_seconds() / 3600
-        
+
         print(f"\n[{timestamp}] Status check (elapsed: {elapsed_hours:.1f}h)")
         print("-" * 80)
-        
+
         for job_id in JOBS_TO_MONITOR:
             if job_id in completed_jobs:
                 continue
-                
+
             state, exit_code, elapsed = check_job_status(job_id)
-            
+
             if state is None:
                 print(f"  Job {job_id}: Unable to get status")
                 continue
-            
+
             job_names = {
                 "56706055": "seq_only_baseline",
                 "56706056": "chromaguide_full"
             }
             job_name = job_names.get(job_id, f"job_{job_id}")
-            
+
             if "COMPLETED" in state or "COMPLETED" == state:
                 print(f"  ✅ Job {job_id} ({job_name}): COMPLETED ({elapsed})")
-                
+
                 # Try to download results
                 if download_job_results(job_id):
                     completed_jobs.add(job_id)
                     print(f"     → Ready for analysis in results/narval/{job_name}/")
                 else:
                     print(f"     ⚠️  Download failed, will retry")
-                    
+
             elif "FAILED" in state or "FAILED" == state:
                 print(f"  ❌ Job {job_id} ({job_name}): FAILED (exit: {exit_code})")
                 print(f"     Check logs: ssh narval 'tail -50 /home/amird/chromaguide_experiments/logs/{job_name}.err'")
                 completed_jobs.add(job_id)
-                
+
             elif "RUNNING" in state or "RUNNING" == state:
                 print(f"  🔄 Job {job_id} ({job_name}): RUNNING ({elapsed})")
-                
+
             elif "CANCELLED" in state:
                 print(f"  🚫 Job {job_id} ({job_name}): CANCELLED")
                 completed_jobs.add(job_id)
             else:
                 print(f"  ⏳ Job {job_id} ({job_name}): {state} ({elapsed})")
-        
+
         if len(completed_jobs) < len(JOBS_TO_MONITOR):
             print(f"\nWaiting {POLL_INTERVAL}s before next check...")
             time.sleep(POLL_INTERVAL)
-    
+
     print(f"\n{'='*80}")
     print("ALL MONITORED JOBS COMPLETED!")
     print(f"{'='*80}")
-    
+
     print("\n📊 NEXT STEPS:")
     print("  1. Run comprehensive analysis on all 6 completed jobs")
     print("     → python3 scripts/comprehensive_analysis.py")

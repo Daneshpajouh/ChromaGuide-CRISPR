@@ -6,9 +6,9 @@
 
 ## 🎯 PROJECT OVERVIEW
 
-**Goal:** Develop DNABERT-2 + Mamba multimodal architecture for CRISPR efficiency prediction  
-**Current Phase:** Synthetic data validation ✅ → Real data retraining (ready to execute)  
-**Timeline:** Started Feb 17, 2026 | Synthetic phase complete Feb 18, 2026  
+**Goal:** Develop DNABERT-2 + Mamba multimodal architecture for CRISPR efficiency prediction
+**Current Phase:** Synthetic data validation ✅ → Real data retraining (ready to execute)
+**Timeline:** Started Feb 17, 2026 | Synthetic phase complete Feb 18, 2026
 
 ---
 
@@ -217,7 +217,7 @@ With REAL DeepHF data:
 ## 📞 TROUBLESHOOTING & NOTES
 
 ### Why Negative Spearman ρ?
-**Q:** "The results show negative correlations, is the model broken?"  
+**Q:** "The results show negative correlations, is the model broken?"
 **A:** No! Synthetic random data produces near-zero correlations. This is expected and normal. Real CRISPR data will show ρ ≈ 0.70-0.80.
 
 ### Which Model Should We Use?
@@ -227,7 +227,7 @@ With REAL DeepHF data:
 - Plan: Try both on real data, pick best
 
 ### Multimodal Issues on Synthetic Data
-**Q:** "Why does multimodal hurt performance?"  
+**Q:** "Why does multimodal hurt performance?"
 **A:** Synthetic epigenomics features are uncorrelated noise. Real epigenomics tracks are highly informative and complementary to sequence.
 
 ---
