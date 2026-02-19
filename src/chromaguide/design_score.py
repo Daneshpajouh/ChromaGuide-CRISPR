@@ -1,11 +1,15 @@
 """Integrated sgRNA design score for ChromaGuide.
 
 Component 3: Combines calibrated on-target prediction with aggregated
-off-target risk to produce a single, actionable sgRNA design score.
+off-target risk and uncertainty to produce a single, actionable sgRNA design score.
 
-Design score = w_on * on_target_efficacy - w_off * off_target_risk
+Design score S = w_e * mu - w_r * R - w_u * sigma_CI
 
-The weights can be user-specified or learned.
+where:
+  - mu: predicted on-target efficacy (mean of Beta regression head)
+  - R: aggregated off-target risk
+  - sigma_CI: width of the conformal prediction interval (uncertainty)
+  - w_e, w_r, w_u: adjustable weights (default 1.0, 0.5, 0.2)
 """
 import torch
 import torch.nn as nn
@@ -25,6 +29,7 @@ class GuideCandidate:
     on_target_score: float
     on_target_ci_lower: float
     on_target_ci_upper: float
+    on_target_ci_width: float
     off_target_risk: float
     n_off_target_sites: int
     design_score: float
@@ -34,45 +39,47 @@ class GuideCandidate:
 class IntegratedDesignScore(nn.Module):
     """Computes the integrated sgRNA design score.
 
-    S(g) = sigma(w_on * hat_y(g) - w_off * R_OT(g))
+    S(g) = w_e * hat_mu(g) - w_r * R(g) - w_u * sigma_CI(g)
 
-    where:
-      - hat_y(g) is the calibrated on-target efficacy prediction
-      - R_OT(g) is the aggregated off-target risk
-      - w_on, w_off are learnable or fixed trade-off weights
-      - sigma is sigmoid to bound the score in [0, 1]
+    The weights can be user-specified or fixed.
     """
     def __init__(
         self,
-        w_on: float = 1.0,
-        w_off: float = 1.0,
-        learnable_weights: bool = True,
+        w_e: float = 1.0,
+        w_r: float = 0.5,
+        w_u: float = 0.2,
+        learnable_weights: bool = False,
     ):
         super().__init__()
 
         if learnable_weights:
-            self.w_on = nn.Parameter(torch.tensor(w_on))
-            self.w_off = nn.Parameter(torch.tensor(w_off))
+            self.w_e = nn.Parameter(torch.tensor(w_e))
+            self.w_r = nn.Parameter(torch.tensor(w_r))
+            self.w_u = nn.Parameter(torch.tensor(w_u))
         else:
-            self.register_buffer('w_on', torch.tensor(w_on))
-            self.register_buffer('w_off', torch.tensor(w_off))
+            self.register_buffer('w_e', torch.tensor(w_e))
+            self.register_buffer('w_r', torch.tensor(w_r))
+            self.register_buffer('w_u', torch.tensor(w_u))
 
     def forward(
         self,
         on_target_score: torch.Tensor,
         off_target_risk: torch.Tensor,
+        uncertainty: torch.Tensor,
     ) -> torch.Tensor:
         """Compute integrated design score.
 
         Args:
             on_target_score: Predicted on-target efficacy (batch, 1)
             off_target_risk: Aggregated off-target risk (batch, 1)
+            uncertainty: Conformal prediction interval width (batch, 1)
 
         Returns:
-            Design score (batch, 1) in [0, 1]
+            Design score (batch, 1)
         """
-        raw_score = self.w_on * on_target_score - self.w_off * off_target_risk
-        return torch.sigmoid(raw_score)
+        # S = w_e * mu - w_r * R - w_u * sigma
+        score = self.w_e * on_target_score - self.w_r * off_target_risk - self.w_u * uncertainty
+        return score
 
     def rank_guides(
         self,
@@ -91,11 +98,18 @@ class IntegratedDesignScore(nn.Module):
         """
         scored = []
         for c in candidates:
-            on_t = torch.tensor([c['on_target_score']])
-            off_t = torch.tensor([c['off_target_risk']])
+            mu = c['on_target_score']
+            r = c['off_target_risk']
+            lower = c.get('on_target_ci_lower', 0.0)
+            upper = c.get('on_target_ci_upper', 1.0)
+            sigma = upper - lower
+
+            on_t = torch.tensor([mu])
+            off_t = torch.tensor([r])
+            unc_t = torch.tensor([sigma])
 
             with torch.no_grad():
-                ds = self.forward(on_t, off_t).item()
+                ds = self.forward(on_t, off_t, unc_t).item()
 
             scored.append(GuideCandidate(
                 guide_seq=c['guide_seq'],
@@ -103,10 +117,11 @@ class IntegratedDesignScore(nn.Module):
                 chrom=c['chrom'],
                 position=c['position'],
                 strand=c['strand'],
-                on_target_score=c['on_target_score'],
-                on_target_ci_lower=c.get('on_target_ci_lower', 0.0),
-                on_target_ci_upper=c.get('on_target_ci_upper', 1.0),
-                off_target_risk=c['off_target_risk'],
+                on_target_score=mu,
+                on_target_ci_lower=lower,
+                on_target_ci_upper=upper,
+                on_target_ci_width=sigma,
+                off_target_risk=r,
                 n_off_target_sites=c.get('n_off_target_sites', 0),
                 design_score=ds,
             ))

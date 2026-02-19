@@ -7,7 +7,7 @@ Executes on Narval with internet access.
 
 set -euo pipefail
 
-DATA_DIR="/project/def-bengioy/chromaguide_data"
+DATA_DIR="${HOME}/chromaguide_experiments/data/real"
 LOG_FILE="${DATA_DIR}/download.log"
 
 mkdir -p "$DATA_DIR" "$DATA_DIR/logs" "$DATA_DIR/raw" "$DATA_DIR/processed"

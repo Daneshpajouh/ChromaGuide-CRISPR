@@ -106,7 +106,7 @@ This means:
 2. When complete, you'll see:
 
    ✅ PERSISTENT CONNECTION ESTABLISHED SUCCESSFULLY
-   
+
    Connection Details:
      Host:    narval.computecanada.ca
      User:    daneshpajouh
@@ -118,10 +118,10 @@ This means:
 
    # Interactive shell
    ssh narval
-   
+
    # Submit jobs
    ssh narval 'sbatch scripts/slurm_train_v2_deephf.sh'
-   
+
    # Check status
    ssh narval 'squeue -u daneshpajouh'
 

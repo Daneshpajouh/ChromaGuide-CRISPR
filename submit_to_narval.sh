@@ -1,7 +1,7 @@
 #!/bin/bash
 ################################################################################
 # Submit ChromaGuide V2 training jobs to Narval
-# 
+#
 # Run this from your SSH session on Narval:
 #   ssh daneshpajouh@narval.computecanada.ca
 #   bash chromaguide_experiments/submit_jobs.sh

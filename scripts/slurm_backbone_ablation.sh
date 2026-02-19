@@ -40,7 +40,8 @@ git fetch origin main && git reset --hard origin/main
 
 mkdir -p logs
 mkdir -p checkpoints/ablation
-source ~/chromaguide_env/bin/activate
+source ~/env_chromaguide/bin/activate
+export PYTHONPATH=/home/amird/chromaguide_experiments/src:$PYTHONPATH
 
 echo "Python: $(python --version)"
 echo "CUDA: $(nvcc --version)"

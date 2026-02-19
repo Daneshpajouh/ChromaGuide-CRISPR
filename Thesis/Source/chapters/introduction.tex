@@ -1,0 +1,30 @@
+\chapter{Introduction}
+
+\section{Motivation and problem statement}
+
+
+The clinical promise of CRISPR-based gene therapy hinges on a deceptively simple prerequisite: choosing the right guide RNA. In 2023 alone, the FDA approved the first CRISPR therapeutic (Casgevy for sickle cell disease), and over 70 clinical trials are now evaluating CRISPR-Cas9 interventions for conditions ranging from hereditary blindness to aggressive cancers. Yet for every guide RNA that reaches a patient, thousands are screened and discarded because existing computational tools cannot reliably predict which guides will cut efficiently at the intended target while avoiding dangerous off-target edits elsewhere in the genome. This bottleneck---the gap between what CRISPR could treat and what biologists can safely design---motivates the work presented in this proposal.
+
+CRISPR-Cas9 is a programmable RNA-guided nuclease that enables targeted genome editing in eukaryotic cells~\citep{jinek2012,cong2013,hsu2014}. In a standard SpCas9 workflow, a \gRNA{} directs \CasNine\ to a locus adjacent to a \PAM{} (5$'$-NGG-3$'$) on the non-target strand (NTS); recognition occurs via Arg1333 and Arg1335 major-groove contacts with the GG dinucleotide~\citep{jinek2012,anders2014}, while the target-strand complement (5$'$-CCN-3$'$) is not directly read. Downstream double-strand break (DSB) repair then produces an observed editing outcome.
+
+This proposal targets \emph{comprehensive CRISPR-Cas9 guide RNA design and efficacy prediction}: given a candidate \gRNA\ and its genomic target, (i)~estimate on-target cleavage/indel efficiency in the \emph{relevant} cellular context, (ii)~quantify genome-wide off-target risk, and (iii)~produce an integrated design score that balances efficacy and safety. Existing predictors can achieve strong benchmark correlations, but practical deployment remains limited by two recurring issues: (i) models are often sequence-centric and only weakly capture chromatin accessibility/state, and (ii) most models output point estimates without calibrated uncertainty, making it hard to decide when predictions are reliable under dataset/cell-line shift~\citep{horlbeck2016,isaac2016,vovk2005,romano2019,barber2023}.
+
+
+I arrived at the ChromaGuide design through a specific observation during my work on ChromeCRISPR. When analyzing prediction errors on held-out genes, I noticed a striking pattern: the largest residuals consistently occurred at guides located in heterochromatin or near enhancer boundaries---precisely the genomic contexts where chromatin state, not sequence alone, determines Cas9 access. This observation, which I initially dismissed as noise, persisted across cell lines and datasets. It suggested that the ceiling on sequence-only prediction accuracy is not a modeling limitation but a missing-information problem: no amount of architectural sophistication can recover signal that is absent from the input. ChromaGuide is my attempt to close that information gap by treating epigenomic context not as an optional feature but as a first-class input modality fused at the representation level, while simultaneously quantifying the uncertainty inherent in any prediction that depends on imperfectly measured chromatin state.
+
+
+\section{Proposed approach and thesis overview}
+
+Recent large-scale benchmarking work highlights that strong within-dataset performance does not always translate to reliable generalization across datasets and cell types~\citep{konstantakos2022,chen2022evaluation}.  Our group's prior work established a clear research progression: Daneshpajouh, Fowler, and Wiese~\citep{daneshpajouh2023navitas,daneshpajouh2023comparison} first conducted a systematic comparison of machine learning models for CRISPR/Cas on-target prediction (IEEE CIBCB 2023, Canadian AI 2023), demonstrating that RNNs significantly outperform CNNs and that GC content improves predictions. Building on these findings, ChromeCRISPR (Daneshpajouh, Fowler, and Wiese)~\citep{daneshpajouh2025chromecrispr}---a CNN-RNN hybrid trained on $\sim$60,000 sgRNAs from the DeepHF dataset---achieved state-of-the-art Spearman $\rho=0.876$ (MSE 0.0093), outperforming both DeepHF ($\rho=0.867$) and AttCRISPR ($\rho=0.872$). ChromaGuide extends this validated hybrid architecture by integrating epigenomic context, calibrated uncertainty via conformal prediction, and off-target risk assessment.
+
+Motivated by these findings, we position ChromaGuide against both established sequence-based baselines and recent 2025 deep-learning models, including CRISPR\_HNN~\citep{li2025crisprhnn}, PLM-CRISPR~\citep{hou2025plmcrispr}, CRISPR-FMC~\citep{li2025crisprfmc}, DNABERT-Epi~\citep{kimata2025dnabertepi},  and Graph-CRISPR~\citep{jiang2025graph-crispr}, using the ChromeCRISPR benchmark protocols where applicable~\citep{daneshpajouh2025chromecrispr}.
+
+\textbf{ChromaGuide} is a three-module \sgRNA{} prioritization pipeline:
+\begin{enumerate}
+    \item \textbf{On-target module:} multi-modal efficacy prediction with uncertainty quantification.
+    \item \textbf{Off-target module:} genome-wide off-target site scoring.
+    \item \textbf{Design module:} integrated score balancing efficacy and safety.
+\end{enumerate}
+Operational success targets \emph{surpassing current state-of-the-art models} through improved ranking performance on the primary gene-held-out test split (target Spearman $\geq 0.91$ with $\Delta\rho\geq 0.035$ vs.~the ChromeCRISPR baseline when evaluated on the same leakage-controlled split; note that ChromeCRISPR's baseline $\rho=0.876$ was obtained under a different split protocol---see Section~\ref{sec:evaluation} for details) and empirical interval coverage within $\pm 0.02$ of the target level (e.g., 0.90) \emph{under the exchangeability assumption}.
+
+Chapter~\ref{ch:rq} formalizes the research questions, testable hypotheses, operational success criteria, and expected contributions of this work. Chapter~\ref{ch:background} reviews the relevant literature, and Chapter~\ref{ch:methodology} details the proposed methodology.

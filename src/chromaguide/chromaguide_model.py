@@ -13,7 +13,7 @@ from typing import Dict, Optional, Tuple
 
 from .sequence_encoder import CNNGRUEncoder, MambaSequenceEncoder
 from .epigenomic_encoder import EpigenomicEncoder
-from .fusion import ChromaGuideFusion, NonRedundancyRegularizer
+from .fusion import GatedAttentionFusion, ChromaGuideFusion, NonRedundancyRegularizer
 from .prediction_head import BetaRegressionHead, BetaNLL
 
 
@@ -87,13 +87,20 @@ class ChromaGuideModel(nn.Module):
                 dropout=dropout,
             )
 
-            # Fusion
-            self.fusion = ChromaGuideFusion(
-                d_model=d_model,
-                hidden_dim=d_model * 2,
-                dropout=dropout,
-                use_gate=use_gate_fusion,
-            )
+            # Fusion - use GatedAttentionFusion as per proposal methodology
+            if use_gate_fusion:
+                self.fusion = GatedAttentionFusion(
+                    d_model=d_model,
+                    dropout=dropout,
+                )
+            else:
+                # Fallback to simple concatenation fusion
+                self.fusion = ChromaGuideFusion(
+                    d_model=d_model,
+                    hidden_dim=d_model * 2,
+                    dropout=dropout,
+                    use_gate=False,
+                )
 
             # Optional MI regularizer
             if use_mi_regularizer:

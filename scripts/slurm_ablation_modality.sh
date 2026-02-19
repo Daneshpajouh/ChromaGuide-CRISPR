@@ -8,7 +8,10 @@
 #SBATCH --output=slurm_logs/ablation_modality_%j.log
 
 module load cuda/12.2
-module load python/3.11
+module load python/3.10
+
+source ~/env_chromaguide/bin/activate
+export PYTHONPATH=/home/amird/chromaguide_experiments/src:/home/amird/chromaguide_experiments:$PYTHONPATH
 
 # Setup HuggingFace to use cached models
 export HF_HOME="/home/amird/.cache/huggingface"
@@ -17,12 +20,13 @@ export TOKENIZERS_PARALLELISM=false
 
 mkdir -p slurm_logs results/ablation_modality
 
-python3 << 'EOF'
+python << 'EOF'
 """ABLATION: Modality Importance
 Compare sequence-only vs full multimodal to show epigenomic contribution
 """
 import sys
-sys.path.insert(0, '/home/amird/chromaguide')
+sys.path.insert(0, '/home/amird/chromaguide_experiments/src')
+sys.path.insert(0, '/home/amird/chromaguide_experiments')
 
 import torch
 import torch.nn as nn
@@ -49,7 +53,7 @@ class SeqOnlyModel(nn.Module):
             nn.Linear(256, 128), nn.ReLU(), nn.Dropout(0.2),
             nn.Linear(128, 1), nn.Sigmoid()
         )
-    
+
     def forward(self, seq_repr, epi_repr=None):
         return self.head(seq_repr)
 
@@ -66,7 +70,7 @@ class MultimodalModel(nn.Module):
             nn.Linear(256, 128), nn.ReLU(), nn.Dropout(0.2),
             nn.Linear(128, 1), nn.Sigmoid()
         )
-    
+
     def forward(self, seq_repr, epi_repr):
         epi_encoded = self.epi_encoder(epi_repr)
         return self.head(torch.cat([seq_repr, epi_encoded], dim=1))
@@ -100,25 +104,25 @@ for model_name, model in models_to_test.items():
     logger.info(f"\n{'='*60}")
     logger.info(f"Testing {model_name.upper()}")
     logger.info('='*60)
-    
+
     model = model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
     criterion = nn.MSELoss()
-    
+
     # Training
     num_epochs = 10
     batch_size = 32
     best_val_r = -np.inf
-    
+
     for epoch in range(num_epochs):
         model.train()
         train_loss = 0.0
-        
+
         for i in range(0, len(train_df), batch_size):
             seq_batch = train_seq[i:i+batch_size]
             epi_batch = train_epi[i:i+batch_size]
             label_batch = train_labels[i:i+batch_size]
-            
+
             optimizer.zero_grad()
             if 'multimodal' in model_name:
                 outputs = model(seq_batch, epi_batch)
@@ -127,11 +131,11 @@ for model_name, model in models_to_test.items():
             loss = criterion(outputs, label_batch)
             loss.backward()
             optimizer.step()
-            
+
             train_loss += loss.item()
-        
+
         train_loss /= max(1, len(train_df) // batch_size)
-        
+
         # Validation
         model.eval()
         with torch.no_grad():
@@ -139,16 +143,16 @@ for model_name, model in models_to_test.items():
                 val_preds = model(val_seq, val_epi)
             else:
                 val_preds = model(val_seq)
-            
+
             val_r, _ = spearmanr(
                 val_preds.cpu().numpy().flatten(),
                 val_labels.cpu().numpy().flatten()
             )
-            
+
             if val_r > best_val_r:
                 best_val_r = val_r
                 logger.info(f"Epoch {epoch+1}/{num_epochs}: Loss={train_loss:.4f}, Val={val_r:.4f} *")
-    
+
     # Test
     model.eval()
     with torch.no_grad():
@@ -156,14 +160,14 @@ for model_name, model in models_to_test.items():
             test_preds = model(test_seq, test_epi)
         else:
             test_preds = model(test_seq)
-        
+
         test_r, test_p = spearmanr(
             test_preds.cpu().numpy().flatten(),
             test_labels.cpu().numpy().flatten()
         )
-    
+
     logger.info(f"✓ Test Spearman: {test_r:.4f}")
-    
+
     results[model_name] = {
         'test_spearman_rho': float(test_r),
         'test_p_value': float(test_p)

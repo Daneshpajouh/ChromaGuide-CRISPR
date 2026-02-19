@@ -13,12 +13,9 @@ module load cuda/12.2
 module load python/3.11
 
 # Setup virtual environment (job-specific to avoid conflicts)
-VENV_PATH="/tmp/venv_seq_only_${SLURM_JOB_ID}"
-python3 -m venv "$VENV_PATH" 2>/dev/null
-source "$VENV_PATH/bin/activate"
-pip install --quiet --upgrade pip setuptools wheel 2>/dev/null
-pip install --quiet torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 2>/dev/null
-pip install --quiet transformers huggingface-hub pandas numpy scipy scikit-learn 2>/dev/null
+# VENV_PATH removed
+# Environment handled by ~/env_chromaguide
+source ~/env_chromaguide/bin/activate
 
 # Setup HuggingFace to use cached models and offline mode
 export HF_HOME="/home/amird/.cache/huggingface"

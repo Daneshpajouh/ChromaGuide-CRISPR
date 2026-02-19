@@ -15,7 +15,7 @@ cat << 'EOF'
   Started:       ~20 seconds ago
   Log File:      training_monitor_56715343.log
   Monitor PID:   (check with: ps aux | grep monitor)
-  
+
 Expected Duration:  12 hours
 
 

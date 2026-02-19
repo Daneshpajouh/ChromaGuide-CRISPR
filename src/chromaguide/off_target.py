@@ -119,52 +119,49 @@ class CandidateFinder:
 class OffTargetScorer(nn.Module):
     """Per-site off-target scoring function f_OT.
 
-    Architecture: Three-layer CNN with convolutions over the aligned
-    guide-target pair (kernel sizes 3, 5, 7), followed by global
-    average pooling and two fully connected layers.
+    Architecture: 1D-CNN over aligned guide-target pairs (Component 5.2).
+    Three convolutional layers with 64, 128, and 64 filters.
 
+    Inputs: alignment_features (batch, 10, seq_len)
     Outputs: Per-site probability p_j in [0, 1] of cleavage.
 
-    Training: Binary cross-entropy loss on experimentally validated
-    off-target sites from GUIDE-seq, CIRCLE-seq, and similar datasets.
+    Features:
+      - Guide/Target one-hot (8 channels)
+      - Mismatch indicator (1 channel)
+      - Position weight (1 channel)
     """
     def __init__(
         self,
-        in_channels: int = 10,  # guide oh(4) + target oh(4) + mismatch(1) + position(1)
-        n_filters: List[int] = None,
-        kernel_sizes: List[int] = None,
+        in_channels: int = 10,
         hidden_dim: int = 128,
         dropout: float = 0.3,
         use_chromatin: bool = False,
-        chromatin_dim: int = 4,
+        chromatin_dim: int = 0, # Default to 0 for strict seq-based OT
     ):
         super().__init__()
-        if n_filters is None:
-            n_filters = [64, 128, 128]
-        if kernel_sizes is None:
-            kernel_sizes = [3, 5, 7]
-
         self.use_chromatin = use_chromatin
 
-        # Multi-scale CNN branches
-        self.conv_branches = nn.ModuleList()
-        for nf, ks in zip(n_filters, kernel_sizes):
-            branch = nn.Sequential(
-                nn.Conv1d(in_channels, nf, kernel_size=ks, padding=ks // 2),
-                nn.BatchNorm1d(nf),
-                nn.ReLU(),
-                nn.Dropout(dropout),
-            )
-            self.conv_branches.append(branch)
+        # Methodology-compliant 1D-CNN
+        self.conv_layers = nn.Sequential(
+            nn.Conv1d(in_channels, 64, kernel_size=3, padding=1),
+            nn.BatchNorm1d(64),
+            nn.ReLU(),
+            nn.Conv1d(64, 128, kernel_size=3, padding=1),
+            nn.BatchNorm1d(128),
+            nn.ReLU(),
+            nn.Conv1d(128, 64, kernel_size=3, padding=1),
+            nn.BatchNorm1d(64),
+            nn.ReLU(),
+        )
 
-        total_filters = sum(n_filters)
+        # Global average pool
+        self.pool = nn.AdaptiveAvgPool1d(1)
 
-        # Optional chromatin features
-        fc_input_dim = total_filters
+        # Fully connected layers
+        fc_input_dim = 64
         if use_chromatin:
             fc_input_dim += chromatin_dim
 
-        # Fully connected layers
         self.fc = nn.Sequential(
             nn.Linear(fc_input_dim, hidden_dim),
             nn.ReLU(),
@@ -187,14 +184,8 @@ class OffTargetScorer(nn.Module):
         Returns:
             Per-site cleavage probability (batch, 1)
         """
-        # Multi-scale CNN
-        branch_outputs = []
-        for branch in self.conv_branches:
-            h = branch(alignment_features)
-            h = h.mean(dim=-1)  # Global average pool over sequence
-            branch_outputs.append(h)
-
-        h = torch.cat(branch_outputs, dim=-1)  # (batch, total_filters)
+        h = self.conv_layers(alignment_features)
+        h = self.pool(h).squeeze(-1) # (batch, 64)
 
         # Optionally concatenate chromatin features
         if self.use_chromatin and chromatin_features is not None:

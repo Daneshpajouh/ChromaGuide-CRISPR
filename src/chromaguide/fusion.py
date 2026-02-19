@@ -1,9 +1,8 @@
 """Fusion module for ChromaGuide.
 
 Combines sequence embedding z_s and epigenomic embedding z_e through
-concatenation + MLP. Optionally includes an information-theoretic
-non-redundancy regularizer (MINE/CLUB) to encourage complementary
-representations.
+gated attention fusion as specified in the proposal methodology.
+Optionally includes an information-theoretic non-redundancy regularizer.
 """
 import torch
 import torch.nn as nn
@@ -11,11 +10,70 @@ import torch.nn.functional as F
 from typing import Optional, Tuple
 
 
+class GatedAttentionFusion(nn.Module):
+    """Gated attention fusion as specified in proposal methodology.
+
+    Implementation of:
+    g = sigmoid(W_g * [h_seq; h_epi] + b_g)
+    fused = g * h_seq + (1-g) * h_epi
+
+    Where g is the gating mechanism that learns how much to weight
+    sequence vs epigenomic features for each position.
+    """
+    def __init__(
+        self,
+        d_model: int = 256,
+        dropout: float = 0.2,
+    ):
+        super().__init__()
+        self.d_model = d_model
+
+        # Gate network: projects concatenated features to gate weights
+        self.gate_network = nn.Sequential(
+            nn.Linear(d_model * 2, d_model),
+            nn.Dropout(dropout),
+            nn.Sigmoid()
+        )
+
+        # Optional projection layer for final output
+        self.output_proj = nn.Sequential(
+            nn.Linear(d_model, d_model),
+            nn.LayerNorm(d_model),
+            nn.Dropout(dropout)
+        )
+
+    def forward(
+        self,
+        h_seq: torch.Tensor,
+        h_epi: torch.Tensor,
+    ) -> torch.Tensor:
+        """Gated attention fusion.
+
+        Args:
+            h_seq: Sequence embedding (batch, d_model)
+            h_epi: Epigenomic embedding (batch, d_model)
+
+        Returns:
+            Fused embedding (batch, d_model)
+        """
+        # Concatenate sequence and epigenomic features
+        h_concat = torch.cat([h_seq, h_epi], dim=-1)  # (batch, 2*d_model)
+
+        # Compute gate weights
+        g = self.gate_network(h_concat)  # (batch, d_model)
+
+        # Apply gated fusion
+        fused = g * h_seq + (1 - g) * h_epi
+
+        # Optional output projection
+        return self.output_proj(fused)
+
+
 class ChromaGuideFusion(nn.Module):
     """Multi-modal fusion: concatenation + MLP.
 
     Baseline: f = MLP([z_s; z_e]) -> z_fused in R^{d_model}
-    
+
     Can be replaced with gating/cross-attention/mixture-of-experts
     if needed.
     """

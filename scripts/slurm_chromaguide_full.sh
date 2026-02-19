@@ -12,13 +12,8 @@
 module load cuda/12.2
 module load python/3.11
 
-# Setup virtual environment (job-specific to avoid conflicts)
-VENV_PATH="/tmp/venv_chromaguide_full_${SLURM_JOB_ID}"
-python3 -m venv "$VENV_PATH" 2>/dev/null
-source "$VENV_PATH/bin/activate"
-pip install --quiet --upgrade pip setuptools wheel 2>/dev/null
-pip install --quiet torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 2>/dev/null
-pip install --quiet transformers huggingface-hub pybigwig pandas numpy scipy scikit-learn 2>/dev/null
+# Use pre-installed virtual environment
+source ~/env_chromaguide/bin/activate
 
 # Setup HuggingFace to use cached models (offline mode)
 export HF_HOME="/home/amird/.cache/huggingface"
@@ -82,7 +77,7 @@ class ChromaGuideFull(nn.Module):
     def __init__(self, seq_hidden=768, epi_features=9, fusion_hidden=256):
         super().__init__()
         self.dnabert = dnabert
-        
+
         # Epigenomic feature encoder MLP
         self.epi_encoder = nn.Sequential(
             nn.Linear(epi_features, 128),
@@ -91,7 +86,7 @@ class ChromaGuideFull(nn.Module):
             nn.Linear(128, 64),
             nn.ReLU()
         )
-        
+
         # Gated attention fusion mechanism
         self.seq_gate = nn.Sequential(
             nn.Linear(seq_hidden, fusion_hidden),
@@ -101,7 +96,7 @@ class ChromaGuideFull(nn.Module):
             nn.Linear(64, fusion_hidden),
             nn.Sigmoid()
         )
-        
+
         self.fusion_mlp = nn.Sequential(
             nn.Linear(seq_hidden + 64, fusion_hidden),
             nn.ReLU(),
@@ -112,26 +107,26 @@ class ChromaGuideFull(nn.Module):
             nn.Linear(128, 1),
             nn.Sigmoid()
         )
-    
+
     def forward(self, input_ids, attention_mask, epi_features):
         # Sequence encoding
         seq_out = self.dnabert(input_ids, attention_mask=attention_mask)
         seq_repr = seq_out.last_hidden_state[:, 0, :]  # CLS token
-        
+
         # Epigenomic encoding
         epi_repr = self.epi_encoder(epi_features)
-        
+
         # Gated fusion
         seq_gate = self.seq_gate(seq_repr)
         epi_gate = self.epi_gate(epi_repr)
-        
+
         seq_gated = seq_repr * seq_gate
         epi_gated = epi_repr * epi_gate
-        
+
         # Concatenate and predict
         fused = torch.cat([seq_gated, epi_gated], dim=1)
         prediction = self.fusion_mlp(fused)
-        
+
         return prediction
 
 model = ChromaGuideFull().to(device)
@@ -176,11 +171,11 @@ best_val_r = -np.inf
 for epoch in range(num_epochs):
     model.train()
     train_loss = 0.0
-    
+
     for i in range(0, len(train_df), batch_size):
         batch_df = train_df.iloc[i:i+batch_size]
         batch_epi = train_epi[i:i+batch_size].to(device)
-        
+
         # Encode sequences
         encodings = tokenizer(
             batch_df['sequence'].tolist(),
@@ -189,34 +184,34 @@ for epoch in range(num_epochs):
             truncation=True,
             return_tensors='pt'
         )
-        
+
         input_ids = encodings['input_ids'].to(device)
         attention_mask = encodings['attention_mask'].to(device)
         labels = torch.tensor(
             batch_df['intensity'].values,
             dtype=torch.float32
         ).to(device).unsqueeze(1)
-        
+
         optimizer.zero_grad()
         outputs = model(input_ids, attention_mask, batch_epi)
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
-        
+
         train_loss += loss.item()
-    
+
     train_loss /= (len(train_df) // batch_size + 1)
-    
+
     # Validation
     model.eval()
     with torch.no_grad():
         val_preds = []
         val_labels = []
-        
+
         for i in range(0, len(val_df), batch_size):
             batch_df = val_df.iloc[i:i+batch_size]
             batch_epi = val_epi[i:i+batch_size].to(device)
-            
+
             encodings = tokenizer(
                 batch_df['sequence'].tolist(),
                 max_length=1024,
@@ -224,17 +219,17 @@ for epoch in range(num_epochs):
                 truncation=True,
                 return_tensors='pt'
             )
-            
+
             input_ids = encodings['input_ids'].to(device)
             attention_mask = encodings['attention_mask'].to(device)
             labels = batch_df['intensity'].values
-            
+
             outputs = model(input_ids, attention_mask, batch_epi)
             val_preds.extend(outputs.cpu().numpy().flatten().tolist())
             val_labels.extend(labels.tolist())
-        
+
         val_r, val_p = spearmanr(val_preds, val_labels)
-        
+
         if val_r > best_val_r:
             best_val_r = val_r
             torch.save(model.state_dict(), 'results/chromaguide_full/best_model.pt')
@@ -250,11 +245,11 @@ model.eval()
 with torch.no_grad():
     test_preds = []
     test_labels = []
-    
+
     for i in range(0, len(test_df), batch_size):
         batch_df = test_df.iloc[i:i+batch_size]
         batch_epi = test_epi[i:i+batch_size].to(device)
-        
+
         encodings = tokenizer(
             batch_df['sequence'].tolist(),
             max_length=1024,
@@ -262,11 +257,11 @@ with torch.no_grad():
             truncation=True,
             return_tensors='pt'
         )
-        
+
         input_ids = encodings['input_ids'].to(device)
         attention_mask = encodings['attention_mask'].to(device)
         labels = batch_df['intensity'].values
-        
+
         outputs = model(input_ids, attention_mask, batch_epi)
         test_preds.extend(outputs.cpu().numpy().flatten().tolist())
         test_labels.extend(labels.tolist())
