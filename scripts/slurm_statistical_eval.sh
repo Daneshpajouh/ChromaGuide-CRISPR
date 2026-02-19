@@ -79,7 +79,7 @@ echo "=========================================="
 for dataset in "${DATASETS[@]}"; do
     echo ""
     echo "Testing dataset: $dataset"
-    
+
     python -u src/evaluation/statistical_tests.py \
       --predictions checkpoints/${dataset}_v2/predictions.pkl \
       --ground_truth data/${dataset}_processed.pkl \
@@ -136,7 +136,7 @@ fi
 for dataset in "${DATASETS[@]}"; do
     echo ""
     echo "Comparing to SOTA baselines: $dataset"
-    
+
     python -u src/evaluation/sota_comparison.py \
       --our_predictions checkpoints/${dataset}_v2/predictions.pkl \
       --baseline_db src/evaluation/sota_baselines.json \
@@ -179,35 +179,35 @@ summary = {
 for dataset in ["deephf", "crispron"]:
     stat_file = f"results/statistical_eval_{dataset}.json"
     sota_file = f"results/sota_comparison_{dataset}.json"
-    
+
     print(f"\n{dataset.upper()} Dataset:")
     print("-" * 50)
-    
+
     if os.path.exists(stat_file):
         with open(stat_file) as f:
             stat_results = json.load(f)
             summary["datasets"][dataset] = {
                 "statistical": stat_results
             }
-            
+
             # Extract key results
             if "wilcoxon_p_value" in stat_results:
                 p_val = stat_results["wilcoxon_p_value"]
                 sig = "✓ SIGNIFICANT (p < 0.001)" if p_val < 0.001 else f"Non-significant (p={p_val:.4f})"
                 print(f"  Wilcoxon p-value: {sig}")
-            
+
             if "cohens_d" in stat_results:
                 print(f"  Cohen's d (effect size): {stat_results['cohens_d']:.4f}")
-            
+
             if "spearman_ci" in stat_results:
                 ci = stat_results["spearman_ci"]
                 print(f"  Spearman 95% CI: [{ci[0]:.4f}, {ci[1]:.4f}]")
-    
+
     if os.path.exists(sota_file):
         with open(sota_file) as f:
             sota_results = json.load(f)
             summary["datasets"][dataset]["sota"] = sota_results
-            
+
             if "rank" in sota_results:
                 print(f"  SOTA Rank: {sota_results['rank']}/9")
             if "improvement_best" in sota_results:
@@ -260,11 +260,11 @@ for dataset in ["deephf", "crispron"]:
     if Path(sota_file).exists():
         with open(sota_file) as f:
             data = json.load(f)
-        
+
         if "baseline_rhos" in data:
             baselines = list(data["baseline_rhos"].keys())
             rhos = list(data["baseline_rhos"].values())
-            
+
             fig, ax = plt.subplots(figsize=(12, 6))
             colors = ['red' if b == 'our_model' else 'blue' for b in baselines]
             ax.bar(range(len(baselines)), rhos, color=colors)

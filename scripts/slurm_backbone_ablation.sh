@@ -177,7 +177,7 @@ for backbone_dir in results_dir.iterdir():
     if backbone_dir.is_dir():
         backbone_name = backbone_dir.name
         results_file = backbone_dir / 'training_results.json'
-        
+
         if results_file.exists():
             with open(results_file, 'r') as f:
                 ablation_results[backbone_name] = json.load(f)
@@ -188,7 +188,7 @@ for backbone_dir in results_dir.iterdir():
                     print(f"  NDCG@20: {ablation_results[backbone_name]['test_ndcg20']:.4f}")
 
 # Find best backbone
-best_backbone = max(ablation_results.items(), 
+best_backbone = max(ablation_results.items(),
                    key=lambda x: x[1].get('test_spearman', 0))
 print(f"\nBest backbone: {best_backbone[0]} with Spearman={best_backbone[1].get('test_spearman', 0):.4f}")
 

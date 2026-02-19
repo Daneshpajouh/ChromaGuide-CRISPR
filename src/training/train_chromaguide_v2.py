@@ -70,7 +70,7 @@ logging.basicConfig(
 class ChromaGuideV2Trainer:
     """
     Unified trainer integrating all 9 critical modules.
-    
+
     Features:
     - Leakage-free evaluation (gene-held-out, dataset-held-out, cell-line-held-out)
     - Beta regression for bounded predictions
