@@ -1,7 +1,7 @@
 #!/bin/bash
 ################################################################################
 # ChromaGuide V2 - Master Execution Script
-# 
+#
 # Orchestrates all training phases on Narval:
 # PHASE 1: DeepHF training (primary dataset)
 # PHASE 2: CRISPRon training (cross-dataset validation)
@@ -56,14 +56,14 @@ phase_preflight() {
 
     # Check files exist
     log_info "Verifying SLURM scripts..."
-    
+
     local scripts=(
         "scripts/slurm_train_v2_deephf.sh"
         "scripts/slurm_train_v2_crispron.sh"
         "scripts/slurm_backbone_ablation.sh"
         "scripts/slurm_statistical_eval.sh"
     )
-    
+
     for script in "${scripts[@]}"; do
         if [ -f "$PROJECT_ROOT/$script" ]; then
             log_success "  ✓ $script"
@@ -110,16 +110,16 @@ phase_submit_deephf() {
     log_info "  Walltime: 12 hours"
     log_info "  Split: Gene-held-out (most stringent)"
     log_info "  Target: Spearman ρ >= 0.911 (beat CCL/MoFF baseline)"
-    
+
     local script="$PROJECT_ROOT/scripts/slurm_train_v2_deephf.sh"
-    
+
     log_info "Submitting to Narval..."
     read -p "Ready to submit DeepHF job? (y/n) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         # Make script executable
         chmod +x "$script"
-        
+
         # Submit job - LOCAL execution (for testing) or NARVAL
         if [ "$1" == "local" ]; then
             log_warning "Local execution mode (testing)"
@@ -133,7 +133,7 @@ phase_submit_deephf() {
             ssh -t ${NARVAL_USER}@${NARVAL_HOST} \
                 "cd ${NARVAL_WORKDIR} && sbatch $(basename $script)" \
                 2>&1 | tee -a "$LOG_FILE"
-            
+
             if [ ${PIPESTATUS[0]} -eq 0 ]; then
                 log_success "DeepHF job submitted successfully"
             else
@@ -144,7 +144,7 @@ phase_submit_deephf() {
     else
         log_warning "Skipped DeepHF submission"
     fi
-    
+
     return 0
 }
 
@@ -163,14 +163,14 @@ phase_submit_crispron() {
     log_info "  Walltime: 12 hours"
     log_info "  Split: Dataset-held-out"
     log_info "  Target: Spearman ρ >= 0.876 (beat ChromeCRISPR baseline)"
-    
+
     log_info ""
     read -p "Submit CRISPRon job in parallel? (y/n) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         local script="$PROJECT_ROOT/scripts/slurm_train_v2_crispron.sh"
         chmod +x "$script"
-        
+
         if [ "$1" == "local" ]; then
             log_warning "Local execution mode (testing)"
             bash "$script" &
@@ -182,7 +182,7 @@ phase_submit_crispron() {
             ssh -t ${NARVAL_USER}@${NARVAL_HOST} \
                 "cd ${NARVAL_WORKDIR} && sbatch $(basename $script)" \
                 2>&1 | tee -a "$LOG_FILE"
-            
+
             if [ ${PIPESTATUS[0]} -eq 0 ]; then
                 log_success "CRISPRon job submitted successfully"
             else
@@ -193,7 +193,7 @@ phase_submit_crispron() {
     else
         log_warning "Skipped CRISPRon submission"
     fi
-    
+
     return 0
 }
 
@@ -215,31 +215,31 @@ phase_monitor() {
     log_info "  tail -f logs/train_deephf_*.out  # View logs"
     log_info "  sacct -u $NARVAL_USER  # View completed jobs"
     log_info ""
-    
+
     local check_interval=300  # 5 minutes
     local max_wait=86400     # 24 hours
     local elapsed=0
 
     if [ "$1" != "local" ]; then
         log_info "Waiting for jobs to complete (max ${max_wait}s)..."
-        
+
         while [ $elapsed -lt $max_wait ]; do
             # Check if jobs are still queued/running
             ssh ${NARVAL_USER}@${NARVAL_HOST} \
                 "squeue -u $NARVAL_USER | grep chromaguide" \
                 > /dev/null 2>&1
-            
+
             if [ $? -ne 0 ]; then
                 log_success "All jobs completed!"
                 break
             fi
-            
+
             log_info "Jobs still running... (elapsed: ${elapsed}s)"
             sleep $check_interval
             elapsed=$((elapsed + check_interval))
         done
     fi
-    
+
     return 0
 }
 
@@ -253,13 +253,13 @@ phase_postprocessing() {
     log_info "════════════════════════════════════════════════════════════════════"
 
     log_info "Waiting for training complete, then submitting evaluation..."
-    
+
     read -p "Submit statistical evaluation job? (y/n) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         local script="$PROJECT_ROOT/scripts/slurm_statistical_eval.sh"
         chmod +x "$script"
-        
+
         if [ "$1" == "local" ]; then
             log_warning "Local execution mode (testing)"
             bash "$script" &
@@ -270,7 +270,7 @@ phase_postprocessing() {
             ssh -t ${NARVAL_USER}@${NARVAL_HOST} \
                 "cd ${NARVAL_WORKDIR} && sbatch scripts/slurm_statistical_eval.sh" \
                 2>&1 | tee -a "$LOG_FILE"
-            
+
             if [ ${PIPESTATUS[0]} -eq 0 ]; then
                 log_success "Statistical evaluation job submitted"
             else
@@ -281,7 +281,7 @@ phase_postprocessing() {
     else
         log_warning "Skipped evaluation submission"
     fi
-    
+
     return 0
 }
 
@@ -299,13 +299,13 @@ phase_ablation() {
     log_info "  GPUs: 4 × H100"
     log_info "  Walltime: 24 hours"
     log_info "  Purpose: Architecture comparison with fixed training budget"
-    
+
     read -p "Submit backbone ablation study? (y/n) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         local script="$PROJECT_ROOT/scripts/slurm_backbone_ablation.sh"
         chmod +x "$script"
-        
+
         if [ "$1" == "local" ]; then
             log_warning "Local execution mode (testing)"
             bash "$script" &
@@ -316,7 +316,7 @@ phase_ablation() {
             ssh -t ${NARVAL_USER}@${NARVAL_HOST} \
                 "cd ${NARVAL_WORKDIR} && sbatch $(basename $script)" \
                 2>&1 | tee -a "$LOG_FILE"
-            
+
             if [ ${PIPESTATUS[0]} -eq 0 ]; then
                 log_success "Ablation study job submitted"
             else
@@ -327,7 +327,7 @@ phase_ablation() {
     else
         log_warning "Skipped ablation submission"
     fi
-    
+
     return 0
 }
 
@@ -367,7 +367,7 @@ main() {
     log_success "════════════════════════════════════════════════════════════════════"
     log_success "EXECUTION COMPLETE"
     log_success "════════════════════════════════════════════════════════════════════"
-    
+
     echo ""
     log_info "Summary:"
     log_info "  1. All training jobs submitted to Narval"
