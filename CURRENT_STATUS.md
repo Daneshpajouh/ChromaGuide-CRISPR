@@ -1,18 +1,19 @@
 # ChromaGuide Experiment Pipeline - Current Status
 
-**Last Updated:** February 18, 2026 13:25 UTC
+**Last Updated:** February 18, 2026 18:00 PST (02:00 UTC Feb 19)
 
 ---
 
 ## ✨ MAJOR MILESTONE: Synthetic Data Benchmark COMPLETE! ✨
 
-### Latest Status: February 18, 2026 15:15 UTC
+### Latest Status: February 18, 2026 18:00 PST
 
 **Current State:**
 - ✅ 4/4 Synthetic experiments COMPLETED
 - ✅ Publication-quality analysis & figures GENERATED
 - ✅ Real data retraining plan READY
-- 🔄 2 resubmitted jobs still RUNNING (~1h 31m elapsed, expect 3-4 more hours)
+- 🔄 Job 56706055 (seq_only_baseline): RUNNING (4h 56m / 6h limit - **~4m remaining**)
+- 🔄 Job 56706056 (chromaguide_full): RUNNING (4h 56m / 8h limit - **~3h remaining**)
 
 ### Synthetic Data Results (All 4 Jobs Completed)
 
