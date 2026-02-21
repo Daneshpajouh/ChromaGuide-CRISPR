@@ -13,7 +13,7 @@ from typing import Dict, Optional, Tuple
 
 from .sequence_encoder import CNNGRUEncoder, MambaSequenceEncoder
 from .epigenomic_encoder import EpigenomicEncoder
-from .fusion import GatedAttentionFusion, ChromaGuideFusion, NonRedundancyRegularizer
+from .fusion import GatedAttentionFusion, ChromaGuideFusion, CrossAttentionFusion, NonRedundancyRegularizer
 from .prediction_head import BetaRegressionHead, BetaNLL
 
 
@@ -38,6 +38,7 @@ class ChromaGuideModel(nn.Module):
         num_epi_bins: int = 100,
         use_epigenomics: bool = True,
         use_gate_fusion: bool = False,
+        fusion_type: str = 'gate',  # 'gate', 'concat', 'cross_attention'
         use_mi_regularizer: bool = False,
         mi_lambda: float = 0.01,
         dropout: float = 0.2,
@@ -75,6 +76,12 @@ class ChromaGuideModel(nn.Module):
                 expand=mamba_expand,
                 dropout=dropout,
             )
+        elif encoder_type == 'dnabert2':
+            from chromaguide.sequence_encoder import DNABERT2Encoder
+            self.seq_encoder = DNABERT2Encoder(
+                d_model=768, # Fixed at 768 for DNABERT-2
+                dropout=dropout,
+            )
         else:
             raise ValueError(f'Unknown encoder type: {encoder_type}')
 
@@ -87,9 +94,14 @@ class ChromaGuideModel(nn.Module):
                 dropout=dropout,
             )
 
-            # Fusion - use GatedAttentionFusion as per proposal methodology
-            if use_gate_fusion:
+            # Fusion - selection based on fusion_type or legacy use_gate_fusion flag
+            if fusion_type == 'gate' or use_gate_fusion:
                 self.fusion = GatedAttentionFusion(
+                    d_model=d_model,
+                    dropout=dropout,
+                )
+            elif fusion_type == 'cross_attention':
+                self.fusion = CrossAttentionFusion(
                     d_model=d_model,
                     dropout=dropout,
                 )

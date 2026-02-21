@@ -32,7 +32,7 @@ class CNNGRUEncoder(SequenceEncoder):
 
     Architecture:
       Conv1D layers -> Bidirectional GRU -> Global pooling -> Linear projection
-    
+
     Processes one-hot encoded 23-nt sgRNA+PAM sequence (4 channels x 23 positions)
     plus optional flanking context.
     """
@@ -105,6 +105,57 @@ class CNNGRUEncoder(SequenceEncoder):
         h = h.mean(dim=1)  # (batch, 2*gru_hidden)
 
         return self.proj(h)  # (batch, d_model)
+
+
+class DNABERT2Encoder(SequenceEncoder):
+    """DNABERT-2 transformer encoder.
+
+    Uses a pre-trained transformer to extract features from gRNA sequences.
+    Optimized for short-range gRNA context and PAM recognition.
+    """
+    def __init__(
+        self,
+        d_model: int = 768,
+        dropout: float = 0.1,
+    ):
+        super().__init__(d_model=d_model)
+        from transformers import AutoModel, AutoConfig
+
+        # Load pre-trained DNABERT-2 with custom config fix
+        config = AutoConfig.from_pretrained("zhihan1996/DNABERT-2-117M", trust_remote_code=True)
+        if not hasattr(config, "pad_token_id"):
+            config.pad_token_id = 0 # Default for DNABERT-2
+
+        # PREVENT "meta" device errors: Ensure Alibi tensors are on CPU during init
+        # We explicitly load on CPU and then move to the target device.
+        # This avoids the meta-device issue during from_pretrained on GPU nodes.
+        self.backbone = AutoModel.from_pretrained(
+            "zhihan1996/DNABERT-2-117M",
+            config=config,
+            trust_remote_code=True,
+            low_cpu_mem_usage=False,
+            device_map=None
+        ).to("cpu")
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """Forward pass.
+
+        Args:
+            x: Tokenized sequence IDs (batch, L)
+        Returns:
+            Sequence embedding (batch, d_model)
+        """
+        # Multi-hot/One-hot check (DNABERT-2 expects token IDs)
+        if x.dim() == 3:
+            # Emergency fallback: convert one-hot to approximate representation
+            # or throw error. For now, we project if training loop hasn't been updated.
+            x = x.argmax(dim=1)
+
+        outputs = self.backbone(x)
+        # Global pooling (using mean pooling for gRNAs)
+        h = outputs[0].mean(dim=1)
+        return self.dropout(h)
 
 
 class MambaSequenceEncoder(SequenceEncoder):

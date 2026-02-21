@@ -20,26 +20,24 @@ from typing import Optional, Dict
 # HEK293T, HCT116, and HeLa
 ENCODE_CELL_LINES = {
     'HEK293T': {
-        'DNase': 'ENCSR000EIZ',
+        'DNase': 'ENCSR000EJR',
         'H3K4me3_ChIP': 'ENCSR000DTU',
-        'H3K27ac_ChIP': 'ENCSR000FCH',
-        'ATAC': 'ENCSR199GBH',
+        'H3K27ac_ChIP': 'ENCSR000FCJ',
     },
     'HCT116': {
-        'DNase': 'ENCSR000ENM',
-        'H3K4me3_ChIP': 'ENCSR000BUY',
-        'H3K27ac_ChIP': 'ENCSR000BVA',
-        'ATAC': 'ENCSR537BCG',
+        'DNase': 'ENCSR000ENO',
+        'H3K4me3_ChIP': 'ENCSR000DWN',
+        'ATAC_seq': 'ENCSR000EOJ',
     },
     'HeLa': {
-        'DNase': 'ENCSR000EPH',
-        'H3K4me3_ChIP': 'ENCSR000DWK',
-        'H3K27ac_ChIP': 'ENCSR000FCJ',
+        'DNase': 'ENCSR000ENP',
+        'H3K4me3_ChIP': 'ENCSR000DWE',
+        'H3K27ac_ChIP': 'ENCSR000FCG',
     },
 }
 
-# Default number of epigenomic tracks
-DEFAULT_NUM_TRACKS = 4  # DNase, H3K4me3, H3K27ac, ATAC
+# Default number of epigenomic tracks per cell line (per PhD proposal)
+DEFAULT_NUM_TRACKS = 3  # e.g., DNase, H3K4me3, H3K27ac
 
 
 class EpigenomicEncoder(nn.Module):
@@ -47,7 +45,7 @@ class EpigenomicEncoder(nn.Module):
 
     Input: Binned signal tracks around the cut site.
       Shape: (batch, num_tracks, num_bins)
-      where num_tracks = 4 (DNase, H3K4me3, H3K27ac, ATAC) by default
+      where num_tracks = 3 (DNase, H3K4me3, H3K27ac) as per PhD proposal
       and num_bins = number of bins in the window (e.g., 100 bins for 10kb window)
 
     The encoder also takes an assay-availability mask:

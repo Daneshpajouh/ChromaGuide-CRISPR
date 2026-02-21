@@ -132,11 +132,65 @@ class ChromaGuideFusion(nn.Module):
         h = torch.cat([z_s, z_e], dim=-1)  # (batch, 2*d_model)
 
         if self.use_gate:
-            gate_weights = self.gate(h)  # (batch, d_model)
-            fused = gate_weights * z_s + (1 - gate_weights) * z_e
-            return self.proj(h) + fused
+            return self.proj(h)
         else:
             return self.proj(h)
+
+
+class CrossAttentionFusion(nn.Module):
+    """Cross-attention fusion for modality interaction.
+
+    Learns interactions between sequence and epigenomic features
+    using a multi-head attention mechanism where sequence acts as
+    query and epigenomics acts as key/value.
+    """
+    def __init__(
+        self,
+        d_model: int = 256,
+        num_heads: int = 4,
+        dropout: float = 0.2,
+    ):
+        super().__init__()
+        self.d_model = d_model
+        # Multi-head attention (B, 1, D)
+        self.cross_attn = nn.MultiheadAttention(
+            embed_dim=d_model,
+            num_heads=num_heads,
+            dropout=dropout,
+            batch_first=True
+        )
+        self.norm = nn.LayerNorm(d_model)
+        self.proj = nn.Sequential(
+            nn.Linear(d_model * 2, d_model),
+            nn.ReLU(),
+            nn.Dropout(dropout)
+        )
+
+    def forward(
+        self,
+        z_s: torch.Tensor,
+        z_e: torch.Tensor,
+    ) -> torch.Tensor:
+        """Cross-attention fusion.
+
+        Args:
+            z_s: Sequence embedding (batch, d_model)
+            z_e: Epigenomic embedding (batch, d_model)
+
+        Returns:
+            Fused embedding (batch, d_model)
+        """
+        # (batch, 1, d_model)
+        q = z_s.unsqueeze(1)
+        k = v = z_e.unsqueeze(1)
+
+        # Cross-attention: seq attends to epi
+        attn_out, _ = self.cross_attn(q, k, v)
+        attn_out = attn_out.squeeze(1)
+
+        # Residual + Projection
+        out = torch.cat([z_s + attn_out, z_e], dim=-1)
+        return self.proj(out)
 
 
 class NonRedundancyRegularizer(nn.Module):
