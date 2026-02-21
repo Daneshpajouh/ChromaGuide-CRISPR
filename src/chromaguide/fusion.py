@@ -22,7 +22,7 @@ class GatedAttentionFusion(nn.Module):
     """
     def __init__(
         self,
-        d_model: int = 256,
+        d_model: int = 64,
         dropout: float = 0.2,
     ):
         super().__init__()

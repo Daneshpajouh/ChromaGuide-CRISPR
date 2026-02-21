@@ -32,7 +32,7 @@ class ChromaGuideModel(nn.Module):
     def __init__(
         self,
         encoder_type: str = 'cnn_gru',  # 'cnn_gru' or 'mamba'
-        d_model: int = 256,
+        d_model: int = 64,
         seq_len: int = 23,
         num_epi_tracks: int = 4,
         num_epi_bins: int = 100,

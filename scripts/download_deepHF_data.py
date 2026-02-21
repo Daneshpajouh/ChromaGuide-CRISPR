@@ -30,84 +30,29 @@ def create_data_dir():
 
 def download_deepHF_dataset(data_dir, source="github"):
     """
-    Download DeepHF dataset from available sources.
-
-    Sources:
-    1. GitHub (primary): https://github.com/gu-lab/DeepHF
-    2. Zenodo (backup): https://zenodo.org/record/... (if available)
-    3. Supplementary materials: Nature Biomedical Engineering
+    Download DeepHF dataset with gene metadata from correct repository.
     """
-
     print("=" * 80)
-    print("DEEPHF DATASET DOWNLOAD")
+    print("DEEPHF DATASET DOWNLOAD (With Gene Metadata)")
     print("=" * 80)
-    print()
 
-    raw_dir = data_dir / "raw"
+    raw_dir = data_dir / "raw" / "deepHF"
+    raw_dir.mkdir(parents=True, exist_ok=True)
 
-    # Option 1: GitHub repository
-    if source == "github":
-        print("📥 Attempting to clone DeepHF repository from GitHub...")
-        print("   Repository: https://github.com/gu-lab/DeepHF")
-        print()
+    base_url = "https://raw.githubusercontent.com/izhangcd/DeepHF/master/data/"
+    files = ["DeepHF_HEK293T.csv", "DeepHF_HCT116.csv", "DeepHF_HeLa.csv"]
 
-        github_url = "https://github.com/gu-lab/DeepHF.git"
-        repo_path = raw_dir / "DeepHF_repo"
-
+    for file in files:
+        url = base_url + file
+        output_path = raw_dir / file
+        print(f"📥 Downloading {file}...")
         try:
-            import subprocess
-            result = subprocess.run(
-                ["git", "clone", github_url, str(repo_path)],
-                capture_output=True,
-                timeout=300
-            )
-
-            if result.returncode == 0:
-                print(f"✓ Repository cloned to {repo_path}")
-
-                # Find dataset files
-                data_files = list(repo_path.glob("**/*.pkl"))
-                data_files += list(repo_path.glob("**/*.pickle"))
-                data_files += list(repo_path.glob("**/*.npy"))
-                data_files += list(repo_path.glob("**/*.csv"))
-
-                if data_files:
-                    print(f"✓ Found {len(data_files)} data files")
-                    for f in data_files[:5]:
-                        print(f"   - {f.relative_to(repo_path)}")
-                    return True
-                else:
-                    print("⚠️  No data files found in repository")
-                    return False
-            else:
-                print(f"✗ Git clone failed: {result.stderr.decode()}")
-                return False
-
-        except FileNotFoundError:
-            print("✗ Git not found. Install with: brew install git")
-            return False
+            urllib.request.urlretrieve(url, output_path)
+            print(f"   ✓ Saved to {output_path}")
         except Exception as e:
-            print(f"✗ Error cloning repository: {e}")
-            return False
+            print(f"   ✗ Failed to download {file}: {e}")
 
-    # Option 2: Direct download from data repository
-    elif source == "direct":
-        print("📥 Attempting direct download of DeepHF data...")
-        print()
-
-        # Example URLs (update with actual DeepHF dataset URLs)
-        dataset_urls = {
-            "DeepHF_training": "https://...",  # Update with actual URL
-            "DeepHF_test": "https://...",      # Update with actual URL
-        }
-
-        print("⚠️  Please provide direct download URLs for DeepHF dataset")
-        print("   These are typically provided in the paper's supplementary materials")
-        return False
-
-    else:
-        print(f"✗ Unknown source: {source}")
-        return False
+    return True
 
 def verify_deepHF_structure(data_dir):
     """Verify expected DeepHF dataset structure"""

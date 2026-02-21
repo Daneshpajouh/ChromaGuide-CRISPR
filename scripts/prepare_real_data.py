@@ -23,83 +23,48 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import argparse
 
-def load_deepHF_dataset(data_dir="data/deepHF/raw"):
-    """Load DeepHF dataset from pickle files"""
-
-    print("Loading DeepHF dataset...")
-
+def load_deepHF_dataset(data_dir="data/deepHF/raw/deepHF"):
+    """Load DeepHF dataset from CSV files and keep gene metadata."""
+    print("Loading DeepHF dataset with Gene metadata...")
     data_dir = Path(data_dir)
 
-    # Try different file locations
-    X_train_paths = list(data_dir.glob("**/X_train.pkl")) + \
-                   list(data_dir.glob("**/X_train*.npy")) + \
-                   list(data_dir.glob("**/x_train.pkl"))
+    files = ["DeepHF_HEK293T.csv", "DeepHF_HCT116.csv", "DeepHF_HeLa.csv"]
+    dfs = []
 
-    y_train_paths = list(data_dir.glob("**/y_train.pkl")) + \
-                   list(data_dir.glob("**/y_train*.npy")) + \
-                   list(data_dir.glob("**/y_train*.csv"))
+    for file in files:
+        path = data_dir / file
+        if path.exists():
+            df = pd.read_csv(path)
+            # Ensure standard columns: sequence, efficiency, gene
+            # In DeepHF raw: 'sgRNA', 'Efficiency_WT', 'Gene'
+            rename_map = {
+                'sgRNA': 'sequence',
+                'Efficiency_WT': 'efficiency',
+                'Gene': 'gene'
+            }
+            df = df.rename(columns=rename_map)
+            dfs.append(df[['sequence', 'efficiency', 'gene']])
+            print(f"  ✓ Loaded {file}: {len(df)} samples")
 
-    X_test_paths = list(data_dir.glob("**/X_test.pkl")) + \
-                  list(data_dir.glob("**/X_test*.npy")) + \
-                  list(data_dir.glob("**/x_test.pkl"))
+    if not dfs:
+        raise FileNotFoundError(f"No DeepHF CSVs found in {data_dir}")
 
-    y_test_paths = list(data_dir.glob("**/y_test.pkl")) + \
-                  list(data_dir.glob("**/y_test*.npy")) + \
-                  list(data_dir.glob("**/y_test*.csv"))
+    combined_df = pd.concat(dfs).drop_duplicates(subset=['sequence'])
+    print(f"✓ Total unique sequences: {len(combined_df)}")
+    return combined_df
 
-    if not (X_train_paths and y_train_paths):
-        raise FileNotFoundError(
-            f"Could not find X_train or y_train in {data_dir}. "
-            "Run scripts/download_deepHF_data.py first."
-        )
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", default="data/merged.csv")
+    args = parser.parse_args()
 
-    # Load training data
-    X_train_path = X_train_paths[0]
-    y_train_path = y_train_paths[0]
+    df = load_deepHF_dataset()
+    df.to_csv(args.output, index=False)
+    print(f"✓ Saved merged dataset with genes to {args.output}")
 
-    print(f"  Loading: {X_train_path.relative_to(data_dir.parent.parent)}")
-    if str(X_train_path).endswith('.pkl'):
-        with open(X_train_path, 'rb') as f:
-            X_train = pickle.load(f)
-    else:
-        X_train = np.load(X_train_path)
-
-    print(f"  Loading: {y_train_path.relative_to(data_dir.parent.parent)}")
-    if str(y_train_path).endswith('.pkl'):
-        with open(y_train_path, 'rb') as f:
-            y_train = pickle.load(f)
-    else:
-        y_train = np.load(y_train_path)
-
-    # Load test data if available
-    X_test = None
-    y_test = None
-
-    if X_test_paths and y_test_paths:
-        X_test_path = X_test_paths[0]
-        y_test_path = y_test_paths[0]
-
-        print(f"  Loading: {X_test_path.relative_to(data_dir.parent.parent)}")
-        if str(X_test_path).endswith('.pkl'):
-            with open(X_test_path, 'rb') as f:
-                X_test = pickle.load(f)
-        else:
-            X_test = np.load(X_test_path)
-
-        print(f"  Loading: {y_test_path.relative_to(data_dir.parent.parent)}")
-        if str(y_test_path).endswith('.pkl'):
-            with open(y_test_path, 'rb') as f:
-                y_test = pickle.load(f)
-        else:
-            y_test = np.load(y_test_path)
-
-    print(f"  ✓ Loaded X_train: {X_train.shape}")
-    print(f"  ✓ Loaded y_train: {y_train.shape}")
-    if X_test is not None:
-        print(f"  ✓ Loaded X_test: {X_test.shape}")
-        print(f"  ✓ Loaded y_test: {y_test.shape}")
-
-    return X_train, y_train, X_test, y_test
+if __name__ == "__main__":
+    import pandas as pd
+    main()
 
 def normalize_features(X_train, X_val, X_test=None):
     """Normalize features using z-score normalization"""

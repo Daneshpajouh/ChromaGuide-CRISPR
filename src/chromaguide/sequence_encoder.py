@@ -44,7 +44,7 @@ class CNNGRUEncoder(SequenceEncoder):
         kernel_sizes: list = None,
         gru_hidden: int = 128,
         gru_layers: int = 2,
-        d_model: int = 256,
+        d_model: int = 64,  # UPDATED: Matches PhD proposal requirement (zs in R^64)
         dropout: float = 0.3,
     ):
         super().__init__(d_model=d_model)

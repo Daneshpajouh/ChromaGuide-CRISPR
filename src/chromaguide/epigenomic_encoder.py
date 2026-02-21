@@ -59,7 +59,7 @@ class EpigenomicEncoder(nn.Module):
         self,
         num_tracks: int = DEFAULT_NUM_TRACKS,
         num_bins: int = 100,
-        d_model: int = 256,
+        d_model: int = 64,
         hidden_dim: int = 128,
         dropout: float = 0.2,
     ):

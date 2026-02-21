@@ -26,7 +26,7 @@ class BetaRegressionHead(nn.Module):
     """
     def __init__(
         self,
-        d_model: int = 256,
+        d_model: int = 64,
         hidden_dim: int = 128,
         dropout: float = 0.1,
     ):

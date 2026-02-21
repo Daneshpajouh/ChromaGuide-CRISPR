@@ -20,6 +20,51 @@ from scipy import stats
 from sklearn.metrics import roc_auc_score, average_precision_score
 from pathlib import Path
 
+# Add src to path for designer imports
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+def compute_designer_score(mu, risk, sigma, we=1.0, wr=0.5, wu=0.2):
+    """Compute integrated design score S = we*mu - wr*R - wu*sigma."""
+    return we * mu - wr * risk - wu * sigma
+
+def evaluate_designer_score(results_dir):
+    print("\n--- Integrated Designer Score Evaluation ---")
+    on_target_path = results_dir / "on_target_results.csv"
+    off_target_path = results_dir / "off_target_results.csv"
+    conformal_path = results_dir / "conformal_results.csv"
+
+    if not (on_target_path.exists() and off_target_path.exists() and conformal_path.exists()):
+        print("⏭️ Skipping Designer Score (missing component results).")
+        return None
+
+    # Load data
+    on_df = pd.read_csv(on_target_path)
+    off_df = pd.read_csv(off_target_path)
+    conf_df = pd.read_csv(conformal_path)
+
+    # Merge on sequence if possible, or assume same order if indices match
+    # For evaluation, we typically average over the test set
+    mu = on_df['y_pred'].mean()
+    risk = off_df['y_prob'].mean()
+    sigma = (conf_df['upper'] - conf_df['lower']).mean()
+
+    s_avg = compute_designer_score(mu, risk, sigma)
+
+    print(f"Mean Efficacy (mu): {mu:.4f}")
+    print(f"Mean Off-target Risk (R): {risk:.4f}")
+    print(f"Mean Uncertainty (sigma): {sigma:.4f}")
+    print(f"AVERAGE DESIGNER SCORE (S): {s_avg:.4f}")
+
+    return {
+        "mean_efficacy": mu,
+        "mean_risk": risk,
+        "mean_uncertainty": sigma,
+        "average_designer_score": s_avg,
+        "weights": {"w_e": 1.0, "w_r": 0.5, "w_u": 0.2}
+    }
+
 def compute_cohens_d(x, y):
     """Compute effect size."""
     n1, n2 = len(x), len(y)
@@ -115,6 +160,7 @@ def main():
     report['on_target'] = evaluate_on_target(results_dir)
     report['off_target'] = evaluate_off_target(results_dir)
     report['conformal'] = evaluate_conformal(results_dir)
+    report['designer_score'] = evaluate_designer_score(results_dir)
 
     summary_path = results_dir / "phd_proposal_report.json"
     with open(summary_path, 'w') as f:
