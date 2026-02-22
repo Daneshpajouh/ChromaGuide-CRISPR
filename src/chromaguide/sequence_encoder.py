@@ -127,21 +127,18 @@ class DNABERT2Encoder(SequenceEncoder):
             config.pad_token_id = 0 # Default for DNABERT-2
 
         # PREVENT "meta" device errors: Ensure Alibi tensors are on CPU during init
-        # We use a context manager to force CPU initialization for DNABERT-2 as a workaround
-        # for a known issue with the model's Alibi implementation on GPU nodes.
+        # Use CPU device and torch.no_grad to prevent meta device tensor issues
         import torch
-        from transformers import AutoModel, AutoConfig
-
-        # Force CPU device for the duration of model loading
-        with torch.device('cpu'):
+        with torch.no_grad():
             self.backbone = AutoModel.from_pretrained(
                 "zhihan1996/DNABERT-2-117M",
                 config=config,
                 trust_remote_code=True,
-                low_cpu_mem_usage=False,
-                device_map=None
+                device_map="cpu"
             )
-
+        # Move to appropriate device AFTER initialization
+        # (parent model will handle this)
+        
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
