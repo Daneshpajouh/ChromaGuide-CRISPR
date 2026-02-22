@@ -32,10 +32,10 @@ class ChromaGuideModel(nn.Module):
     def __init__(
         self,
         encoder_type: str = 'cnn_gru',  # 'cnn_gru' or 'mamba'
-        d_model: int = 64,
-        seq_len: int = 23,
-        num_epi_tracks: int = 4,
-        num_epi_bins: int = 100,
+        d_model: int = 256,  # UPDATED TO 256 AS PER PHD AUDIT
+        seq_len: int = 21,
+        num_epi_tracks: int = 11,
+        num_epi_bins: int = 1,
         use_epigenomics: bool = True,
         use_gate_fusion: bool = False,
         fusion_type: str = 'gate',  # 'gate', 'concat', 'cross_attention'
@@ -79,9 +79,11 @@ class ChromaGuideModel(nn.Module):
         elif encoder_type == 'dnabert2':
             from chromaguide.sequence_encoder import DNABERT2Encoder
             self.seq_encoder = DNABERT2Encoder(
-                d_model=768, # Fixed at 768 for DNABERT-2
+                d_model=768,
                 dropout=dropout,
             )
+            # Project DNABERT-2 (768) down to d_model (64) for PhD Proposal compatibility
+            self.seq_proj = nn.Linear(768, d_model)
         else:
             raise ValueError(f'Unknown encoder type: {encoder_type}')
 
@@ -150,7 +152,9 @@ class ChromaGuideModel(nn.Module):
               'z_f': Fused embedding
         """
         # Sequence encoding
-        z_s = self.seq_encoder(seq)  # (batch, d_model)
+        z_s = self.seq_encoder(seq)
+        if hasattr(self, 'seq_proj'):
+            z_s = self.seq_proj(z_s)
 
         output = {'z_s': z_s}
 

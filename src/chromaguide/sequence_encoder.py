@@ -39,12 +39,12 @@ class CNNGRUEncoder(SequenceEncoder):
     def __init__(
         self,
         in_channels: int = 4,
-        seq_len: int = 23,
+        seq_len: int = 21,
         n_filters: list = None,
         kernel_sizes: list = None,
         gru_hidden: int = 128,
         gru_layers: int = 2,
-        d_model: int = 64,  # UPDATED: Matches PhD proposal requirement (zs in R^64)
+        d_model: int = 256,  # UPDATED: Matches PhD proposal requirement (zs in R^256)
         dropout: float = 0.3,
     ):
         super().__init__(d_model=d_model)

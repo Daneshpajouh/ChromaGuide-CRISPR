@@ -84,11 +84,17 @@ class ChromaGuideDesigner:
             # Prepare sequence (23nt)
             seq_tensor = self._encode_sequence(guide['seq'])
             with torch.no_grad():
-                mu, phi = self.on_target_model(seq_tensor, epi_features)
+                output = self.on_target_model(seq_tensor, epi_features)
+                mu = output['mu']
+                phi = output['phi']
 
             # C. Uncertainty (Conformal)
-            interval = self.conformal.predict_interval(mu.item(), phi.item())
-            sigma_ci = interval[1] - interval[0]
+            with torch.no_grad():
+                # Prepare for conformal prediction
+                mu_val = mu.cpu().numpy().flatten()
+                phi_val = phi.cpu().numpy().flatten()
+                lower, upper = self.conformal.predict_intervals(mu_val, phi_val)
+                sigma_ci = (upper - lower)[0]
 
             # D. Off-target Risk (Placeholder if no genome index)
             if genome_index:
@@ -100,11 +106,11 @@ class ChromaGuideDesigner:
                 risk = 0.0 # Unknown risk
 
             # E. Compute Final Score
-            final_score = self.aggregator.compute_score(
-                on_target_score=mu.item(),
-                off_target_risk=risk,
-                uncertainty=sigma_ci
-            )
+            on_t = torch.tensor([[mu.item()]], dtype=torch.float32).to(self.device)
+            off_t = torch.tensor([[risk]], dtype=torch.float32).to(self.device)
+            unc_t = torch.tensor([[sigma_ci]], dtype=torch.float32).to(self.device)
+
+            final_score = self.aggregator(on_t, off_t, unc_t).item()
 
             results.append({
                 'sequence': guide['seq'],
@@ -113,11 +119,11 @@ class ChromaGuideDesigner:
                 'efficiency_mu': mu.item(),
                 'uncertainty_sigma': sigma_ci,
                 'off_target_risk_R': risk,
-                'chromaguide_score': final_score
+                'designer_score_S': final_score # CORRECTED NAME PER PHD AUDIT
             })
 
         df = pd.DataFrame(results)
-        return df.sort_values(by='chromaguide_score', ascending=False)
+        return df.sort_values(by='designer_score_S', ascending=False)
 
     def _find_pam_sites(self, dna_seq: str) -> List[Dict[str, Any]]:
         """Find all NGG sites in a string."""

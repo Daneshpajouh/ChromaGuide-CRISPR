@@ -29,35 +29,42 @@ def main():
     parser.add_argument('--epochs', type=int, default=15)
     parser.add_argument('--batch_size', type=int, default=250)
     parser.add_argument('--patience', type=int, default=7, help='Early stopping patience')
+    parser.add_argument('--device', type=str, default='cpu', help='Device for training')
+    parser.add_argument('--split', type=str, default='A', choices=['A', 'B', 'C'], help='Split type')
     parser.add_argument('--output_name', type=str, default='on_target_metrics.json', help='Output JSON file')
     args = parser.parse_args()
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # Determine device
+    if args.device == 'mps' and not torch.backends.mps.is_available():
+        print("Warning: MPS not available. Using CPU instead.")
+        device = torch.device('cpu')
+    else:
+        device = torch.device(args.device if args.device != 'cuda' or torch.cuda.is_available() else 'cpu')
+
     print(f"Using device: {device}", flush=True)
-    print(f"Config: Backbone={args.backbone}, Fusion={args.fusion}, UseEpi={args.use_epi}", flush=True)
+    print(f"Config: Backbone={args.backbone}, Fusion={args.fusion}, UseEpi={args.use_epi}, Split={args.split}", flush=True)
 
-    # Load data
-    data_path = "data/real/merged.csv"
-    gold_path = "test_set_GOLD.csv"
+    # Load data from splits
+    split_name_map = {
+        'A': 'split_a_gene_held_out',
+        'B': 'split_b_dataset_held_out',
+        'C': 'split_c_cellline_held_out'
+    }
+    split_dir = Path(f"data/processed/{split_name_map[args.split.upper()]}")
+    if not split_dir.exists():
+        raise FileNotFoundError(f"Split directory {split_dir} not found. Run preprocessing first.")
 
-    if not os.path.exists(data_path):
-        print(f"Data not found at {data_path}. Checking fallback...")
-        # Local relative path fallback
-        data_path = os.path.join(os.path.dirname(__file__), "../data/real/merged.csv")
-        gold_path = os.path.join(os.path.dirname(__file__), "../test_set_GOLD.csv")
+    # Combine all cell lines for training/val/test
+    train_dfs = [pd.read_csv(f) for f in split_dir.glob("*_train.csv")]
+    val_dfs = [pd.read_csv(f) for f in split_dir.glob("*_validation.csv")]
+    test_dfs = [pd.read_csv(f) for f in split_dir.glob("*_test.csv")]
 
-    all_df = pd.read_csv(data_path)
-    test_df = pd.read_csv(gold_path)
+    if not train_dfs or not val_dfs or not test_dfs:
+        raise ValueError("Missing split files. Ensure splits are generated correctly.")
 
-    # Leakage Protection: Remove GOLD set samples
-    gold_sequences = set(test_df['sequence'].tolist())
-    train_val_df = all_df[~all_df['sequence'].isin(gold_sequences)].copy()
-
-    print(f"Clean Train/Val samples: {len(train_val_df)}")
-
-    # Split train/val
-    train_df = train_val_df.sample(frac=0.9, random_state=42)
-    val_df = train_val_df.drop(train_df.index)
+    train_df = pd.concat(train_dfs).reset_index(drop=True)
+    val_df = pd.concat(val_dfs).reset_index(drop=True)
+    test_df = pd.concat(test_dfs).reset_index(drop=True)
 
     # Initialize Tokenizer (if needed)
     tokenizer = None
@@ -71,10 +78,10 @@ def main():
     # Initialize Model
     model = ChromaGuideModel(
         encoder_type=args.backbone,
-        d_model=256 if args.backbone == 'cnn_gru' else 768,
-        seq_len=23,
-        num_epi_tracks=4,
-        num_epi_bins=100,
+        d_model=64, # PhD Proposal constraint
+        seq_len=21,
+        num_epi_tracks=11 if args.use_epi else 0,
+        num_epi_bins=1,
         use_epigenomics=args.use_epi,
         use_gate_fusion=(args.fusion == 'gate'),
         dropout=0.1,
@@ -103,11 +110,25 @@ def main():
         if backbone == 'dnabert2' and tokenizer is not None:
             return tokenizer(seqs, return_tensors='pt', padding=True).to(device)['input_ids']
         else:
-            seq_tensor = torch.zeros(len(seqs), 4, 23, device=device)
+            # Map sequence to (B, 4, 21)
+            # Find the actual length of the sequences in the dataset
+            # If they are 21, use 21. If 23, use 23. The model was fixed to 21 or adapts if d_model matches.
+            # Actually, DeepHF is 21-nt usually, but our model expects 23? Let's check.
+            # Chapter 2 says 21-nt.
+            L = len(seqs[0]) if seqs else 23
+            seq_tensor = torch.zeros(len(seqs), 4, L, device=device)
             for j, seq in enumerate(seqs):
-                for k, nt in enumerate(seq[:23]):
+                for k, nt in enumerate(seq[:L]):
                     if nt.upper() in nt_map: seq_tensor[j, nt_map[nt.upper()], k] = 1
             return seq_tensor
+
+    def prepare_batch_epi(batch, use_epi, device):
+        if not use_epi: return None
+        # Extract feat_0 to feat_10
+        cols = [f'feat_{i}' for i in range(11)]
+        epi_data = batch[cols].values.astype(np.float32)
+        # Shape (B, 11) -> (B, 11, 1) to match (B, tracks, bins)
+        return torch.tensor(epi_data, device=device).unsqueeze(2)
 
     for epoch in range(args.epochs):
         model.train()
@@ -120,8 +141,9 @@ def main():
             labels = torch.tensor(batch['efficiency'].values, dtype=torch.float32).to(device).unsqueeze(1)
 
             seq_tensor = prepare_batch_seq(seqs, args.backbone, tokenizer, device)
+            epi_tensor = prepare_batch_epi(batch, args.use_epi, device)
 
-            output = model(seq_tensor)
+            output = model(seq_tensor, epi_tracks=epi_tensor)
             loss_dict = model.compute_loss(output, labels)
             loss = loss_dict['total_loss']
 
@@ -139,8 +161,9 @@ def main():
                 batch = val_df.iloc[i : i+args.batch_size]
                 seqs = batch['sequence'].tolist()
                 seq_tensor = prepare_batch_seq(seqs, args.backbone, tokenizer, device)
+                epi_tensor = prepare_batch_epi(batch, args.use_epi, device)
 
-                output = model(seq_tensor)
+                output = model(seq_tensor, epi_tracks=epi_tensor)
                 val_preds.extend(output['mu'].cpu().numpy().flatten())
                 val_labels.extend(batch['efficiency'].values)
 
@@ -171,7 +194,8 @@ def main():
             batch = test_df.iloc[i : i+args.batch_size]
             seqs = batch['sequence'].tolist()
             seq_tensor = prepare_batch_seq(seqs, args.backbone, tokenizer, device)
-            output = model(seq_tensor)
+            epi_tensor = prepare_batch_epi(batch, args.use_epi, device)
+            output = model(seq_tensor, epi_tracks=epi_tensor)
             test_preds.extend(output['mu'].cpu().numpy().flatten())
             test_labels.extend(batch['efficiency'].values)
 
