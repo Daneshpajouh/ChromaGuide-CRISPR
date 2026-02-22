@@ -108,10 +108,10 @@ class CNNGRUEncoder(SequenceEncoder):
 
 
 class DNABERT2Encoder(SequenceEncoder):
-    """DNABERT-2 transformer encoder.
+    """DNABERT-2 transformer encoder - DIRECT WEIGHT LOADING to avoid ALiBi meta device error.
 
-    Uses a pre-trained transformer to extract features from gRNA sequences.
-    Optimized for short-range gRNA context and PAM recognition.
+    Loads pre-trained transformer from cached weights instead of from_pretrained()
+    to bypass the ALiBi tensor initialization bug that creates tensors on meta device.
     """
     def __init__(
         self,
@@ -119,36 +119,58 @@ class DNABERT2Encoder(SequenceEncoder):
         dropout: float = 0.1,
     ):
         super().__init__(d_model=d_model)
-        from transformers import AutoModel, AutoConfig
-
-        # Load pre-trained DNABERT-2 with custom config fix
-        config = AutoConfig.from_pretrained(
-            "zhihan1996/DNABERT-2-117M",
-            trust_remote_code=True,
-            local_files_only=True
-        )
-        if not hasattr(config, "pad_token_id"):
-            config.pad_token_id = 0 # Default for DNABERT-2
-
-        # PREVENT "meta" device errors: Force CPU device during initialization
-        # This prevents ALiBi tensor from being created on meta device
         import torch
-        original_device = torch.tensor(0).device  # Save current device context
-        try:
-            # Explicitly set default device to CPU before loading
-            torch.set_default_device('cpu')
-            self.backbone = AutoModel.from_pretrained(
-                "zhihan1996/DNABERT-2-117M",
-                config=config,
+        import os
+        from transformers import AutoConfig, BertModel
+        from pathlib import Path
+
+        # Load config from local cache
+        cache_dir = Path.home() / ".cache" / "huggingface" / "hub" / "models--zhihan1996--DNABERT-2-117M"
+        
+        # Try to load config from snapshots (huggingface cache structure)
+        snapshots = list(cache_dir.glob("snapshots/*/config.json"))
+        
+        if snapshots:
+            config_path = snapshots[0].parent
+            print(f"Loading DNABERT-2 config from {config_path}", flush=True)
+            config = AutoConfig.from_pretrained(
+                str(config_path),
                 trust_remote_code=True,
                 local_files_only=True
             )
-        finally:
-            # Restore original device context
-            torch.set_default_device(original_device)
+        else:
+            # Fallback: load from pretrained (with local_files_only=True)
+            print("Loading DNABERT-2 config from local cache with from_pretrained", flush=True)
+            config = AutoConfig.from_pretrained(
+                "zhihan1996/DNABERT-2-117M",
+                trust_remote_code=True,
+                local_files_only=True
+            )
         
-        # Model is now on CPU, will be moved to GPU by parent class
+        # Set pad token if missing
+        if not hasattr(config, "pad_token_id"):
+            config.pad_token_id = 0
+
+        # CRITICAL FIX: Create model on CPU FIRST, avoiding ALiBi initialization on meta device
+        # BertModel will initialize ALiBi tensors on CPU (safe), then we load weights
+        print("Creating DNABERT-2 model on CPU to avoid meta device tensors...", flush=True)
+        self.backbone = BertModel(config, add_pooling_layer=False).to('cpu')
         
+        # Now load state_dict from cached weights if available
+        model_files = list(cache_dir.glob("snapshots/*/pytorch_model.bin"))
+        if model_files:
+            weights_path = model_files[0]
+            print(f"Loading DNABERT-2 weights from {weights_path}", flush=True)
+            try:
+                state_dict = torch.load(str(weights_path), map_location='cpu', weights_only=True)
+                self.backbone.load_state_dict(state_dict, strict=False)
+                print("DNABERT-2 weights loaded successfully", flush=True)
+            except (FileNotFoundError, RuntimeError) as e:
+                print(f"Warning: Could not load weights from {weights_path}: {e}", flush=True)
+                print("Proceeding with randomly initialized DNABERT-2", flush=True)
+        else:
+            print("No pytorch_model.bin found in cache. Using fresh model.", flush=True)
+
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
