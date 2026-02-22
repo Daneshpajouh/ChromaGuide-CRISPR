@@ -141,7 +141,7 @@ class DNABERT2Encoder(SequenceEncoder):
                 low_cpu_mem_usage=False,
                 device_map=None
             )
-        
+
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
