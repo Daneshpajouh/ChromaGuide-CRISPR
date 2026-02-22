@@ -130,18 +130,24 @@ class DNABERT2Encoder(SequenceEncoder):
         if not hasattr(config, "pad_token_id"):
             config.pad_token_id = 0 # Default for DNABERT-2
 
-        # PREVENT "meta" device errors: Load model on CPU first, then move to actual device
-        # Use local_files_only=True to prevent network access
+        # PREVENT "meta" device errors: Force CPU device during initialization
+        # This prevents ALiBi tensor from being created on meta device
         import torch
-        with torch.no_grad():
+        original_device = torch.tensor(0).device  # Save current device context
+        try:
+            # Explicitly set default device to CPU before loading
+            torch.set_default_device('cpu')
             self.backbone = AutoModel.from_pretrained(
                 "zhihan1996/DNABERT-2-117M",
                 config=config,
                 trust_remote_code=True,
-                local_files_only=True,
-                device_map="cpu"
+                local_files_only=True
             )
-        # Model will be moved to GPU by parent class
+        finally:
+            # Restore original device context
+            torch.set_default_device(original_device)
+        
+        # Model is now on CPU, will be moved to GPU by parent class
         
         self.dropout = nn.Dropout(dropout)
 
