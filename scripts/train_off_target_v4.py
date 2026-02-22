@@ -90,35 +90,56 @@ def load_crisprofft_data(data_path, max_samples=None):
     return X, y
 
 class OffTargetCNN(nn.Module):
-    """Advanced CNN for off-target prediction"""
+    """Advanced CNN for off-target prediction - IMPROVED CAPACITY"""
     def __init__(self):
         super().__init__()
-        self.conv1 = nn.Conv1d(4, 128, kernel_size=8, padding=3)
-        self.conv2 = nn.Conv1d(128, 256, kernel_size=8, padding=3)
-        self.conv3 = nn.Conv1d(256, 128, kernel_size=8, padding=3)
+        # Increased capacity to handle complex patterns
+        self.conv1 = nn.Conv1d(4, 256, kernel_size=8, padding=3)
+        self.conv2 = nn.Conv1d(256, 512, kernel_size=8, padding=3)
+        self.conv3 = nn.Conv1d(512, 256, kernel_size=8, padding=3)
+        self.conv4 = nn.Conv1d(256, 128, kernel_size=5, padding=2)
         self.pool = nn.MaxPool1d(2)
-        self.dropout = nn.Dropout(0.3)
+        self.dropout = nn.Dropout(0.4)
+        self.bn1 = nn.BatchNorm1d(256)
+        self.bn2 = nn.BatchNorm1d(512)
+        self.bn3 = nn.BatchNorm1d(256)
+        self.bn4 = nn.BatchNorm1d(128)
+        # Larger FC layers for better capacity
         self.fc = nn.Sequential(
-            nn.Linear(128 * 2, 64),
+            nn.Linear(128 * 1, 256),
+            nn.ReLU(),
+            nn.Dropout(0.4),
+            nn.Linear(256, 128),
             nn.ReLU(),
             nn.Dropout(0.3),
-            nn.Linear(64, 1),
-            nn.Sigmoid()
+            nn.Linear(128, 1)
         )
     
     def forward(self, x):
-        x = self.pool(torch.relu(self.conv1(x)))
-        x = self.pool(torch.relu(self.conv2(x)))
-        x = self.pool(torch.relu(self.conv3(x)))
+        x = self.bn1(torch.relu(self.conv1(x)))
+        x = self.pool(x)
+        x = self.dropout(x)
+        x = self.bn2(torch.relu(self.conv2(x)))
+        x = self.pool(x)
+        x = self.dropout(x)
+        x = self.bn3(torch.relu(self.conv3(x)))
+        x = self.pool(x)
+        x = self.dropout(x)
+        x = self.bn4(torch.relu(self.conv4(x)))
+        x = self.pool(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
         return x
 
-def train_epoch(model, train_loader, optimizer, device):
-    """Train for one epoch"""
+def train_epoch(model, train_loader, optimizer, device, pos_weight=None):
+    """Train for one epoch - USE WEIGHTED LOSS FOR CLASS IMBALANCE"""
     model.train()
     total_loss = 0
-    criterion = nn.BCELoss()
+    # Use BCEWithLogitsLoss with pos_weight to handle class imbalance
+    if pos_weight is not None:
+        criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+    else:
+        criterion = nn.BCEWithLogitsLoss()
     
     for batch_feats, batch_labels in train_loader:
         batch_feats = batch_feats.to(device)
@@ -138,17 +159,19 @@ def validate(model, val_loader, device):
     """Validate the model"""
     model.eval()
     all_preds, all_labels = [], []
-    criterion = nn.BCELoss()
+    criterion = nn.BCEWithLogitsLoss()
     total_loss = 0
     
     with torch.no_grad():
         for batch_feats, batch_labels in val_loader:
             batch_feats = batch_feats.to(device)
             batch_labels = batch_labels.to(device)
-            preds = model(batch_feats)
-            all_preds.extend(preds.cpu().numpy().flatten())
+            logits = model(batch_feats)
+            # Convert logits to probabilities for AUROC calculation
+            preds_prob = torch.sigmoid(logits).cpu().numpy().flatten()
+            all_preds.extend(preds_prob)
             all_labels.extend(batch_labels.cpu().numpy().flatten())
-            loss = criterion(preds, batch_labels.view(-1, 1))
+            loss = criterion(logits, batch_labels.view(-1, 1))
             total_loss += loss.item() * len(batch_labels)
     
     auroc = roc_auc_score(all_labels, all_preds)
@@ -171,6 +194,13 @@ def main():
     print(f"Data shape: {X.shape}, Labels: {y.shape}")
     print(f"OFF-target samples: {int(y.sum())} / {len(y)}")
     
+    # CALCULATE CLASS WEIGHT FOR IMBALANCE HANDLING
+    n_off = int(y.sum())
+    n_on = len(y) - n_off
+    class_ratio = n_on / n_off if n_off > 0 else 1.0
+    pos_weight = torch.tensor([class_ratio], device=device, dtype=torch.float32)
+    print(f"Class ratio (ON/OFF): {class_ratio:.2f}, pos_weight: {pos_weight.item():.2f}")
+    
     # Split into train/val (80/20)
     split_idx = int(0.8 * len(X))
     X_train, X_val = X[:split_idx], X[split_idx:]
@@ -185,13 +215,14 @@ def main():
     # Model and optimizer
     model = OffTargetCNN().to(device)
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
-    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
+    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=5, verbose=True)
     
     best_auroc = 0
+    patience_counter = 0
     
     # Training loop
     for epoch in range(args.epochs):
-        train_loss = train_epoch(model, train_loader, optimizer, device)
+        train_loss = train_epoch(model, train_loader, optimizer, device, pos_weight=pos_weight)
         val_auroc, val_loss = validate(model, val_loader, device)
         
         lr = optimizer.param_groups[0]["lr"]
@@ -200,9 +231,17 @@ def main():
         scheduler.step(val_auroc)
         if val_auroc > best_auroc:
             best_auroc = val_auroc
+            patience_counter = 0
             torch.save(model.state_dict(), "best_offtarget_model_v4.pt")
+        else:
+            patience_counter += 1
+            # Early stopping if no improvement for 10 epochs
+            if patience_counter >= 10:
+                print(f"Early stopping at epoch {epoch+1}: no improvement for 10 epochs")
+                break
     
     print(f"Training finished. Best AUROC: {best_auroc:.4f}")
+    print(f"Model saved to best_offtarget_model_v4.pt")
 
 if __name__ == "__main__":
     main()
