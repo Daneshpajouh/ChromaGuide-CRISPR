@@ -30,8 +30,12 @@ def one_hot_encode(seq, length=23):
     return encoded
 
 def load_crisprofft_data(data_path, max_samples=None):
-    """Load CRISPRoffT dataset"""
+    """Load CRISPRoffT dataset with validation"""
     seqs, labels = [], []
+    
+    print(f"Loading data from {data_path}...")
+    if not os.path.exists(data_path):
+        raise FileNotFoundError(f"Data file not found: {data_path}")
     
     with open(data_path, 'r') as f:
         for i, line in enumerate(f):
@@ -66,11 +70,22 @@ def load_crisprofft_data(data_path, max_samples=None):
             except (IndexError, ValueError):
                 continue
     
-    print(f"Loaded {len(seqs)} samples")
+    print(f"Loaded {len(seqs)} raw sequences")
     
     # One-hot encode
     X = np.array([one_hot_encode(seq) for seq in seqs]).astype(np.float32)
     y = np.array(labels).astype(np.float32)
+    
+    # VALIDATION: Check encoding quality
+    print(f"Encoded shape: {X.shape}")
+    print(f"Data type: {X.dtype}")
+    print(f"Non-zero elements in batch: {np.sum(X[:10] > 0)}")
+    print(f"Sample encoding (should be 4 x 23): {X[0].shape}")
+    if X[0].sum() == 0:
+        raise ValueError("ERROR: First sample encoding is all zeros!")
+    
+    # Check label distribution
+    print(f"Label distribution - ON: {(y==0).sum()}, OFF: {(y==1).sum()}")
     
     return X, y
 
