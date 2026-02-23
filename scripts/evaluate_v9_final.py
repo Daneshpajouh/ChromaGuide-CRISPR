@@ -151,14 +151,14 @@ def load_multimodal_data():
     """Load multimodal test data from CSV."""
     data_dir = Path('/Users/studio/Desktop/PhD/Proposal/data/processed/split_a')
     test_dfs = []
-    
+
     for cell_type in ['HCT116', 'HEK293T', 'HeLa']:
         test_path = data_dir / f'{cell_type}_test.csv'
         if test_path.exists():
             test_dfs.append(pd.read_csv(test_path))
-    
+
     df = pd.concat(test_dfs, ignore_index=True)
-    
+
     # Encode sequences (raw DNA → one-hot)
     def encode_seqs(seqs):
         mapping = {'A': [1,0,0,0], 'C': [0,1,0,0], 'G': [0,0,1,0], 'T': [0,0,0,1], 'N': [0.25,0.25,0.25,0.25]}
@@ -172,9 +172,9 @@ def load_multimodal_data():
                 code.extend([0.25,0.25,0.25,0.25])
             encoded.append(code[:120])
         return np.array(encoded, dtype=np.float32)
-    
+
     seqs_encoded = encode_seqs(df['sequence'].values)
-    
+
     # Get epigenomics features - pad to 690 dimensions
     epi_cols = [col for col in df.columns if col.startswith('feat_')]
     epi_data = df[epi_cols].values.astype(np.float32)
@@ -182,16 +182,16 @@ def load_multimodal_data():
     if epi_data.shape[1] < 690:
         epi_data = np.pad(epi_data, ((0,0), (0, 690-epi_data.shape[1])), mode='constant')
     epi_data = epi_data[:, :690]
-    
+
     targets = df['efficiency'].values.astype(np.float32)
-    
+
     return seqs_encoded, epi_data, targets, df
 
 
 def load_offtarget_data():
     """Load off-target test data from TSV."""
     data_path = Path('/Users/studio/Desktop/PhD/Proposal/data/raw/crisprofft/CRISPRoffT_all_targets.txt')
-    
+
     def one_hot_encode(seq, length=23):
         """One-hot encode DNA sequence."""
         mapping = {'A': 0, 'C': 1, 'G': 2, 'T': 3, 'N': 0}
@@ -201,51 +201,51 @@ def load_offtarget_data():
             if i < length and c in mapping:
                 vec[i, mapping[c]] = 1
         return vec.flatten()
-    
+
     seqs, labels = [], []
-    
+
     with open(data_path, 'r') as f:
         for i, line in enumerate(f):
             if i == 0:
                 continue  # Skip header
-            
+
             parts = line.strip().split('\t')
             if len(parts) < 35:
                 continue
-            
+
             try:
                 guide = parts[21]  # Column 21: Guide sequence
                 target_status = parts[33] if len(parts) > 33 else "ON"  # Column 33: ON/OFF status
-                
+
                 if target_status not in ["ON", "OFF"]:
                     continue
                 if not guide or len(guide) < 20:
                     continue
-                
+
                 # Label: 1 for OFF-target, 0 for ON-target
                 label = 1.0 if target_status == "OFF" else 0.0
                 seqs.append(guide)
                 labels.append(label)
             except (ValueError, IndexError):
                 continue
-    
+
     labels = np.array(labels, dtype=np.float32)
-    
+
     # Stratified split (70% train, 15% val, 15% test)
     np.random.seed(42)
     n = len(seqs)
     idx = np.random.permutation(n)
-    
+
     n_train = int(0.7 * n)
     n_val = int(0.15 * n)
-    
+
     test_idx = idx[n_train+n_val:]
     test_seqs = [seqs[i] for i in test_idx]
     test_labels = labels[test_idx]
-    
+
     # Encode sequences using the same function as training
     X_test = np.array([one_hot_encode(s) for s in test_seqs]).astype(np.float32)
-    
+
     return X_test, test_labels
 
 
@@ -256,42 +256,42 @@ def evaluate_multimodal():
     print("\n" + "="*70)
     print("MULTIMODAL V9 EFFICACY PREDICTION")
     print("="*70)
-    
+
     seqs, epis, targets, df = load_multimodal_data()
     print(f"✓ Loaded test data: {len(targets)} samples")
     print(f"  Efficiency range: [{targets.min():.4f}, {targets.max():.4f}]")
-    
+
     seqs_t = torch.from_numpy(seqs).to(device)
     epis_t = torch.from_numpy(epis).to(device)
-    
+
     all_preds = []
-    
+
     for seed in range(5):
         model_path = Path(f'/Users/studio/Desktop/PhD/Proposal/models/multimodal_v9_seed{seed}.pt')
         if not model_path.exists():
             print(f"⚠️ Model seed {seed} not found")
             continue
-        
+
         # Load model
         model = MultimodalV9().to(device).eval()
         state_dict = torch.load(model_path, map_location=device)
         model.load_state_dict(state_dict)
-        
+
         # Infer
         with torch.no_grad():
             alpha, beta = model(seqs_t, epis_t)
             # Beta distribution mean: alpha / (alpha + beta)
             pred = alpha / (alpha + beta)
             all_preds.append(pred.cpu().numpy())
-        
+
         # Single-model metrics
         single_rho, _ = spearmanr(targets, all_preds[-1])
         print(f"  Model {seed}: Rho = {single_rho:.4f}")
-    
+
     # Ensemble prediction
     ensemble_pred = np.mean(all_preds, axis=0)
     ensemble_rho, p_val = spearmanr(targets, ensemble_pred)
-    
+
     print(f"\n  ★ ENSEMBLE Spearman Rho: {ensemble_rho:.4f}")
     print(f"    P-value: {p_val:.2e}")
     print(f"    Target: 0.911")
@@ -300,7 +300,7 @@ def evaluate_multimodal():
     else:
         gap = 0.911 - ensemble_rho
         print(f"    ⚠️  {gap*100:.2f}% below target")
-    
+
     return ensemble_rho, p_val
 
 
@@ -309,45 +309,45 @@ def evaluate_offtarget():
     print("\n" + "="*70)
     print("OFF-TARGET V9 CLASSIFICATION")
     print("="*70)
-    
+
     seqs, labels = load_offtarget_data()
     print(f"✓ Loaded test data: {len(labels)} samples")
     print(f"  ON-target: {np.sum(labels)}, OFF-target: {len(labels)-np.sum(labels)}")
     print(f"  Ratio: {np.sum(labels)/(len(labels)-np.sum(labels)):.4f}:1")
-    
+
     seqs_t = torch.from_numpy(seqs).to(device)
-    
+
     all_probs = []
-    
+
     for seed in range(20):
         model_path = Path(f'/Users/studio/Desktop/PhD/Proposal/models/off_target_v9_seed{seed}.pt')
         if not model_path.exists():
             print(f"⚠️ Model seed {seed} not found")
             continue
-        
+
         # Load model
         model = TransformerOffTarget().to(device).eval()
         state_dict = torch.load(model_path, map_location=device)
         model.load_state_dict(state_dict)
-        
+
         # Infer
         with torch.no_grad():
             logits = model(seqs_t)
             probs = torch.sigmoid(logits).cpu().numpy()
             all_probs.append(probs)
-        
+
         # Single-model AUROC
         single_auroc = roc_auc_score(labels, probs)
         print(f"  Model {seed}: AUROC = {single_auroc:.4f}")
-    
+
     # Ensemble prediction
     ensemble_probs = np.mean(all_probs, axis=0)
     ensemble_auroc = roc_auc_score(labels, ensemble_probs)
-    
+
     # Compute AP
     precision, recall, _ = precision_recall_curve(labels, ensemble_probs)
     ap = auc(recall, precision)
-    
+
     print(f"\n  ★ ENSEMBLE AUROC: {ensemble_auroc:.4f}")
     print(f"    AP Score: {ap:.4f}")
     print(f"    Target: 0.99")
@@ -356,7 +356,7 @@ def evaluate_offtarget():
     else:
         gap = 0.99 - ensemble_auroc
         print(f"    ⚠️  {gap*100:.2f}% below target")
-    
+
     return ensemble_auroc, ap
 
 
@@ -366,9 +366,9 @@ def main():
     print("\n" + "="*70)
     print("V9 FINAL EVALUATION PIPELINE")
     print("="*70)
-    
+
     results = {}
-    
+
     # Multimodal
     try:
         rho, p_val = evaluate_multimodal()
@@ -376,7 +376,7 @@ def main():
     except Exception as e:
         print(f"❌ Multimodal evaluation failed: {e}")
         results['multimodal'] = {'error': str(e)}
-    
+
     # Off-target
     try:
         auroc, ap = evaluate_offtarget()
@@ -384,12 +384,12 @@ def main():
     except Exception as e:
         print(f"❌ Off-target evaluation failed: {e}")
         results['off_target'] = {'error': str(e)}
-    
+
     # Save results
     results_file = Path('/Users/studio/Desktop/PhD/Proposal/logs/v9_evaluation_results.json')
     with open(results_file, 'w') as f:
         json.dump(results, f, indent=2)
-    
+
     print(f"\n✓ Results saved to {results_file}\n")
 
 

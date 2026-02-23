@@ -1,7 +1,7 @@
 ## V9 FINAL EVALUATION REPORT
 
-Date: February 22, 2026  
-Project: ChromaGuide - Chromatin-aware CRISPR gRNA Design  
+Date: February 22, 2026
+Project: ChromaGuide - Chromatin-aware CRISPR gRNA Design
 Status: V9 Training Complete & Evaluated
 
 ---
@@ -16,8 +16,8 @@ Status: V9 Training Complete & Evaluated
 - **Batch Size:** 64
 - **Data:** 38,924 train / 5,560 val / 11,120 test (Split-A, 3 cell types)
 
-### V9 Off-Target Architecture  
-- **Models Trained:** 20 independent models  
+### V9 Off-Target Architecture
+- **Models Trained:** 20 independent models
 - **Architecture:** TransformerOffTarget with variable d_model ∈ {64, 128, 192}
 - **Training Epochs:** 300 per model
 - **Loss:** FocalLoss (alpha=0.75, gamma=2.0 for hard example mining)
@@ -53,9 +53,9 @@ Status: V9 Training Complete & Evaluated
 - Significant improvement over V8 baseline (0.8189 → 0.7976 is slight regression, likely due to test set performance variance)
 - Model quality: Ensemble reaches 87.6% of target (0.7976/0.911)
 
-**Root Cause Assessment:**  
+**Root Cause Assessment:**
 The V9 architecture improvements (Transformer encoder, cross-attention fusion, deeper networks, 500 epochs) did not achieve the 11.1 percentage point improvement needed. Possible causes:
-- Data size limitations (11,120 test samples)  
+- Data size limitations (11,120 test samples)
 - Feature dimensionality (690 epigenomic features may be redundant)
 - Architecture plateau with current dataset
 - Need for additional modalities or external validation sets
@@ -81,7 +81,7 @@ The V9 architecture improvements (Transformer encoder, cross-attention fusion, d
 - Preliminary model AUROC (seed 0): 0.9264 at epoch 0
 - Target: 0.99
 
-**Expected Performance:**  
+**Expected Performance:**
 Based on training trajectory:
 - Individual model AUROC range: 0.91-0.94
 - Ensemble averaging: likely 0.92-0.94
@@ -156,7 +156,7 @@ Given the current gap of 11-15% from targets, a secondary model iteration would 
 
 ---
 
-**Report Generated:** 2026-02-22 23:47 UTC  
-**Architecture Review:** COMPLETE  
-**Statistical Validation:** COMPLETE  
+**Report Generated:** 2026-02-22 23:47 UTC
+**Architecture Review:** COMPLETE
+**Statistical Validation:** COMPLETE
 **Status:** Results documented, proposal gap analysis provided
