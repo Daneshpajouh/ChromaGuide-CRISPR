@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """
-V10 OFF-TARGET: Hybrid DNABERT-2 + Multi-scale CNN + BiLSTM + Epigenetic Gating
+V10 OFF-TARGET (CORRECTED): DNABERT-2 + Per-Mark Epigenetic Gating
 
-Combines verified architectures from:
-- DNABERT-2 (zhihan1996/DNABERT-2-117M) for sequence encoding
-- CRISPR-MCA (Multi-scale CNN inception module)
-- CRISPR-HW (BiLSTM for context)
-- CRISPR_DNABERT (Epigenetic gating mechanism)
+CORRECTED ARCHITECTURE from Kimata et al. (2025) PLOS ONE (PMID: 41223195)
+
+Architecture:
+- DNABERT-2 (zhihan1996/DNABERT-2-117M) for sequence encoding (768-dim)
+- THREE per-mark epigenetic gating modules (1 per mark):
+  * ATAC-seq (100 bins) -> 256-dim gated features
+  * H3K4me3 (100 bins) -> 256-dim gated features  
+  * H3K27ac (100 bins) -> 256-dim gated features
+- Classifier: Linear(1536, 2) where 1536 = 768 DNABERT + 256*3 marks
+
+Training: batch_size=128, epochs=8, lr=2e-5 DNABERT, lr=1e-3 EPI/Classifier
 
 Target: AUROC >= 0.99 on off-target classification
 """
@@ -36,185 +42,117 @@ else:
 print(f"Device: {device}\n")
 
 
-class MultiScaleCNNModule(nn.Module):
+# CNN module REMOVED - not in original CRISPR_DNABERT paper (Kimata et al. 2025)
+
+
+class PerMarkEpigenicGating(nn.Module):
     """
-    Multi-scale CNN Inception Module from CRISPR-MCA
-    Parallel branches: 1x1, 3x3, 5x5 convolutions + MaxPool
+    Gating mechanism for a SINGLE epigenetic mark (100 dimensions)
+    Matches the exact architecture from Kimata et al. (2025) PLOS ONE
     """
-    def __init__(self, in_channels, out_channels=64):
+    def __init__(self, mark_dim=100, hidden_dim=256, dnabert_dim=768, dropout=0.1):
         super().__init__()
-        self.branch_1x1 = nn.Sequential(
-            nn.Conv1d(in_channels, out_channels, kernel_size=1, padding=0),
+        
+        # Step 1: Encoder for single mark (100 -> 256)
+        self.encoder = nn.Sequential(
+            nn.Linear(mark_dim, hidden_dim),  # 100 -> 256
             nn.ReLU(),
-            nn.BatchNorm1d(out_channels)
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim, hidden_dim * 2),  # 256 -> 512
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim * 2, hidden_dim * 4),  # 512 -> 1024
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim * 4, hidden_dim * 2),  # 1024 -> 512
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim * 2, hidden_dim)  # 512 -> 256
         )
-
-        self.branch_3x3 = nn.Sequential(
-            nn.Conv1d(in_channels, out_channels, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.BatchNorm1d(out_channels)
-        )
-
-        self.branch_5x5 = nn.Sequential(
-            nn.Conv1d(in_channels, out_channels, kernel_size=5, padding=2),
-            nn.ReLU(),
-            nn.BatchNorm1d(out_channels)
-        )
-
-        self.branch_maxpool = nn.Sequential(
-            nn.MaxPool1d(kernel_size=3, stride=1, padding=1),
-            nn.Conv1d(in_channels, out_channels, kernel_size=1),
-            nn.ReLU(),
-            nn.BatchNorm1d(out_channels)
-        )
-
-    def forward(self, x):
-        # x: (batch, in_channels, seq_len)
-        b1 = self.branch_1x1(x)
-        b2 = self.branch_3x3(x)
-        b3 = self.branch_5x5(x)
-        b4 = self.branch_maxpool(x)
-        return torch.cat([b1, b2, b3, b4], dim=1)  # (batch, 4*out_channels, seq_len)
-
-
-class EpigenoticGatingModule(nn.Module):
-    """
-    Epigenetic Feature Gating Module from CRISPR_DNABERT (kimatakai/CRISPR_DNABERT)
-
-    EXACT architecture from source code:
-    - Epigenetic encoder: feature_dim -> 256 -> 512 -> 1024 -> 512 -> 256 (ReLU + Dropout(0.1))
-    - Gating module: (dnabert_768 + mismatch_7 + bulge_1) -> 256 -> 512 -> 1024 -> 512 -> 256 + Sigmoid
-    - Gate bias initialized to -3.0 (conservative gating strategy)
-
-    Mismatch features: one-hot encoded guide-target mismatch type (7 dimensions)
-    Bulge features: presence/absence of bulge (1 dimension)
-    """
-    def __init__(self, feature_dim, epi_hidden_dim=256, dnabert_hidden_size=768,
-                 mismatch_dim=7, bulge_dim=1, dropout=0.1):
-        super().__init__()
-
-        self.epi_hidden_dim = epi_hidden_dim
-        self.dnabert_hidden_size = dnabert_hidden_size
-
-        # Epigenetic encoder layers (exact from source)
-        self.epi_encoder = nn.Sequential(
-            nn.Linear(feature_dim, epi_hidden_dim),
+        
+        # Step 2: Gate mechanism  
+        # Input: DNABERT[CLS](768) + mismatch(7) + bulge(1) = 776
+        gate_input_dim = dnabert_dim + 7 + 1  # 776
+        
+        self.gate = nn.Sequential(
+            nn.Linear(gate_input_dim, hidden_dim),  # 776 -> 256
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim, epi_hidden_dim * 2),
+            
+            nn.Linear(hidden_dim, hidden_dim * 2),  # 256 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim * 2, epi_hidden_dim * 4),
+            
+            nn.Linear(hidden_dim * 2, hidden_dim * 4),  # 512 -> 1024
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim * 4, epi_hidden_dim * 2),
+            
+            nn.Linear(hidden_dim * 4, hidden_dim * 2),  # 1024 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim * 2, epi_hidden_dim)
-        )
-
-        # Gate mechanism input: DNABERT output (768) + mismatch features (7) + bulge features (1)
-        gate_input_dim = dnabert_hidden_size + mismatch_dim + bulge_dim  # 776
-
-        # Gating module (exact same architecture as encoder from source)
-        self.gating_module = nn.Sequential(
-            nn.Linear(gate_input_dim, epi_hidden_dim),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim, epi_hidden_dim * 2),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim * 2, epi_hidden_dim * 4),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim * 4, epi_hidden_dim * 2),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-
-            nn.Linear(epi_hidden_dim * 2, 1),
+            
+            nn.Linear(hidden_dim * 2, 1),  # 512 -> 1
             nn.Sigmoid()
         )
-
-        # Initialize gate bias to -3.0 for conservative gating (from paper)
-        self.gating_module[-2].bias.data.fill_(-3.0)
-
-    def forward(self, seq_features, epi_features, mismatch_features=None, bulge_features=None):
+        
+        # Initialize gate bias to -3.0 (conservative gating from paper)
+        self.gate[-2].bias.data.fill_(-3.0)
+    
+    def forward(self, dnabert_cls, mark_features, mismatch_features=None, bulge_features=None):
         """
-        seq_features: (batch, dnabert_hidden_size=768) - DNABERT [CLS] output
-        epi_features: (batch, feature_dim) - epigenetic features
-        mismatch_features: (batch, 7) - guide-target mismatch encoding
+        dnabert_cls: (batch, 768) - [CLS] token from DNABERT
+        mark_features: (batch, 100) - one epigenetic mark (100 bins)
+        mismatch_features: (batch, 7) - guide-target mismatch one-hot
         bulge_features: (batch, 1) - bulge presence/absence
-
-        Returns: gated_features (batch, epi_hidden_dim=256)
+        
+        Returns: (batch, 256) - gated epigenetic features
         """
-        # Encode epigenetic features
-        epi_encoded = self.epi_encoder(epi_features)  # (batch, 256)
-
-        # Build gate input: DNABERT + mismatch + bulge
+        # Encode the mark
+        encoded = self.encoder(mark_features)  # (batch, 256)
+        
+        # Create gate input if not provided
         if mismatch_features is None:
-            mismatch_features = torch.zeros(seq_features.shape[0], 7,
-                                          device=seq_features.device, dtype=seq_features.dtype)
+            mismatch_features = torch.zeros(dnabert_cls.size(0), 7, 
+                                           device=dnabert_cls.device, dtype=dnabert_cls.dtype)
         if bulge_features is None:
-            bulge_features = torch.zeros(seq_features.shape[0], 1,
-                                       device=seq_features.device, dtype=seq_features.dtype)
-
-        gate_input = torch.cat([seq_features, mismatch_features, bulge_features], dim=1)
-        gate = self.gating_module(gate_input)  # (batch, 1)
-
-        # Apply gate: control epigenetic feature contribution
-        gated = seq_features[:, :self.epi_hidden_dim] * (1 - gate) + epi_encoded * gate
+            bulge_features = torch.zeros(dnabert_cls.size(0), 1,
+                                        device=dnabert_cls.device, dtype=dnabert_cls.dtype)
+        
+        # Gate input: concatenate DNABERT + mismatch + bulge
+        gate_input = torch.cat([dnabert_cls, mismatch_features, bulge_features], dim=1)  # (batch, 776)
+        gate_output = self.gate(gate_input)  # (batch, 1)
+        
+        # Apply gate: weighted interpolation between zero and encoded features
+        gated = encoded * gate_output  # (batch, 256)
+        
         return gated
 
 
-class BiLSTMContext(nn.Module):
+# BiLSTM module REMOVED - not in original CRISPR_DNABERT paper (Kimata et al. 2025)
+
+
+class DNABERTOffTargetCorrected(nn.Module):
     """
-    BiLSTM for bidirectional context from CRISPR-HW
-    hidden_size=64
-    """
-    def __init__(self, input_size, hidden_size=64, num_layers=1, dropout=0.1):
-        super().__init__()
-        self.bilstm = nn.LSTM(
-            input_size=input_size,
-            hidden_size=hidden_size,
-            num_layers=num_layers,
-            bidirectional=True,
-            dropout=dropout if num_layers > 1 else 0,
-            batch_first=True
-        )
-
-    def forward(self, x):
-        # x: (batch, seq_len, input_size)
-        output, (h_n, c_n) = self.bilstm(x)  # output: (batch, seq_len, 2*hidden_size)
-        # Use bidirectional final hidden state
-        final_state = torch.cat([h_n[-2], h_n[-1]], dim=1)  # (batch, 2*hidden_size)
-        return final_state, output
-
-
-class DNABERTOffTargetV10(nn.Module):
-    """
-    Hybrid Off-target Classifier V10
-
+    CORRECTED V10 Off-Target Classifier - Exact architecture from Kimata et al. (2025)
+    PLOS ONE (PMID: 41223195)
+    
     Architecture:
-    1. DNABERT-2 (BPE tokenization) -> sequence representation
-    2. Multi-scale CNN (1x1, 3x3, 5x5) -> multi-scale features
-    3. BiLSTM -> contextual features
-    4. Epigenetic gating -> conditional feature fusion
-    5. Classification head
+    1. DNABERT-2 -> [CLS] token (768 dims)
+    2. THREE separate epigenetic gating modules (1 per mark):
+       - ATAC-seq (100 dims per mark) -> encoded to 256
+       - H3K4me3 (100 dims per mark) -> encoded to 256
+       - H3K27ac (100 dims per mark) -> encoded to 256
+    3. Classifier: Linear(768 + 256*3, 2) = Linear(1536, 2)
     """
-    def __init__(self, dnabert_model_name="zhihan1996/DNABERT-2-117M",
-                 epi_feature_dim=690, hidden_dim=256, dropout=0.1):
+    def __init__(self, dnabert_model_name="zhihan1996/DNABERT-2-117M", 
+                 hidden_dim=256, dropout=0.1):
         super().__init__()
-
-        self.hidden_dim = hidden_dim
-
-        # 1. DNABERT-2 encoder (load from local cached model to avoid triton dependency)
+        
+        # Load DNABERT-2
         local_model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'dnabert2')
         if os.path.exists(local_model_path):
             print(f"Loading DNABERT-2 from local cache: {local_model_path}")
@@ -224,98 +162,66 @@ class DNABERTOffTargetV10(nn.Module):
             print(f"Local model not found at {local_model_path}, using HuggingFace...")
             self.tokenizer = AutoTokenizer.from_pretrained(dnabert_model_name, trust_remote_code=True)
             self.dnabert = AutoModel.from_pretrained(dnabert_model_name, trust_remote_code=True)
-        self.dnabert_dim = self.dnabert.config.hidden_size  # 768 for DNABERT-2
-
-        # Freeze DNABERT initially, then unfreeze last 6 layers for fine-tuning
+        
+        self.dnabert_dim = self.dnabert.config.hidden_size  # 768
+        
+        # Freeze DNABERT, unfreeze last 6 layers for fine-tuning
         for param in self.dnabert.parameters():
             param.requires_grad = False
-
-        # Unfreeze last 6 transformer layers (following CRISPR_DNABERT strategy)
         for param in self.dnabert.encoder.layer[-6:].parameters():
             param.requires_grad = True
-
-        # Project DNABERT output to hidden_dim
-        self.seq_proj = nn.Sequential(
-            nn.Linear(self.dnabert_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Dropout(dropout)
-        )
-
-        # 2. Multi-scale CNN Module (CRISPR-MCA style)
-        self.cnn_module = MultiScaleCNNModule(in_channels=self.dnabert_dim, out_channels=64)
-        # Output: (batch, 256, seq_len) [64*4 channels]
-
-        self.cnn_proj = nn.Sequential(
-            nn.AdaptiveMaxPool1d(1),  # (batch, 256, 1)
-            nn.Flatten(),  # (batch, 256)
-            nn.Linear(256, hidden_dim),
-            nn.ReLU(),
-            nn.Dropout(dropout)
-        )
-
-        # 3. BiLSTM for context (CRISPR-HW style)
-        self.bilstm = BiLSTMContext(self.dnabert_dim, hidden_size=64, dropout=dropout)
-        self.bilstm_proj = nn.Sequential(
-            nn.Linear(128, hidden_dim),  # 2*64 from bidirectional
-            nn.ReLU(),
-            nn.Dropout(dropout)
-        )
-
-        # 4. Epigenetic gating (CRISPR_DNABERT style)
-        # Input: DNABERT (768) + mismatch (7) + bulge (1) + epigenomics
-        self.epi_gating = EpigenoticGatingModule(
-            feature_dim=epi_feature_dim,
-            epi_hidden_dim=256,
-            dnabert_hidden_size=self.dnabert_dim,
-            mismatch_dim=7,
-            bulge_dim=1,
-            dropout=dropout
-        )
-
-        # 5. Classification head (EXACT from CRISPR_DNABERT source)
-        # Simplified to Dropout + Linear as in original paper
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout),
-            nn.Linear(hidden_dim * 4, 2)  # Input: concat of all 4 features (256*4=1024)
-        )
-
+        
+        # THREE separate epigenetic gating modules (one per mark)
+        # Each handles 100-dim input from a single epigenetic mark
+        self.epi_gating = nn.ModuleDict({
+            'atac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim, 
+                                         dnabert_dim=self.dnabert_dim, dropout=dropout),
+            'h3k4me3': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim,
+                                            dnabert_dim=self.dnabert_dim, dropout=dropout),
+            'h3k27ac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim,
+                                            dnabert_dim=self.dnabert_dim, dropout=dropout)
+        })
+        
+        # Classifier: taking DNABERT[CLS] + 3 gated epi marks
+        # Input: 768 (DNABERT) + 256*3 (3 marks) = 1536
+        self.classifier = nn.Linear(self.dnabert_dim + hidden_dim * 3, 2)
+    
     def forward(self, sequences, epi_features, mismatch_features=None, bulge_features=None):
         """
-        sequences: list of DNA sequences (will be tokenized by DNABERT-2, max 24bp per CRISPR_DNABERT)
-        epi_features: (batch, epi_feature_dim) epigenetic features
-        mismatch_features: (batch, 7) optional guide-target mismatch encoding
-        bulge_features: (batch, 1) optional bulge presence/absence
+        sequences: List of DNA sequences (will be tokenized)
+        epi_features: (batch, 300) - concatenated [atac_100 | h3k4me3_100 | h3k27ac_100]
+        mismatch_features: (batch, 7) optional
+        bulge_features: (batch, 1) optional
+        
+        Returns: logits (batch, 2)
         """
-        # Tokenize and encode with DNABERT-2 (BPE tokenization - improvement over k-mer)
+        # Tokenize and encode with DNABERT
         tokens = self.tokenizer(sequences, return_tensors="pt", padding=True,
                                truncation=True, max_length=24).to(device)
-        dnabert_out = self.dnabert(**tokens).last_hidden_state  # (batch, seq_len, 768)
-
-        # 1. Project DNABERT [CLS] to hidden_dim
-        seq_repr = self.seq_proj(dnabert_out[:, 0, :])  # [CLS] token, (batch, 256)
-
-        # 2. Multi-scale CNN features
-        cnn_feat = self.cnn_module(dnabert_out.transpose(1, 2))  # (batch, 256, seq_len)
-        cnn_repr = self.cnn_proj(cnn_feat)  # (batch, 256)
-
-        # 3. BiLSTM context
-        bilstm_final, bilstm_seq = self.bilstm(dnabert_out)  # (batch, 128)
-        bilstm_repr = self.bilstm_proj(bilstm_final)  # (batch, 256)
-
-        # 4. Epigenetic gating with mismatch/bulge features
-        gated_features = self.epi_gating(
-            dnabert_out[:, 0, :],  # Full DNABERT [CLS] for gate input (768-dim)
-            epi_features,
-            mismatch_features,
-            bulge_features
-        )  # (batch, 256)
-
-        # 5. Concatenate all features
-        combined = torch.cat([seq_repr, cnn_repr, bilstm_repr, gated_features], dim=1)  # (batch, 1024)
-
-        # 6. Classification
+        
+        dnabert_output = self.dnabert(**tokens)
+        dnabert_cls = dnabert_output.last_hidden_state[:, 0, :]  # (batch, 768)
+        
+        # Split 300-dim epi_features into 3 marks (100 dims each)
+        atac_feats = epi_features[:, 0:100]        # (batch, 100)
+        h3k4me3_feats = epi_features[:, 100:200]   # (batch, 100)
+        h3k27ac_feats = epi_features[:, 200:300]   # (batch, 100)
+        
+        # Process each epigenetic mark through its own gating module
+        gated_atac = self.epi_gating['atac'](dnabert_cls, atac_feats, 
+                                             mismatch_features, bulge_features)
+        gated_h3k4me3 = self.epi_gating['h3k4me3'](dnabert_cls, h3k4me3_feats,
+                                                   mismatch_features, bulge_features)
+        gated_h3k27ac = self.epi_gating['h3k27ac'](dnabert_cls, h3k27ac_feats,
+                                                   mismatch_features, bulge_features)
+        
+        # Concatenate DNABERT[CLS] + all 3 gated marks
+        combined = torch.cat([dnabert_cls, gated_atac, gated_h3k4me3, gated_h3k27ac], dim=1)
+        # Shape: (batch, 768 + 256*3 = 1536)
+        
+        # Classification
         logits = self.classifier(combined)  # (batch, 2)
-
+        
         return logits
 
 
@@ -347,9 +253,9 @@ def load_crispofft_data(data_path):
                 seqs.append(guide)
                 labels.append(label)
 
-                # Try to extract epigenetic features if available in file
-                # For now, use placeholder epigenetic features
-                epi = np.random.randn(690).astype(np.float32)  # Placeholder
+                # CORRECTED: 300-dim epigenetic features [ATAC(100)|H3K4me3(100)|H3K27ac(100)]
+                # For now, use placeholder zeros - in real data would load actual epigenomics
+                epi = np.zeros(300, dtype=np.float32)  # Placeholder zeros instead of random noise
                 epis.append(epi)
             except:
                 continue
@@ -387,14 +293,11 @@ def train_model(model, train_seqs, train_epis, train_labels,
 
     sampler = WeightedRandomSampler(weights, len(train_labels), replacement=True)
 
-    # Optimizer with EXACT layer-wise learning rates from CRISPR_DNABERT
+    # Optimizer with EXACT layer-wise learning rates from CRISPR_DNABERT (Kimata et al. 2025)
     optimizer = optim.AdamW([
         {'params': model.dnabert.parameters(), 'lr': 2e-5},      # DNABERT layers: 2e-5
-        {'params': model.seq_proj.parameters(), 'lr': 1e-3},     # Projection: 1e-3
-        {'params': model.cnn_module.parameters(), 'lr': 1e-3},   # CNN: 1e-3
-        {'params': model.bilstm.parameters(), 'lr': 1e-3},       # BiLSTM: 1e-3
-        {'params': model.epi_gating.parameters(), 'lr': 1e-3},   # Gating: 1e-3
-        {'params': model.classifier.parameters(), 'lr': 2e-5}    # Classifier: 2e-5 (with DNABERT)
+        {'params': model.epi_gating.parameters(), 'lr': 1e-3},   # Epigenetic gating: 1e-3
+        {'params': model.classifier.parameters(), 'lr': 1e-3}    # Classifier: 1e-3
     ], weight_decay=1e-4)
 
     # Linear warmup for 10% of total steps, then standard scheduling
@@ -519,11 +422,11 @@ def main():
         print(f"MODEL {i+1}/{n_models} (DNABERT-2 Hybrid Off-target)")
         print(f"{'='*70}")
 
-        model = DNABERTOffTargetV10()
+        model = DNABERTOffTargetCorrected()
         trained_model, val_auc = train_model(
             model, X_train_seqs, X_train_epis, y_train,
             X_val_seqs, X_val_epis, y_val,
-            epochs=50, seed=i  # Extended from paper's 8 epochs for better convergence
+            epochs=8, seed=i  # EXACT from Kimata et al. (2025)
         )
 
         models.append(trained_model)
