@@ -35,52 +35,89 @@ else:
 print(f"Device: {device}\n")
 
 
-class EpigenoticGatingModule(nn.Module):
+class PerMarkEpigenicGating(nn.Module):
     """
-    Epigenetic Feature Gating Module from CRISPR_DNABERT
-    feature_dim -> 256 -> 512 -> 1024 -> 512 -> 256 (ReLU + Dropout(0.1))
-    sigmoid gate controls epigenetic contribution
+    Per-Mark Epigenetic Gating from CRISPR_DNABERT (Kimata et al. 2025)
+    Handles single 100-dim epigenetic mark with separate encoder and gate
     """
-    def __init__(self, feature_dim, hidden_dim=256, dropout=0.1):
+    def __init__(self, mark_dim=100, hidden_dim=256, dnabert_dim=768, dropout=0.1):
         super().__init__()
-
-        self.epi_encoder = nn.Sequential(
-            nn.Linear(feature_dim, hidden_dim),
+        
+        # Encoder for single mark (100 -> 256)
+        self.encoder = nn.Sequential(
+            nn.Linear(mark_dim, hidden_dim),  # 100 -> 256
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(hidden_dim, hidden_dim * 2),
+            
+            nn.Linear(hidden_dim, hidden_dim * 2),  # 256 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(hidden_dim * 2, hidden_dim * 4),
+            
+            nn.Linear(hidden_dim * 2, hidden_dim * 4),  # 512 -> 1024
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(hidden_dim * 4, hidden_dim * 2),
+            
+            nn.Linear(hidden_dim * 4, hidden_dim * 2),  # 1024 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(hidden_dim * 2, hidden_dim)
+            
+            nn.Linear(hidden_dim * 2, hidden_dim)  # 512 -> 256
         )
-
+        
+        # Gate mechanism
+        gate_input_dim = dnabert_dim + 7 + 1  # 776 = DNABERT(768) + mismatch(7) + bulge(1)
+        
         self.gate = nn.Sequential(
-            nn.Linear(hidden_dim * 2, hidden_dim),
+            nn.Linear(gate_input_dim, hidden_dim),  # 776 -> 256
             nn.ReLU(),
-            nn.Linear(hidden_dim, 1),
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim, hidden_dim * 2),  # 256 -> 512
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim * 2, hidden_dim * 4),  # 512 -> 1024
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim * 4, hidden_dim * 2),  # 1024 -> 512
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            
+            nn.Linear(hidden_dim * 2, 1),  # 512 -> 1
             nn.Sigmoid()
         )
-
-    def forward(self, seq_features, epi_features):
+        
+        # Initialize gate bias to -3.0 (conservative gating from paper)
+        self.gate[-2].bias.data.fill_(-3.0)
+    
+    def forward(self, dnabert_cls, mark_features, mismatch_features=None, bulge_features=None):
         """
-        seq_features: (batch, hidden_dim)
-        epi_features: (batch, feature_dim)
-        Returns: gated_features (batch, hidden_dim)
+        dnabert_cls: (batch, 768) - [CLS] token from DNABERT
+        mark_features: (batch, 100) - one epigenetic mark (100 bins)
+        mismatch_features: (batch, 7) optional
+        bulge_features: (batch, 1) optional
+        
+        Returns: (batch, 256) - gated epigenetic features
         """
-        epi_encoded = self.epi_encoder(epi_features)
-        combined = torch.cat([seq_features, epi_encoded], dim=1)
-        gate = self.gate(combined)
-        gated = seq_features * (1 - gate) + epi_encoded * gate
+        # Encode the mark
+        encoded = self.encoder(mark_features)  # (batch, 256)
+        
+        # Create gate input if not provided
+        if mismatch_features is None:
+            mismatch_features = torch.zeros(dnabert_cls.size(0), 7, 
+                                           device=dnabert_cls.device, dtype=dnabert_cls.dtype)
+        if bulge_features is None:
+            bulge_features = torch.zeros(dnabert_cls.size(0), 1,
+                                        device=dnabert_cls.device, dtype=dnabert_cls.dtype)
+        
+        # Gate input: concatenate DNABERT + mismatch + bulge
+        gate_input = torch.cat([dnabert_cls, mismatch_features, bulge_features], dim=1)  # (batch, 776)
+        gate_output = self.gate(gate_input)  # (batch, 1)
+        
+        # Apply gate: weighted interpolation
+        gated = encoded * gate_output  # (batch, 256)
+        
         return gated
 
 
@@ -92,9 +129,9 @@ class DeepFusionModule(nn.Module):
     def __init__(self, hidden_dim=256, num_heads=8, dropout=0.1):
         super().__init__()
 
-        # Epigenomics encoder: 690 -> hidden_dim
+        # Epigenomics encoder: 300 (3 marks × 100) -> hidden_dim
         self.epi_encoder = nn.Sequential(
-            nn.Linear(690, hidden_dim * 2),
+            nn.Linear(300, hidden_dim * 2),
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(hidden_dim * 2, hidden_dim),
@@ -120,7 +157,7 @@ class DeepFusionModule(nn.Module):
     def forward(self, seq_features, epi_features):
         """
         seq_features: (batch, hidden_dim)
-        epi_features: (batch, 690)
+        epi_features: (batch, 300) - 3 marks × 100 bins each
         Returns: fused_features (batch, hidden_dim)
         """
         # Expand for attention
@@ -189,8 +226,15 @@ class DNABERTMultimodalV10(nn.Module):
         # 2. DeepFusion module
         self.fusion = DeepFusionModule(hidden_dim, num_heads=8, dropout=dropout)
 
-        # 3. Epigenetic gating (feature control)
-        self.epi_gating = EpigenoticGatingModule(690, hidden_dim, dropout)
+        # 3. Epigenetic gating with THREE per-mark modules (ATAC, H3K4me3, H3K27ac)
+        self.epi_gating = nn.ModuleDict({
+            'atac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim, 
+                                         dnabert_dim=self.dnabert_dim, dropout=dropout),
+            'h3k4me3': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim,
+                                            dnabert_dim=self.dnabert_dim, dropout=dropout),
+            'h3k27ac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim,
+                                            dnabert_dim=self.dnabert_dim, dropout=dropout)
+        })
 
         # 4. Beta regression head
         # Output: alpha and beta parameters for Beta distribution
@@ -227,11 +271,21 @@ class DNABERTMultimodalV10(nn.Module):
         # DeepFusion: integrate epigenomics
         fused = self.fusion(seq_repr, epi_features)
 
-        # Epigenetic gating: control feature contribution
-        gated = self.epi_gating(fused, epi_features)
+        # Epigenetic gating: process 3 marks separately
+        # epi_features: (batch, 300) = [ATAC(100) | H3K4me3(100) | H3K27ac(100)]
+        atac_feats = epi_features[:, 0:100]
+        h3k4me3_feats = epi_features[:, 100:200]
+        h3k27ac_feats = epi_features[:, 200:300]
+        
+        gated_atac = self.epi_gating['atac'](dnabert_out[:, 0, :], atac_feats)
+        gated_h3k4me3 = self.epi_gating['h3k4me3'](dnabert_out[:, 0, :], h3k4me3_feats)
+        gated_h3k27ac = self.epi_gating['h3k27ac'](dnabert_out[:, 0, :], h3k27ac_feats)
+        
+        # Combine: sequence + 3 gated marks
+        gated = torch.cat([fused, gated_atac, gated_h3k4me3, gated_h3k27ac], dim=1)  # (batch, 256*4)
 
-        # Beta regression
-        params = self.beta_head(gated)  # (batch, 2)
+        # Beta regression (use only fused features for prediction)
+        params = self.beta_head(fused)  # (batch, 2)
 
         return params  # alpha, beta
 
@@ -262,14 +316,15 @@ def load_multimodal_data(split='split_a'):
             if not (0 <= efficiency <= 1):
                 continue
 
-            # Extract epigenomic features (feat_0, feat_1, ..., feat_689)
+            # Extract epigenomic features: 300-dim (3 marks × 100 bins)
+            # feat_0-99: ATAC-seq, feat_100-199: H3K4me3, feat_200-299: H3K27ac
             epi_feats = []
-            for i in range(690):
+            for i in range(300):  # CORRECTED: 300 dims instead of 690
                 col = f'feat_{i}'
                 if col in df.columns:
                     epi_feats.append(float(row[col]))
 
-            if len(epi_feats) == 690:
+            if len(epi_feats) == 300:
                 sequences.append(seq[:30])
                 efficiencies.append(efficiency)
                 epigenomics.append(np.array(epi_feats, dtype=np.float32))
