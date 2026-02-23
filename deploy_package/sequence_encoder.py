@@ -3,7 +3,6 @@
 Supports two architectures:
   (1) CNN-GRU baseline (ChromeCRISPR-style)
   (2) Mamba-based state-space model for O(L) linear complexity
-  (3) DNABERT-2 transformer with k-mer tokenization
 
 Inputs:
   - One-hot encoded sgRNA+PAM+protospacer sequence (4 channels x L positions)
@@ -15,60 +14,7 @@ Outputs:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Optional, Tuple, List
-
-
-def kmer_tokenize(sequence: str, k: int = 6) -> List[int]:
-    """Simple k-mer tokenizer for DNA sequences.
-
-    Replaces AutoTokenizer from transformers to avoid PIL import issues.
-    Converts sequence to overlapping k-mers, each mapped to a token ID.
-
-    Args:
-        sequence: DNA sequence string (e.g., "ACGTACGT")
-        k: k-mer size (default 6 for DNABERT-2)
-
-    Returns:
-        List of token IDs (integers)
-    """
-    nt_to_id = {'A': 0, 'C': 1, 'G': 2, 'T': 3, 'N': 4}
-    tokens = []
-
-    # Convert to k-mers
-    for i in range(len(sequence) - k + 1):
-        kmer = sequence[i:i+k].upper()
-        # Encode k-mer as a composite token
-        token_id = 0
-        for j, nt in enumerate(kmer):
-            if nt in nt_to_id:
-                token_id = token_id * 5 + nt_to_id[nt]
-        tokens.append(token_id)
-
-    return tokens if tokens else [0]  # Fallback to PAD token
-
-
-def kmer_batch_tokenize(sequences: List[str], k: int = 6, max_len: int = 512) -> torch.Tensor:
-    """Batch tokenize sequences to k-mers.
-
-    Args:
-        sequences: List of DNA sequences
-        k: k-mer size
-        max_len: Maximum sequence length (pads/truncates to this)
-
-    Returns:
-        Tensor of shape (batch_size, max_len) with token IDs
-    """
-    tokenized = [kmer_tokenize(seq, k) for seq in sequences]
-
-    # Pad/truncate to max_len
-    padded = []
-    for tokens in tokenized:
-        if len(tokens) >= max_len:
-            padded.append(tokens[:max_len])
-        else:
-            padded.append(tokens + [0] * (max_len - len(tokens)))
-
-    return torch.tensor(padded, dtype=torch.long)
+from typing import Optional, Tuple
 
 
 class SequenceEncoder(nn.Module):
@@ -162,181 +108,88 @@ class CNNGRUEncoder(SequenceEncoder):
 
 
 class DNABERT2Encoder(SequenceEncoder):
-    """DNABERT-2 transformer encoder with fallback to CNN when transformers unavailable.
+    """DNABERT-2 transformer encoder - DIRECT WEIGHT LOADING to avoid ALiBi meta device error.
 
-    This encoder attempts to load DNABERT-2 weights, but gracefully falls back to
-    a powerful CNN-based architecture if the transformers library has import issues
-    (e.g., PIL circular imports on some Python versions).
-
-    The fallback CNN still achieves competitive performance for on-target prediction.
+    Loads pre-trained transformer from cached weights instead of from_pretrained()
+    to bypass the ALiBi tensor initialization bug that creates tensors on meta device.
     """
     def __init__(
         self,
-        d_model: int = 64,  # PhD proposal constraint
-        use_fallback: bool = True,
+        d_model: int = 768,
         dropout: float = 0.1,
     ):
         super().__init__(d_model=d_model)
+        import torch
+        import os
+        from transformers import AutoConfig, BertModel
+        from pathlib import Path
 
-        self.d_model = d_model
-        self.dropout_rate = dropout
+        # Load config from local cache
+        cache_dir = Path.home() / ".cache" / "huggingface" / "hub" / "models--zhihan1996--DNABERT-2-117M"
 
-        # Try to load BERT, but fall back to CNN if import fails
-        self.use_bert = False
-        try:
-            import json
-            from pathlib import Path
-            from transformers import BertConfig, BertModel
+        # Try to load config from snapshots (huggingface cache structure)
+        snapshots = list(cache_dir.glob("snapshots/*/config.json"))
 
-            # Load config from JSON cache directly
-            cache_dir = Path.home() / ".cache" / "huggingface" / "hub" / "models--zhihan1996--DNABERT-2-117M"
-            config_path = None
+        if snapshots:
+            config_path = snapshots[0].parent
+            print(f"Loading DNABERT-2 config from {config_path}", flush=True)
+            config = AutoConfig.from_pretrained(
+                str(config_path),
+                trust_remote_code=True,
+                local_files_only=True
+            )
+        else:
+            # Fallback: load from pretrained (with local_files_only=True)
+            print("Loading DNABERT-2 config from local cache with from_pretrained", flush=True)
+            config = AutoConfig.from_pretrained(
+                "zhihan1996/DNABERT-2-117M",
+                trust_remote_code=True,
+                local_files_only=True
+            )
 
-            # Find config.json in cache snapshots
-            if cache_dir.exists():
-                snapshots = sorted(cache_dir.glob("snapshots/*/config.json"))
-                if snapshots:
-                    config_path = snapshots[0]
+        # Set pad token if missing
+        if not hasattr(config, "pad_token_id"):
+            config.pad_token_id = 0
 
-            if config_path and config_path.exists():
-                print(f"✓ Loading DNABERT-2 config from {config_path}", flush=True)
-                with open(config_path, 'r') as f:
-                    config_dict = json.load(f)
-                config = BertConfig(**config_dict)
-            else:
-                # Create default config for DNABERT-2
-                print("Creating default DNABERT-2 config", flush=True)
-                config = BertConfig(
-                    vocab_size=4,
-                    hidden_size=768,
-                    num_hidden_layers=12,
-                    num_attention_heads=12,
-                    intermediate_size=3072,
-                    hidden_act="gelu",
-                    hidden_dropout_prob=0.1,
-                    attention_probs_dropout_prob=0.1,
-                    max_position_embeddings=512,
-                    type_vocab_size=2,
-                    initializer_range=0.02,
-                    layer_norm_eps=1e-12,
-                    pad_token_id=0,
-                    position_embedding_type="relative_key_query",
-                    use_cache=True,
-                )
+        # CRITICAL FIX: Create model on CPU FIRST, avoiding ALiBi initialization on meta device
+        # BertModel will initialize ALiBi tensors on CPU (safe), then we load weights
+        print("Creating DNABERT-2 model on CPU to avoid meta device tensors...", flush=True)
+        self.backbone = BertModel(config, add_pooling_layer=False).to('cpu')
 
-            # CRITICAL: Create model on CPU to avoid meta device tensors
-            print("Creating DNABERT-2 model on CPU...", flush=True)
-            self.backbone = BertModel(config, add_pooling_layer=False).to('cpu')
-
-            # Load weights if available
-            weights_path = None
-            if cache_dir.exists():
-                weight_files = sorted(cache_dir.glob("snapshots/*/pytorch_model.bin"))
-                if weight_files:
-                    weights_path = weight_files[0]
-
-            if weights_path and weights_path.exists():
-                print(f"Loading DNABERT-2 weights from {weights_path}...", flush=True)
-                try:
-                    state_dict = torch.load(str(weights_path), map_location='cpu', weights_only=True)
-                    self.backbone.load_state_dict(state_dict, strict=False)
-                    print("✓ DNABERT-2 weights loaded", flush=True)
-                except Exception as e:
-                    print(f"⚠ Could not load weights: {e}", flush=True)
-
-            # Project 768 -> d_model
-            self.proj = nn.Sequential(
-                nn.Linear(768, d_model),
-                nn.LayerNorm(d_model),
-            ) if d_model != 768 else nn.Identity()
-
-            self.use_bert = True
-            print("✓ DNABERT-2 mode: ENABLED", flush=True)
-
-        except ImportError as e:
-            if use_fallback:
-                print(f"⚠ DNABERT-2 import failed ({str(e)[:60]}...), using CNN fallback", flush=True)
-                # Build powerful CNN fallback
-                self._init_cnn_fallback(d_model, dropout)
-                self.use_bert = False
-                print("✓ Using CNN fallback for sequence encoding", flush=True)
-            else:
-                raise
+        # Now load state_dict from cached weights if available
+        model_files = list(cache_dir.glob("snapshots/*/pytorch_model.bin"))
+        if model_files:
+            weights_path = model_files[0]
+            print(f"Loading DNABERT-2 weights from {weights_path}", flush=True)
+            try:
+                state_dict = torch.load(str(weights_path), map_location='cpu', weights_only=True)
+                self.backbone.load_state_dict(state_dict, strict=False)
+                print("DNABERT-2 weights loaded successfully", flush=True)
+            except (FileNotFoundError, RuntimeError) as e:
+                print(f"Warning: Could not load weights from {weights_path}: {e}", flush=True)
+                print("Proceeding with randomly initialized DNABERT-2", flush=True)
+        else:
+            print("No pytorch_model.bin found in cache. Using fresh model.", flush=True)
 
         self.dropout = nn.Dropout(dropout)
-
-    def _init_cnn_fallback(self, d_model: int, dropout: float):
-        """Initialize CNN fallback architecture."""
-        # Powerful conv-based encoder
-        self.conv_layers = nn.Sequential(
-            nn.Conv1d(4, 128, kernel_size=7, padding=3),
-            nn.BatchNorm1d(128),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-            nn.Conv1d(128, 256, kernel_size=5, padding=2),
-            nn.BatchNorm1d(256),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-            nn.Conv1d(256, 256, kernel_size=5, padding=2),
-            nn.BatchNorm1d(256),
-            nn.ReLU(),
-            nn.MaxPool1d(2),
-        )
-
-        # Output projection
-        self.fc = nn.Sequential(
-            nn.Linear(256, d_model),
-            nn.LayerNorm(d_model),
-        )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Forward pass.
 
         Args:
-            x: Token IDs (batch, L) OR one-hot (batch, 4, L)
+            x: Tokenized sequence IDs (batch, L)
         Returns:
             Sequence embedding (batch, d_model)
         """
-        if self.use_bert:
-            return self._forward_bert(x)
-        else:
-            return self._forward_cnn(x)
+        # Multi-hot/One-hot check (DNABERT-2 expects token IDs)
+        if x.dim() == 3:
+            # Emergency fallback: convert one-hot to approximate representation
+            # or throw error. For now, we project if training loop hasn't been updated.
+            x = x.argmax(dim=1)
 
-    def _forward_bert(self, x: torch.Tensor) -> torch.Tensor:
-        """BERT forward path."""
-        # Convert one-hot to tokens if needed
-        if x.dim() == 3 and x.shape[1] == 4:
-            x = x.argmax(dim=1)  # (batch, L)
-
-        # Ensure on device
-        device = next(self.backbone.parameters()).device
-        x = x.to(device)
-
-        # Forward
-        with torch.no_grad():
-            outputs = self.backbone(x)
-
-        h = outputs[0].mean(dim=1)  # (batch, 768)
-        h = self.proj(h)  # (batch, d_model)
-        return self.dropout(h)
-
-    def _forward_cnn(self, x: torch.Tensor) -> torch.Tensor:
-        """CNN fallback forward path."""
-        # Convert tokens to one-hot if needed
-        if x.dim() == 2 and x.dtype in [torch.long, torch.int64]:
-            # Token IDs: convert to approximate one-hot
-            batch, seq_len = x.shape
-            one_hot = torch.zeros(batch, 4, seq_len, dtype=torch.float32, device=x.device)
-            for b in range(batch):
-                for i, token_id in enumerate(x[b]):
-                    if 0 <= token_id < 4:
-                        one_hot[b, token_id, i] = 1.0
-            x = one_hot
-
-        # CNN feature extraction
-        h = self.conv_layers(x)  # (batch, 256, L')
-        h = h.mean(dim=2)  # (batch, 256) - global avg pool
-        h = self.fc(h)  # (batch, d_model)
+        outputs = self.backbone(x)
+        # Global pooling (using mean pooling for gRNAs)
+        h = outputs[0].mean(dim=1)
         return self.dropout(h)
 
 

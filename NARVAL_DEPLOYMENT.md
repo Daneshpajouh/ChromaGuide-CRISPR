@@ -154,7 +154,7 @@ When complete:
 # Check multimodal results
 tail -30 slurm_logs/multimodal_dnabert2_fixed_*.out | grep "FINAL GOLD"
 
-# Check off-target results  
+# Check off-target results
 tail -30 slurm_logs/off_target_focal_*.out | tail -5
 ```
 
