@@ -170,6 +170,7 @@ class EpigenoticGatingModule(nn.Module):
 
         # Apply gate: control epigenetic feature contribution
         gated = seq_features[:, :self.epi_hidden_dim] * (1 - gate) + epi_encoded * gate
+        return gated
 
 
 class BiLSTMContext(nn.Module):
