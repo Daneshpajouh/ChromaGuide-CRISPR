@@ -18,6 +18,7 @@ from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from torch.utils.data import DataLoader, TensorDataset, WeightedRandomSampler
 import numpy as np
 import pandas as pd
+import os
 from sklearn.metrics import roc_auc_score
 from pathlib import Path
 from transformers import AutoTokenizer, AutoModel
@@ -212,9 +213,16 @@ class DNABERTOffTargetV10(nn.Module):
 
         self.hidden_dim = hidden_dim
 
-        # 1. DNABERT-2 encoder
-        self.tokenizer = AutoTokenizer.from_pretrained(dnabert_model_name)
-        self.dnabert = AutoModel.from_pretrained(dnabert_model_name)
+        # 1. DNABERT-2 encoder (load from local cached model to avoid triton dependency)
+        local_model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'dnabert2')
+        if os.path.exists(local_model_path):
+            print(f"Loading DNABERT-2 from local cache: {local_model_path}")
+            self.tokenizer = AutoTokenizer.from_pretrained(local_model_path)
+            self.dnabert = AutoModel.from_pretrained(local_model_path)
+        else:
+            print(f"Local model not found at {local_model_path}, using HuggingFace...")
+            self.tokenizer = AutoTokenizer.from_pretrained(dnabert_model_name, trust_remote_code=True)
+            self.dnabert = AutoModel.from_pretrained(dnabert_model_name, trust_remote_code=True)
         self.dnabert_dim = self.dnabert.config.hidden_size  # 768 for DNABERT-2
 
         # Freeze DNABERT initially, then unfreeze last 6 layers for fine-tuning
@@ -268,8 +276,9 @@ class DNABERTOffTargetV10(nn.Module):
         self.classifier = nn.Sequential(
             nn.Dropout(dropout),
             nn.Linear(hidden_dim * 4, 2)  # Input: concat of all 4 features (256*4=1024)
+        )
 
-def forward(self, sequences, epi_features, mismatch_features=None, bulge_features=None):
+    def forward(self, sequences, epi_features, mismatch_features=None, bulge_features=None):
         """
         sequences: list of DNA sequences (will be tokenized by DNABERT-2, max 24bp per CRISPR_DNABERT)
         epi_features: (batch, epi_feature_dim) epigenetic features
@@ -404,7 +413,7 @@ def train_model(model, train_seqs, train_epis, train_labels,
         n_batches = 0
 
         # EXACT batch size from CRISPR_DNABERT: 128
-        for seq_batch, epi_batch, label_batch in DataLoader(
+        for epi_batch, label_batch in DataLoader(
             TensorDataset(
                 torch.FloatTensor(train_epis),
                 torch.LongTensor(train_labels.astype(int))  # Need int for CrossEntropyLoss

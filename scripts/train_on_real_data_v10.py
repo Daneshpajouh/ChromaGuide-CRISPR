@@ -17,6 +17,7 @@ from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
 import pandas as pd
+import os
 from scipy.stats import spearmanr
 from pathlib import Path
 from transformers import AutoTokenizer, AutoModel
@@ -160,9 +161,16 @@ class DNABERTMultimodalV10(nn.Module):
 
         self.hidden_dim = hidden_dim
 
-        # 1. DNABERT-2 encoder
-        self.tokenizer = AutoTokenizer.from_pretrained(dnabert_model_name)
-        self.dnabert = AutoModel.from_pretrained(dnabert_model_name)
+        # 1. DNABERT-2 encoder (load from local cached model to avoid triton dependency)
+        local_model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'dnabert2')
+        if os.path.exists(local_model_path):
+            print(f"Loading DNABERT-2 from local cache: {local_model_path}")
+            self.tokenizer = AutoTokenizer.from_pretrained(local_model_path)
+            self.dnabert = AutoModel.from_pretrained(local_model_path)
+        else:
+            print(f"Local model not found at {local_model_path}, using HuggingFace...")
+            self.tokenizer = AutoTokenizer.from_pretrained(dnabert_model_name, trust_remote_code=True)
+            self.dnabert = AutoModel.from_pretrained(dnabert_model_name, trust_remote_code=True)
         self.dnabert_dim = self.dnabert.config.hidden_size  # 768
 
         # Unfreeze last 6 layers for fine-tuning
