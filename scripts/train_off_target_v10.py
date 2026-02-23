@@ -25,6 +25,7 @@ from torch.utils.data import DataLoader, TensorDataset, WeightedRandomSampler
 import numpy as np
 import pandas as pd
 import os
+import sys
 from sklearn.metrics import roc_auc_score
 from pathlib import Path
 from transformers import AutoTokenizer, AutoModel
@@ -360,6 +361,8 @@ def train_model(model, train_seqs, train_epis, train_labels,
 
         if epoch % max(1, epochs // 5) == 0:
             print(f"  E{epoch:2d} | Loss {train_loss:.4f} | Val AUROC {val_auc:.4f}")
+            sys.stdout.flush()
+            sys.stderr.flush()
 
         if val_auc > best_auc:
             best_auc = val_auc
@@ -382,10 +385,15 @@ def main():
     print("V10 OFF-TARGET: Hybrid DNABERT-2 + CNN + BiLSTM + Epigenetic Gating")
     print("(Based on CRISPR_DNABERT: kimatakai/CRISPR_DNABERT)")
     print("="*70 + "\n")
+    sys.stdout.flush()
+    sys.stderr.flush()
 
     # Load data
     data_path = '/Users/studio/Desktop/PhD/Proposal/data/raw/crisprofft/CRISPRoffT_all_targets.txt'
     X_seqs, X_epis, y = load_crispofft_data(data_path)
+    print(f"✓ Data loaded: {len(X_seqs)} sequences")
+    sys.stdout.flush()
+
 
     # Split data
     np.random.seed(42)
@@ -410,7 +418,8 @@ def main():
     y_test = y[test_idx]
 
     print(f"Train: {len(y_train)}, Val: {len(y_val)}, Test: {len(y_test)}\n")
-
+    sys.stdout.flush()
+    
     # Train ensemble (extended from 8 epochs in paper to 50 for better ensemble diversity)
     models = []
     val_aucs = []
@@ -421,6 +430,7 @@ def main():
         print(f"\n{'='*70}")
         print(f"MODEL {i+1}/{n_models} (DNABERT-2 Hybrid Off-target)")
         print(f"{'='*70}")
+        sys.stdout.flush()
 
         model = DNABERTOffTargetCorrected()
         trained_model, val_auc = train_model(

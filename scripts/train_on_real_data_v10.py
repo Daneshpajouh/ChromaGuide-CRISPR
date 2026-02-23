@@ -42,82 +42,82 @@ class PerMarkEpigenicGating(nn.Module):
     """
     def __init__(self, mark_dim=100, hidden_dim=256, dnabert_dim=768, dropout=0.1):
         super().__init__()
-        
+
         # Encoder for single mark (100 -> 256)
         self.encoder = nn.Sequential(
             nn.Linear(mark_dim, hidden_dim),  # 100 -> 256
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim, hidden_dim * 2),  # 256 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim * 2, hidden_dim * 4),  # 512 -> 1024
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim * 4, hidden_dim * 2),  # 1024 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim * 2, hidden_dim)  # 512 -> 256
         )
-        
+
         # Gate mechanism
         gate_input_dim = dnabert_dim + 7 + 1  # 776 = DNABERT(768) + mismatch(7) + bulge(1)
-        
+
         self.gate = nn.Sequential(
             nn.Linear(gate_input_dim, hidden_dim),  # 776 -> 256
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim, hidden_dim * 2),  # 256 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim * 2, hidden_dim * 4),  # 512 -> 1024
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim * 4, hidden_dim * 2),  # 1024 -> 512
             nn.ReLU(),
             nn.Dropout(dropout),
-            
+
             nn.Linear(hidden_dim * 2, 1),  # 512 -> 1
             nn.Sigmoid()
         )
-        
+
         # Initialize gate bias to -3.0 (conservative gating from paper)
         self.gate[-2].bias.data.fill_(-3.0)
-    
+
     def forward(self, dnabert_cls, mark_features, mismatch_features=None, bulge_features=None):
         """
         dnabert_cls: (batch, 768) - [CLS] token from DNABERT
         mark_features: (batch, 100) - one epigenetic mark (100 bins)
         mismatch_features: (batch, 7) optional
         bulge_features: (batch, 1) optional
-        
+
         Returns: (batch, 256) - gated epigenetic features
         """
         # Encode the mark
         encoded = self.encoder(mark_features)  # (batch, 256)
-        
+
         # Create gate input if not provided
         if mismatch_features is None:
-            mismatch_features = torch.zeros(dnabert_cls.size(0), 7, 
+            mismatch_features = torch.zeros(dnabert_cls.size(0), 7,
                                            device=dnabert_cls.device, dtype=dnabert_cls.dtype)
         if bulge_features is None:
             bulge_features = torch.zeros(dnabert_cls.size(0), 1,
                                         device=dnabert_cls.device, dtype=dnabert_cls.dtype)
-        
+
         # Gate input: concatenate DNABERT + mismatch + bulge
         gate_input = torch.cat([dnabert_cls, mismatch_features, bulge_features], dim=1)  # (batch, 776)
         gate_output = self.gate(gate_input)  # (batch, 1)
-        
+
         # Apply gate: weighted interpolation
         gated = encoded * gate_output  # (batch, 256)
-        
+
         return gated
 
 
@@ -228,7 +228,7 @@ class DNABERTMultimodalV10(nn.Module):
 
         # 3. Epigenetic gating with THREE per-mark modules (ATAC, H3K4me3, H3K27ac)
         self.epi_gating = nn.ModuleDict({
-            'atac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim, 
+            'atac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim,
                                          dnabert_dim=self.dnabert_dim, dropout=dropout),
             'h3k4me3': PerMarkEpigenicGating(mark_dim=100, hidden_dim=hidden_dim,
                                             dnabert_dim=self.dnabert_dim, dropout=dropout),
@@ -276,11 +276,11 @@ class DNABERTMultimodalV10(nn.Module):
         atac_feats = epi_features[:, 0:100]
         h3k4me3_feats = epi_features[:, 100:200]
         h3k27ac_feats = epi_features[:, 200:300]
-        
+
         gated_atac = self.epi_gating['atac'](dnabert_out[:, 0, :], atac_feats)
         gated_h3k4me3 = self.epi_gating['h3k4me3'](dnabert_out[:, 0, :], h3k4me3_feats)
         gated_h3k27ac = self.epi_gating['h3k27ac'](dnabert_out[:, 0, :], h3k27ac_feats)
-        
+
         # Combine: sequence + 3 gated marks
         gated = torch.cat([fused, gated_atac, gated_h3k4me3, gated_h3k27ac], dim=1)  # (batch, 256*4)
 
