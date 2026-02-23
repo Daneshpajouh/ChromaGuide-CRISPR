@@ -61,7 +61,7 @@ Correct:  Linear(1536, 2)
 ```
 Current:  - CNN module (MultiScaleCNNModule)
           - BiLSTM module (BiLSTMContext)
-          
+
 Correct:  - Only DNABERT
            - Only per-mark epigenetic gating
 ```
@@ -81,7 +81,7 @@ Correct:  epochs=8  (exact from paper)
 Current:  - DNABERT: 2e-5 ✓
           - CNN/BiLSTM: 1e-3
           - Epi/Classifier: scatter
-          
+
 Correct:  - DNABERT: 2e-5
           - Epi gating: 1e-3
           - Classifier: 1e-3
@@ -117,7 +117,7 @@ Correct:  - DNABERT: 2e-5
 **Changes required:** ~60 lines across train_off_target_v10.py
 
 **Documentation prepared:** ✅
-- `ARCHITECTURE_ANALYSIS_V10_VS_REAL.md` - Issue breakdown  
+- `ARCHITECTURE_ANALYSIS_V10_VS_REAL.md` - Issue breakdown
 - `V10_ARCHITECTURE_FIXES.md` - Correction guide
 - `V10_EXACT_CHANGES.md` - Line-by-line edits
 - `train_off_target_v10_corrected_architecture.py` - Template code
@@ -165,15 +165,15 @@ Expect:  - Valid results matching paper
 
 ## Key Quotes from Source Paper
 
-> "The epigenetic information is represented as a 300-dimensional vector, consisting 
-> of ATAC-seq, H3K4me3, and H3K27ac signals from a 500 base-pair region around the 
+> "The epigenetic information is represented as a 300-dimensional vector, consisting
+> of ATAC-seq, H3K4me3, and H3K27ac signals from a 500 base-pair region around the
 > off-target site, binned at 10 base-pair resolution."
 
-> "Each modality undergoes an independently-parametrized dense encoding network 
-> followed by a learned gating mechanism that determines the extent to which 
+> "Each modality undergoes an independently-parametrized dense encoding network
+> followed by a learned gating mechanism that determines the extent to which
 > information from each epigenetic modality contributes to the final prediction."
 
-> "Training was performed with 10-fold cross-validation (sgRNA-level splits) for 
+> "Training was performed with 10-fold cross-validation (sgRNA-level splits) for
 > 8 epochs with batch size 256 and learning rate 2×10⁻⁵."
 
 ---
@@ -181,7 +181,7 @@ Expect:  - Valid results matching paper
 ## Immediate Next Steps
 
 ### Phase 1: Fix Code (2 hours)
-- [ ] Open `V10_EXACT_CHANGES.md` 
+- [ ] Open `V10_EXACT_CHANGES.md`
 - [ ] Apply changes to `train_off_target_v10.py`
 - [ ] Run syntax check: `python -m py_compile scripts/train_off_target_v10.py`
 - [ ] Test model forward pass

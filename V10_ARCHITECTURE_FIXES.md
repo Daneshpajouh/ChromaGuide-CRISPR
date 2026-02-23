@@ -11,7 +11,7 @@
 
 ---
 
-## Issue 1: Epigenetic Feature Dimension  
+## Issue 1: Epigenetic Feature Dimension
 
 ### Current (WRONG)
 ```python
@@ -30,7 +30,7 @@ epi_feature_dim=690
 # Structure per sample:
 epi = np.zeros(300, dtype=np.float32)
 epi[0:100] = atac_features_100_bins       # ATAC-seq: 500bp window, 10bp bins
-epi[100:200] = h3k4me3_features_100_bins  # H3K4me3: 500bp window, 10bp bins  
+epi[100:200] = h3k4me3_features_100_bins  # H3K4me3: 500bp window, 10bp bins
 epi[200:300] = h3k27ac_features_100_bins  # H3K27ac: 500bp window, 10bp bins
 
 # For CRISPRoffT dataset (which may lack epigenomics):
@@ -50,7 +50,7 @@ Class: `EpigenoticGatingModule` (Lines 85-174)
 - NOT per-mark as required
 
 ### Correction (VERIFIED)
-**Replace with:** `PerMarkEpigenicGating` 
+**Replace with:** `PerMarkEpigenicGating`
 - Separate module for EACH epigenetic mark (ATAC, H3K4me3, H3K27ac)
 - Each mark: Linear(100, 256)->ReLU->Drop->Linear(256, 512)->...->Linear(512, 256)
 - Each mark has its own gate: Linear(776, 256)->ReLU->...->Sigmoid()
@@ -91,7 +91,7 @@ assert train_epis.shape[1] == 300, f"Wrong epi dims: {train_epis.shape[1]}"
 # Breakdown check:
 assert train_epis.shape[0] > 0  # samples
 # Mark 1: train_epis[:, 0:100]   - ATAC
-# Mark 2: train_epis[:, 100:200] - H3K4me3  
+# Mark 2: train_epis[:, 100:200] - H3K4me3
 # Mark 3: train_epis[:, 200:300] - H3K27ac
 ```
 
@@ -121,7 +121,7 @@ h3k4me3_feats = epi_batch[:, 100:200]   # (batch, 100)
 h3k27ac_feats = epi_batch[:, 200:300]   # (batch, 100)
 
 # Process each mark separately
-gated_atac = self.epi_gating['atac'](dnabert_cls, atac_feats, 
+gated_atac = self.epi_gating['atac'](dnabert_cls, atac_feats,
                                      mismatch_feats, bulge_feats)    # (batch, 256)
 gated_h3k4me3 = self.epi_gating['h3k4me3'](dnabert_cls, h3k4me3_feats,  # (batch, 256)
                                            mismatch_feats, bulge_feats)
@@ -147,7 +147,7 @@ self.classifier = nn.Sequential(
 ```
 
 Expects input of 1024 dims from concatenating:
-- seq_proj (256) 
+- seq_proj (256)
 - cnn_repr (256)
 - bilstm_repr (256)
 - gated_features (256)
@@ -196,7 +196,7 @@ optimizer = optim.AdamW([
 # Epochs
 epochs = 8  # Exact from Kimata et al. (2025)
 
-# Batch size  
+# Batch size
 batch_size = 128  # Exact from paper (CRISPRoffT: batch=256, but 128 is validated)
 
 # Optimizer with CORRECT learning rates
@@ -209,7 +209,7 @@ optimizer = optim.AdamW([
 # BalancedSampler with majority_rate
 majority_rate = 0.2  # CORRECT
 n_pos = int((train_labels == 1).sum())
-n_neg = int((train_labels == 0).sum()) 
+n_neg = int((train_labels == 0).sum())
 # pos weight: 1.0, neg weight: majority_rate (0.2)
 ```
 
@@ -271,11 +271,11 @@ epi = np.zeros(300, dtype=np.float32)
 
 ## Critical Quote from Kimata et al. (2025)
 
-> "The epigenetic information is represented as a 300-dimensional vector, 
-> consisting of ATAC-seq, H3K4me3, and H3K27ac signals from a 500 base-pair 
-> region around the off-target site, binned at 10 base-pair resolution. 
-> Each modality undergoes an independently-parametrized dense encoding network 
-> followed by a learned gating mechanism that determines the extent to which 
+> "The epigenetic information is represented as a 300-dimensional vector,
+> consisting of ATAC-seq, H3K4me3, and H3K27ac signals from a 500 base-pair
+> region around the off-target site, binned at 10 base-pair resolution.
+> Each modality undergoes an independently-parametrized dense encoding network
+> followed by a learned gating mechanism that determines the extent to which
 > information from each epigenetic modality contributes to the final prediction."
 
 Our CURRENT implementation: using 690-dim random noise

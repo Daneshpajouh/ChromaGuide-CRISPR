@@ -5,7 +5,7 @@
 ### Processes Running
 ```
 PID 87972  - train_off_target_v10.py (88.1% CPU, 3GB RAM) - RUNNING
-PID 86977  - train_on_real_data_v10.py (54% CPU, 839MB RAM) - RUNNING  
+PID 86977  - train_on_real_data_v10.py (54% CPU, 839MB RAM) - RUNNING
 PID 86369  - train_off_target_v10.py (53.2% CPU, 3GB RAM) - RUNNING
 ```
 
@@ -24,8 +24,8 @@ PID 86369  - train_off_target_v10.py (53.2% CPU, 3GB RAM) - RUNNING
 ### Problem Summary
 **The V10 model is training with FUNDAMENTALLY WRONG architecture:**
 
-1. **Epigenetic dimensions: 690-dim RANDOM NOISE** 
-   - Current: `np.random.randn(690)` 
+1. **Epigenetic dimensions: 690-dim RANDOM NOISE**
+   - Current: `np.random.randn(690)`
    - Should be: 300-dim structured as [ATAC(100) | H3K4me3(100) | H3K27ac(100)]
    - Impact: Model learning from worthless random features
 
@@ -51,7 +51,7 @@ PID 86369  - train_off_target_v10.py (53.2% CPU, 3GB RAM) - RUNNING
 
 ### Source Evidence
 **Kimata et al. (2025), PLOS ONE, PMID: 41223195**
-- Quote: "The epigenetic information is represented as a 300-dimensional vector, 
+- Quote: "The epigenetic information is represented as a 300-dimensional vector,
   consisting of ATAC-seq, H3K4me3, and H3K27ac signals..."
 - Quote: "Each modality undergoes an independently-parametrized dense encoding network"
 - Quote: "...followed by a learned gating mechanism"
@@ -111,7 +111,7 @@ PID 86369  - train_off_target_v10.py (53.2% CPU, 3GB RAM) - RUNNING
 
 ### Analysis Documents (for reference)
 1. `ARCHITECTURE_ANALYSIS_V10_VS_REAL.md` - Detailed issue breakdown
-2. `V10_ARCHITECTURE_FIXES.md` - Comprehensive correction guide  
+2. `V10_ARCHITECTURE_FIXES.md` - Comprehensive correction guide
 3. `V10_EXACT_CHANGES.md` - Line-by-line code changes
 
 ### Implementation File (template)
@@ -149,7 +149,7 @@ PID 86369  - train_off_target_v10.py (53.2% CPU, 3GB RAM) - RUNNING
 **Training:**
 - Optimizer: Adam with lr=2e-5 for DNABERT, lr=1e-3 for epi/classifier
 - Epochs: 8
-- Batch size: 128  
+- Batch size: 128
 - Loss: CrossEntropyLoss
 - Sampling: BalancedSampler with majority_rate=0.2
 

@@ -44,7 +44,7 @@
 - **Fix complexity:** LOW
 
 ### Issue 6: Optimizer Learning Rate Groups (IMPORTANT ⚠️)
-- **Current:** 
+- **Current:**
   - DNABERT: 2e-5 ✓
   - Other params: scatter across multiple groups
 - **Correct:**
@@ -92,7 +92,7 @@ self.epi_gating = nn.ModuleDict({
     'atac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=256,
                                  dnabert_dim=self.dnabert_dim, dropout=dropout),
     'h3k4me3': PerMarkEpigenicGating(mark_dim=100, hidden_dim=256,
-                                    dnabert_dim=self.dnabert_dim, dropout=dropout), 
+                                    dnabert_dim=self.dnabert_dim, dropout=dropout),
     'h3k27ac': PerMarkEpigenicGating(mark_dim=100, hidden_dim=256,
                                     dnabert_dim=self.dnabert_dim, dropout=dropout)
 })
@@ -134,12 +134,12 @@ def forward(self, sequences, epi_features, mismatch_features=None, bulge_feature
                            truncation=True, max_length=24).to(device)
     dnabert_out = self.dnabert(**tokens).last_hidden_state
     dnabert_cls = dnabert_out[:, 0, :]  # (batch, 768)
-    
+
     # Split 300-dim epi features
     atac_feats = epi_features[:, 0:100]       # (batch, 100)
     h3k4me3_feats = epi_features[:, 100:200]  # (batch, 100)
     h3k27ac_feats = epi_features[:, 200:300]  # (batch, 100)
-    
+
     # Process each mark
     gated_atac = self.epi_gating['atac'](dnabert_cls, atac_feats,
                                          mismatch_features, bulge_features)
@@ -147,11 +147,11 @@ def forward(self, sequences, epi_features, mismatch_features=None, bulge_feature
                                                mismatch_features, bulge_features)
     gated_h3k27ac = self.epi_gating['h3k27ac'](dnabert_cls, h3k27ac_feats,
                                                mismatch_features, bulge_features)
-    
+
     # Concatenate and classify
     combined = torch.cat([dnabert_cls, gated_atac, gated_h3k4me3, gated_h3k27ac], dim=1)
     logits = self.classifier(combined)
-    
+
     return logits
 ```
 
@@ -217,7 +217,7 @@ class BiLSTMContext(nn.Module):  # REMOVE
 ## Testing Checklist Before Retrain
 
 - [ ] Verify data shape: `assert X_epis.shape == (N, 300)`
-- [ ] Verify epi structure: 
+- [ ] Verify epi structure:
   - [ ] `X_epis[:, 0:100]` is ATAC-seq (100 dims)
   - [ ] `X_epis[:, 100:200]` is H3K4me3 (100 dims)
   - [ ] `X_epis[:, 200:300]` is H3K27ac (100 dims)
@@ -299,12 +299,12 @@ Once corrected, validate:
 
 ## Success Criteria
 
-✅ Code passes syntax check  
-✅ Model forward pass works  
-✅ Dimensions match: input (batch,300) → output (batch,2)  
-✅ Loss decreases during training  
-✅ Validation AUROC ≥ 0.90 (reasonable)  
-✅ Results reproducible (same seed)  
-✅ Architecture matches Kimata et al. (2025)  
-✅ Publication ready  
+✅ Code passes syntax check
+✅ Model forward pass works
+✅ Dimensions match: input (batch,300) → output (batch,2)
+✅ Loss decreases during training
+✅ Validation AUROC ≥ 0.90 (reasonable)
+✅ Results reproducible (same seed)
+✅ Architecture matches Kimata et al. (2025)
+✅ Publication ready
 

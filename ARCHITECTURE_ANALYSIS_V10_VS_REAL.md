@@ -145,18 +145,18 @@ scheduler = CosineAnnealingWarmRestarts(optimizer, ...)
 
 ## IMPACT ON TRAINING
 
-**Current Training Status:** 
+**Current Training Status:**
 - Running with WRONG architecture (epi_feature_dim=690 random noise)
 - Will NOT produce meaningful results
 - Classifier training on concatenated features of:
   - DNABERT[CLS] (768)
-  - CNN (256) 
+  - CNN (256)
   - BiLSTM (256)
   - Gated random noise processed through MLP (256)
 - This is NOT the REAL CRISPR_DNABERT architecture
 
 **Recommendation:**
-- **STOP current training immediately** 
+- **STOP current training immediately**
 - Apply architecture corrections
 - Retrain from scratch with correct 300-dim epigenetic features
 - Results will be publication-ready only after this fix
