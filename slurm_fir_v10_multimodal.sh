@@ -55,9 +55,8 @@ pip install transformers scipy scikit-learn pandas numpy h5py --no-index
 echo "Packages installed"
 echo ""
 
-# Set offline mode for Hugging Face (use cached model)
-export TRANSFORMERS_OFFLINE=1
-export HF_HUB_OFFLINE=1
+# Cache paths for Hugging Face models (will download on first run)
+# NOTE: TRANSFORMERS_OFFLINE not set on first run - allows DNABERT-2 download
 export TORCH_HOME=~/.cache/torch
 
 # Navigate to project
