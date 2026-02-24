@@ -27,7 +27,9 @@ echo ""
 
 # Initialize module system (required on Alliance Canada compute nodes)
 # Try multiple possible module paths on FIR
-if [ -f /etc/profile.d/modules.sh ]; then
+if [ -f /cvmfs/soft.computecanada.ca/config/profile/bash.sh ]; then
+    source /cvmfs/soft.computecanada.ca/config/profile/bash.sh
+elif [ -f /etc/profile.d/modules.sh ]; then
     source /etc/profile.d/modules.sh
 else
     # Try to load modules directly (fallback for compute nodes)
