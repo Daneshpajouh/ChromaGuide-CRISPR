@@ -16,17 +16,32 @@
 set -euo pipefail
 
 # Initialize module system (required on Alliance Canada compute nodes)
-source /etc/profile.d/modules.sh
+# Try multiple possible module paths on FIR
+if [ -f /etc/profile.d/modules.sh ]; then
+    source /etc/profile.d/modules.sh
+else
+    # Try to load modules directly (fallback for compute nodes)
+    if command -v module >/dev/null 2>&1; then
+        echo "Module command available"
+    else
+        echo "⚠️  Module system not available - using system Python"
+    fi
+fi
 
-module load python/3.11.5
-module load cuda/12.2
+# Load required modules (Alliance Canada standard)
+if command -v module >/dev/null 2>&1; then
+    module load python/3.11.5 2>/dev/null || echo "⚠️  python/3.11.5 not available"
+    module load cuda/12.2 2>/dev/null || echo "⚠️  cuda/12.2 not available"
+else
+    echo "⚠️  Module system not available - proceeding with system paths"
+fi
 
 export VENV_DIR=$SLURM_TMPDIR/env
-virtualenv --no-download $VENV_DIR
+python -m venv $VENV_DIR
 source $VENV_DIR/bin/activate
 
-pip install torch torchvision --no-index
-pip install transformers scipy scikit-learn pandas numpy h5py --no-index
+pip install torch torchvision
+pip install transformers scipy scikit-learn pandas numpy h5py einops
 
 export TRANSFORMERS_OFFLINE=1
 export HF_HUB_OFFLINE=1
