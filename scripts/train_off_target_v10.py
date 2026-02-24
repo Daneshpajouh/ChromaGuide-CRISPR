@@ -26,6 +26,7 @@ import numpy as np
 import pandas as pd
 import os
 import sys
+import argparse
 from sklearn.metrics import roc_auc_score
 from pathlib import Path
 from transformers import AutoTokenizer, AutoModel
@@ -381,15 +382,32 @@ def train_model(model, train_seqs, train_epis, train_labels,
 
 
 def main():
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description='V10 Off-Target Training with DNABERT-2')
+    parser.add_argument('--data_path', type=str, default='data/raw/crisprofft/CRISPRoffT_all_targets.txt',
+                        help='Path to CRISPRoffT data file')
+    parser.add_argument('--epochs', type=int, default=8,
+                        help='Number of training epochs per model')
+    parser.add_argument('--batch_size', type=int, default=128,
+                        help='Batch size for training')
+    parser.add_argument('--output_dir', type=str, default='models',
+                        help='Directory to save trained models')
+    args = parser.parse_args()
+    
     print("="*70)
     print("V10 OFF-TARGET: Hybrid DNABERT-2 + CNN + BiLSTM + Epigenetic Gating")
     print("(Based on CRISPR_DNABERT: kimatakai/CRISPR_DNABERT)")
     print("="*70 + "\n")
+    print(f"Data path: {args.data_path}")
+    print(f"Epochs: {args.epochs}, Batch size: {args.batch_size}\n")
     sys.stdout.flush()
     sys.stderr.flush()
 
+    # Create output directory if needed
+    os.makedirs(args.output_dir, exist_ok=True)
+
     # Load data
-    data_path = '/Users/studio/Desktop/PhD/Proposal/data/raw/crisprofft/CRISPRoffT_all_targets.txt'
+    data_path = os.path.expanduser(args.data_path)
     X_seqs, X_epis, y = load_crispofft_data(data_path)
     print(f"✓ Data loaded: {len(X_seqs)} sequences")
     sys.stdout.flush()
@@ -419,7 +437,7 @@ def main():
 
     print(f"Train: {len(y_train)}, Val: {len(y_val)}, Test: {len(y_test)}\n")
     sys.stdout.flush()
-    
+
     # Train ensemble (extended from 8 epochs in paper to 50 for better ensemble diversity)
     models = []
     val_aucs = []
@@ -436,14 +454,14 @@ def main():
         trained_model, val_auc = train_model(
             model, X_train_seqs, X_train_epis, y_train,
             X_val_seqs, X_val_epis, y_val,
-            epochs=8, seed=i  # EXACT from Kimata et al. (2025)
+            epochs=args.epochs, seed=i  # Use args.epochs instead of hardcoded 8
         )
 
         models.append(trained_model)
         val_aucs.append(val_auc)
 
         torch.save(trained_model.state_dict(),
-                  f'/Users/studio/Desktop/PhD/Proposal/models/off_target_v10_seed{i}.pt')
+                  os.path.join(args.output_dir, f'off_target_v10_seed{i}.pt'))
         print(f"    Model {i+1}: Val AUROC {val_auc:.4f}")
 
     # Ensemble evaluation
@@ -484,7 +502,7 @@ def main():
         'ensemble_logits': ensemble_logits,
         'val_aucs': val_aucs,
         'test_auc': ensemble_auc
-    }, '/Users/studio/Desktop/PhD/Proposal/models/off_target_v10_ensemble.pt')
+    }, os.path.join(args.output_dir, 'off_target_v10_ensemble.pt'))
 
     print(f"\n✓ Ensemble saved\n")
 

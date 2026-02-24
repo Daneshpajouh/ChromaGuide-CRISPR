@@ -18,6 +18,7 @@ from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
 import pandas as pd
 import os
+import argparse
 from scipy.stats import spearmanr
 from pathlib import Path
 from transformers import AutoTokenizer, AutoModel
@@ -290,11 +291,11 @@ class DNABERTMultimodalV10(nn.Module):
         return params  # alpha, beta
 
 
-def load_multimodal_data(split='split_a'):
+def load_multimodal_data(split='split_a', data_base_dir='data/processed'):
     """Load multimodal data from CSV"""
     print(f"Loading multimodal data (split: {split})...")
 
-    data_dir = Path('/Users/studio/Desktop/PhD/Proposal/data/processed') / split
+    data_dir = Path(data_base_dir) / split
 
     sequences = []
     efficiencies = []
@@ -459,13 +460,36 @@ def train_model(model, train_data, val_data, epochs=100, seed=0):
 
 
 def main():
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description='V10 Multimodal Training with DNABERT-2')
+    parser.add_argument('--split', type=str, default='split_a',
+                        help='Data split (split_a, split_b, or split_c)')
+    parser.add_argument('--epochs', type=int, default=200,
+                        help='Number of training epochs per model')
+    parser.add_argument('--batch_size', type=int, default=128,
+                        help='Batch size for training')
+    parser.add_argument('--lr', type=float, default=5e-4,
+                        help='Learning rate')
+    parser.add_argument('--n_seeds', type=int, default=5,
+                        help='Number of ensemble seeds')
+    parser.add_argument('--data_dir', type=str, default='data/processed',
+                        help='Base directory for processed data')
+    parser.add_argument('--output_dir', type=str, default='models',
+                        help='Directory to save trained models')
+    args = parser.parse_args()
+    
     print("="*70)
     print("V10 MULTIMODAL: DNABERT-2 + DeepFusion + Epigenetic Gating")
     print("="*70 + "\n")
+    print(f"Split: {args.split}, Epochs: {args.epochs}, Batch: {args.batch_size}")
+    print(f"Data dir: {args.data_dir}\n")
+
+    # Create output directory if needed
+    os.makedirs(args.output_dir, exist_ok=True)
 
     # Load data
     try:
-        train_data, val_data, test_data = load_multimodal_data()
+        train_data, val_data, test_data = load_multimodal_data(split=args.split, data_base_dir=args.data_dir)
     except Exception as e:
         print(f"Error loading data: {e}")
         print("Creating synthetic data for testing...\n")
@@ -492,7 +516,7 @@ def main():
     models = []
     val_rhos = []
 
-    n_models = 5
+    n_models = args.n_seeds
 
     for i in range(n_models):
         print(f"\n{'='*70}")
@@ -500,13 +524,13 @@ def main():
         print(f"{'='*70}")
 
         model = DNABERTMultimodalV10()
-        trained_model, val_rho = train_model(model, train_data, val_data, epochs=150, seed=i)
+        trained_model, val_rho = train_model(model, train_data, val_data, epochs=args.epochs, seed=i)
 
         models.append(trained_model)
         val_rhos.append(val_rho)
 
         torch.save(trained_model.state_dict(),
-                  f'/Users/studio/Desktop/PhD/Proposal/models/multimodal_v10_seed{i}.pt')
+                  os.path.join(args.output_dir, f'multimodal_v10_seed{i}.pt'))
         print(f"    Model {i+1}: Val Rho {val_rho:.4f}")
 
     # Ensemble evaluation
@@ -550,7 +574,7 @@ def main():
         'val_rhos': val_rhos,
         'test_rho': ensemble_rho,
         'test_pval': ensemble_pval
-    }, '/Users/studio/Desktop/PhD/Proposal/models/multimodal_v10_ensemble.pt')
+    }, os.path.join(args.output_dir, 'multimodal_v10_ensemble.pt'))
 
     print(f"\n✓ Ensemble saved\n")
 
