@@ -25,6 +25,9 @@ echo "Node: $SLURM_NODELIST"
 echo "GPU: $SLURM_GPUS"
 echo ""
 
+# Initialize module system (required on Alliance Canada compute nodes)
+source /etc/profile.d/modules.sh
+
 # Load required modules (Alliance Canada standard)
 module load python/3.11.5
 module load cuda/12.2

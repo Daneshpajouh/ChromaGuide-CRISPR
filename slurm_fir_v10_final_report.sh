@@ -14,6 +14,9 @@
 
 set -euo pipefail
 
+# Initialize module system (required on Alliance Canada compute nodes)
+source /etc/profile.d/modules.sh
+
 module load python/3.11.5
 module load cuda/12.2
 
