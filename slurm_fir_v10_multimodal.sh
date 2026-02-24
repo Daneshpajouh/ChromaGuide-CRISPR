@@ -53,8 +53,8 @@ echo ""
 
 # Create virtual environment in SLURM_TMPDIR (fast SSD)
 export VENV_DIR=$SLURM_TMPDIR/env
-echo "Creating virtualenv in $VENV_DIR..."
-virtualenv --no-download $VENV_DIR
+echo "Creating Python venv in $VENV_DIR..."
+python -m venv $VENV_DIR
 source $VENV_DIR/bin/activate
 
 echo "Virtual environment activated"
