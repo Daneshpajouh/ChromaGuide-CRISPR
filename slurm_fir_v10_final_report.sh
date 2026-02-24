@@ -39,8 +39,7 @@ export VENV_DIR=$SLURM_TMPDIR/env
 python -m venv $VENV_DIR
 source $VENV_DIR/bin/activate
 
-pip install torch torchvision
-pip install transformers scipy scikit-learn pandas numpy h5py einops
+pip install --no-index --find-links ~/.cache/pip-wheels torch transformers scipy scikit-learn pandas numpy h5py einops
 
 export TRANSFORMERS_OFFLINE=1
 export HF_HUB_OFFLINE=1

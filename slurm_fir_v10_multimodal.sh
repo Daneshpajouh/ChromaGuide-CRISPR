@@ -62,10 +62,9 @@ echo "Python: $(which python)"
 echo ""
 
 # Install packages from pre-built wheels (no compilation)
-echo "Installing PyTorch + dependencies..."
-pip install torch torchvision
-pip install transformers scipy scikit-learn pandas numpy h5py einops
-# Note: First install may download from internet, subsequent runs will use cache
+echo "Installing PyTorch + dependencies from NFS cache..."
+pip install --no-index --find-links ~/.cache/pip-wheels torch transformers scipy scikit-learn pandas numpy h5py einops
+echo "Packages installed from shared cache"
 
 echo "Packages installed"
 echo ""
