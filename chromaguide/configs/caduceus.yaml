@@ -1,0 +1,10 @@
+# Experiment config: Caduceus backbone
+model:
+  sequence_encoder:
+    type: caduceus
+    output_dim: 64
+
+training:
+  optimizer:
+    lr: 3e-4
+  batch_size: 256

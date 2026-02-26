@@ -1,0 +1,13 @@
+# Experiment config: DNABERT-2 backbone
+# Override from default config
+model:
+  sequence_encoder:
+    type: dnabert2
+    output_dim: 64
+
+training:
+  optimizer:
+    lr: 2e-5  # Lower LR for fine-tuning pretrained model
+    weight_decay: 0.01
+  batch_size: 64  # Smaller batch for larger model
+  max_epochs: 50  # Fewer epochs for fine-tuning

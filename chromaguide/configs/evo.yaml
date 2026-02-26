@@ -1,0 +1,12 @@
+# Experiment config: Evo backbone with LoRA adapters
+model:
+  sequence_encoder:
+    type: evo
+    output_dim: 64
+
+training:
+  optimizer:
+    lr: 1e-4  # Moderate LR for adapter training
+    weight_decay: 0.001
+  batch_size: 32  # Small batch for large backbone
+  max_epochs: 30

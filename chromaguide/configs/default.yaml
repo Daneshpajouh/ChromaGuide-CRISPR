@@ -1,0 +1,255 @@
+# ChromaGuide Default Configuration
+# All paths are relative to project root unless absolute
+
+project:
+  name: chromaguide
+  seed: 42
+  device: cuda
+  num_workers: 4
+  precision: 16  # mixed precision
+
+# ============================================================
+# DATA
+# ============================================================
+data:
+  root: data/
+  raw_dir: data/raw/
+  processed_dir: data/processed/
+  
+  # Primary dataset
+  deephf:
+    url: "https://github.com/Yichuan-Guo/DeepHF/raw/master/data/"
+    cell_lines: [HEK293T, HCT116, HeLa]
+    cas9_variants: [WT, ESP, HF]
+    seq_len: 23  # 20nt protospacer + 3nt PAM
+    
+  # Stress test datasets
+  crispron:
+    url: "https://rth.dk/resources/crispr/"
+    n_guides: 23902
+    
+  crispr_fmc:
+    github: "https://github.com/xx0220/CRISPR-FMC"
+    datasets: [WT, ESP, HF, xCas9, SpCas9_NG, Sniper, HCT116, HELA, HL60]
+
+  # ENCODE epigenomic tracks (hg38)
+  encode:
+    HEK293T:
+      DNase: ENCSR000ENM
+      H3K4me3: ENCSR000DTU
+      H3K27ac: ENCSR000FCJ
+    HCT116:
+      DNase: ENCSR000ENO
+      H3K4me3: ENCSR000DWN
+      ATAC: ENCSR000EOJ
+    HeLa:
+      DNase: ENCSR000ENP
+      H3K4me3: ENCSR000DWE
+      H3K27ac: ENCSR000FCG
+  
+  epigenomic:
+    window_size: 2000  # ±1kb around cut site
+    n_bins: 100        # bin the window into 100 bins
+    tracks: [DNase, H3K4me3, H3K27ac]  # or ATAC where available
+    normalization: log1p_zscore  # log1p then z-score (train stats only)
+
+  # Off-target datasets
+  offtarget:
+    guideseq:
+      url: "https://github.com/tsailabSJ/guideseq"
+    circleseq:
+      url: "https://github.com/tsailabSJ/circleseq"
+    max_mismatches: 6
+    max_bulges: 1
+
+# ============================================================
+# SPLITS (leakage-controlled)
+# ============================================================
+splits:
+  split_a:  # Gene-held-out
+    type: gene_held_out
+    train_ratio: 0.7
+    cal_ratio: 0.15
+    test_ratio: 0.15
+    dedup: true
+    similarity_filter: false  # optional sensitivity analysis
+    
+  split_b:  # Dataset-held-out
+    type: dataset_held_out
+    leave_out: auto  # leave-one-dataset-out
+    
+  split_c:  # Cell-line-held-out
+    type: cell_line_held_out
+    leave_out: auto  # leave-one-cell-line-out
+
+# ============================================================
+# MODEL ARCHITECTURE
+# ============================================================
+model:
+  # Sequence encoder
+  sequence_encoder:
+    type: cnn_gru  # baseline; alternatives: dnabert2, caduceus, evo
+    cnn:
+      kernel_sizes: [3, 5, 7]
+      n_filters: 64
+      dropout: 0.1
+    gru:
+      hidden_size: 128
+      num_layers: 2
+      bidirectional: true
+      dropout: 0.2
+    output_dim: 64
+    
+  # Epigenomic encoder
+  epigenomic_encoder:
+    type: mlp  # alternatives: cnn_1d
+    input_dim: 300  # n_bins * n_tracks
+    hidden_dims: [256, 128]
+    output_dim: 64
+    dropout: 0.2
+    activation: gelu
+    
+  # Fusion
+  fusion:
+    type: gated_attention  # alternatives: concat_mlp, cross_attention, moe
+    input_dim: 128  # seq_dim + epi_dim
+    output_dim: 128
+    gate_activation: sigmoid
+    
+  # Non-redundancy regularizer (optional)
+  non_redundancy:
+    enabled: false  # ablation
+    type: mine  # or club
+    lambda_nr: 0.01
+    
+  # Prediction head (Beta regression)
+  prediction_head:
+    type: beta_regression
+    input_dim: 128
+    epsilon: 1e-6  # clipping for y in (eps, 1-eps)
+    phi_min: 2.0   # minimum precision
+    phi_max: 1000.0
+
+  # Modality dropout
+  modality_dropout:
+    enabled: true
+    prob: 0.15  # probability of masking epigenomic input
+
+# ============================================================
+# OFF-TARGET MODULE
+# ============================================================
+offtarget_model:
+  scoring:
+    type: cnn  # 1D CNN over aligned guide-target pair
+    kernel_sizes: [3, 5, 7]
+    n_filters: 64
+    fc_dims: [128, 64]
+    output: sigmoid
+    use_chromatin: true
+    
+  aggregation:
+    type: noisy_or  # or weighted_sum
+    top_k: 20
+    temperature: 1.0
+    
+  training:
+    loss: bce
+    pos_weight: 20.0  # class imbalance
+    lr: 1e-3
+    batch_size: 512
+    epochs: 50
+
+# ============================================================
+# DESIGN SCORE
+# ============================================================
+design_score:
+  weights:
+    efficacy: 1.0    # w_e
+    risk: 0.5        # w_r
+    uncertainty: 0.2  # w_u
+  normalize: minmax  # normalize components to [0,1]
+
+# ============================================================
+# TRAINING
+# ============================================================
+training:
+  optimizer:
+    type: adamw
+    lr: 5e-4
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+    
+  scheduler:
+    type: cosine_warmup
+    warmup_epochs: 5
+    min_lr: 1e-6
+    
+  loss:
+    primary: mse  # L_MSE
+    lambda_cal: 0.1  # calibration penalty weight
+    lambda_nr: 0.01  # non-redundancy weight (when enabled)
+    
+  batch_size: 256
+  max_epochs: 100
+  patience: 15  # early stopping
+  gradient_clip: 1.0
+  
+  # Optuna HPO
+  hpo:
+    n_trials: 50
+    sampler: tpe
+    search_space:
+      lr: [1e-5, 1e-2, log]
+      dropout: [0.05, 0.4]
+      hidden_dim: [64, 128, 256]
+      batch_size: [32, 64, 128]
+      gate_bias: [-1.0, 1.0]
+
+# ============================================================
+# CONFORMAL PREDICTION
+# ============================================================
+conformal:
+  alpha: 0.10  # target miscoverage rate (90% coverage)
+  method: split  # split conformal; weighted for Splits B/C
+  beta_sigma: true  # use Beta variance for normalization
+  tolerance: 0.02  # coverage tolerance
+
+# ============================================================
+# EVALUATION
+# ============================================================
+evaluation:
+  metrics:
+    primary: spearman
+    secondary: [pearson, mse, mae, r2]
+    ranking: [ndcg_5, ndcg_10, ndcg_20, precision_5, precision_10]
+    calibration: [ece, brier, crps]
+    uncertainty: [coverage, interval_width, coverage_by_group]
+    offtarget: [auroc, auprc, f1]
+    
+  statistical_tests:
+    model_comparison: 5x2cv_paired_t
+    bootstrap_ci:
+      n_resamples: 10000
+      method: bca
+    multiple_testing:
+      primary: holm_bonferroni  # FWER for H1, H2, H3
+      ablation: benjamini_hochberg  # FDR for ablations
+    significance: 0.05
+    
+  # Ablation configurations
+  ablations:
+    backbones: [cnn_gru, dnabert2, nucleotide_transformer, caduceus, evo]
+    epigenomic: [none, accessibility_only, histone_only, full, mismatched_cell]
+    fusion: [concat_mlp, gated_attention, cross_attention, moe]
+    seeds: [42, 123, 456]
+
+# ============================================================
+# COMPUTE (SFU Fir Cluster)
+# ============================================================
+compute:
+  cluster: sfu_fir
+  gpu: A100_80GB
+  n_gpus: 1
+  time_limit: "24:00:00"
+  memory: "64G"
+  partition: gpu

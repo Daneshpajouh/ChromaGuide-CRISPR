@@ -120,3 +120,19 @@ Thumbs.db
 !requirements.txt
 !README.md
 !.gitignore
+
+# ChromaGuide v2
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+data/raw/
+data/processed/
+results/checkpoints/*.pt
+results/logs/*.log
+*.db
+wandb/
+.wandb/
