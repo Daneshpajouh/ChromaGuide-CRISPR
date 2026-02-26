@@ -175,7 +175,7 @@ def build_model(cfg, device):
     return model
 
 
-def train_epoch(model, loader, optimizer, criterion, scaler, device, grad_clip=1.0, use_amp=True):
+def train_epoch(model, loader, optimizer, criterion, scaler, device, grad_clip=1.0, use_amp=True, needs_raw_sequences=False):
     """Train for one epoch."""
     model.train()
     epoch_loss = 0.0
@@ -186,11 +186,12 @@ def train_epoch(model, loader, optimizer, criterion, scaler, device, grad_clip=1
         seq = batch['sequence'].to(device)
         epi = batch['epigenomic'].to(device)
         target = batch['efficacy'].to(device)
+        raw_seqs = batch.get('sequence_str') if needs_raw_sequences else None
         
         optimizer.zero_grad()
         
         with torch.cuda.amp.autocast(enabled=use_amp):
-            mu, phi = model(seq, epi)
+            mu, phi = model(seq, epi, raw_sequences=raw_seqs)
             losses = criterion(mu, phi, target)
         
         scaler.scale(losses['total']).backward()
@@ -213,7 +214,7 @@ def train_epoch(model, loader, optimizer, criterion, scaler, device, grad_clip=1
 
 
 @torch.no_grad()
-def evaluate(model, loader, criterion, device, use_amp=True):
+def evaluate(model, loader, criterion, device, use_amp=True, needs_raw_sequences=False):
     """Evaluate model and compute metrics."""
     from scipy.stats import spearmanr, pearsonr
     
@@ -226,9 +227,10 @@ def evaluate(model, loader, criterion, device, use_amp=True):
         seq = batch['sequence'].to(device)
         epi = batch['epigenomic'].to(device)
         target = batch['efficacy'].to(device)
+        raw_seqs = batch.get('sequence_str') if needs_raw_sequences else None
         
         with torch.cuda.amp.autocast(enabled=use_amp):
-            mu, phi = model(seq, epi)
+            mu, phi = model(seq, epi, raw_sequences=raw_seqs)
             losses = criterion(mu, phi, target)
         
         all_mu.append(mu.cpu().numpy().flatten())
@@ -257,15 +259,15 @@ def evaluate(model, loader, criterion, device, use_amp=True):
     }
 
 
-def calibrate_conformal(model, cal_loader, test_loader, cfg, device, use_amp=True):
+def calibrate_conformal(model, cal_loader, test_loader, cfg, device, use_amp=True, needs_raw_sequences=False):
     """Calibrate conformal predictor and evaluate coverage."""
     from chromaguide.modules.conformal import SplitConformalPredictor
     
     model.eval()
     
     # Collect calibration predictions
-    cal_mu, cal_phi, cal_y = collect_predictions(model, cal_loader, device, use_amp)
-    test_mu, test_phi, test_y = collect_predictions(model, test_loader, device, use_amp)
+    cal_mu, cal_phi, cal_y = collect_predictions(model, cal_loader, device, use_amp, needs_raw_sequences)
+    test_mu, test_phi, test_y = collect_predictions(model, test_loader, device, use_amp, needs_raw_sequences)
     
     cp = SplitConformalPredictor(
         alpha=cfg.conformal.alpha,
@@ -287,7 +289,7 @@ def calibrate_conformal(model, cal_loader, test_loader, cfg, device, use_amp=Tru
 
 
 @torch.no_grad()
-def collect_predictions(model, loader, device, use_amp=True):
+def collect_predictions(model, loader, device, use_amp=True, needs_raw_sequences=False):
     """Collect model predictions."""
     model.eval()
     mus, phis, ys = [], [], []
@@ -296,9 +298,10 @@ def collect_predictions(model, loader, device, use_amp=True):
         seq = batch['sequence'].to(device)
         epi = batch['epigenomic'].to(device)
         target = batch['efficacy']
+        raw_seqs = batch.get('sequence_str') if needs_raw_sequences else None
         
         with torch.cuda.amp.autocast(enabled=use_amp):
-            mu, phi = model(seq, epi)
+            mu, phi = model(seq, epi, raw_sequences=raw_seqs)
         
         mus.append(mu.cpu().numpy().flatten())
         phis.append(phi.cpu().numpy().flatten())
@@ -337,7 +340,7 @@ def main():
     logger.info(f"  Device: {'cuda' if torch.cuda.is_available() else 'cpu'}")
     if torch.cuda.is_available():
         logger.info(f"  GPU: {torch.cuda.get_device_name(0)}")
-        logger.info(f"  VRAM: {torch.cuda.get_device_properties(0).total_mem / 1e9:.1f} GB")
+        logger.info(f"  VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
     logger.info("=" * 70)
     
     # Seed
@@ -416,6 +419,11 @@ def main():
     patience_counter = 0
     history = {'train_loss': [], 'val_loss': [], 'val_spearman': [], 'val_pearson': [], 'lr': []}
     
+    # Determine if backbone needs raw DNA sequences (transformer-based encoders)
+    needs_raw_seq = args.backbone in ['dnabert2', 'evo', 'nucleotide_transformer']
+    if needs_raw_seq:
+        logger.info(f"Backbone '{args.backbone}' requires raw DNA sequences — will pass sequence_str from batch")
+    
     start_time = time.time()
     
     for epoch in range(1, cfg.training.max_epochs + 1):
@@ -424,11 +432,13 @@ def main():
         # Train
         train_metrics = train_epoch(
             model, train_loader, optimizer, criterion, scaler, device,
-            grad_clip=args.gradient_clip, use_amp=use_amp
+            grad_clip=args.gradient_clip, use_amp=use_amp,
+            needs_raw_sequences=needs_raw_seq
         )
         
         # Validate
-        val_metrics = evaluate(model, cal_loader, criterion, device, use_amp=use_amp)
+        val_metrics = evaluate(model, cal_loader, criterion, device, use_amp=use_amp,
+                               needs_raw_sequences=needs_raw_seq)
         
         # Step scheduler
         scheduler.step()
@@ -511,7 +521,8 @@ def main():
         logger.info(f"Loaded best checkpoint from epoch {ckpt['epoch']}")
     
     # Test evaluation
-    test_metrics = evaluate(model, test_loader, criterion, device, use_amp=use_amp)
+    test_metrics = evaluate(model, test_loader, criterion, device, use_amp=use_amp,
+                            needs_raw_sequences=needs_raw_seq)
     
     logger.info(f"Test Spearman ρ:  {test_metrics['spearman']:.4f}")
     logger.info(f"Test Pearson r:   {test_metrics['pearson']:.4f}")
@@ -525,7 +536,8 @@ def main():
     # Conformal calibration
     logger.info("\nConformal prediction calibration...")
     try:
-        conformal_results = calibrate_conformal(model, cal_loader, test_loader, cfg, device, use_amp)
+        conformal_results = calibrate_conformal(model, cal_loader, test_loader, cfg, device, use_amp,
+                                                    needs_raw_sequences=needs_raw_seq)
     except Exception as e:
         logger.warning(f"Conformal calibration failed: {e}")
         conformal_results = {'coverage': -1, 'avg_width': -1, 'within_tolerance': False}

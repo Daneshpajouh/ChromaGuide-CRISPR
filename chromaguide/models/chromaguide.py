@@ -67,7 +67,7 @@ class ChromaGuideModel(nn.Module):
         self.modality_dropout_prob = cfg.model.modality_dropout.prob
         
         # Store raw sequences flag (for transformer-based encoders)
-        self._needs_raw_sequences = cfg.model.sequence_encoder.type in ["dnabert2", "evo"]
+        self._needs_raw_sequences = cfg.model.sequence_encoder.type in ["dnabert2", "evo", "nucleotide_transformer"]
     
     def forward(
         self,

@@ -27,10 +27,13 @@ cd ~/scratch/chromaguide_v2
 source ~/scratch/chromaguide_v2_env/bin/activate
 
 python experiments/train_experiment.py \
-    --config configs/evo.yaml \
+    --backbone evo \
     --split B \
+    --split-fold 0 \
     --seed 123 \
-    --output_dir results/evo_splitB_seed123
+    --data-dir ~/scratch/chromaguide_v2/data \
+    --output-dir ~/scratch/chromaguide_v2/results \
+    --no-wandb
 
 EXIT_CODE=$?
 
@@ -39,10 +42,10 @@ echo "Exit code: $EXIT_CODE"
 echo "End: $(date)"
 
 # Print results summary
-if [ -f results/evo_splitB_seed123/metrics.json ]; then
+if [ -f ~/scratch/chromaguide_v2/results/evo_splitB_seed123/metrics.json ]; then
     python -c "
 import json
-with open('results/evo_splitB_seed123/metrics.json') as f:
+with open('~/scratch/chromaguide_v2/results/evo_splitB_seed123/metrics.json') as f:
     r = json.load(f)
 print(f'Spearman: {r[\"spearman_rho\"]:.4f}')
 print(f'AUROC:    {r[\"auroc\"]:.4f}')

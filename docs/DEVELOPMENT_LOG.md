@@ -276,3 +276,93 @@ Created `experiments/prepare_data.py`:
 - **GPU:** NVIDIA V100-16GB
 - **SLURM:** Broken (plugin incompatibility)
 - **Issue:** `cc-tmpfs_mounts.so` version mismatch
+
+---
+
+## Session 4: Full Code Audit & Critical Bug Fixes (Feb 26, 2026)
+
+### Discovery: ALL 45 Jobs Failed
+Checked job status on Narval — all 12 jobs completed with errors. The same bugs likely affected all 45 jobs across all clusters.
+
+### Full Codebase Audit
+Performed a comprehensive audit of ALL Python modules in the `chromaguide/` package. Read every file line by line:
+
+**Files audited (17 total):**
+- `experiments/train_experiment.py` (626 lines)
+- `chromaguide/modules/sequence_encoders.py` (667 lines)
+- `chromaguide/modules/epigenomic_encoder.py` (112 lines)
+- `chromaguide/modules/fusion.py` (250 lines)
+- `chromaguide/modules/prediction_head.py` (115 lines)
+- `chromaguide/modules/conformal.py` (217 lines)
+- `chromaguide/modules/__init__.py`
+- `chromaguide/models/chromaguide.py` (182 lines)
+- `chromaguide/models/offtarget.py` (297 lines)
+- `chromaguide/models/__init__.py`
+- `chromaguide/training/losses.py` (248 lines)
+- `chromaguide/training/trainer.py` (468 lines)
+- `chromaguide/training/__init__.py`
+- `chromaguide/data/dataset.py` (230 lines)
+- `chromaguide/data/splits.py` (260 lines)
+- `chromaguide/utils/reproducibility.py` (43 lines)
+- `chromaguide/utils/config.py` (52 lines)
+- All 5 backbone config YAMLs + default.yaml
+
+### Bugs Found & Fixed
+
+#### Bug 1 (CRITICAL): `total_mem` → `total_memory` in train_experiment.py
+- **File:** `experiments/train_experiment.py` line 340
+- **Symptom:** `AttributeError: 'CUDADeviceProperties' object has no attribute 'total_mem'`
+- Crashed immediately before any training could start
+- **Fix:** Changed to `total_memory`
+
+#### Bug 2 (CRITICAL): Missing `--backbone` in redistributed SLURM scripts
+- **Files:** 15 redistributed scripts (`*_seed123_narval.sh`, `*_seed123_nibi.sh`, etc.)
+- **Symptom:** `argparse` error — `--backbone` is required but missing
+- **Fix:** Added `--backbone <type>` and corrected config paths
+
+#### Bug 3 (MEDIUM): `total_mem` → `total_memory` in reproducibility.py
+- **File:** `chromaguide/utils/reproducibility.py` line 25
+- Same attribute name error in `get_device()` utility function
+- **Fix:** Changed to `total_memory`
+
+#### Bug 4 (CRITICAL): Raw DNA sequences not passed to transformer encoders
+- **File:** `experiments/train_experiment.py` — `train_epoch()`, `evaluate()`, `collect_predictions()`
+- **Root cause:** Training loop calls `model(seq, epi)` without passing `raw_sequences`
+- For DNABERT-2, Evo, NT: either crashes (if pretrained model loaded) or produces garbage (if using placeholder)
+- **Fix:** Added `needs_raw_sequences` flag, threaded `batch['sequence_str']` through all training/eval functions
+
+#### Bug 5 (CRITICAL): `nucleotide_transformer` missing from `_needs_raw_sequences`
+- **File:** `chromaguide/models/chromaguide.py` line 70
+- The `_needs_raw_sequences` check only included `["dnabert2", "evo"]`, not `"nucleotide_transformer"`
+- **Fix:** Added `"nucleotide_transformer"` to the list
+
+#### Bug 6 (MINOR): Missing `NucleotideTransformerEncoder` in `__init__.py`
+- **File:** `chromaguide/modules/__init__.py`
+- Cosmetic — doesn't affect runtime since the factory function works
+- **Fix:** Added to imports and `__all__`
+
+### Local Dry-Run Testing
+Created `test_dry_run.py` — comprehensive test suite that verifies:
+1. All 13 critical imports
+2. Data collation with string fields
+3. For each of 5 backbones: config loading, model building, forward pass, loss computation, backward pass, optimizer step, conformal prediction, scheduler
+
+**Result: 54/54 tests passed on all 5 backbones.**
+
+### SLURM Script Verification
+- Verified all 45 active scripts have `--backbone` argument
+- Verified all 15 Fir scripts have `gpubase_bygpu_b3` partition
+- Verified no non-Fir scripts have partition (correct — they use defaults)
+- Confirmed correct data paths, config paths, and output directories
+
+### Files Modified
+| File | Changes |
+|------|---------|
+| `experiments/train_experiment.py` | Fixed `total_mem`, added `needs_raw_sequences` to train_epoch/evaluate/collect_predictions/calibrate_conformal/main |
+| `chromaguide/models/chromaguide.py` | Added `nucleotide_transformer` to `_needs_raw_sequences` |
+| `chromaguide/utils/reproducibility.py` | Fixed `total_mem` → `total_memory` |
+| `chromaguide/modules/__init__.py` | Added `NucleotideTransformerEncoder` export |
+| `test_dry_run.py` | New — comprehensive local test suite |
+| `BUG_REPORT.md` | New — detailed bug report |
+| `docs/EXPERIMENT_STATUS.md` | Updated with failure status and bug info |
+| `docs/DEVELOPMENT_LOG.md` | Added Session 4 entry |
