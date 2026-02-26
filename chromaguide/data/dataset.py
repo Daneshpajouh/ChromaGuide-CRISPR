@@ -122,7 +122,15 @@ class CRISPRDataset(Dataset):
         """
         processed_dir = Path(processed_dir)
         
-        df = pd.read_parquet(processed_dir / "sequences.parquet")
+        # Support both parquet and CSV
+        parquet_path = processed_dir / "sequences.parquet"
+        csv_path = processed_dir / "sequences.csv"
+        if parquet_path.exists():
+            df = pd.read_parquet(parquet_path)
+        elif csv_path.exists():
+            df = pd.read_csv(csv_path)
+        else:
+            raise FileNotFoundError(f"No sequences file found in {processed_dir}")
         efficacy = np.load(processed_dir / "efficacy.npy")
         epigenomic = np.load(processed_dir / "epigenomic.npy")
         

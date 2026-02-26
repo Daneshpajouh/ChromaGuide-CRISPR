@@ -117,11 +117,12 @@ def main():
         )
     
     # Save
-    combined.to_parquet(processed_dir / 'sequences.parquet', index=False)
+    # Use CSV instead of parquet for better portability across clusters
+    combined.to_csv(processed_dir / 'sequences.csv', index=False)
     np.save(processed_dir / 'efficacy.npy', combined['efficacy'].values.astype(np.float32))
     np.save(processed_dir / 'epigenomic.npy', epi_signals)
     
-    logger.info(f"Saved: {processed_dir}/sequences.parquet ({len(combined)} rows)")
+    logger.info(f"Saved: {processed_dir}/sequences.csv ({len(combined)} rows)")
     logger.info(f"Saved: {processed_dir}/efficacy.npy {combined['efficacy'].values.shape}")
     logger.info(f"Saved: {processed_dir}/epigenomic.npy {epi_signals.shape}")
     

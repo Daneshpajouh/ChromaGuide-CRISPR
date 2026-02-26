@@ -218,8 +218,15 @@ def build_all_splits(cfg: DictConfig) -> None:
     """
     processed_dir = Path(cfg.data.processed_dir)
     
-    # Load processed data
-    df = pd.read_parquet(processed_dir / "sequences.parquet")
+    # Load processed data (support both parquet and CSV)
+    parquet_path = processed_dir / "sequences.parquet"
+    csv_path = processed_dir / "sequences.csv"
+    if parquet_path.exists():
+        df = pd.read_parquet(parquet_path)
+    elif csv_path.exists():
+        df = pd.read_csv(csv_path)
+    else:
+        raise FileNotFoundError(f"No sequences file found in {processed_dir}")
     
     builder = SplitBuilder(df, seed=cfg.project.seed)
     
