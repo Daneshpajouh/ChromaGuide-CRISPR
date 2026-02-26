@@ -1,99 +1,101 @@
-# Experiment Deployment Status — Session 5
+# ChromaGuide Experiment Status — Session 6
 
-## Date: February 26, 2026, 02:00-08:00 UTC (PST: Feb 25, 6pm-12am)
+## Date: February 26, 2026 (Session 6: Real Data Fix)
 
-## Summary
-- **6 critical bugs fixed** (see BUG_REPORT.md)
-- **54/54 local tests passing** (test_dry_run.py)
-- **45 SLURM jobs submitted** across 3 clusters
-- **Fir cluster down** — 15 jobs redistributed to Narval/Rorqual
+## CRITICAL FINDING: Synthetic Data Root Cause
+
+### Problem Discovered
+All 29 completed experiments (Narval 20/20, Rorqual 9/19) showed **Spearman ρ ≈ 0** (range: -0.004 to 0.014). After investigation, the root cause was identified:
+
+**The training data was synthetic with ZERO correlation between sequences and labels.**
+
+The `preprocess.py` synthetic data generators (`_generate_synthetic_deephf()`, `_generate_synthetic_crispron()`, `_generate_synthetic_fmc()`) produce:
+- Random DNA sequences (uniform ACGT sampling)
+- Independent random Beta-distributed efficacy scores
+- No sequence-efficacy relationship whatsoever
+
+When real CRISPR datasets were not found on the clusters, the code silently fell back to synthetic generation. This made it mathematically impossible for any model to learn.
+
+### Fix Applied
+Completely rewrote the data pipeline to use **verified real CRISPR datasets**:
+
+1. **Data source**: CRISPR-FMC benchmark datasets from [xx0220/CRISPR-FMC](https://github.com/xx0220/CRISPR-FMC)
+2. **9 datasets, 291,639 sgRNAs total**:
+   - Large-scale (Wang et al. 2019): WT (55,603), ESP (58,616), HF (56,887)
+   - Medium-scale (Kim et al. 2020): xCas9 (37,738), SpCas9-NG (30,585), Sniper (37,794)
+   - Small-scale (Hart 2015/Chuai 2018): HCT116 (4,239), HELA (8,101), HL60 (2,076)
+3. **94,615 unique sequences** after cross-dataset deduplication
+4. **Efficacy variance = 0.074** (vs. ~0 with synthetic data)
+
+### Files Modified
+- `chromaguide/data/acquire.py` — Rewritten with verified download URLs
+- `chromaguide/data/preprocess.py` — Rewritten to parse real CSV data, per-dataset normalization
+- `experiments/prepare_data.py` — Updated for new pipeline
+- `experiments/slurm_data_prep.sh` — Cluster data download script
+
+### Dataset Statistics (Real Data)
+| Dataset | N | Efficacy μ ± σ | Cell Line | Cas9 Variant | Source |
+|---------|---|----------------|-----------|--------------|--------|
+| WT | 55,603 | 0.721 ± 0.222 | HEK293T | WT | Wang 2019 |
+| ESP | 58,616 | 0.354 ± 0.189 | HEK293T | eSpCas9 | Wang 2019 |
+| HF | 56,887 | 0.474 ± 0.208 | HEK293T | SpCas9-HF1 | Wang 2019 |
+| xCas9 | 37,738 | 0.286 ± 0.242 | HEK293T | xCas9 | Kim 2020 |
+| SpCas9-NG | 30,585 | 0.400 ± 0.230 | HEK293T | SpCas9-NG | Kim 2020 |
+| Sniper | 37,794 | 0.311 ± 0.290 | HEK293T | Sniper-Cas9 | Kim 2020 |
+| HCT116 | 4,239 | 0.269 ± 0.182 | HCT116 | WT | Hart 2015 |
+| HELA | 8,101 | 0.257 ± 0.182 | HeLa | WT | Hart 2015 |
+| HL60 | 2,076 | 0.307 ± 0.171 | HL60 | WT | Wang 2014 |
+
+### Split Statistics (after deduplication to 94,615 unique sequences)
+- **Split A (Gene-held-out)**: train=66,445, cal=13,982, test=14,188
+- **Split B (Dataset-held-out)**: 9 folds
+- **Split C (Cell-line-held-out)**: 4 folds (HEK293T, HCT116, HeLa, HL60)
+
+## Previous Experiment Results (INVALID — Synthetic Data)
+
+### Narval (A100-40GB) — 20/20 COMPLETED (Spearman ≈ 0)
+| Job ID | Backbone | Split | Seed | Spearman | Status |
+|--------|----------|-------|------|----------|--------|
+| 57045459-57045480 | All | All | All | -0.004 to 0.014 | COMPLETED (INVALID) |
+
+### Rorqual (H100-80GB) — 9 COMPLETED, 10 FAILED
+- 9 completed: Spearman ≈ 0 (INVALID, same synthetic data issue)
+- 3 DNABERT-2 seed=123 FAILED: exit code 1
+- 4 Evo FAILED: packages not installed in venv
+- 3 NT (redistributed) FAILED: same package issue
+
+### Nibi — 6 jobs (NOT YET CHECKED)
+| Job ID | Backbone | Split | Seed | Status |
+|--------|----------|-------|------|--------|
+| 9334978-9334983 | CNN-GRU | A/B/C | 123/456 | UNKNOWN |
+
+### Fir — NOT YET CHECKED (was DOWN)
+
+## Next Steps (This Session)
+1. ✅ Download real CRISPR datasets (9 benchmarks, 291K samples)
+2. ✅ Rewrite data pipeline (acquire.py, preprocess.py, prepare_data.py)
+3. ✅ Validate pipeline locally (all checks passed)
+4. ⬜ Check Nibi and Fir cluster status
+5. ⬜ Deploy updated code + real data to all clusters
+6. ⬜ Fix Evo/NT package issues on Rorqual
+7. ⬜ Resubmit all 45 experiments with real data
+8. ⬜ Push to GitHub
+
+## SOTA Comparison Targets
+From CRISPR-FMC (Xiang et al. 2025, Frontiers in Genome Editing):
+| Dataset | SOTA SCC | SOTA PCC | Method |
+|---------|----------|----------|--------|
+| WT | 0.861 | 0.889 | CRISPR-FMC |
+| ESP | 0.851 | 0.845 | CRISPR-FMC |
+| HF | 0.851 | 0.866 | CRISPR-FMC |
+| Sniper | 0.935 | 0.957 | CRISPR-FMC |
+| HCT116 | ~0.4 | ~0.4 | CRISPR-FMC |
+| HELA | ~0.4 | ~0.4 | CRISPR-FMC |
+| HL60 | 0.402 | 0.404 | CRISPR-FMC |
+
+**ChromaGuide target**: Spearman ρ ≥ 0.91 (proposal H1 target)
 
 ## GitHub
 - Branch: `v2-full-rewrite`
-- Latest commit: `02f8239` — "redistribute 15 Fir jobs to Narval (8) and Rorqual (7)"
-- Previous: `2964663` — "fix: resolve 6 critical bugs causing all 45 experiment failures"
-
-## Job Submissions
-
-### Narval (A100-40GB) — 20 jobs total
-| Job ID | Backbone | Split | Seed | Status |
-|--------|----------|-------|------|--------|
-| 57045459 | Caduceus | A | 42 | PENDING |
-| 57045460 | Caduceus | A | 123 | PENDING |
-| 57045461 | Caduceus | A | 456 | PENDING |
-| 57045462 | Caduceus | B | 42 | PENDING |
-| 57045463 | Caduceus | B | 123 | PENDING |
-| 57045464 | Caduceus | B | 456 | PENDING |
-| 57045465 | Caduceus | C | 42 | PENDING |
-| 57045466 | Caduceus | C | 123 | PENDING |
-| 57045467 | Caduceus | C | 456 | PENDING |
-| 57045468 | CNN-GRU | A | 42 | PENDING |
-| 57045469 | CNN-GRU | B | 42 | PENDING |
-| 57045470 | CNN-GRU | C | 42 | PENDING |
-| 57045473 | Evo | A | 42 | PENDING (from Fir) |
-| 57045474 | Evo | A | 123 | PENDING (from Fir) |
-| 57045475 | Evo | A | 456 | PENDING (from Fir) |
-| 57045476 | Evo | B | 42 | PENDING (from Fir) |
-| 57045477 | Evo | C | 42 | PENDING (from Fir) |
-| 57045478 | NT | A | 42 | PENDING (from Fir) |
-| 57045479 | NT | A | 456 | PENDING (from Fir) |
-| 57045480 | NT | C | 42 | PENDING (from Fir) |
-
-### Rorqual (H100-80GB) — 19 jobs total
-| Job ID | Backbone | Split | Seed | Status |
-|--------|----------|-------|------|--------|
-| 7372201 | DNABERT-2 | A | 42 | RUNNING |
-| 7372202 | DNABERT-2 | A | 123 | PENDING |
-| 7372203 | DNABERT-2 | A | 456 | RUNNING |
-| 7372204 | DNABERT-2 | B | 42 | RUNNING |
-| 7372205 | DNABERT-2 | B | 123 | PENDING |
-| 7372206 | DNABERT-2 | B | 456 | RUNNING |
-| 7372207 | DNABERT-2 | C | 42 | RUNNING |
-| 7372208 | DNABERT-2 | C | 123 | PENDING |
-| 7372209 | DNABERT-2 | C | 456 | RUNNING |
-| 7372210 | NT | A | 123 | RUNNING |
-| 7372211 | NT | B | 123 | RUNNING |
-| 7372212 | NT | C | 123 | RUNNING |
-| 7372235 | Evo | B | 123 | PENDING (from Fir) |
-| 7372236 | Evo | B | 456 | PENDING (from Fir) |
-| 7372237 | Evo | C | 123 | PENDING (from Fir) |
-| 7372238 | Evo | C | 456 | PENDING (from Fir) |
-| 7372239 | NT | B | 42 | PENDING (from Fir) |
-| 7372240 | NT | B | 456 | PENDING (from Fir) |
-| 7372241 | NT | C | 456 | PENDING (from Fir) |
-
-### Nibi (GPU) — 6 jobs total
-| Job ID | Backbone | Split | Seed | Status |
-|--------|----------|-------|------|--------|
-| 9334978 | CNN-GRU | A | 123 | PENDING |
-| 9334979 | CNN-GRU | A | 456 | PENDING |
-| 9334980 | CNN-GRU | B | 123 | PENDING |
-| 9334981 | CNN-GRU | B | 456 | PENDING |
-| 9334982 | CNN-GRU | C | 123 | PENDING |
-| 9334983 | CNN-GRU | C | 456 | PENDING |
-
-## Cluster Status
-| Cluster | Status | Jobs | Notes |
-|---------|--------|------|-------|
-| Narval | ACTIVE | 20 | A100-40GB, PENDING queue |
-| Rorqual | ACTIVE | 19 | H100-80GB, 9 RUNNING |
-| Nibi | ACTIVE | 6 | PENDING queue |
-| Fir | DOWN | 0 | Connection refused, all jobs redistributed |
-| Killarney | INACTIVE | 0 | No SLURM account association |
-| Béluga | INACTIVE | 0 | SLURM plugin incompatibility |
-
-## Experiment Coverage (45/45)
-| Backbone | Split A (42,123,456) | Split B (42,123,456) | Split C (42,123,456) |
-|----------|---------------------|---------------------|---------------------|
-| CNN-GRU | narval/nibi/nibi | narval/nibi/nibi | narval/nibi/nibi |
-| Caduceus | narval/narval/narval | narval/narval/narval | narval/narval/narval |
-| DNABERT-2 | rorqual/rorqual/rorqual | rorqual/rorqual/rorqual | rorqual/rorqual/rorqual |
-| NT | narval/rorqual/narval | rorqual/rorqual/rorqual | narval/rorqual/rorqual |
-| Evo | narval/narval/narval | narval/rorqual/rorqual | narval/rorqual/rorqual |
-
-## Expected Timeline
-- CNN-GRU: ~2-4 hours (smallest model, ~2M params)
-- Caduceus: ~4-6 hours (~7M params)
-- Evo: ~8-12 hours (~14M params)
-- DNABERT-2: ~8-12 hours (~117M params)
-- Nucleotide Transformer: ~12-18 hours (~500M params)
+- Previous commit: `fe61e96` — "docs: update EXPERIMENT_STATUS.md with full deployment status"
+- Pending: Real data pipeline fix + documentation
