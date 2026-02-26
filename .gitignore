@@ -2,9 +2,11 @@
 # DATA DIRECTORIES (ALWAYS EXCLUDE - LARGE FILES)
 # ============================================================================
 data/
+!chromaguide/data/
 data_raw/
 checkpoints/
 models/
+!chromaguide/models/
 logs/
 results*/
 experiments/
