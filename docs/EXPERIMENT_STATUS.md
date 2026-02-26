@@ -1,124 +1,99 @@
-# ChromaGuide v2 — Experiment Deployment Status
+# Experiment Deployment Status — Session 5
 
-> **Last Updated:** February 26, 2026, 7:15 AM UTC (Feb 25, 11:15 PM PST)  
-> **Branch:** `v2-full-rewrite`  
-> **Phase:** Synthetic Data Baseline (Phase 1 of 3)  
-> **Status:** 🔴 ALL 45 JOBS FAILED — bugs found and fixed, awaiting resubmission
+## Date: February 26, 2026, 02:00-08:00 UTC (PST: Feb 25, 6pm-12am)
 
----
+## Summary
+- **6 critical bugs fixed** (see BUG_REPORT.md)
+- **54/54 local tests passing** (test_dry_run.py)
+- **45 SLURM jobs submitted** across 3 clusters
+- **Fir cluster down** — 15 jobs redistributed to Narval/Rorqual
 
-## Executive Summary
+## GitHub
+- Branch: `v2-full-rewrite`
+- Latest commit: `02f8239` — "redistribute 15 Fir jobs to Narval (8) and Rorqual (7)"
+- Previous: `2964663` — "fix: resolve 6 critical bugs causing all 45 experiment failures"
 
-**All 45 SLURM jobs have FAILED** across all 4 active clusters due to critical bugs in the training code. A comprehensive audit uncovered **6 bugs** (3 critical), all of which have been fixed and verified locally with a 54-test dry-run suite passing on all 5 backbones.
+## Job Submissions
 
-### Bug Summary
+### Narval (A100-40GB) — 20 jobs total
+| Job ID | Backbone | Split | Seed | Status |
+|--------|----------|-------|------|--------|
+| 57045459 | Caduceus | A | 42 | PENDING |
+| 57045460 | Caduceus | A | 123 | PENDING |
+| 57045461 | Caduceus | A | 456 | PENDING |
+| 57045462 | Caduceus | B | 42 | PENDING |
+| 57045463 | Caduceus | B | 123 | PENDING |
+| 57045464 | Caduceus | B | 456 | PENDING |
+| 57045465 | Caduceus | C | 42 | PENDING |
+| 57045466 | Caduceus | C | 123 | PENDING |
+| 57045467 | Caduceus | C | 456 | PENDING |
+| 57045468 | CNN-GRU | A | 42 | PENDING |
+| 57045469 | CNN-GRU | B | 42 | PENDING |
+| 57045470 | CNN-GRU | C | 42 | PENDING |
+| 57045473 | Evo | A | 42 | PENDING (from Fir) |
+| 57045474 | Evo | A | 123 | PENDING (from Fir) |
+| 57045475 | Evo | A | 456 | PENDING (from Fir) |
+| 57045476 | Evo | B | 42 | PENDING (from Fir) |
+| 57045477 | Evo | C | 42 | PENDING (from Fir) |
+| 57045478 | NT | A | 42 | PENDING (from Fir) |
+| 57045479 | NT | A | 456 | PENDING (from Fir) |
+| 57045480 | NT | C | 42 | PENDING (from Fir) |
 
-| # | Severity | File | Issue | Status |
-|---|----------|------|-------|--------|
-| 1 | CRITICAL | `train_experiment.py:340` | `total_mem` → `total_memory` (AttributeError) | ✅ FIXED |
-| 2 | CRITICAL | 15 redistributed SLURM scripts | Missing `--backbone` argument | ✅ FIXED |
-| 3 | MEDIUM | `reproducibility.py:25` | Same `total_mem` → `total_memory` bug | ✅ FIXED |
-| 4 | CRITICAL | `train_experiment.py` | Raw DNA sequences not passed to transformer encoders | ✅ FIXED |
-| 5 | CRITICAL | `chromaguide.py:70` | `nucleotide_transformer` missing from `_needs_raw_sequences` | ✅ FIXED |
-| 6 | MINOR | `modules/__init__.py` | Missing `NucleotideTransformerEncoder` export | ✅ FIXED |
+### Rorqual (H100-80GB) — 19 jobs total
+| Job ID | Backbone | Split | Seed | Status |
+|--------|----------|-------|------|--------|
+| 7372201 | DNABERT-2 | A | 42 | RUNNING |
+| 7372202 | DNABERT-2 | A | 123 | PENDING |
+| 7372203 | DNABERT-2 | A | 456 | RUNNING |
+| 7372204 | DNABERT-2 | B | 42 | RUNNING |
+| 7372205 | DNABERT-2 | B | 123 | PENDING |
+| 7372206 | DNABERT-2 | B | 456 | RUNNING |
+| 7372207 | DNABERT-2 | C | 42 | RUNNING |
+| 7372208 | DNABERT-2 | C | 123 | PENDING |
+| 7372209 | DNABERT-2 | C | 456 | RUNNING |
+| 7372210 | NT | A | 123 | RUNNING |
+| 7372211 | NT | B | 123 | RUNNING |
+| 7372212 | NT | C | 123 | RUNNING |
+| 7372235 | Evo | B | 123 | PENDING (from Fir) |
+| 7372236 | Evo | B | 456 | PENDING (from Fir) |
+| 7372237 | Evo | C | 123 | PENDING (from Fir) |
+| 7372238 | Evo | C | 456 | PENDING (from Fir) |
+| 7372239 | NT | B | 42 | PENDING (from Fir) |
+| 7372240 | NT | B | 456 | PENDING (from Fir) |
+| 7372241 | NT | C | 456 | PENDING (from Fir) |
 
-### Verification
-
-- **54 local tests passed** across all 5 backbones (imports, forward pass, loss, backward, conformal, scheduler)
-- All 45 SLURM scripts verified for `--backbone` argument, correct paths, and partition settings
-- Fir scripts confirmed with `gpubase_bygpu_b3` partition
-
----
-
-## Next Steps
-
-1. Push all fixes to GitHub (`v2-full-rewrite` branch)
-2. Deploy updated code to all 4 working clusters via `scp`
-3. Resubmit all 45 jobs
-4. Monitor completion (~4–18 hours depending on backbone)
-
----
+### Nibi (GPU) — 6 jobs total
+| Job ID | Backbone | Split | Seed | Status |
+|--------|----------|-------|------|--------|
+| 9334978 | CNN-GRU | A | 123 | PENDING |
+| 9334979 | CNN-GRU | A | 456 | PENDING |
+| 9334980 | CNN-GRU | B | 123 | PENDING |
+| 9334981 | CNN-GRU | B | 456 | PENDING |
+| 9334982 | CNN-GRU | C | 123 | PENDING |
+| 9334983 | CNN-GRU | C | 456 | PENDING |
 
 ## Cluster Status
+| Cluster | Status | Jobs | Notes |
+|---------|--------|------|-------|
+| Narval | ACTIVE | 20 | A100-40GB, PENDING queue |
+| Rorqual | ACTIVE | 19 | H100-80GB, 9 RUNNING |
+| Nibi | ACTIVE | 6 | PENDING queue |
+| Fir | DOWN | 0 | Connection refused, all jobs redistributed |
+| Killarney | INACTIVE | 0 | No SLURM account association |
+| Béluga | INACTIVE | 0 | SLURM plugin incompatibility |
 
-### Active Clusters
+## Experiment Coverage (45/45)
+| Backbone | Split A (42,123,456) | Split B (42,123,456) | Split C (42,123,456) |
+|----------|---------------------|---------------------|---------------------|
+| CNN-GRU | narval/nibi/nibi | narval/nibi/nibi | narval/nibi/nibi |
+| Caduceus | narval/narval/narval | narval/narval/narval | narval/narval/narval |
+| DNABERT-2 | rorqual/rorqual/rorqual | rorqual/rorqual/rorqual | rorqual/rorqual/rorqual |
+| NT | narval/rorqual/narval | rorqual/rorqual/rorqual | narval/rorqual/rorqual |
+| Evo | narval/narval/narval | narval/rorqual/rorqual | narval/rorqual/rorqual |
 
-| Cluster | GPU | Jobs | Previous Status | Next Action |
-|---------|-----|------|-----------------|-------------|
-| **Narval** | A100-40GB | 12 | ALL FAILED (`total_mem` + missing `--backbone`) | Redeploy + resubmit |
-| **Rorqual** | H100-80GB | 12 | ALL LIKELY FAILED (same bugs) | Redeploy + resubmit |
-| **Fir** | A100-80GB | 15 | ALL LIKELY FAILED (same bugs) | Redeploy + resubmit |
-| **Nibi** | GPU | 6 | ALL LIKELY FAILED (same bugs) | Redeploy + resubmit |
-
-### Inactive Clusters
-
-| Cluster | Issue | Resolution |
-|---------|-------|------------|
-| **Killarney** | No SLURM account association for `amird` | 9 jobs redistributed |
-| **Béluga** | SLURM plugin incompatibility | 6 jobs redistributed |
-
----
-
-## Job Distribution by Backbone
-
-### CNN-GRU (~2M parameters)
-| Split | Seed 42 | Seed 123 | Seed 456 |
-|-------|---------|----------|----------|
-| A | Narval | Nibi | Nibi |
-| B | Narval | Nibi | Nibi |
-| C | Narval | Nibi | Nibi |
-
-### Caduceus (~7M parameters)
-| Split | Seed 42 | Seed 123 | Seed 456 |
-|-------|---------|----------|----------|
-| A | Narval | Narval | Narval |
-| B | Narval | Narval | Narval |
-| C | Narval | Narval | Narval |
-
-### DNABERT-2 (~117M parameters)
-| Split | Seed 42 | Seed 123 | Seed 456 |
-|-------|---------|----------|----------|
-| A | Rorqual | Rorqual | Rorqual |
-| B | Rorqual | Rorqual | Rorqual |
-| C | Rorqual | Rorqual | Rorqual |
-
-### Nucleotide Transformer (~500M parameters)
-| Split | Seed 42 | Seed 123 | Seed 456 |
-|-------|---------|----------|----------|
-| A | Fir | Rorqual | Fir |
-| B | Fir | Rorqual | Fir |
-| C | Fir | Rorqual | Fir |
-
-### Evo (~14M parameters)
-| Split | Seed 42 | Seed 123 | Seed 456 |
-|-------|---------|----------|----------|
-| A | Fir | Fir | Fir |
-| B | Fir | Fir | Fir |
-| C | Fir | Fir | Fir |
-
----
-
-## Performance Targets (from PhD Proposal)
-
-| Metric | Target | SOTA Reference |
-|--------|--------|----------------|
-| Spearman ρ (gene-held-out) | ≥ 0.91 | PLM-CRISPR: 0.950 |
-| Off-target AUROC | ≥ 0.92 | — |
-| Conformal coverage | 90% ± 2% | — |
-| ECE | < 0.05 | — |
-| Statistical significance | p < 0.001 | — |
-
----
-
-## Monitoring Commands
-
-```bash
-# Check job status on each cluster
-ssh narval "squeue -u amird"
-ssh rorqual "squeue -u amird"
-ssh fir "export PATH=/opt/software/slurm-24.11.6/bin:$PATH && squeue -u amird"
-ssh nibi "squeue -u amird"
-
-# Check completed results
-ssh <cluster> "ls ~/scratch/chromaguide_v2/results/*/results.json 2>/dev/null | wc -l"
-```
+## Expected Timeline
+- CNN-GRU: ~2-4 hours (smallest model, ~2M params)
+- Caduceus: ~4-6 hours (~7M params)
+- Evo: ~8-12 hours (~14M params)
+- DNABERT-2: ~8-12 hours (~117M params)
+- Nucleotide Transformer: ~12-18 hours (~500M params)
