@@ -175,6 +175,24 @@ sbatch --dependency=afterok:<HPO_JOB_ID> slurm_v2/03_train_main.sh
 - Holm-Bonferroni for primary hypotheses (H1-H3)
 - Benjamini-Hochberg for ablation FDR control
 
+## Current Status (Feb 25, 2026)
+
+**Phase 1 — Synthetic Baseline: IN PROGRESS**
+
+45 SLURM jobs submitted across 4 DRAC clusters (Narval, Rorqual, Fir, Nibi).
+5 backbones × 3 splits × 3 seeds = 45 experiments on 77,902 synthetic samples.
+
+See [`docs/EXPERIMENT_STATUS.md`](docs/EXPERIMENT_STATUS.md) for live status.
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [`docs/EXPERIMENT_STATUS.md`](docs/EXPERIMENT_STATUS.md) | Job status, IDs, cluster assignments |
+| [`docs/DEVELOPMENT_LOG.md`](docs/DEVELOPMENT_LOG.md) | Full development chronology |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Technical architecture guide |
+| [`docs/CLUSTER_GUIDE.md`](docs/CLUSTER_GUIDE.md) | DRAC cluster connection & operations |
+
 ## Estimated Compute
 
-~800-1,200 GPU-hours on 4× NVIDIA A100-80GB (SFU Fir cluster)
+~800-1,200 GPU-hours across DRAC clusters (Narval A100-40GB, Rorqual H100-80GB, Fir A100-80GB, Nibi)

@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=cg-dnaber-C-s123
 #SBATCH --account=def-kwiese_gpu
+#SBATCH --partition=gpubase_h100_b2
 #SBATCH --time=12:00:00
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:1

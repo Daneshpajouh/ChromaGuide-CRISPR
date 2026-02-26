@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=cg-nucleo-A-s456
 #SBATCH --account=def-kwiese_gpu
+#SBATCH --partition=gpubase_bygpu_b3
 #SBATCH --time=18:00:00
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:1

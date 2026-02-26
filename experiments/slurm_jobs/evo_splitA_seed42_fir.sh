@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=cg-evo-A-s42
 #SBATCH --account=def-kwiese_gpu
+#SBATCH --partition=gpubase_bygpu_b3
 #SBATCH --time=12:00:00
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:1
