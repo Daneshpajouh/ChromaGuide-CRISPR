@@ -1,0 +1,13 @@
+# Experiment config: Nucleotide Transformer backbone (~500M params)
+# Uses HuggingFace InstaDeepAI/nucleotide-transformer-v2-500m-multi-species
+model:
+  sequence_encoder:
+    type: nucleotide_transformer
+    output_dim: 64
+
+training:
+  optimizer:
+    lr: 1e-5  # Very low LR for large pretrained model
+    weight_decay: 0.01
+  batch_size: 16  # Very small batch for 500M model
+  max_epochs: 30  # Few epochs for fine-tuning
