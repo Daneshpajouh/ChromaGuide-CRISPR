@@ -8,7 +8,7 @@ import csv
 import json
 import random
 from collections import defaultdict
-from datetime import datetime, UTC
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -210,11 +210,13 @@ def build_lodo_manifest(data_path: Path, method_map_path: Path, canonical_stats:
 
 def build_crispai_manifest(frames_dir: Path) -> dict:
     change_seq_path = frames_dir.parent / "secondary_change_seq" / "CHANGE_seq_processed_table.csv"
+    provenance_path = frames_dir.parent / "secondary_change_seq" / "CHANGE_seq_processed_table.provenance.json"
     status = "ready" if change_seq_path.exists() else "blocked"
     payload = {
         "frame_name": "crispai_change_regression_uncertainty",
         "status": status,
         "data_path": str(change_seq_path),
+        "provenance_path": str(provenance_path),
         "split_mode": "guide_holdout",
         "split_recipe": {
             "train_fraction": 0.70,
@@ -231,6 +233,20 @@ def build_crispai_manifest(frames_dir: Path) -> dict:
             "Processed CHANGE-seq table is not staged at data/public_benchmarks/off_target/secondary_change_seq/"
             "CHANGE_seq_processed_table.csv."
         )
+        payload["claim_valid_for_frozen_thresholds"] = False
+        return payload
+
+    payload["claim_valid_for_frozen_thresholds"] = True
+    if provenance_path.exists():
+        provenance = json.loads(provenance_path.read_text())
+        payload["provenance"] = provenance
+        if provenance.get("is_proxy_from_cclmoff"):
+            payload["status"] = "ready_proxy"
+            payload["claim_valid_for_frozen_thresholds"] = False
+            payload["note"] = (
+                "CHANGE-seq table is staged as a proxy extracted from the CCLMoff bundle. "
+                "Useful for uncertainty experiments but not claim-valid against crispAI frozen targets."
+            )
     return payload
 
 
@@ -265,7 +281,7 @@ def main() -> None:
     canonical_stats = scan["canonical"]
 
     method_map_payload = {
-        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_csv": str(data_path),
         "unresolved_method_name": UNRESOLVED_METHOD,
         "policy": {
@@ -300,7 +316,7 @@ def main() -> None:
         write_json(frames_dir / filename, payload)
 
     inventory = {
-        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "frames_dir": str(frames_dir),
         "files": sorted(frame_payloads),
     }

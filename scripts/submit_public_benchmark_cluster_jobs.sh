@@ -3,7 +3,7 @@ set -euo pipefail
 
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 <cluster-host> <job-kind> [VAR=value ...]" >&2
-  echo "job-kind: on-target-optuna | on-target-full | off-target-cclmoff | off-target-optuna" >&2
+  echo "job-kind: on-target-optuna | on-target-full | off-target-cclmoff | off-target-optuna | off-target-uncertainty | off-target-uncertainty-cpu | off-target-uncertainty-trillium" >&2
   exit 1
 fi
 
@@ -23,6 +23,15 @@ case "$JOB_KIND" in
     ;;
   off-target-optuna)
     REMOTE_SCRIPT="scripts/slurm_public_off_target_optuna.sh"
+    ;;
+  off-target-uncertainty)
+    REMOTE_SCRIPT="scripts/slurm_public_off_target_uncertainty.sh"
+    ;;
+  off-target-uncertainty-cpu)
+    REMOTE_SCRIPT="scripts/slurm_public_off_target_uncertainty_cpu.sh"
+    ;;
+  off-target-uncertainty-trillium)
+    REMOTE_SCRIPT="scripts/slurm_public_off_target_uncertainty_trillium.sh"
     ;;
   *)
     echo "Unknown job kind: $JOB_KIND" >&2
@@ -48,11 +57,17 @@ fi
 
 ENV_PREFIX=""
 REMOTE_REPO_DIR=""
+SBATCH_ARGS=""
 for kv in "$@"; do
-  ENV_PREFIX+="${kv} "
   case "$kv" in
     REPO_DIR=*)
       REMOTE_REPO_DIR="${kv#REPO_DIR=}"
+      ;;
+    SBATCH_ARGS=*)
+      SBATCH_ARGS="${kv#SBATCH_ARGS=}"
+      ;;
+    *)
+      ENV_PREFIX+="${kv} "
       ;;
   esac
 done
@@ -67,7 +82,7 @@ if [ -z "$SBATCH_BIN" ]; then
   exit 0
 fi
 
-REMOTE_CMD="cd ${REMOTE_REPO_DIR} && ${ENV_PREFIX}${SBATCH_BIN} ${REMOTE_SCRIPT}"
+REMOTE_CMD="cd ${REMOTE_REPO_DIR} && ${ENV_PREFIX}${SBATCH_BIN} ${SBATCH_ARGS} ${REMOTE_SCRIPT}"
 echo "Submitting to ${CLUSTER_HOST}: ${REMOTE_CMD}"
 if ! "${SSH_CMD[@]}" "$CLUSTER_HOST" "test -d ${REMOTE_REPO_DIR}"; then
   echo "Skipping ${CLUSTER_HOST}: ${REMOTE_REPO_DIR} missing" >&2
