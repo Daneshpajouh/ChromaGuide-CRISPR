@@ -1,6 +1,6 @@
 {
-  "generated_local_time": "2026-03-05T15:25:04-08:00",
-  "phase_boundary": "corrected_full_wave_submitted_with_repo_env_fix_and_data_sync",
+  "generated_local_time": "2026-03-05T16:05:00-08:00",
+  "phase_boundary": "sota_source_registry_acquired_and_pinned_plus_cluster_wave_running",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
@@ -173,6 +173,31 @@
     "Harvest first completed jobs from full-wave-v2/v3 queues and update benchmark summaries.",
     "If nibi on-target jobs fail on torch namespace import, route nibi jobs through a validated Python stack (system-user-site or rebuilt wheel install).",
     "Continue monitoring cedar resource constraints and spill excess load to rorqual/fir/trillium.",
-    "Recompute SOTA gap tables after first corrected full-wave results land."
-  ]
+    "Recompute SOTA gap tables after first corrected full-wave results land.",
+    "Use SOTA_SOURCE_REPRO_STATUS_2026-03-05.json as the canonical external-baseline reproducibility ledger before claiming matched SOTA comparisons."
+  ],
+  "sota_source_repro": {
+    "registry": "sota_model_source_registry.json",
+    "status_artifact": "SOTA_SOURCE_REPRO_STATUS_2026-03-05.json",
+    "source_root": "data/public_benchmarks/sources",
+    "summary": {
+      "total_entries": 16,
+      "repo_present": 12,
+      "repo_cloned": 0,
+      "repo_updated": 12,
+      "repo_clone_failed": 0,
+      "repo_update_failed": 0,
+      "repo_missing_url": 4,
+      "docs_links_total": 21,
+      "docs_links_ok": 21,
+      "docs_links_failed": 0
+    },
+    "repo_missing_url_entries": [
+      "on_target.crnncrispr",
+      "off_target.dnabert_epi",
+      "off_target.crispr_ip",
+      "off_target.crispr_dnt"
+    ],
+    "note": "Primary external repos are cloned/updated and commit-pinned; entries without public repos remain blocked pending code release/discovery."
+  }
 }

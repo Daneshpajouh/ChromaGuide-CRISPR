@@ -1,0 +1,256 @@
+{
+  "as_of_date": "2026-03-05",
+  "source_root": "data/public_benchmarks/sources",
+  "notes": [
+    "Registry for reproducible source acquisition of external SOTA baselines and close comparators.",
+    "Not every published model has public training code; entries without repo_url remain blocked until source is found."
+  ],
+  "entries": [
+    {
+      "id": "on_target.crispr_fmc",
+      "task": "on_target",
+      "model_name": "CRISPR-FMC",
+      "role": "primary_sota_threshold",
+      "required_for_primary_claim": true,
+      "paper_url": "https://www.frontiersin.org/journals/genome-editing/articles/10.3389/fgeed.2025.1643888/full",
+      "repo_url": "https://github.com/xx0220/CRISPR-FMC.git",
+      "docs_urls": [
+        "https://www.frontiersin.org/journals/genome-editing/articles/10.3389/fgeed.2025.1643888/full"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "CRISPR-FMC",
+      "reproduction_entrypoint_hint": "model/main.py"
+    },
+    {
+      "id": "on_target.crispr_hnn",
+      "task": "on_target",
+      "model_name": "CRISPR_HNN",
+      "role": "primary_sota_threshold",
+      "required_for_primary_claim": true,
+      "paper_url": "https://pubmed.ncbi.nlm.nih.gov/40502933/",
+      "repo_url": "https://github.com/xx0220/CRISPR_HNN.git",
+      "docs_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40502933/"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "CRISPR_HNN",
+      "reproduction_entrypoint_hint": "main.py"
+    },
+    {
+      "id": "on_target.deephf",
+      "task": "on_target",
+      "model_name": "DeepHF",
+      "role": "public_benchmark_source",
+      "required_for_primary_claim": true,
+      "paper_url": "https://doi.org/10.1038/s41467-019-12281-8",
+      "repo_url": "https://github.com/izhangcd/DeepHF.git",
+      "docs_urls": [
+        "https://doi.org/10.1038/s41467-019-12281-8"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "DeepHF",
+      "reproduction_entrypoint_hint": "main.py"
+    },
+    {
+      "id": "on_target.crispron",
+      "task": "on_target",
+      "model_name": "CRISPRon",
+      "role": "strong_baseline",
+      "required_for_primary_claim": false,
+      "paper_url": "https://doi.org/10.1038/s41467-021-23576-0",
+      "repo_url": "https://github.com/RTH-tools/crispron.git",
+      "docs_urls": [
+        "https://doi.org/10.1038/s41467-021-23576-0",
+        "https://rth.dk/resources/crispr/crispron/"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "crispron",
+      "reproduction_entrypoint_hint": "crispron.py"
+    },
+    {
+      "id": "on_target.deepcristl",
+      "task": "on_target",
+      "model_name": "DeepCRISTL",
+      "role": "recent_comparator",
+      "required_for_primary_claim": false,
+      "paper_url": "https://doi.org/10.1093/bioinformatics/btae481",
+      "repo_url": "https://github.com/OrensteinLab/DeepCRISTL.git",
+      "docs_urls": [
+        "https://doi.org/10.1093/bioinformatics/btae481"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "DeepCRISTL",
+      "reproduction_entrypoint_hint": "main_train.py"
+    },
+    {
+      "id": "on_target.crnncrispr",
+      "task": "on_target",
+      "model_name": "CrnnCrispr",
+      "role": "recent_comparator",
+      "required_for_primary_claim": false,
+      "paper_url": "https://www.mdpi.com/1422-0067/25/8/4429",
+      "repo_url": null,
+      "docs_urls": [
+        "https://www.mdpi.com/1422-0067/25/8/4429"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": null,
+      "reproduction_entrypoint_hint": null
+    },
+    {
+      "id": "off_target.cclmoff",
+      "task": "off_target",
+      "model_name": "CCLMoff",
+      "role": "primary_sota_threshold",
+      "required_for_primary_claim": true,
+      "paper_url": "https://www.nature.com/articles/s42003-025-08275-6",
+      "repo_url": "https://github.com/duwa2/CCLMoff.git",
+      "docs_urls": [
+        "https://www.nature.com/articles/s42003-025-08275-6"
+      ],
+      "model_artifact_urls": [
+        "https://ndownloader.figshare.com/files/49344577",
+        "https://doi.org/10.6084/m9.figshare.27080566.v2"
+      ],
+      "local_subdir": "CCLMoff",
+      "reproduction_entrypoint_hint": "Offtarget_prediction.py"
+    },
+    {
+      "id": "off_target.crispai",
+      "task": "off_target",
+      "model_name": "crispAI",
+      "role": "uncertainty_sota_threshold",
+      "required_for_primary_claim": true,
+      "paper_url": "https://doi.org/10.1093/nar/gkae759",
+      "repo_url": "https://github.com/furkanozdenn/crispr-offtarget-uncertainty.git",
+      "docs_urls": [
+        "https://doi.org/10.1093/nar/gkae759"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "crispAI_crispr-offtarget-uncertainty",
+      "reproduction_entrypoint_hint": "README.md"
+    },
+    {
+      "id": "off_target.dnabert_epi",
+      "task": "off_target",
+      "model_name": "DNABERT-Epi",
+      "role": "secondary_unified_classifier_threshold",
+      "required_for_primary_claim": true,
+      "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12611124/",
+      "repo_url": null,
+      "docs_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12611124/",
+        "https://pubmed.ncbi.nlm.nih.gov/41223195/"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": null,
+      "reproduction_entrypoint_hint": null
+    },
+    {
+      "id": "off_target.attentocrispr",
+      "task": "off_target",
+      "model_name": "AttnToCrispr",
+      "role": "strong_baseline",
+      "required_for_primary_claim": false,
+      "paper_url": "https://github.com/qiaoliuhub/AttnToCrispr",
+      "repo_url": "https://github.com/qiaoliuhub/AttnToCrispr.git",
+      "docs_urls": [
+        "https://github.com/qiaoliuhub/AttnToCrispr"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "AttnToCrispr",
+      "reproduction_entrypoint_hint": "README.md"
+    },
+    {
+      "id": "off_target.crispr_net",
+      "task": "off_target",
+      "model_name": "CRISPR-Net",
+      "role": "strong_baseline",
+      "required_for_primary_claim": false,
+      "paper_url": "https://doi.org/10.1002/advs.201903562",
+      "repo_url": "https://github.com/JasonLinjc/CRISPR-Net.git",
+      "docs_urls": [
+        "https://doi.org/10.1002/advs.201903562"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "CRISPR-Net",
+      "reproduction_entrypoint_hint": "README.md"
+    },
+    {
+      "id": "off_target.moff",
+      "task": "off_target",
+      "model_name": "MOFF",
+      "role": "strong_baseline",
+      "required_for_primary_claim": false,
+      "paper_url": "https://github.com/MDhewei/MOFF",
+      "repo_url": "https://github.com/MDhewei/MOFF.git",
+      "docs_urls": [
+        "https://github.com/MDhewei/MOFF",
+        "https://pypi.org/project/MOFF/"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "MOFF",
+      "reproduction_entrypoint_hint": "README.md"
+    },
+    {
+      "id": "off_target.cnn_std",
+      "task": "off_target",
+      "model_name": "CNN_std/off_target_prediction",
+      "role": "legacy_comparator",
+      "required_for_primary_claim": false,
+      "paper_url": "https://doi.org/10.1038/nbt.3437",
+      "repo_url": "https://github.com/MichaelLinn/off_target_prediction.git",
+      "docs_urls": [
+        "https://doi.org/10.1038/nbt.3437"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "off_target_prediction",
+      "reproduction_entrypoint_hint": "README.md"
+    },
+    {
+      "id": "off_target.crisproff",
+      "task": "off_target",
+      "model_name": "CRISPRoff",
+      "role": "legacy_comparator",
+      "required_for_primary_claim": false,
+      "paper_url": "https://doi.org/10.1093/nar/gky354",
+      "repo_url": "https://github.com/RTH-tools/crisproff.git",
+      "docs_urls": [
+        "https://doi.org/10.1093/nar/gky354"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": "crisproff",
+      "reproduction_entrypoint_hint": "README.md"
+    },
+    {
+      "id": "off_target.crispr_ip",
+      "task": "off_target",
+      "model_name": "CRISPR-IP",
+      "role": "strong_baseline",
+      "required_for_primary_claim": false,
+      "paper_url": "https://doi.org/10.1093/bib/bbad333",
+      "repo_url": null,
+      "docs_urls": [
+        "https://doi.org/10.1093/bib/bbad333"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": null,
+      "reproduction_entrypoint_hint": null
+    },
+    {
+      "id": "off_target.crispr_dnt",
+      "task": "off_target",
+      "model_name": "CRISPR-DNT",
+      "role": "strong_baseline",
+      "required_for_primary_claim": false,
+      "paper_url": "https://doi.org/10.1093/bib/bbad333",
+      "repo_url": null,
+      "docs_urls": [
+        "https://doi.org/10.1093/bib/bbad333"
+      ],
+      "model_artifact_urls": [],
+      "local_subdir": null,
+      "reproduction_entrypoint_hint": null
+    }
+  ]
+}
