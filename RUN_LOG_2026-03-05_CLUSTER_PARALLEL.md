@@ -188,3 +188,33 @@ Harvested into `results/public_benchmarks/cluster_harvest_20260305/`:
 - cedar: new full wave pending with `ReqNodeNotAvail` constraint.
 - trillium: existing CPU search jobs running; new smoke/full uncertainty jobs pending.
 - beluga: no runnable queue path due scheduler plugin failure.
+
+## Checkpoint Update (2026-03-05 late evening PST)
+
+### Root Cause + Fixes Applied
+- Fixed submission helper bug where `REPO_DIR=` was used for remote `cd` but not exported into the SLURM job env.
+  - File: `scripts/submit_public_benchmark_cluster_jobs.sh`
+  - Impact: wrappers previously fell back to `$HOME/chromaguide_experiments` (quota/old-path failures).
+- Hardened uncertainty loader against malformed rows:
+  - File: `scripts/train_public_off_target_uncertainty.py`
+  - Change: skip rows with missing/bad `activity_log1p_read` and report skip counters.
+
+### Corrective Resubmission Wave
+After patching and syncing scripts to cluster workdirs, submitted corrected full wave with explicit scratch repo + venv:
+- nibi: `9846669`, `9846670`, `9846671`, `9846672`
+- rorqual: `7736323`, `7736345`, `7736376`, `7736394` then corrective resubmissions `7738771`, `7738791`, `7738824`
+- fir: `25804396`, `25804397`, `25804399`, `25804400`
+- cedar: `66524473`, `66524474`, `66524475`, `66524476`
+- trillium: `1126921`
+- beluga: still blocked by plugin mismatch
+
+### Additional Data/Protocol Sync
+- Generated canonical on-target folds locally (`scripts/build_public_on_target_folds.py`, k=5, seed=42).
+- Synced folds + `public_claim_thresholds.json` to cluster scratch repos.
+- Synced CCLMoff primary CSV into `rorqual:/scratch/.../primary_cclmoff/` to satisfy off-target/uncertainty frame prerequisites.
+
+### Current Truth Snapshot
+- The corrected job wave is now in queue/running across rorqual/fir/cedar/trillium, with nibi pending.
+- rorqual already produced one clean completion in corrected wave context:
+  - `7736376` (`pub_off_optuna`) -> `COMPLETED`.
+- We still do **not** have claim-valid evidence of “beat all latest SOTA on every aspect” yet; we are still in execution/harvest phase.

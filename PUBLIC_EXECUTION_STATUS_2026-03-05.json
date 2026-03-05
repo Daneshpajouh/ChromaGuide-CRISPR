@@ -1,165 +1,101 @@
 {
-  "generated_local_time": "2026-03-05T14:52:33-08:00",
-  "phase_boundary": "cluster_parallel_full_wave_submitted_after_smoke_and_compat_fix",
+  "generated_local_time": "2026-03-05T15:25:04-08:00",
+  "phase_boundary": "corrected_full_wave_submitted_with_repo_env_fix_and_data_sync",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
-    "head_commit": "1c50143"
+    "head_commit": "57cb7b7"
   },
   "cluster_state": {
     "nibi": {
-      "status": "active_pending_priority",
-      "new_smoke_job": {
-        "job_id": 9844993,
-        "name": "pub_off_uncert_smoke",
+      "status": "pending_priority",
+      "smoke_job": {
+        "job_id": 9846200,
         "state": "PENDING"
       },
-      "new_full_jobs": [
-        {
-          "job_id": 9845034,
-          "name": "pub_on_full",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 9845036,
-          "name": "pub_on_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 9845037,
-          "name": "pub_off_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 9845038,
-          "name": "pub_off_uncertainty",
-          "state": "PENDING"
-        }
+      "full_wave_v2_jobs": [
+        9846669,
+        9846670,
+        9846671,
+        9846672
+      ],
+      "notes": [
+        "resubmitted after REPO_DIR env propagation fix; waiting for scheduler."
       ]
     },
     "rorqual": {
-      "status": "active_pending_priority",
-      "new_smoke_job": {
-        "job_id": 7730448,
-        "name": "pub_off_uncert_smoke",
-        "state": "PENDING"
-      },
-      "new_full_jobs": [
+      "status": "mixed_completed_and_pending",
+      "completed_after_fix": [
         {
-          "job_id": 7731085,
-          "name": "pub_on_full",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 7731105,
-          "name": "pub_on_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 7731133,
+          "job_id": 7736376,
           "name": "pub_off_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 7731166,
-          "name": "pub_off_uncertainty",
-          "state": "PENDING"
+          "state": "COMPLETED"
         }
+      ],
+      "failed_then_fixed": [
+        7736323,
+        7736345,
+        7736394
+      ],
+      "full_wave_v3_jobs": [
+        7738771,
+        7738791,
+        7738824
+      ],
+      "notes": [
+        "failures were due to missing folds/thresholds/CCLMoff file in /scratch repo path; folds+thresholds+CCLMoff were synced and jobs resubmitted."
       ]
     },
     "fir": {
-      "status": "active_mixed_running_pending",
+      "status": "running_plus_pending",
       "running_jobs": [
-        {
-          "job_id": 25786572,
-          "name": "sota_fmc_pub",
-          "state": "RUNNING"
-        }
+        25786572
       ],
-      "new_smoke_job": {
-        "job_id": 25800106,
-        "name": "pub_off_uncert_smoke_cpu",
-        "state": "PENDING"
-      },
-      "new_full_jobs": [
-        {
-          "job_id": 25800913,
-          "name": "pub_on_full",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 25800915,
-          "name": "pub_on_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 25800916,
-          "name": "pub_off_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 25800917,
-          "name": "pub_off_uncertainty",
-          "state": "PENDING"
-        }
+      "smoke_job_cpu": [
+        25804078
       ],
-      "submission_routing": "partition/time overridden to gpubase_bygpu_b2"
+      "full_wave_v2_jobs": [
+        25804396,
+        25804397,
+        25804399,
+        25804400
+      ],
+      "notes": [
+        "full-wave jobs submitted on gpubase_bygpu_b2; waiting on scheduler."
+      ]
     },
     "cedar": {
-      "status": "queued_blocked_by_node_availability",
-      "new_smoke_job": {
-        "job_id": 66523835,
-        "name": "pub_off_uncert_smoke",
-        "state": "PENDING"
-      },
-      "new_full_jobs": [
-        {
-          "job_id": 66523848,
-          "name": "pub_on_full",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 66523849,
-          "name": "pub_on_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 66523850,
-          "name": "pub_off_optuna",
-          "state": "PENDING"
-        },
-        {
-          "job_id": 66523851,
-          "name": "pub_off_uncertainty",
-          "state": "PENDING"
-        }
+      "status": "queued_node_constrained",
+      "smoke_job": [
+        66524011
+      ],
+      "full_wave_v2_jobs": [
+        66524473,
+        66524474,
+        66524475,
+        66524476
       ],
       "reason": "ReqNodeNotAvail"
     },
     "trillium": {
-      "status": "active_cpu_search_plus_new_uncertainty_wave",
+      "status": "active_cpu",
       "running_jobs": [
         1119483,
         1119950,
         1124392,
-        1124393,
-        1126776
+        1126877
       ],
-      "new_smoke_job": {
-        "job_id": 1126842,
-        "name": "pub_off_uncert_smoke",
-        "state": "PENDING"
-      },
-      "new_full_job": {
-        "job_id": 1126846,
-        "name": "pub_off_uncertainty_full",
-        "state": "PENDING"
-      }
+      "pending_jobs": [
+        1126921
+      ],
+      "notes": [
+        "uncertainty loader patched to skip missing activity rows; new smoke/full running on patched script."
+      ]
     },
     "beluga": {
       "status": "blocked",
       "reason": "Slurm plugin incompatibility (cc-tmpfs_mounts.so)",
-      "latest_failed_submission": "on-target-full full_20260305_beluga"
+      "latest_failed_submission": "full2_20260305_beluga"
     }
   },
   "public_on_target": {
@@ -226,16 +162,15 @@
     }
   },
   "uncertainty_and_calibration": {
-    "status": "proxy_ready_and_running_non_claim_valid",
+    "status": "proxy_ready_runnable_non_claim_valid",
     "frame_manifest": "data/public_benchmarks/off_target/frames/crispai_change_regression_uncertainty.json",
     "claim_valid_for_frozen_thresholds": false,
-    "note": "CHANGE-seq proxy extracted from CCLMoff; used for runnable uncertainty experiments while primary-source parity remains pending."
+    "latest_patch": "train_public_off_target_uncertainty.py now skips malformed/missing activity rows and reports skip counts."
   },
   "next_actions": [
-    "Monitor new wave job state transitions and harvest outputs as they complete (nibi/rorqual/fir/cedar/trillium).",
-    "Prioritize first completed full on-target summaries from jobs 9845034, 7731085, 25800913, 66523848.",
-    "Harvest new uncertainty outputs from jobs 9845038, 7731166, 25800917, 66523851, 1126846.",
-    "Continue off-target claim hardening by resolving UNRESOLVED_BLANK method provenance to unblock CIRCLE and CIRCLE->GUIDE frames.",
-    "Keep beluga excluded until Slurm plugin stack is fixed by cluster admins."
+    "Harvest first completed jobs from full-wave-v2/v3 queues and update benchmark summaries.",
+    "If nibi on-target jobs fail on torch namespace import, route nibi jobs through a validated Python stack (system-user-site or rebuilt wheel install).",
+    "Continue monitoring cedar resource constraints and spill excess load to rorqual/fir/trillium.",
+    "Recompute SOTA gap tables after first corrected full-wave results land."
   ]
 }

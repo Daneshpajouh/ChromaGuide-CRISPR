@@ -76,6 +76,9 @@ if [ -z "$REMOTE_REPO_DIR" ]; then
   REMOTE_REPO_DIR="\$HOME/chromaguide_experiments"
 fi
 
+# Ensure wrappers receive the same REPO_DIR they are submitted from.
+ENV_PREFIX+="REPO_DIR=${REMOTE_REPO_DIR} "
+
 SBATCH_BIN="$( "${SSH_CMD[@]}" "$CLUSTER_HOST" 'if command -v sbatch >/dev/null 2>&1; then command -v sbatch; elif [ -x /opt/software/slurm/bin/sbatch ]; then echo /opt/software/slurm/bin/sbatch; else echo ""; fi' )"
 if [ -z "$SBATCH_BIN" ]; then
   echo "Skipping ${CLUSTER_HOST}: sbatch not available" >&2

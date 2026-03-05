@@ -161,20 +161,45 @@ def interval_coverage(y: np.ndarray, mu: np.ndarray, sigma: np.ndarray, z: float
     return float(np.mean((y >= lo) & (y <= hi)))
 
 
-def load_data(path: Path, max_rows: int) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+def load_data(path: Path, max_rows: int) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, dict]:
     pairs = []
     aux = []
     y = []
     groups = []
+    stats = {
+        "rows_scanned": 0,
+        "rows_loaded": 0,
+        "rows_skipped_missing_activity": 0,
+        "rows_skipped_bad_activity": 0,
+        "rows_skipped_missing_sequence": 0,
+    }
     with path.open("r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
-        for i, row in enumerate(reader):
-            pair, aux_row = encode_pair(row["sgRNA_seq"], row["off_seq"], length=23)
+        for row in reader:
+            stats["rows_scanned"] += 1
+            guide = row.get("sgRNA_seq", "")
+            off = row.get("off_seq", "")
+            if not guide or not off:
+                stats["rows_skipped_missing_sequence"] += 1
+                continue
+
+            raw_activity = (row.get("activity_log1p_read") or "").strip()
+            if raw_activity == "":
+                stats["rows_skipped_missing_activity"] += 1
+                continue
+            try:
+                activity = float(raw_activity)
+            except ValueError:
+                stats["rows_skipped_bad_activity"] += 1
+                continue
+
+            pair, aux_row = encode_pair(guide, off, length=23)
             pairs.append(pair)
             aux.append(aux_row)
-            y.append(float(row["activity_log1p_read"]))
-            groups.append(row["sgRNA_id"])
-            if max_rows > 0 and i + 1 >= max_rows:
+            y.append(activity)
+            groups.append(row.get("sgRNA_id", "") or guide)
+            stats["rows_loaded"] += 1
+            if max_rows > 0 and stats["rows_loaded"] >= max_rows:
                 break
     if not pairs:
         raise RuntimeError("No rows loaded from staged CHANGE-seq table.")
@@ -183,6 +208,7 @@ def load_data(path: Path, max_rows: int) -> tuple[np.ndarray, np.ndarray, np.nda
         np.stack(aux).astype(np.float32),
         np.array(y, dtype=np.float32),
         np.array(groups),
+        stats,
     )
 
 
@@ -273,7 +299,7 @@ def main() -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     model_path.parent.mkdir(parents=True, exist_ok=True)
 
-    x_pair, x_aux, y, groups = load_data(data_path, args.max_rows)
+    x_pair, x_aux, y, groups, load_stats = load_data(data_path, args.max_rows)
     train_idx, val_idx, test_idx = group_split(groups, seed=args.seed)
 
     x_pair_train, x_aux_train, y_train = x_pair[train_idx], x_aux[train_idx], y[train_idx]
@@ -336,10 +362,14 @@ def main() -> None:
         "seed": args.seed,
         "device": str(device),
         "rows": {
+            "scanned": int(load_stats["rows_scanned"]),
             "total": int(len(y)),
             "train": int(len(train_idx)),
             "val": int(len(val_idx)),
             "test": int(len(test_idx)),
+            "skipped_missing_activity": int(load_stats["rows_skipped_missing_activity"]),
+            "skipped_bad_activity": int(load_stats["rows_skipped_bad_activity"]),
+            "skipped_missing_sequence": int(load_stats["rows_skipped_missing_sequence"]),
         },
         "params": {
             "epochs": args.epochs,
