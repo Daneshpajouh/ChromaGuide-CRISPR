@@ -218,3 +218,12 @@ After patching and syncing scripts to cluster workdirs, submitted corrected full
 - rorqual already produced one clean completion in corrected wave context:
   - `7736376` (`pub_off_optuna`) -> `COMPLETED`.
 - We still do **not** have claim-valid evidence of “beat all latest SOTA on every aspect” yet; we are still in execution/harvest phase.
+
+### Addendum: nibi Runtime Stack Issue
+- nibi corrected-wave job outcomes showed a Python stack mismatch in the scratch venv:
+  - `ModuleNotFoundError: No module named 'torch.nn'` for on-target full and uncertainty jobs.
+- Diagnostic on nibi scratch venv indicates `torch` resolves as a namespace package without `nn` submodule.
+- Consequence:
+  - nibi on-target/uncertainty jobs are currently blocked for valid training runs.
+  - nibi optuna jobs that returned `-1.0` are exploratory-invalid and should not be used for promotion.
+- Active workaround path: continue full-scale wave on `fir`, `rorqual`, `cedar`, and `trillium` while nibi Python stack is corrected.

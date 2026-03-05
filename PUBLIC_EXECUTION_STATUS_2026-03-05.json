@@ -4,11 +4,11 @@
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
-    "head_commit": "57cb7b7"
+    "head_commit": "64775c8"
   },
   "cluster_state": {
     "nibi": {
-      "status": "pending_priority",
+      "status": "blocked_by_torch_namespace_in_venv",
       "smoke_job": {
         "job_id": 9846200,
         "state": "PENDING"
@@ -20,7 +20,9 @@
         9846672
       ],
       "notes": [
-        "resubmitted after REPO_DIR env propagation fix; waiting for scheduler."
+        "resubmitted after REPO_DIR env propagation fix.",
+        "on-target-full and uncertainty jobs fail on nibi with ModuleNotFoundError: torch.nn inside /scratch venv.",
+        "optuna jobs complete but return scout score -1.0 and are not valid for promotion."
       ]
     },
     "rorqual": {
