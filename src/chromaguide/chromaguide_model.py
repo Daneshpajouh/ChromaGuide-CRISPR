@@ -50,6 +50,7 @@ class ChromaGuideModel(nn.Module):
         mamba_d_state: int = 16,
         mamba_d_conv: int = 4,
         mamba_expand: int = 2,
+        dnabert_freeze: bool = True,
     ):
         super().__init__()
         self.use_epigenomics = use_epigenomics
@@ -80,6 +81,7 @@ class ChromaGuideModel(nn.Module):
             from chromaguide.sequence_encoder import DNABERT2Encoder
             self.seq_encoder = DNABERT2Encoder(
                 d_model=768,
+                freeze_backbone=dnabert_freeze,
                 dropout=dropout,
             )
             # Project DNABERT-2 (768) down to d_model (64) for PhD Proposal compatibility

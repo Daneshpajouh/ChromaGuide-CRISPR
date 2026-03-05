@@ -1,0 +1,71 @@
+{
+  "as_of_date": "2026-03-02",
+  "purpose": "Frozen public claim thresholds for matched external SOTA comparison.",
+  "on_target": {
+    "primary_benchmark_regime": "canonical 9-dataset Cas9 on-target benchmark with 5-fold CV; SCC primary and PCC secondary",
+    "leader_status": "split_leader_dual_threshold",
+    "average_thresholds": {
+      "leader": "CRISPR_HNN",
+      "mean_SCC_9_dataset": 0.716,
+      "mean_PCC_9_dataset": 0.721
+    },
+    "per_dataset_thresholds": {
+      "leader": "CRISPR-FMC",
+      "WT_SCC": 0.861,
+      "ESP_SCC": 0.851,
+      "HF_SCC": 0.865,
+      "Sniper_Cas9_SCC": 0.935,
+      "HL60_SCC": 0.402,
+      "WT_to_HL60_SCC": 0.468,
+      "WT_to_HL60_PCC": 0.459
+    },
+    "claim_rule": "Beat the CRISPR_HNN average under the same 9-dataset regime and meet or beat the CRISPR-FMC strong per-dataset and transfer thresholds."
+  },
+  "off_target": {
+    "classification_transfer_lodo": {
+      "leader": "CCLMoff",
+      "benchmark_frame": "multi-assay compiled benchmark with matched Cas-OFFinder negative generation",
+      "thresholds": {
+        "CIRCLE_seq_CV_AUROC": 0.985,
+        "CIRCLE_seq_CV_AUPRC": 0.524,
+        "CIRCLE_to_GUIDE_seq_AUROC": 0.996,
+        "CIRCLE_to_GUIDE_seq_AUPRC": 0.52,
+        "DIG_seq_LODO_AUROC": 0.985,
+        "DIG_seq_LODO_AUPRC": 0.72,
+        "DISCOVER_seq_plus_LODO_AUROC": 0.944,
+        "DISCOVER_seq_plus_LODO_AUPRC": 0.665
+      }
+    },
+    "unified_classifier_secondary": {
+      "leader": "DNABERT-Epi",
+      "benchmark_frame": "sgRNA-based unified classifier across CHANGE-seq, GUIDE-seq, TTISS, and independent tests",
+      "thresholds": {
+        "Lazzarotto_GUIDE_seq_PR_AUC": 0.5501,
+        "Lazzarotto_GUIDE_seq_ROC_AUC": 0.9857,
+        "Lazzarotto_GUIDE_seq_F1": 0.477,
+        "Lazzarotto_GUIDE_seq_MCC": 0.4968
+      }
+    },
+    "regression_uncertainty": {
+      "leader": "crispAI",
+      "benchmark_frame": "CHANGE-seq probabilistic off-target regression with uncertainty",
+      "thresholds": {
+        "CHANGE_seq_test_Spearman": 0.5114,
+        "calibration_requirement": "match or improve crispAI qualitative Kuleshov-style interval calibration on held-out CHANGE-seq"
+      }
+    }
+  },
+  "calibration": {
+    "on_target_external_target": "No universally accepted claim-valid external numeric target; use uncertainty-aware CRISPRon-derived ensemble as secondary context only.",
+    "off_target_external_target": "crispAI interval calibration on held-out CHANGE-seq is the primary external reference class."
+  },
+  "integrated_design": {
+    "universal_public_leaderboard_exists": false,
+    "minimum_claim_valid_benchmark": {
+      "utility_definition": "explicit joint utility combining on-target score and off-target risk",
+      "ranking_metrics": ["NDCG@k", "Top-k hit rate", "precision@k"],
+      "baseline_tools": ["CRISPOR", "CHOPCHOP", "CRISPick"],
+      "labeling_rules": ["single_model_vs_ensemble", "component_model_versions", "dataset_and_gene_set" ]
+    }
+  }
+}

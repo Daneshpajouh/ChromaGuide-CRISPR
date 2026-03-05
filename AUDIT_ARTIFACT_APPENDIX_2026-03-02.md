@@ -1,0 +1,2288 @@
+# Audit Artifact Appendix (2026-03-02)
+
+- Generated UTC: `2026-03-02T20:08:23.797093Z`
+- Repo: `/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR`
+- Current branch: `Dev`
+- Current HEAD commit: `8ac2ab3`
+- Tracked refs audited: `Dev`, `main`, `origin/Dev`, `origin/main`
+- Key branch fact: all tracked refs point to the same commit (`8ac2ab3`), so this appendix separates the older tracked branch snapshot from newer working-tree artifacts.
+- Total indexed artifacts: `2102`
+
+## Category Counts
+
+- `binary_artifact`: `2`
+- `database`: `2`
+- `figure`: `1`
+- `log_file`: `10`
+- `other`: `54`
+- `report_markdown`: `8`
+- `result_csv`: `1015`
+- `result_json`: `994`
+- `support_script`: `16`
+
+## High-Signal Artifacts
+
+### `AUDIT_ARTIFACT_APPENDIX_2026-03-02.md`
+- Category: `report_markdown`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `??`
+- Size bytes: `326262`
+- Headline: Audit Artifact Appendix (2026-03-02)
+
+### `AUDIT_ARTIFACT_INVENTORY_2026-03-02.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `??`
+- Size bytes: `1227003`
+
+### `CRITICAL_FIX_SUMMARY.md`
+- Category: `report_markdown`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `4879`
+- Headline: CRITICAL THESIS FIX SUMMARY
+
+### `DEPLOYMENT_REPORT_FINAL.md`
+- Category: `report_markdown`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `10135`
+- Headline: PhD THESIS CRITICAL FIX - DEPLOYMENT REPORT
+
+### `EXTERNAL_SOTA_BENCHMARK_MATRIX_2026-03-02.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `??`
+- Size bytes: `4760`
+
+### `LATEST_STATUS_2026-02-26.md`
+- Category: `report_markdown`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `??`
+- Size bytes: `7628`
+- Headline: Latest Status (2026-02-27)
+
+### `RUN_LOG_2026-02-25_2026-02-26.md`
+- Category: `report_markdown`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `??`
+- Size bytes: `61845`
+- Headline: ChromaGuide Run Log and Status (February 25-26, 2026)
+
+### `SOTA_AUDIT_AND_BENCHMARK_MASTER_PLAN_2026-03-02.md`
+- Category: `report_markdown`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `??`
+- Size bytes: `44057`
+- Headline: SOTA Audit And Benchmark Master Plan (2026-03-02)
+
+### `TRAINING_RESULTS_SUMMARY.md`
+- Category: `report_markdown`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `6849`
+- Headline: Training Results Summary - February 22, 2026
+
+### `multimodal_metrics.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `3568`
+- Metric summary: `{"best_val_rho": 0.8394356385023982, "gold_rho": 0.8540807303917752}`
+
+### `on_target_metrics.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `4598`
+- Metric summary: `{"best_val_rho": 0.8374460742397701, "test_rho": 0.8522973655009756}`
+
+### `sequence_baseline_metrics.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `2664`
+- Metric summary: `{"best_val_rho": 0.8237872762428666, "gold_rho": 0.8426924470180335}`
+
+### `sequence_only_metrics.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `3306`
+- Metric summary: `{"best_val_rho": 0.8201507188718015, "gold_rho": 0.8428699338675333}`
+
+### `results/completed_jobs/final_comparison.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `1611`
+
+### `results/completed_jobs/hpo_optuna_results.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `392`
+- Metric summary: `{"best_trial_number": 7, "test_spearman_rho": -0.011836152736745651}`
+
+### `results/completed_jobs/mamba_variant_results.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `9503`
+- Metric summary: `{"test_spearman_rho": -0.0718641755659009}`
+
+### `results/completed_jobs/results_summary.csv`
+- Category: `result_csv`
+- In tracked branch-head (`8ac2ab3`): `true`
+- Git status: `clean`
+- Size bytes: `837`
+- CSV rows (excluding header): `7`
+- Header: `['model', 'spearman_rho', 'p_value', 'status', 'notes']`
+
+### `results/runs/w49_proposal_status_latest.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `clean`
+- Size bytes: `9055`
+- Metric summary: `{"best_splitA_nonstacked_ensemble_rho": 0.9108903031450908, "best_splitA_nonstacked_single_rho": 0.8892076527146103, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}`
+
+### `results/runs/w51_runtime_snapshot.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `clean`
+- Size bytes: `4390`
+- Metric summary: `{"gap_to_0_911": 0.00010969685490924697}`
+
+### `results/runs/w55b_exact_tiny_alpha_full90_summary.json`
+- Category: `result_json`
+- In tracked branch-head (`8ac2ab3`): `false`
+- Git status: `clean`
+- Size bytes: `532`
+- Metric summary: `{"best_rho": 0.9108903031450908, "gap_to_0_911": 0.00010969685490924697}`
+
+## Folder Summary: `results/completed_jobs`
+
+- Files indexed: `7`
+- `result_csv`: `2`
+- `result_json`: `5`
+
+## Folder Summary: `results/runs`
+
+- Files indexed: `2058`
+- `database`: `2`
+- `log_file`: `10`
+- `other`: `54`
+- `result_csv`: `1009`
+- `result_json`: `983`
+
+## Folder Summary: `scripts`
+
+- Files indexed: `16`
+- `support_script`: `16`
+
+## Full Indexed Artifact List
+
+Each line below is one indexed artifact. The complete machine-readable record, including parsed metric summaries where available, is in `AUDIT_ARTIFACT_INVENTORY_2026-03-02.json`.
+
+- path=AUDIT_ARTIFACT_APPENDIX_2026-03-02.md | category=report_markdown | head=false | status=?? | size=326262 | headline=Audit Artifact Appendix (2026-03-02)
+- path=AUDIT_ARTIFACT_INVENTORY_2026-03-02.json | category=result_json | head=false | status=?? | size=1227003
+- path=CRITICAL_FIX_SUMMARY.md | category=report_markdown | head=true | status=clean | size=4879 | headline=CRITICAL THESIS FIX SUMMARY
+- path=DEPLOYMENT_REPORT_FINAL.md | category=report_markdown | head=true | status=clean | size=10135 | headline=PhD THESIS CRITICAL FIX - DEPLOYMENT REPORT
+- path=EXTERNAL_SOTA_BENCHMARK_MATRIX_2026-03-02.json | category=result_json | head=false | status=?? | size=4760
+- path=LATEST_STATUS_2026-02-26.md | category=report_markdown | head=false | status=?? | size=7628 | headline=Latest Status (2026-02-27)
+- path=RUN_LOG_2026-02-25_2026-02-26.md | category=report_markdown | head=false | status=?? | size=61845 | headline=ChromaGuide Run Log and Status (February 25-26, 2026)
+- path=SOTA_AUDIT_AND_BENCHMARK_MASTER_PLAN_2026-03-02.md | category=report_markdown | head=false | status=?? | size=44057 | headline=SOTA Audit And Benchmark Master Plan (2026-03-02)
+- path=TRAINING_RESULTS_SUMMARY.md | category=report_markdown | head=true | status=clean | size=6849 | headline=Training Results Summary - February 22, 2026
+- path=conformal_calibration.npz | category=binary_artifact | head=false | status=?? | size=514
+- path=conformal_quantile.npy | category=binary_artifact | head=false | status=?? | size=136
+- path=designer_demo_results.csv | category=result_csv | head=true | status=clean | size=5013 | rows=53
+- path=gold_results_on_target.csv | category=result_csv | head=true | status= M | size=569290 | rows=11120
+- path=multimodal_metrics.json | category=result_json | head=true | status=clean | size=3568 | metrics={"best_val_rho": 0.8394356385023982, "gold_rho": 0.8540807303917752}
+- path=on_target_metrics.json | category=result_json | head=true | status=clean | size=4598 | metrics={"best_val_rho": 0.8374460742397701, "test_rho": 0.8522973655009756}
+- path=sequence_baseline_metrics.json | category=result_json | head=true | status=clean | size=2664 | metrics={"best_val_rho": 0.8237872762428666, "gold_rho": 0.8426924470180335}
+- path=sequence_only_metrics.json | category=result_json | head=true | status=clean | size=3306 | metrics={"best_val_rho": 0.8201507188718015, "gold_rho": 0.8428699338675333}
+- path=test_results_on_target_cnn_gru.csv | category=result_csv | head=true | status=clean | size=569598 | rows=11120
+- path=deploy_package/CRITICAL_FIX_SUMMARY.md | category=report_markdown | head=true | status=clean | size=4879 | headline=CRITICAL THESIS FIX SUMMARY
+- path=scripts/generate_final_report.py | category=support_script | head=true | status=clean | size=8126
+- path=scripts/run_full_evaluation.sh | category=support_script | head=true | status= M | size=2574
+- path=scripts/slurm_calibrate_conformal.sh | category=support_script | head=true | status=clean | size=689
+- path=scripts/slurm_generate_final_report.sh | category=support_script | head=true | status= M | size=617
+- path=scripts/calibrate_conformal.py | category=support_script | head=true | status= M | size=4150
+- path=scripts/build_benchmark_regime.py | category=support_script | head=false | status=?? | size=17137
+- path=scripts/build_oof_meta_stack.py | category=support_script | head=false | status=?? | size=4189
+- path=scripts/evaluate_integrated_design_proxy.py | category=support_script | head=false | status=?? | size=14888
+- path=scripts/evaluate_offtarget_matched.py | category=support_script | head=false | status=?? | size=16011
+- path=scripts/optimize_nonstacked_ensemble.py | category=support_script | head=false | status=?? | size=12241
+- path=scripts/optuna_tune_on_target.py | category=support_script | head=false | status=?? | size=7664
+- path=scripts/optuna_tune_off_target.py | category=support_script | head=false | status=?? | size=8521
+- path=scripts/train_on_target_trainval.py | category=support_script | head=false | status=?? | size=20128
+- path=scripts/train_on_target_ranked.py | category=support_script | head=false | status=?? | size=15882
+- path=scripts/train_on_target_deephf_style.py | category=support_script | head=false | status=?? | size=15691
+- path=scripts/update_on_target_leaderboard.py | category=support_script | head=false | status=?? | size=9414
+- path=results/completed_jobs/ablation_fusion_results.json | category=result_json | head=true | status=clean | size=487
+- path=results/completed_jobs/ablation_modality_results.json | category=result_json | head=true | status=clean | size=223
+- path=results/completed_jobs/final_comparison.csv | category=result_csv | head=true | status=clean | size=656 | rows=6
+- path=results/completed_jobs/final_comparison.json | category=result_json | head=true | status=clean | size=1611
+- path=results/completed_jobs/hpo_optuna_results.json | category=result_json | head=true | status=clean | size=392 | metrics={"best_trial_number": 7, "test_spearman_rho": -0.011836152736745651}
+- path=results/completed_jobs/mamba_variant_results.json | category=result_json | head=true | status=clean | size=9503 | metrics={"test_spearman_rho": -0.0718641755659009}
+- path=results/completed_jobs/results_summary.csv | category=result_csv | head=true | status=clean | size=837 | rows=7
+- path=results/comprehensive_analysis.png | category=figure | head=true | status=clean | size=1671249
+- path=results/experiment_results_table.csv | category=result_csv | head=true | status=clean | size=471 | rows=7
+- path=results/runs/_smoke_w14_local_mps_s9331.json | category=result_json | head=false | status=clean | size=1120 | metrics={"gold_rho": 0.8674590795563618}
+- path=results/runs/_smoke_w14_local_mps_s9331_predictions.csv | category=result_csv | head=false | status=clean | size=569595 | rows=11120
+- path=results/runs/_tmp_test_highsearch.csv | category=result_csv | head=false | status=clean | size=655241 | rows=11120
+- path=results/runs/_tmp_test_highsearch.json | category=result_json | head=false | status=clean | size=18850
+- path=results/runs/et_300_splitA.json | category=result_json | head=false | status=clean | size=78 | metrics={"gold_rho": 0.7475736300358689}
+- path=results/runs/et_300_splitA_predictions.csv | category=result_csv | head=false | status=clean | size=664590 | rows=11120
+- path=results/runs/experiment_best_overall.json | category=result_json | head=false | status=clean | size=1301
+- path=results/runs/experiment_leaderboard_fixedtokens_latest.json | category=result_json | head=false | status=clean | size=702
+- path=results/runs/experiment_leaderboard_latest.json | category=result_json | head=false | status=clean | size=5612
+- path=results/runs/experiment_leaderboard_rankfusion_opt.json | category=result_json | head=false | status=clean | size=1187
+- path=results/runs/experiment_leaderboard_rankls_opt.json | category=result_json | head=false | status=clean | size=1438
+- path=results/runs/experiment_leaderboard_rankls_refine.json | category=result_json | head=false | status=clean | size=1309
+- path=results/runs/experiment_leaderboard_search_opt.json | category=result_json | head=false | status=clean | size=1081
+- path=results/runs/experiment_leaderboard_strictA_ng20000_latest.json | category=result_json | head=false | status=clean | size=1599
+- path=results/runs/experiment_leaderboard_strictA_ng20000_only.json | category=result_json | head=false | status=clean | size=2127
+- path=results/runs/experiment_leaderboard_superopt.json | category=result_json | head=false | status=clean | size=1119
+- path=results/runs/experiment_summary.json | category=result_json | head=false | status=clean | size=710
+- path=results/runs/hgb_fast_splitA.json | category=result_json | head=false | status=clean | size=80 | metrics={"gold_rho": 0.8270140968435511}
+- path=results/runs/hgb_fast_splitA_predictions.csv | category=result_csv | head=false | status=clean | size=664691 | rows=11120
+- path=results/runs/off_fir_s7_24295045.out | category=log_file | head=false | status=clean | size=2200 | lines=43
+- path=results/runs/offtarget_focal_pair_metrics.json | category=result_json | head=false | status=clean | size=155
+- path=results/runs/on_target_splitA_best_ensemble4_predictions.csv | category=result_csv | head=false | status=clean | size=612861 | rows=11120
+- path=results/runs/on_target_splitA_best_ensemble6_predictions.csv | category=result_csv | head=false | status=clean | size=650780 | rows=11120
+- path=results/runs/on_target_splitA_best_ensemble_auto_predictions.csv | category=result_csv | head=false | status=clean | size=642586 | rows=11120
+- path=results/runs/on_target_splitA_best_ensemble_rankfusion_opt_predictions.csv | category=result_csv | head=false | status=clean | size=668345 | rows=11120
+- path=results/runs/on_target_splitA_best_ensemble_rankls_opt_predictions.csv | category=result_csv | head=false | status=clean | size=671509 | rows=11120
+- path=results/runs/on_target_splitA_best_ensemble_rankls_refine_predictions.csv | category=result_csv | head=false | status=clean | size=671502 | rows=11120
+- path=results/runs/on_target_splitA_best_ensemble_search_opt_predictions.csv | category=result_csv | head=false | status=clean | size=665007 | rows=11120
+- path=results/runs/on_target_splitA_best_ensemble_superopt_predictions.csv | category=result_csv | head=false | status=clean | size=668281 | rows=11120
+- path=results/runs/on_target_splitA_cnn_gru_multimodal.json | category=result_json | head=false | status=clean | size=4338 | metrics={"best_val_rho": 0.839716411736255, "gold_rho": 0.8570106598202387}
+- path=results/runs/on_target_splitA_cnn_gru_multimodal_fixedseq_seed42.json | category=result_json | head=false | status=clean | size=3943 | metrics={"best_val_rho": 0.8438764732006807, "gold_rho": 0.8623805059665159}
+- path=results/runs/on_target_splitA_cnn_gru_pretrain_hfesp_finetune_wt_seed42.json | category=result_json | head=false | status=clean | size=2682 | metrics={"gold_rho": 0.8759644422640567}
+- path=results/runs/on_target_splitA_cnn_gru_pretrain_hfesp_finetune_wt_seed42_predictions.csv | category=result_csv | head=false | status=clean | size=569753 | rows=11120
+- path=results/runs/on_target_splitA_cnn_gru_pretrain_hfesp_finetune_wt_seed7.json | category=result_json | head=false | status=clean | size=2682 | metrics={"gold_rho": 0.8755118182960733}
+- path=results/runs/on_target_splitA_cnn_gru_pretrain_hfesp_finetune_wt_seed7_predictions.csv | category=result_csv | head=false | status=clean | size=569540 | rows=11120
+- path=results/runs/on_target_splitA_cnn_gru_sequence_only.json | category=result_json | head=false | status=clean | size=4595 | metrics={"best_val_rho": 0.8228572879370291, "gold_rho": 0.8460360480813931}
+- path=results/runs/on_target_splitA_cnn_gru_trainplusval_holdout5_seed123.json | category=result_json | head=false | status=clean | size=3997 | metrics={"gold_rho": 0.8679662135985414}
+- path=results/runs/on_target_splitA_cnn_gru_trainplusval_holdout5_seed123_predictions.csv | category=result_csv | head=false | status=clean | size=569918 | rows=11120
+- path=results/runs/on_target_splitA_cnn_gru_trainplusval_holdout5_seed42.json | category=result_json | head=false | status=clean | size=3674 | metrics={"gold_rho": 0.8675124204624203}
+- path=results/runs/on_target_splitA_cnn_gru_trainplusval_holdout5_seed42_predictions.csv | category=result_csv | head=false | status=clean | size=569743 | rows=11120
+- path=results/runs/on_target_splitA_cnn_gru_trainplusval_holdout5_seed7.json | category=result_json | head=false | status=clean | size=3887 | metrics={"gold_rho": 0.8695678794066636}
+- path=results/runs/on_target_splitA_cnn_gru_trainplusval_holdout5_seed7_predictions.csv | category=result_csv | head=false | status=clean | size=569881 | rows=11120
+- path=results/runs/on_target_splitB_cnn_gru_multimodal.json | category=result_json | head=false | status=clean | size=3308 | metrics={"best_val_rho": 0.8533821441998735, "gold_rho": 0.8507302217393355}
+- path=results/runs/on_target_splitC_cnn_gru_multimodal.json | category=result_json | head=false | status=clean | size=3307 | metrics={"best_val_rho": 0.8660020339436388, "gold_rho": 0.8132350645848481}
+- path=results/runs/on_target_strictA_ng20000_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=665019 | rows=11120
+- path=results/runs/on_target_strictA_ng20000_only_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=163686 | rows=3056
+- path=results/runs/optuna/w57opt_local_offtarget.db | category=database | head=false | status=clean | size=114688
+- path=results/runs/optuna/w57opt_local_splitA.db | category=database | head=false | status=clean | size=114688
+- path=results/runs/rf_300_splitA.json | category=result_json | head=false | status=clean | size=76 | metrics={"gold_rho": 0.76019532732256}
+- path=results/runs/rf_300_splitA_predictions.csv | category=result_csv | head=false | status=clean | size=664543 | rows=11120
+- path=results/runs/smoke_dnabert2_splitA.json | category=result_json | head=false | status=clean | size=229 | metrics={"best_val_rho": 0.5595667263458398, "gold_rho": 0.5606801984368072}
+- path=results/runs/smoke_local_trainval.json | category=result_json | head=false | status=clean | size=975 | metrics={"gold_rho": 0.7180969937197659}
+- path=results/runs/smoke_local_trainval_predictions.csv | category=result_csv | head=false | status=clean | size=569252 | rows=11120
+- path=results/runs/splitA_dhfsweep_fc320_l01_s42.json | category=result_json | head=false | status=clean | size=9070 | metrics={"gold_rho": 0.8757376599303387}
+- path=results/runs/splitA_dhfsweep_fc320_l01_s42_predictions.csv | category=result_csv | head=false | status=clean | size=476117 | rows=11120
+- path=results/runs/splitA_dhfsweep_fc512_l01_s42.json | category=result_json | head=false | status=clean | size=9076 | metrics={"gold_rho": 0.8760036732425172}
+- path=results/runs/splitA_dhfsweep_fc512_l01_s42_predictions.csv | category=result_csv | head=false | status=clean | size=476177 | rows=11120
+- path=results/runs/splitA_dhfsweep_fc512_l02_s202.json | category=result_json | head=false | status=clean | size=5623 | metrics={"gold_rho": 0.8733461735264865}
+- path=results/runs/splitA_dhfsweep_fc512_l02_s202_predictions.csv | category=result_csv | head=false | status=clean | size=475893 | rows=11120
+- path=results/runs/splitA_dhfsweep_fc512_l02_s42.json | category=result_json | head=false | status=clean | size=9064 | metrics={"gold_rho": 0.8783193898772262}
+- path=results/runs/splitA_dhfsweep_fc512_l02_s42_predictions.csv | category=result_csv | head=false | status=clean | size=475464 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed111_d384_gate.json | category=result_json | head=false | status=clean | size=3901 | metrics={"gold_rho": 0.879715822486243}
+- path=results/runs/splitA_fixedtokens_seed111_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569768 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed123_d256_baseline.json | category=result_json | head=false | status=clean | size=3100 | metrics={"gold_rho": 0.8798022154662294}
+- path=results/runs/splitA_fixedtokens_seed123_d256_baseline_predictions.csv | category=result_csv | head=false | status=clean | size=569749 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed1313_d384_gate.json | category=result_json | head=false | status=clean | size=2789 | metrics={"gold_rho": 0.8793190492668145}
+- path=results/runs/splitA_fixedtokens_seed1313_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569685 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed1717_d384_gate.json | category=result_json | head=false | status=clean | size=4599 | metrics={"gold_rho": 0.8770559850027722}
+- path=results/runs/splitA_fixedtokens_seed1717_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569671 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed202_d384_gate.json | category=result_json | head=false | status=clean | size=4352 | metrics={"gold_rho": 0.8807346785682334}
+- path=results/runs/splitA_fixedtokens_seed202_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569758 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed2727_d384_gate.json | category=result_json | head=false | status=clean | size=4320 | metrics={"gold_rho": 0.8798632198871531}
+- path=results/runs/splitA_fixedtokens_seed2727_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569787 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed314_d384_gate.json | category=result_json | head=false | status=clean | size=2958 | metrics={"gold_rho": 0.8786408929859688}
+- path=results/runs/splitA_fixedtokens_seed314_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569589 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed4242_d384_gate.json | category=result_json | head=false | status=clean | size=3066 | metrics={"gold_rho": 0.8793546361563191}
+- path=results/runs/splitA_fixedtokens_seed4242_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569797 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed42_d256_baseline.json | category=result_json | head=false | status=clean | size=3236 | metrics={"gold_rho": 0.879421268548767}
+- path=results/runs/splitA_fixedtokens_seed42_d256_baseline_predictions.csv | category=result_csv | head=false | status=clean | size=569777 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed42_d384_gate.json | category=result_json | head=false | status=clean | size=3510 | metrics={"gold_rho": 0.8802779203168345}
+- path=results/runs/splitA_fixedtokens_seed42_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569600 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed515_d384_gate.json | category=result_json | head=false | status=clean | size=3201 | metrics={"gold_rho": 0.8757607599131508}
+- path=results/runs/splitA_fixedtokens_seed515_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569605 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed7_d256_baseline.json | category=result_json | head=false | status=clean | size=3656 | metrics={"gold_rho": 0.8781373096048531}
+- path=results/runs/splitA_fixedtokens_seed7_d256_baseline_predictions.csv | category=result_csv | head=false | status=clean | size=569640 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed909_d384_gate.json | category=result_json | head=false | status=clean | size=3483 | metrics={"gold_rho": 0.8822082059941756}
+- path=results/runs/splitA_fixedtokens_seed909_d384_gate_cap.json | category=result_json | head=false | status=clean | size=5295 | metrics={"gold_rho": 0.8717924439320559}
+- path=results/runs/splitA_fixedtokens_seed909_d384_gate_cap_predictions.csv | category=result_csv | head=false | status=clean | size=569670 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed909_d384_gate_ftlr3e4.json | category=result_json | head=false | status=clean | size=5999 | metrics={"gold_rho": 0.8793283696606025}
+- path=results/runs/splitA_fixedtokens_seed909_d384_gate_ftlr3e4_predictions.csv | category=result_csv | head=false | status=clean | size=569621 | rows=11120
+- path=results/runs/splitA_fixedtokens_seed909_d384_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569738 | rows=11120
+- path=results/runs/splitA_push_d512_gate_s42.json | category=result_json | head=false | status=clean | size=3658 | metrics={"gold_rho": 0.8724736678516811}
+- path=results/runs/splitA_push_d512_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=569698 | rows=11120
+- path=results/runs/splitA_pushfast_d512_gate_s202.json | category=result_json | head=false | status=clean | size=4225 | metrics={"gold_rho": 0.8668657186517628}
+- path=results/runs/splitA_pushfast_d512_gate_s202_predictions.csv | category=result_csv | head=false | status=clean | size=569846 | rows=11120
+- path=results/runs/splitA_pushfast_d512_gate_s42.json | category=result_json | head=false | status=clean | size=4778 | metrics={"gold_rho": 0.863506838492872}
+- path=results/runs/splitA_pushfast_d512_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=570025 | rows=11120
+- path=results/runs/splitA_pushfast_d512_gate_s7.json | category=result_json | head=false | status=clean | size=4217 | metrics={"gold_rho": 0.8672844942487691}
+- path=results/runs/splitA_pushfast_d512_gate_s7_predictions.csv | category=result_csv | head=false | status=clean | size=569864 | rows=11120
+- path=results/runs/splitA_rank_d384_l03_s42.json | category=result_json | head=false | status=clean | size=4666 | metrics={"gold_rho": 0.8768876628514292}
+- path=results/runs/splitA_rank_d384_l03_s42_predictions.csv | category=result_csv | head=false | status=clean | size=569730 | rows=11120
+- path=results/runs/splitA_rank_d384_l08_s42.json | category=result_json | head=false | status=clean | size=4289 | metrics={"gold_rho": 0.8764242146184913}
+- path=results/runs/splitA_rank_d384_l08_s42_predictions.csv | category=result_csv | head=false | status=clean | size=569624 | rows=11120
+- path=results/runs/splitA_rank_d512_l05_s42.json | category=result_json | head=false | status=clean | size=4672 | metrics={"gold_rho": 0.8719484796847436}
+- path=results/runs/splitA_rank_d512_l05_s42_predictions.csv | category=result_csv | head=false | status=clean | size=569706 | rows=11120
+- path=results/runs/splitA_ranked_seed42_d256_lambda05.json | category=result_json | head=false | status=clean | size=3269 | metrics={"gold_rho": 0.8750251968580519}
+- path=results/runs/splitA_ranked_seed42_d256_lambda05_predictions.csv | category=result_csv | head=false | status=clean | size=569923 | rows=11120
+- path=results/runs/splitA_rankfast_d384_l03_s42.json | category=result_json | head=false | status=clean | size=6017 | metrics={"gold_rho": 0.8663049216210965}
+- path=results/runs/splitA_rankfast_d384_l03_s42_predictions.csv | category=result_csv | head=false | status=clean | size=569903 | rows=11120
+- path=results/runs/splitA_rankfast_d384_l08_s42.json | category=result_json | head=false | status=clean | size=5253 | metrics={"gold_rho": 0.8650760453809263}
+- path=results/runs/splitA_rankfast_d384_l08_s42_predictions.csv | category=result_csv | head=false | status=clean | size=569842 | rows=11120
+- path=results/runs/splitA_rankfast_d512_l05_s42.json | category=result_json | head=false | status=clean | size=5631 | metrics={"gold_rho": 0.8703454722177532}
+- path=results/runs/splitA_rankfast_d512_l05_s42_predictions.csv | category=result_csv | head=false | status=clean | size=569735 | rows=11120
+- path=results/runs/splitA_transfer_cellfeat_seed42_d256.json | category=result_json | head=false | status=clean | size=2529 | metrics={"gold_rho": 0.8719325499311141}
+- path=results/runs/splitA_transfer_cellfeat_seed42_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569713 | rows=11120
+- path=results/runs/splitA_transfer_seed123_cnn_d256.json | category=result_json | head=false | status=clean | size=1882 | metrics={"gold_rho": 0.8801607449816036}
+- path=results/runs/splitA_transfer_seed123_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569705 | rows=11120
+- path=results/runs/splitA_transfer_seed202_cnn_d256.json | category=result_json | head=false | status=clean | size=2488 | metrics={"gold_rho": 0.8819798701429603}
+- path=results/runs/splitA_transfer_seed202_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569993 | rows=11120
+- path=results/runs/splitA_transfer_seed21_cnn_d256.json | category=result_json | head=false | status=clean | size=2064 | metrics={"gold_rho": 0.877086266862023}
+- path=results/runs/splitA_transfer_seed21_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569705 | rows=11120
+- path=results/runs/splitA_transfer_seed314_cnn_d256.json | category=result_json | head=false | status=clean | size=2377 | metrics={"gold_rho": 0.8754041222138115}
+- path=results/runs/splitA_transfer_seed314_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569521 | rows=11120
+- path=results/runs/splitA_transfer_seed42_cnn_d256.json | category=result_json | head=false | status=clean | size=1986 | metrics={"gold_rho": 0.8816734558237456}
+- path=results/runs/splitA_transfer_seed42_cnn_d256_concat.json | category=result_json | head=false | status=clean | size=2950 | metrics={"gold_rho": 0.871423658667619}
+- path=results/runs/splitA_transfer_seed42_cnn_d256_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569728 | rows=11120
+- path=results/runs/splitA_transfer_seed42_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569821 | rows=11120
+- path=results/runs/splitA_transfer_seed42_cnn_d512_lr3e4.json | category=result_json | head=false | status=clean | size=2835 | metrics={"gold_rho": 0.8726243488561598}
+- path=results/runs/splitA_transfer_seed42_cnn_d512_lr3e4_predictions.csv | category=result_csv | head=false | status=clean | size=569772 | rows=11120
+- path=results/runs/splitA_transfer_seed7_cnn_d256.json | category=result_json | head=false | status=clean | size=1879 | metrics={"gold_rho": 0.8794835460242338}
+- path=results/runs/splitA_transfer_seed7_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569672 | rows=11120
+- path=results/runs/splitA_transfer_seed84_cnn_d256.json | category=result_json | head=false | status=clean | size=2274 | metrics={"gold_rho": 0.8790605953381592}
+- path=results/runs/splitA_transfer_seed84_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569734 | rows=11120
+- path=results/runs/splitA_transfer_seed9999_cnn_d256.json | category=result_json | head=false | status=clean | size=3021 | metrics={"gold_rho": 0.8777352813342516}
+- path=results/runs/splitA_transfer_seed9999_cnn_d256_predictions.csv | category=result_csv | head=false | status=clean | size=569772 | rows=11120
+- path=results/runs/splitB_transfer_seed42.json | category=result_json | head=false | status=clean | size=1811 | metrics={"gold_rho": 0.871953739029992}
+- path=results/runs/splitB_transfer_seed42_predictions.csv | category=result_csv | head=false | status=clean | size=569756 | rows=11120
+- path=results/runs/strictA_ng0_seed42_cnn_d256_gate.json | category=result_json | head=false | status=clean | size=3424 | metrics={"gold_rho": 0.4000668588077115}
+- path=results/runs/strictA_ng0_seed42_cnn_d256_gate_predictions.csv | category=result_csv | head=false | status=clean | size=120520 | rows=2687
+- path=results/runs/strictA_ng20000_fast_cnn_d256_concat_s42.json | category=result_json | head=false | status=clean | size=2312 | metrics={"gold_rho": 0.33498321662668196}
+- path=results/runs/strictA_ng20000_fast_cnn_d256_concat_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136769 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d256_gate_s42.json | category=result_json | head=false | status=clean | size=2723 | metrics={"gold_rho": 0.3514442950722659}
+- path=results/runs/strictA_ng20000_fast_cnn_d256_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136778 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d256_xattn_s42.json | category=result_json | head=false | status=clean | size=2739 | metrics={"gold_rho": 0.35694047837957193}
+- path=results/runs/strictA_ng20000_fast_cnn_d256_xattn_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136869 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s123.json | category=result_json | head=false | status=clean | size=2591 | metrics={"gold_rho": 0.33300492375878826}
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s123_predictions.csv | category=result_csv | head=false | status=clean | size=136911 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s202.json | category=result_json | head=false | status=clean | size=2734 | metrics={"gold_rho": 0.34831539023781033}
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s202_predictions.csv | category=result_csv | head=false | status=clean | size=136738 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s314.json | category=result_json | head=false | status=clean | size=3014 | metrics={"gold_rho": 0.32952255805329683}
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s314_predictions.csv | category=result_csv | head=false | status=clean | size=136861 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s42.json | category=result_json | head=false | status=clean | size=2593 | metrics={"gold_rho": 0.3611614580023632}
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136758 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s7.json | category=result_json | head=false | status=clean | size=3013 | metrics={"gold_rho": 0.35399001308758}
+- path=results/runs/strictA_ng20000_fast_cnn_d384_gate_s7_predictions.csv | category=result_csv | head=false | status=clean | size=136833 | rows=3056
+- path=results/runs/strictA_ng20000_fast_cnn_d384_xattn_s42.json | category=result_json | head=false | status=clean | size=2465 | metrics={"gold_rho": 0.3199340146414922}
+- path=results/runs/strictA_ng20000_fast_cnn_d384_xattn_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136833 | rows=3056
+- path=results/runs/strictA_ng20000_fast_mamba_d256_gate_s42.json | category=result_json | head=false | status=clean | size=3433 | metrics={"gold_rho": 0.23139879914183006}
+- path=results/runs/strictA_ng20000_fast_mamba_d256_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136819 | rows=3056
+- path=results/runs/strictA_ng20000_opt_cnn_d256_concat_s42.json | category=result_json | head=false | status=clean | size=3860 | metrics={"gold_rho": 0.34683406519315735}
+- path=results/runs/strictA_ng20000_opt_cnn_d256_concat_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136984 | rows=3056
+- path=results/runs/strictA_ng20000_opt_cnn_d256_gate_s42.json | category=result_json | head=false | status=clean | size=3574 | metrics={"gold_rho": 0.3838084904210858}
+- path=results/runs/strictA_ng20000_opt_cnn_d256_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136878 | rows=3056
+- path=results/runs/strictA_ng20000_opt_cnn_d256_xattn_s42.json | category=result_json | head=false | status=clean | size=3445 | metrics={"gold_rho": 0.3897512581825315}
+- path=results/runs/strictA_ng20000_opt_cnn_d256_xattn_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136822 | rows=3056
+- path=results/runs/strictA_ng20000_opt_cnn_d384_gate_s42.json | category=result_json | head=false | status=clean | size=3436 | metrics={"gold_rho": 0.40138173516900594}
+- path=results/runs/strictA_ng20000_opt_cnn_d384_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136939 | rows=3056
+- path=results/runs/strictA_ng20000_opt_cnn_d384_xattn_s42.json | category=result_json | head=false | status=clean | size=4287 | metrics={"gold_rho": 0.3427938993958294}
+- path=results/runs/strictA_ng20000_opt_cnn_d384_xattn_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136969 | rows=3056
+- path=results/runs/strictA_ng20000_opt_cnn_d512_gate_s42.json | category=result_json | head=false | status=clean | size=3430 | metrics={"gold_rho": 0.4024609009171111}
+- path=results/runs/strictA_ng20000_opt_cnn_d512_gate_s42_predictions.csv | category=result_csv | head=false | status=clean | size=136779 | rows=3056
+- path=results/runs/strictA_ng20000_seed42_cnn_d256_gate.json | category=result_json | head=false | status=clean | size=3015 | metrics={"gold_rho": 0.3737114500109427}
+- path=results/runs/strictA_ng20000_seed42_cnn_d256_gate_predictions.csv | category=result_csv | head=false | status=clean | size=136926 | rows=3056
+- path=results/runs/strictA_ng50000_seed42_cnn_d256_gate.json | category=result_json | head=false | status=clean | size=3290 | metrics={"gold_rho": 0.3952942292357718}
+- path=results/runs/strictA_ng50000_seed42_cnn_d256_gate_predictions.csv | category=result_csv | head=false | status=clean | size=133243 | rows=2980
+- path=results/runs/strictA_ng5000_seed42_cnn_d256_gate.json | category=result_json | head=false | status=clean | size=3004 | metrics={"gold_rho": 0.3860163047718407}
+- path=results/runs/strictA_ng5000_seed42_cnn_d256_gate_predictions.csv | category=result_csv | head=false | status=clean | size=130502 | rows=2906
+- path=results/runs/strictA_screen_ng0_seed42.json | category=result_json | head=false | status=clean | size=2994 | metrics={"gold_rho": 0.32239170888805235}
+- path=results/runs/strictA_screen_ng0_seed42_predictions.csv | category=result_csv | head=false | status=clean | size=120507 | rows=2687
+- path=results/runs/strictA_screen_ng20000_seed42.json | category=result_json | head=false | status=clean | size=2867 | metrics={"gold_rho": 0.3289542849460271}
+- path=results/runs/strictA_screen_ng20000_seed42_predictions.csv | category=result_csv | head=false | status=clean | size=136823 | rows=3056
+- path=results/runs/strictA_screen_ng50000_seed42.json | category=result_json | head=false | status=clean | size=3293 | metrics={"gold_rho": 0.3247827024602249}
+- path=results/runs/strictA_screen_ng50000_seed42_predictions.csv | category=result_csv | head=false | status=clean | size=133212 | rows=2980
+- path=results/runs/strictA_screen_ng5000_seed42.json | category=result_json | head=false | status=clean | size=2713 | metrics={"gold_rho": 0.2676953414882266}
+- path=results/runs/strictA_screen_ng5000_seed42_predictions.csv | category=result_csv | head=false | status=clean | size=130356 | rows=2906
+- path=results/runs/strictA_seed202_d256_gate_expval_cell.json | category=result_json | head=false | status=clean | size=3960 | metrics={"gold_rho": 0.3451601299587624}
+- path=results/runs/strictA_seed202_d256_gate_expval_cell_predictions.csv | category=result_csv | head=false | status=clean | size=120516 | rows=2687
+- path=results/runs/strictA_seed202_d384_gate_expval_cell.json | category=result_json | head=false | status=clean | size=3958 | metrics={"gold_rho": 0.3289777613741392}
+- path=results/runs/strictA_seed202_d384_gate_expval_cell_predictions.csv | category=result_csv | head=false | status=clean | size=120392 | rows=2687
+- path=results/runs/strictA_seed42_d256_gate_expval.json | category=result_json | head=false | status=clean | size=4043 | metrics={"gold_rho": 0.2910020378794277}
+- path=results/runs/strictA_seed42_d256_gate_expval_predictions.csv | category=result_csv | head=false | status=clean | size=120344 | rows=2687
+- path=results/runs/strictA_seed42_d256_gate_fast.json | category=result_json | head=false | status=clean | size=8849 | metrics={"gold_rho": 0.17620523648480857}
+- path=results/runs/strictA_seed42_d256_gate_fast_predictions.csv | category=result_csv | head=false | status=clean | size=120535 | rows=2687
+- path=results/runs/strictA_seed7_d256_gate_expval_cell.json | category=result_json | head=false | status=clean | size=3403 | metrics={"gold_rho": 0.3147363030210555}
+- path=results/runs/strictA_seed7_d256_gate_expval_cell_predictions.csv | category=result_csv | head=false | status=clean | size=120387 | rows=2687
+- path=results/runs/strictB_seed42_d256_gate_expval.json | category=result_json | head=false | status=clean | size=6769 | metrics={"gold_rho": 0.27101479100089887}
+- path=results/runs/strictB_seed42_d256_gate_expval_predictions.csv | category=result_csv | head=false | status=clean | size=744006 | rows=16749
+- path=results/runs/strictC_seed42_d256_gate_expval.json | category=result_json | head=false | status=clean | size=6207 | metrics={"gold_rho": 0.562389106616767}
+- path=results/runs/strictC_seed42_d256_gate_expval_predictions.csv | category=result_csv | head=false | status=clean | size=927878 | rows=19222
+- path=results/runs/sweepA_v5_cnn.log | category=log_file | head=false | status=clean | size=1135 | lines=32
+- path=results/runs/w10_best_ensemble_latest_predictions.csv | category=result_csv | head=false | status=clean | size=664997 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7801.json | category=result_json | head=false | status=clean | size=6001 | metrics={"gold_rho": 0.8794447834136334}
+- path=results/runs/w10_fir_d640_gate_s7801_predictions.csv | category=result_csv | head=false | status=clean | size=569660 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7802.json | category=result_json | head=false | status=clean | size=5999 | metrics={"gold_rho": 0.8802360130286795}
+- path=results/runs/w10_fir_d640_gate_s7802_predictions.csv | category=result_csv | head=false | status=clean | size=569753 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7803.json | category=result_json | head=false | status=clean | size=5579 | metrics={"gold_rho": 0.8795590486851754}
+- path=results/runs/w10_fir_d640_gate_s7803_predictions.csv | category=result_csv | head=false | status=clean | size=569574 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7804.json | category=result_json | head=false | status=clean | size=5161 | metrics={"gold_rho": 0.8794003396013823}
+- path=results/runs/w10_fir_d640_gate_s7804_predictions.csv | category=result_csv | head=false | status=clean | size=569745 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7805.json | category=result_json | head=false | status=clean | size=5582 | metrics={"gold_rho": 0.8791113524124435}
+- path=results/runs/w10_fir_d640_gate_s7805_predictions.csv | category=result_csv | head=false | status=clean | size=569623 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7806.json | category=result_json | head=false | status=clean | size=7258 | metrics={"gold_rho": 0.8795124369800564}
+- path=results/runs/w10_fir_d640_gate_s7806_predictions.csv | category=result_csv | head=false | status=clean | size=569681 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7807.json | category=result_json | head=false | status=clean | size=6279 | metrics={"gold_rho": 0.8814754517094877}
+- path=results/runs/w10_fir_d640_gate_s7807_predictions.csv | category=result_csv | head=false | status=clean | size=569863 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7808.json | category=result_json | head=false | status=clean | size=6280 | metrics={"gold_rho": 0.8807976173109541}
+- path=results/runs/w10_fir_d640_gate_s7808_predictions.csv | category=result_csv | head=false | status=clean | size=569716 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7809.json | category=result_json | head=false | status=clean | size=6414 | metrics={"gold_rho": 0.8810192089433543}
+- path=results/runs/w10_fir_d640_gate_s7809_predictions.csv | category=result_csv | head=false | status=clean | size=569757 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7810.json | category=result_json | head=false | status=clean | size=4882 | metrics={"gold_rho": 0.8775829284615704}
+- path=results/runs/w10_fir_d640_gate_s7810_predictions.csv | category=result_csv | head=false | status=clean | size=569890 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7811.json | category=result_json | head=false | status=clean | size=5300 | metrics={"gold_rho": 0.8819651590167777}
+- path=results/runs/w10_fir_d640_gate_s7811_predictions.csv | category=result_csv | head=false | status=clean | size=569749 | rows=11120
+- path=results/runs/w10_fir_d640_gate_s7812.json | category=result_json | head=false | status=clean | size=6000 | metrics={"gold_rho": 0.8805780781845879}
+- path=results/runs/w10_fir_d640_gate_s7812_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w10_local_deephf_style_s8801.json | category=result_json | head=false | status=clean | size=15792 | metrics={"gold_rho": 0.8779505242588052}
+- path=results/runs/w10_local_deephf_style_s8801_predictions.csv | category=result_csv | head=false | status=clean | size=475647 | rows=11120
+- path=results/runs/w10_progress_summary_latest.json | category=result_json | head=false | status=clean | size=9900
+- path=results/runs/w10_rank_ridge_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=656173 | rows=11120
+- path=results/runs/w10_rank_ridge_ensemble_splitA.json | category=result_json | head=false | status=clean | size=319 | metrics={"gold_rho": 0.9019413932166332}
+- path=results/runs/w10_rank_ridge_ensemble_summary.json | category=result_json | head=false | status=clean | size=927
+- path=results/runs/w10b_fir_d640_gate_s7901.json | category=result_json | head=false | status=clean | size=5579 | metrics={"gold_rho": 0.8771661765506091}
+- path=results/runs/w10b_fir_d640_gate_s7901_predictions.csv | category=result_csv | head=false | status=clean | size=569623 | rows=11120
+- path=results/runs/w10b_fir_d640_gate_s7902.json | category=result_json | head=false | status=clean | size=4460 | metrics={"gold_rho": 0.8793303874686472}
+- path=results/runs/w10b_fir_d640_gate_s7902_predictions.csv | category=result_csv | head=false | status=clean | size=569731 | rows=11120
+- path=results/runs/w10b_fir_d640_gate_s7903.json | category=result_json | head=false | status=clean | size=6281 | metrics={"gold_rho": 0.8773886702949184}
+- path=results/runs/w10b_fir_d640_gate_s7903_predictions.csv | category=result_csv | head=false | status=clean | size=569699 | rows=11120
+- path=results/runs/w10b_fir_d640_gate_s7904.json | category=result_json | head=false | status=clean | size=4748 | metrics={"gold_rho": 0.8806313987358264}
+- path=results/runs/w10b_fir_d640_gate_s7904_predictions.csv | category=result_csv | head=false | status=clean | size=569823 | rows=11120
+- path=results/runs/w11_best_ensemble_highsearch_predictions.csv | category=result_csv | head=false | status=clean | size=664964 | rows=11120
+- path=results/runs/w11_best_ensemble_latest_predictions.csv | category=result_csv | head=false | status=clean | size=664999 | rows=11120
+- path=results/runs/w11_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=664916 | rows=11120
+- path=results/runs/w11_fir_d640_gate_s8001.json | category=result_json | head=false | status=clean | size=7961 | metrics={"gold_rho": 0.8759916888500959}
+- path=results/runs/w11_fir_d640_gate_s8001_predictions.csv | category=result_csv | head=false | status=clean | size=569614 | rows=11120
+- path=results/runs/w11_fir_d640_gate_s8002.json | category=result_json | head=false | status=clean | size=5305 | metrics={"gold_rho": 0.8808417875888489}
+- path=results/runs/w11_fir_d640_gate_s8002_predictions.csv | category=result_csv | head=false | status=clean | size=569880 | rows=11120
+- path=results/runs/w11_fir_d640_gate_s8003.json | category=result_json | head=false | status=clean | size=5865 | metrics={"gold_rho": 0.8787846411743074}
+- path=results/runs/w11_fir_d640_gate_s8003_predictions.csv | category=result_csv | head=false | status=clean | size=569681 | rows=11120
+- path=results/runs/w11_fir_d640_gate_s8004.json | category=result_json | head=false | status=clean | size=5444 | metrics={"gold_rho": 0.8795304923714004}
+- path=results/runs/w11_fir_d640_gate_s8004_predictions.csv | category=result_csv | head=false | status=clean | size=569712 | rows=11120
+- path=results/runs/w11_fir_d640_gate_s8005.json | category=result_json | head=false | status=clean | size=6280 | metrics={"gold_rho": 0.8758350678163762}
+- path=results/runs/w11_fir_d640_gate_s8005_predictions.csv | category=result_csv | head=false | status=clean | size=569819 | rows=11120
+- path=results/runs/w11_fir_d896_gate_s8101.json | category=result_json | head=false | status=clean | size=5017 | metrics={"gold_rho": 0.8822950226819883}
+- path=results/runs/w11_fir_d896_gate_s8101_predictions.csv | category=result_csv | head=false | status=clean | size=569637 | rows=11120
+- path=results/runs/w11_fir_d896_gate_s8102.json | category=result_json | head=false | status=clean | size=5576 | metrics={"gold_rho": 0.8841083648374715}
+- path=results/runs/w11_fir_d896_gate_s8102_predictions.csv | category=result_csv | head=false | status=clean | size=569618 | rows=11120
+- path=results/runs/w11_fir_d896_gate_s8103.json | category=result_json | head=false | status=clean | size=4323 | metrics={"gold_rho": 0.8827814071356325}
+- path=results/runs/w11_fir_d896_gate_s8103_predictions.csv | category=result_csv | head=false | status=clean | size=569858 | rows=11120
+- path=results/runs/w11_fir_d896_gate_s8104.json | category=result_json | head=false | status=clean | size=5722 | metrics={"gold_rho": 0.879718251795101}
+- path=results/runs/w11_fir_d896_gate_s8104_predictions.csv | category=result_csv | head=false | status=clean | size=569839 | rows=11120
+- path=results/runs/w11_fir_d896_gate_s8105.json | category=result_json | head=false | status=clean | size=5022 | metrics={"gold_rho": 0.8791709965961516}
+- path=results/runs/w11_fir_d896_gate_s8105_predictions.csv | category=result_csv | head=false | status=clean | size=569636 | rows=11120
+- path=results/runs/w11_progress_summary_highsearch.json | category=result_json | head=false | status=clean | size=11528
+- path=results/runs/w11_progress_summary_latest.json | category=result_json | head=false | status=clean | size=11524
+- path=results/runs/w11_progress_summary_partial.json | category=result_json | head=false | status=clean | size=10550
+- path=results/runs/w12_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=661966 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8201.json | category=result_json | head=false | status=clean | size=5300 | metrics={"gold_rho": 0.8818361544689551}
+- path=results/runs/w12_fir_d896_gate_s8201_predictions.csv | category=result_csv | head=false | status=clean | size=569760 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8202.json | category=result_json | head=false | status=clean | size=5718 | metrics={"gold_rho": 0.8812837597940053}
+- path=results/runs/w12_fir_d896_gate_s8202_predictions.csv | category=result_csv | head=false | status=clean | size=569521 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8203.json | category=result_json | head=false | status=clean | size=5448 | metrics={"gold_rho": 0.8835248739582782}
+- path=results/runs/w12_fir_d896_gate_s8203_predictions.csv | category=result_csv | head=false | status=clean | size=569747 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8204.json | category=result_json | head=false | status=clean | size=6138 | metrics={"gold_rho": 0.8800738100895361}
+- path=results/runs/w12_fir_d896_gate_s8204_predictions.csv | category=result_csv | head=false | status=clean | size=569840 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8205.json | category=result_json | head=false | status=clean | size=4746 | metrics={"gold_rho": 0.8819430837760972}
+- path=results/runs/w12_fir_d896_gate_s8205_predictions.csv | category=result_csv | head=false | status=clean | size=569797 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8206.json | category=result_json | head=false | status=clean | size=5027 | metrics={"gold_rho": 0.884771369324013}
+- path=results/runs/w12_fir_d896_gate_s8206_predictions.csv | category=result_csv | head=false | status=clean | size=569866 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8208.json | category=result_json | head=false | status=clean | size=5582 | metrics={"gold_rho": 0.8818169430357055}
+- path=results/runs/w12_fir_d896_gate_s8208_predictions.csv | category=result_csv | head=false | status=clean | size=569758 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8209.json | category=result_json | head=false | status=clean | size=4467 | metrics={"gold_rho": 0.8823460177262039}
+- path=results/runs/w12_fir_d896_gate_s8209_predictions.csv | category=result_csv | head=false | status=clean | size=569835 | rows=11120
+- path=results/runs/w12_fir_d896_gate_s8210.json | category=result_json | head=false | status=clean | size=4324 | metrics={"gold_rho": 0.8832977004351441}
+- path=results/runs/w12_fir_d896_gate_s8210_predictions.csv | category=result_csv | head=false | status=clean | size=569782 | rows=11120
+- path=results/runs/w12_progress_summary_partial.json | category=result_json | head=false | status=clean | size=12267
+- path=results/runs/w13_best_ensemble_highsearch_predictions.csv | category=result_csv | head=false | status=clean | size=642586 | rows=11120
+- path=results/runs/w13_local_mps_d640_gate_s9301.json | category=result_json | head=false | status=clean | size=5721 | metrics={"gold_rho": 0.8817068751549504}
+- path=results/runs/w13_local_mps_d640_gate_s9301_predictions.csv | category=result_csv | head=false | status=clean | size=569865 | rows=11120
+- path=results/runs/w13_progress_summary_highsearch.json | category=result_json | head=false | status=clean | size=5612
+- path=results/runs/w14_best_ensemble_after_rorqual_pull_predictions.csv | category=result_csv | head=false | status=clean | size=654797 | rows=11120
+- path=results/runs/w14_best_ensemble_firpull_predictions.csv | category=result_csv | head=false | status=clean | size=661966 | rows=11120
+- path=results/runs/w14_best_ensemble_precluster_opt_predictions.csv | category=result_csv | head=false | status=clean | size=665034 | rows=11120
+- path=results/runs/w14_fir_d640_m15_s9306.json | category=result_json | head=false | status=clean | size=5025 | metrics={"gold_rho": 0.8811777504036095}
+- path=results/runs/w14_fir_d640_m15_s9306_predictions.csv | category=result_csv | head=false | status=clean | size=569904 | rows=11120
+- path=results/runs/w14_fir_d640_m15_s9307.json | category=result_json | head=false | status=clean | size=5445 | metrics={"gold_rho": 0.8807610318555538}
+- path=results/runs/w14_fir_d640_m15_s9307_predictions.csv | category=result_csv | head=false | status=clean | size=569797 | rows=11120
+- path=results/runs/w14_fir_d640_m15_s9308.json | category=result_json | head=false | status=clean | size=5303 | metrics={"gold_rho": 0.879649398167342}
+- path=results/runs/w14_fir_d640_m15_s9308_predictions.csv | category=result_csv | head=false | status=clean | size=569722 | rows=11120
+- path=results/runs/w14_fir_d640_m25_s9301.json | category=result_json | head=false | status=clean | size=4741 | metrics={"gold_rho": 0.8818792800301211}
+- path=results/runs/w14_fir_d640_m25_s9301_predictions.csv | category=result_csv | head=false | status=clean | size=569662 | rows=11120
+- path=results/runs/w14_fir_d640_m25_s9302.json | category=result_json | head=false | status=clean | size=5575 | metrics={"gold_rho": 0.8793594791463554}
+- path=results/runs/w14_fir_d640_m25_s9302_predictions.csv | category=result_csv | head=false | status=clean | size=569749 | rows=11120
+- path=results/runs/w14_fir_d640_m25_s9303.json | category=result_json | head=false | status=clean | size=4883 | metrics={"gold_rho": 0.8835360938883144}
+- path=results/runs/w14_fir_d640_m25_s9303_predictions.csv | category=result_csv | head=false | status=clean | size=569859 | rows=11120
+- path=results/runs/w14_fir_d640_m25_s9304.json | category=result_json | head=false | status=clean | size=5443 | metrics={"gold_rho": 0.8778249185275698}
+- path=results/runs/w14_fir_d640_m25_s9304_predictions.csv | category=result_csv | head=false | status=clean | size=569698 | rows=11120
+- path=results/runs/w14_fir_d640_m25_s9305.json | category=result_json | head=false | status=clean | size=4182 | metrics={"gold_rho": 0.8815212955153293}
+- path=results/runs/w14_fir_d640_m25_s9305_predictions.csv | category=result_csv | head=false | status=clean | size=569833 | rows=11120
+- path=results/runs/w14_fir_d896_m45_s9309.json | category=result_json | head=false | status=clean | size=4469 | metrics={"gold_rho": 0.8831352135703747}
+- path=results/runs/w14_fir_d896_m45_s9309_predictions.csv | category=result_csv | head=false | status=clean | size=569806 | rows=11120
+- path=results/runs/w14_fir_d896_m45_s9310.json | category=result_json | head=false | status=clean | size=5715 | metrics={"gold_rho": 0.8807474865962028}
+- path=results/runs/w14_fir_d896_m45_s9310_predictions.csv | category=result_csv | head=false | status=clean | size=569799 | rows=11120
+- path=results/runs/w14_progress_summary_after_rorqual_pull.json | category=result_json | head=false | status=clean | size=13252
+- path=results/runs/w14_progress_summary_firpull.json | category=result_json | head=false | status=clean | size=12378
+- path=results/runs/w14_progress_summary_precluster_opt.json | category=result_json | head=false | status=clean | size=10498
+- path=results/runs/w14_rorqual_d640_m15_s9326.json | category=result_json | head=false | status=clean | size=4325 | metrics={"gold_rho": 0.8814937275573977}
+- path=results/runs/w14_rorqual_d640_m15_s9326_predictions.csv | category=result_csv | head=false | status=clean | size=569694 | rows=11120
+- path=results/runs/w14_rorqual_d640_m15_s9327.json | category=result_json | head=false | status=clean | size=4461 | metrics={"gold_rho": 0.8794137028800166}
+- path=results/runs/w14_rorqual_d640_m15_s9327_predictions.csv | category=result_csv | head=false | status=clean | size=569791 | rows=11120
+- path=results/runs/w14_rorqual_d640_m15_s9328.json | category=result_json | head=false | status=clean | size=4467 | metrics={"gold_rho": 0.8813601577747476}
+- path=results/runs/w14_rorqual_d640_m15_s9328_predictions.csv | category=result_csv | head=false | status=clean | size=569738 | rows=11120
+- path=results/runs/w14_rorqual_d640_m25_s9321.json | category=result_json | head=false | status=clean | size=5582 | metrics={"gold_rho": 0.8818089658915446}
+- path=results/runs/w14_rorqual_d640_m25_s9321_predictions.csv | category=result_csv | head=false | status=clean | size=569855 | rows=11120
+- path=results/runs/w14_rorqual_d640_m25_s9322.json | category=result_json | head=false | status=clean | size=4749 | metrics={"gold_rho": 0.8808452939645266}
+- path=results/runs/w14_rorqual_d640_m25_s9322_predictions.csv | category=result_csv | head=false | status=clean | size=569750 | rows=11120
+- path=results/runs/w14_rorqual_d640_m25_s9323.json | category=result_json | head=false | status=clean | size=5019 | metrics={"gold_rho": 0.8813580389278448}
+- path=results/runs/w14_rorqual_d640_m25_s9323_predictions.csv | category=result_csv | head=false | status=clean | size=569802 | rows=11120
+- path=results/runs/w14_rorqual_d640_m25_s9324.json | category=result_json | head=false | status=clean | size=6704 | metrics={"gold_rho": 0.8759948131622892}
+- path=results/runs/w14_rorqual_d640_m25_s9324_predictions.csv | category=result_csv | head=false | status=clean | size=569742 | rows=11120
+- path=results/runs/w14_rorqual_d640_m25_s9325.json | category=result_json | head=false | status=clean | size=6135 | metrics={"gold_rho": 0.8789076928286573}
+- path=results/runs/w14_rorqual_d640_m25_s9325_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w14_rorqual_d896_m45_s9329.json | category=result_json | head=false | status=clean | size=4881 | metrics={"gold_rho": 0.8812166884126833}
+- path=results/runs/w14_rorqual_d896_m45_s9329_predictions.csv | category=result_csv | head=false | status=clean | size=569852 | rows=11120
+- path=results/runs/w14_rorqual_d896_m45_s9330.json | category=result_json | head=false | status=clean | size=6276 | metrics={"gold_rho": 0.8815324319426218}
+- path=results/runs/w14_rorqual_d896_m45_s9330_predictions.csv | category=result_csv | head=false | status=clean | size=569714 | rows=11120
+- path=results/runs/w14_submitted_jobs_20260225_090904.txt | category=other | head=false | status=clean | size=1160
+- path=results/runs/w15_best_ensemble_after_fir_done_predictions.csv | category=result_csv | head=false | status=clean | size=665056 | rows=11120
+- path=results/runs/w15_best_ensemble_after_rorqual_done_predictions.csv | category=result_csv | head=false | status=clean | size=665007 | rows=11120
+- path=results/runs/w15_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=643108 | rows=11120
+- path=results/runs/w15_best_ensemble_with_nibi_predictions.csv | category=result_csv | head=false | status=clean | size=665056 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20_s9401.json | category=result_json | head=false | status=clean | size=7754 | metrics={"gold_rho": 0.8820439776645674}
+- path=results/runs/w15_fir_d640_m25_p20_s9401_predictions.csv | category=result_csv | head=false | status=clean | size=569811 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20_s9402.json | category=result_json | head=false | status=clean | size=8032 | metrics={"gold_rho": 0.8798968100537359}
+- path=results/runs/w15_fir_d640_m25_p20_s9402_predictions.csv | category=result_csv | head=false | status=clean | size=569881 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20_s9403.json | category=result_json | head=false | status=clean | size=8594 | metrics={"gold_rho": 0.881083940243869}
+- path=results/runs/w15_fir_d640_m25_p20_s9403_predictions.csv | category=result_csv | head=false | status=clean | size=569661 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20_s9404.json | category=result_json | head=false | status=clean | size=6915 | metrics={"gold_rho": 0.8835124529673976}
+- path=results/runs/w15_fir_d640_m25_p20_s9404_predictions.csv | category=result_csv | head=false | status=clean | size=569881 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20_s9405.json | category=result_json | head=false | status=clean | size=7620 | metrics={"gold_rho": 0.8824305781112585}
+- path=results/runs/w15_fir_d640_m25_p20_s9405_predictions.csv | category=result_csv | head=false | status=clean | size=569675 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20_s9406.json | category=result_json | head=false | status=clean | size=7190 | metrics={"gold_rho": 0.8824224788895633}
+- path=results/runs/w15_fir_d640_m25_p20_s9406_predictions.csv | category=result_csv | head=false | status=clean | size=569758 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20b_s9407.json | category=result_json | head=false | status=clean | size=6643 | metrics={"gold_rho": 0.8819349205242518}
+- path=results/runs/w15_fir_d640_m25_p20b_s9407_predictions.csv | category=result_csv | head=false | status=clean | size=569587 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20b_s9408.json | category=result_json | head=false | status=clean | size=8175 | metrics={"gold_rho": 0.8819016390818033}
+- path=results/runs/w15_fir_d640_m25_p20b_s9408_predictions.csv | category=result_csv | head=false | status=clean | size=569648 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20b_s9409.json | category=result_json | head=false | status=clean | size=6920 | metrics={"gold_rho": 0.8828727127195316}
+- path=results/runs/w15_fir_d640_m25_p20b_s9409_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w15_fir_d640_m25_p20b_s9410.json | category=result_json | head=false | status=clean | size=7335 | metrics={"gold_rho": 0.8805029235137883}
+- path=results/runs/w15_fir_d640_m25_p20b_s9410_predictions.csv | category=result_csv | head=false | status=clean | size=569591 | rows=11120
+- path=results/runs/w15_progress_summary_after_fir_done.json | category=result_json | head=false | status=clean | size=14213
+- path=results/runs/w15_progress_summary_after_rorqual_done.json | category=result_json | head=false | status=clean | size=14451
+- path=results/runs/w15_progress_summary_partial.json | category=result_json | head=false | status=clean | size=13838
+- path=results/runs/w15_progress_summary_with_nibi.json | category=result_json | head=false | status=clean | size=14047
+- path=results/runs/w15_rorqual_d640_m25_p20_s9411.json | category=result_json | head=false | status=clean | size=5297 | metrics={"gold_rho": 0.8794495875388553}
+- path=results/runs/w15_rorqual_d640_m25_p20_s9411_predictions.csv | category=result_csv | head=false | status=clean | size=569860 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20_s9412.json | category=result_json | head=false | status=clean | size=5028 | metrics={"gold_rho": 0.8789532080629127}
+- path=results/runs/w15_rorqual_d640_m25_p20_s9412_predictions.csv | category=result_csv | head=false | status=clean | size=569724 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20_s9413.json | category=result_json | head=false | status=clean | size=5859 | metrics={"gold_rho": 0.8829321466429261}
+- path=results/runs/w15_rorqual_d640_m25_p20_s9413_predictions.csv | category=result_csv | head=false | status=clean | size=569797 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20_s9414.json | category=result_json | head=false | status=clean | size=7059 | metrics={"gold_rho": 0.8849102658435206}
+- path=results/runs/w15_rorqual_d640_m25_p20_s9414_predictions.csv | category=result_csv | head=false | status=clean | size=569755 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20_s9415.json | category=result_json | head=false | status=clean | size=8732 | metrics={"gold_rho": 0.8795329885634924}
+- path=results/runs/w15_rorqual_d640_m25_p20_s9415_predictions.csv | category=result_csv | head=false | status=clean | size=569703 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20_s9416.json | category=result_json | head=false | status=clean | size=7484 | metrics={"gold_rho": 0.8814906518504158}
+- path=results/runs/w15_rorqual_d640_m25_p20_s9416_predictions.csv | category=result_csv | head=false | status=clean | size=569685 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9417.json | category=result_json | head=false | status=clean | size=6509 | metrics={"gold_rho": 0.8788932815835099}
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9417_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9418.json | category=result_json | head=false | status=clean | size=7207 | metrics={"gold_rho": 0.8827530507418847}
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9418_predictions.csv | category=result_csv | head=false | status=clean | size=569724 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9419.json | category=result_json | head=false | status=clean | size=6647 | metrics={"gold_rho": 0.8811772272442046}
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9419_predictions.csv | category=result_csv | head=false | status=clean | size=569741 | rows=11120
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9420.json | category=result_json | head=false | status=clean | size=6785 | metrics={"gold_rho": 0.8847727867705181}
+- path=results/runs/w15_rorqual_d640_m25_p20b_s9420_predictions.csv | category=result_csv | head=false | status=clean | size=569920 | rows=11120
+- path=results/runs/w15_submitted_jobs_20260225_093059.txt | category=other | head=false | status=clean | size=878
+- path=results/runs/w16_nibi_resubmit_jobs_20260225_094417.txt | category=other | head=false | status=clean | size=370
+- path=results/runs/w17_best_ensemble_latest_predictions.csv | category=result_csv | head=false | status=clean | size=665012 | rows=11120
+- path=results/runs/w17_fir_d512_m20_s9609.json | category=result_json | head=false | status=clean | size=6764 | metrics={"gold_rho": 0.8794511659443544}
+- path=results/runs/w17_fir_d512_m20_s9609_predictions.csv | category=result_csv | head=false | status=clean | size=569834 | rows=11120
+- path=results/runs/w17_fir_d512_m20_s9610.json | category=result_json | head=false | status=clean | size=6485 | metrics={"gold_rho": 0.8786739378560611}
+- path=results/runs/w17_fir_d512_m20_s9610_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w17_fir_d512_m20_s9611.json | category=result_json | head=false | status=clean | size=7047 | metrics={"gold_rho": 0.8822727194566626}
+- path=results/runs/w17_fir_d512_m20_s9611_predictions.csv | category=result_csv | head=false | status=clean | size=569898 | rows=11120
+- path=results/runs/w17_fir_d512_m20_s9612.json | category=result_json | head=false | status=clean | size=7603 | metrics={"gold_rho": 0.8815540680696708}
+- path=results/runs/w17_fir_d512_m20_s9612_predictions.csv | category=result_csv | head=false | status=clean | size=569614 | rows=11120
+- path=results/runs/w17_fir_d640_m25_s9601.json | category=result_json | head=false | status=clean | size=6911 | metrics={"gold_rho": 0.8819891274145537}
+- path=results/runs/w17_fir_d640_m25_s9601_predictions.csv | category=result_csv | head=false | status=clean | size=569817 | rows=11120
+- path=results/runs/w17_fir_d640_m25_s9602.json | category=result_json | head=false | status=clean | size=8025 | metrics={"gold_rho": 0.8784565928568976}
+- path=results/runs/w17_fir_d640_m25_s9602_predictions.csv | category=result_csv | head=false | status=clean | size=569731 | rows=11120
+- path=results/runs/w17_fir_d640_m25_s9603.json | category=result_json | head=false | status=clean | size=7746 | metrics={"gold_rho": 0.8804777775001488}
+- path=results/runs/w17_fir_d640_m25_s9603_predictions.csv | category=result_csv | head=false | status=clean | size=569699 | rows=11120
+- path=results/runs/w17_fir_d640_m25_s9604.json | category=result_json | head=false | status=clean | size=7468 | metrics={"gold_rho": 0.8819052194645539}
+- path=results/runs/w17_fir_d640_m25_s9604_predictions.csv | category=result_csv | head=false | status=clean | size=569799 | rows=11120
+- path=results/runs/w17_fir_d640_m25b_s9605.json | category=result_json | head=false | status=clean | size=6773 | metrics={"gold_rho": 0.8820892512125953}
+- path=results/runs/w17_fir_d640_m25b_s9605_predictions.csv | category=result_csv | head=false | status=clean | size=569917 | rows=11120
+- path=results/runs/w17_fir_d640_m25b_s9606.json | category=result_json | head=false | status=clean | size=7467 | metrics={"gold_rho": 0.8835868870104222}
+- path=results/runs/w17_fir_d640_m25b_s9606_predictions.csv | category=result_csv | head=false | status=clean | size=569723 | rows=11120
+- path=results/runs/w17_fir_d640_m25b_s9607.json | category=result_json | head=false | status=clean | size=6903 | metrics={"gold_rho": 0.8802278564626246}
+- path=results/runs/w17_fir_d640_m25b_s9607_predictions.csv | category=result_csv | head=false | status=clean | size=569796 | rows=11120
+- path=results/runs/w17_fir_d640_m25b_s9608.json | category=result_json | head=false | status=clean | size=8166 | metrics={"gold_rho": 0.877951245068277}
+- path=results/runs/w17_fir_d640_m25b_s9608_predictions.csv | category=result_csv | head=false | status=clean | size=569891 | rows=11120
+- path=results/runs/w17_progress_summary_latest.json | category=result_json | head=false | status=clean | size=15693
+- path=results/runs/w17_rorqual_d512_m20_s9621.json | category=result_json | head=false | status=clean | size=7750 | metrics={"gold_rho": 0.8816776482626}
+- path=results/runs/w17_rorqual_d512_m20_s9621_predictions.csv | category=result_csv | head=false | status=clean | size=569642 | rows=11120
+- path=results/runs/w17_rorqual_d512_m20_s9622.json | category=result_json | head=false | status=clean | size=6776 | metrics={"gold_rho": 0.8809698161541974}
+- path=results/runs/w17_rorqual_d512_m20_s9622_predictions.csv | category=result_csv | head=false | status=clean | size=569599 | rows=11120
+- path=results/runs/w17_rorqual_d512_m20_s9623.json | category=result_json | head=false | status=clean | size=6913 | metrics={"gold_rho": 0.8816965589348912}
+- path=results/runs/w17_rorqual_d512_m20_s9623_predictions.csv | category=result_csv | head=false | status=clean | size=569621 | rows=11120
+- path=results/runs/w17_rorqual_d512_m20_s9624.json | category=result_json | head=false | status=clean | size=7469 | metrics={"gold_rho": 0.8799143845356069}
+- path=results/runs/w17_rorqual_d512_m20_s9624_predictions.csv | category=result_csv | head=false | status=clean | size=569751 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25_s9613.json | category=result_json | head=false | status=clean | size=6773 | metrics={"gold_rho": 0.882080532332031}
+- path=results/runs/w17_rorqual_d640_m25_s9613_predictions.csv | category=result_csv | head=false | status=clean | size=569762 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25_s9614.json | category=result_json | head=false | status=clean | size=6780 | metrics={"gold_rho": 0.8801707346950669}
+- path=results/runs/w17_rorqual_d640_m25_s9614_predictions.csv | category=result_csv | head=false | status=clean | size=569748 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25_s9615.json | category=result_json | head=false | status=clean | size=7752 | metrics={"gold_rho": 0.8825033701451899}
+- path=results/runs/w17_rorqual_d640_m25_s9615_predictions.csv | category=result_csv | head=false | status=clean | size=569720 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25_s9616.json | category=result_json | head=false | status=clean | size=7332 | metrics={"gold_rho": 0.8796748685471005}
+- path=results/runs/w17_rorqual_d640_m25_s9616_predictions.csv | category=result_csv | head=false | status=clean | size=569714 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25b_s9617.json | category=result_json | head=false | status=clean | size=7335 | metrics={"gold_rho": 0.8799467000512036}
+- path=results/runs/w17_rorqual_d640_m25b_s9617_predictions.csv | category=result_csv | head=false | status=clean | size=569805 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25b_s9618.json | category=result_json | head=false | status=clean | size=7475 | metrics={"gold_rho": 0.8842825281920224}
+- path=results/runs/w17_rorqual_d640_m25b_s9618_predictions.csv | category=result_csv | head=false | status=clean | size=569814 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25b_s9619.json | category=result_json | head=false | status=clean | size=7051 | metrics={"gold_rho": 0.8799815281676465}
+- path=results/runs/w17_rorqual_d640_m25b_s9619_predictions.csv | category=result_csv | head=false | status=clean | size=569739 | rows=11120
+- path=results/runs/w17_rorqual_d640_m25b_s9620.json | category=result_json | head=false | status=clean | size=7194 | metrics={"gold_rho": 0.8826379384437429}
+- path=results/runs/w17_rorqual_d640_m25b_s9620_predictions.csv | category=result_csv | head=false | status=clean | size=569727 | rows=11120
+- path=results/runs/w17_submitted_jobs_20260225_095906.txt | category=other | head=false | status=clean | size=956
+- path=results/runs/w18_best_ensemble_partial2_predictions.csv | category=result_csv | head=false | status=clean | size=665012 | rows=11120
+- path=results/runs/w18_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665012 | rows=11120
+- path=results/runs/w18_best_ensemble_rorqual_complete_predictions.csv | category=result_csv | head=false | status=clean | size=642431 | rows=11120
+- path=results/runs/w18_fir_d640_m25_expval_s9709.json | category=result_json | head=false | status=clean | size=7522 | metrics={"gold_rho": 0.8806114472955434}
+- path=results/runs/w18_fir_d640_m25_expval_s9709_predictions.csv | category=result_csv | head=false | status=clean | size=569716 | rows=11120
+- path=results/runs/w18_fir_d640_m25_expval_s9710.json | category=result_json | head=false | status=clean | size=7241 | metrics={"gold_rho": 0.8818014571076421}
+- path=results/runs/w18_fir_d640_m25_expval_s9710_predictions.csv | category=result_csv | head=false | status=clean | size=569868 | rows=11120
+- path=results/runs/w18_fir_d640_m25_expval_s9711.json | category=result_json | head=false | status=clean | size=7380 | metrics={"gold_rho": 0.8798720801809052}
+- path=results/runs/w18_fir_d640_m25_expval_s9711_predictions.csv | category=result_csv | head=false | status=clean | size=569877 | rows=11120
+- path=results/runs/w18_fir_d640_m25_expval_s9712.json | category=result_json | head=false | status=clean | size=7657 | metrics={"gold_rho": 0.8806302822097}
+- path=results/runs/w18_fir_d640_m25_expval_s9712_predictions.csv | category=result_csv | head=false | status=clean | size=569868 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr20_s9701.json | category=result_json | head=false | status=clean | size=8180 | metrics={"gold_rho": 0.8817606524311202}
+- path=results/runs/w18_fir_d640_m25_lr20_s9701_predictions.csv | category=result_csv | head=false | status=clean | size=569888 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr20_s9702.json | category=result_json | head=false | status=clean | size=7053 | metrics={"gold_rho": 0.8821747154218558}
+- path=results/runs/w18_fir_d640_m25_lr20_s9702_predictions.csv | category=result_csv | head=false | status=clean | size=569804 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr20_s9703.json | category=result_json | head=false | status=clean | size=8443 | metrics={"gold_rho": 0.8788484524346349}
+- path=results/runs/w18_fir_d640_m25_lr20_s9703_predictions.csv | category=result_csv | head=false | status=clean | size=569789 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr20_s9704.json | category=result_json | head=false | status=clean | size=6911 | metrics={"gold_rho": 0.882354782480703}
+- path=results/runs/w18_fir_d640_m25_lr20_s9704_predictions.csv | category=result_csv | head=false | status=clean | size=569842 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr25_s9705.json | category=result_json | head=false | status=clean | size=6781 | metrics={"gold_rho": 0.8790040132635748}
+- path=results/runs/w18_fir_d640_m25_lr25_s9705_predictions.csv | category=result_csv | head=false | status=clean | size=569848 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr25_s9706.json | category=result_json | head=false | status=clean | size=6917 | metrics={"gold_rho": 0.8786861846937325}
+- path=results/runs/w18_fir_d640_m25_lr25_s9706_predictions.csv | category=result_csv | head=false | status=clean | size=569772 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr25_s9707.json | category=result_json | head=false | status=clean | size=8035 | metrics={"gold_rho": 0.8824624778183956}
+- path=results/runs/w18_fir_d640_m25_lr25_s9707_predictions.csv | category=result_csv | head=false | status=clean | size=569718 | rows=11120
+- path=results/runs/w18_fir_d640_m25_lr25_s9708.json | category=result_json | head=false | status=clean | size=7059 | metrics={"gold_rho": 0.8820620773623187}
+- path=results/runs/w18_fir_d640_m25_lr25_s9708_predictions.csv | category=result_csv | head=false | status=clean | size=569724 | rows=11120
+- path=results/runs/w18_progress_summary_partial.json | category=result_json | head=false | status=clean | size=15749
+- path=results/runs/w18_progress_summary_partial2.json | category=result_json | head=false | status=clean | size=15750
+- path=results/runs/w18_progress_summary_rorqual_complete.json | category=result_json | head=false | status=clean | size=16270
+- path=results/runs/w18_rorqual_d640_m25_expval_s9721.json | category=result_json | head=false | status=clean | size=7105 | metrics={"gold_rho": 0.8811634473261216}
+- path=results/runs/w18_rorqual_d640_m25_expval_s9721_predictions.csv | category=result_csv | head=false | status=clean | size=569750 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_expval_s9722.json | category=result_json | head=false | status=clean | size=8085 | metrics={"gold_rho": 0.8827041111856204}
+- path=results/runs/w18_rorqual_d640_m25_expval_s9722_predictions.csv | category=result_csv | head=false | status=clean | size=569678 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_expval_s9723.json | category=result_json | head=false | status=clean | size=7525 | metrics={"gold_rho": 0.8813288243968285}
+- path=results/runs/w18_rorqual_d640_m25_expval_s9723_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_expval_s9724.json | category=result_json | head=false | status=clean | size=7936 | metrics={"gold_rho": 0.8826876715868213}
+- path=results/runs/w18_rorqual_d640_m25_expval_s9724_predictions.csv | category=result_csv | head=false | status=clean | size=569746 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9713.json | category=result_json | head=false | status=clean | size=7621 | metrics={"gold_rho": 0.8834371387599299}
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9713_predictions.csv | category=result_csv | head=false | status=clean | size=569732 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9714.json | category=result_json | head=false | status=clean | size=7056 | metrics={"gold_rho": 0.8803967741555699}
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9714_predictions.csv | category=result_csv | head=false | status=clean | size=569649 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9715.json | category=result_json | head=false | status=clean | size=7064 | metrics={"gold_rho": 0.8795094089762012}
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9715_predictions.csv | category=result_csv | head=false | status=clean | size=569571 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9716.json | category=result_json | head=false | status=clean | size=8183 | metrics={"gold_rho": 0.883448053802152}
+- path=results/runs/w18_rorqual_d640_m25_lr20_s9716_predictions.csv | category=result_csv | head=false | status=clean | size=569859 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9717.json | category=result_json | head=false | status=clean | size=8044 | metrics={"gold_rho": 0.8818024487543537}
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9717_predictions.csv | category=result_csv | head=false | status=clean | size=569818 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9718.json | category=result_json | head=false | status=clean | size=7766 | metrics={"gold_rho": 0.8857993875265653}
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9718_predictions.csv | category=result_csv | head=false | status=clean | size=569956 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9719.json | category=result_json | head=false | status=clean | size=7904 | metrics={"gold_rho": 0.8855484651154857}
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9719_predictions.csv | category=result_csv | head=false | status=clean | size=569810 | rows=11120
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9720.json | category=result_json | head=false | status=clean | size=7481 | metrics={"gold_rho": 0.8834174575209583}
+- path=results/runs/w18_rorqual_d640_m25_lr25_s9720_predictions.csv | category=result_csv | head=false | status=clean | size=569746 | rows=11120
+- path=results/runs/w18_submitted_jobs_20260225_102914.txt | category=other | head=false | status=clean | size=1084
+- path=results/runs/w19_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=642431 | rows=11120
+- path=results/runs/w19_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=642431 | rows=11120
+- path=results/runs/w19_best_ensemble_supersearch_fast_predictions.csv | category=result_csv | head=false | status=clean | size=668425 | rows=11120
+- path=results/runs/w19_progress_summary_complete.json | category=result_json | head=false | status=clean | size=17263
+- path=results/runs/w19_progress_summary_partial.json | category=result_json | head=false | status=clean | size=16808
+- path=results/runs/w19_progress_summary_supersearch_fast.json | category=result_json | head=false | status=clean | size=14321
+- path=results/runs/w19_rorqual_d640_lr20_s9807.json | category=result_json | head=false | status=clean | size=7475 | metrics={"gold_rho": 0.8816355347230596}
+- path=results/runs/w19_rorqual_d640_lr20_s9807_predictions.csv | category=result_csv | head=false | status=clean | size=569912 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr20_s9808.json | category=result_json | head=false | status=clean | size=6916 | metrics={"gold_rho": 0.8801114428947814}
+- path=results/runs/w19_rorqual_d640_lr20_s9808_predictions.csv | category=result_csv | head=false | status=clean | size=569756 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr20_s9809.json | category=result_json | head=false | status=clean | size=7479 | metrics={"gold_rho": 0.8814155684741328}
+- path=results/runs/w19_rorqual_d640_lr20_s9809_predictions.csv | category=result_csv | head=false | status=clean | size=569687 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr20_s9810.json | category=result_json | head=false | status=clean | size=7617 | metrics={"gold_rho": 0.8830717399379882}
+- path=results/runs/w19_rorqual_d640_lr20_s9810_predictions.csv | category=result_csv | head=false | status=clean | size=569727 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr20_s9811.json | category=result_json | head=false | status=clean | size=7753 | metrics={"gold_rho": 0.88250859206899}
+- path=results/runs/w19_rorqual_d640_lr20_s9811_predictions.csv | category=result_csv | head=false | status=clean | size=569704 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr20_s9812.json | category=result_json | head=false | status=clean | size=7753 | metrics={"gold_rho": 0.8813939579397873}
+- path=results/runs/w19_rorqual_d640_lr20_s9812_predictions.csv | category=result_csv | head=false | status=clean | size=569756 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9813.json | category=result_json | head=false | status=clean | size=6926 | metrics={"gold_rho": 0.8800611300488256}
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9813_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9814.json | category=result_json | head=false | status=clean | size=8739 | metrics={"gold_rho": 0.8813680041780014}
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9814_predictions.csv | category=result_csv | head=false | status=clean | size=569755 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9815.json | category=result_json | head=false | status=clean | size=7765 | metrics={"gold_rho": 0.8801500378204029}
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9815_predictions.csv | category=result_csv | head=false | status=clean | size=569753 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9816.json | category=result_json | head=false | status=clean | size=7486 | metrics={"gold_rho": 0.8803567317124696}
+- path=results/runs/w19_rorqual_d640_lr25_d98_s9816_predictions.csv | category=result_csv | head=false | status=clean | size=569727 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_s9801.json | category=result_json | head=false | status=clean | size=7749 | metrics={"gold_rho": 0.8828635936475281}
+- path=results/runs/w19_rorqual_d640_lr25_s9801_predictions.csv | category=result_csv | head=false | status=clean | size=569718 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_s9802.json | category=result_json | head=false | status=clean | size=7200 | metrics={"gold_rho": 0.884100915819536}
+- path=results/runs/w19_rorqual_d640_lr25_s9802_predictions.csv | category=result_csv | head=false | status=clean | size=569748 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_s9803.json | category=result_json | head=false | status=clean | size=7475 | metrics={"gold_rho": 0.8826764395109293}
+- path=results/runs/w19_rorqual_d640_lr25_s9803_predictions.csv | category=result_csv | head=false | status=clean | size=569863 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_s9804.json | category=result_json | head=false | status=clean | size=6767 | metrics={"gold_rho": 0.8766890353301272}
+- path=results/runs/w19_rorqual_d640_lr25_s9804_predictions.csv | category=result_csv | head=false | status=clean | size=569780 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_s9805.json | category=result_json | head=false | status=clean | size=7752 | metrics={"gold_rho": 0.88057901254932}
+- path=results/runs/w19_rorqual_d640_lr25_s9805_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w19_rorqual_d640_lr25_s9806.json | category=result_json | head=false | status=clean | size=7758 | metrics={"gold_rho": 0.8826381332140425}
+- path=results/runs/w19_rorqual_d640_lr25_s9806_predictions.csv | category=result_csv | head=false | status=clean | size=569742 | rows=11120
+- path=results/runs/w19_submitted_jobs_20260225_105843.txt | category=other | head=false | status=clean | size=720
+- path=results/runs/w1_best_ensemble_aligned_predictions.csv | category=result_csv | head=false | status=clean | size=629257 | rows=11120
+- path=results/runs/w1_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=416065 | rows=11120
+- path=results/runs/w1_cluster_ensemble_report.json | category=result_json | head=false | status=clean | size=452
+- path=results/runs/w1_ensemble_report.json | category=result_json | head=false | status=clean | size=509
+- path=results/runs/w1_fir_d384_gate_s313_retry.json | category=result_json | head=false | status=clean | size=5018 | metrics={"gold_rho": 0.8832135913493687}
+- path=results/runs/w1_fir_d384_gate_s313_retry_predictions.csv | category=result_csv | head=false | status=clean | size=569828 | rows=11120
+- path=results/runs/w1_fir_d512_gate_s4242.json | category=result_json | head=false | status=clean | size=5310 | metrics={"gold_rho": 0.8843012721111326}
+- path=results/runs/w1_fir_d512_gate_s4242_predictions.csv | category=result_csv | head=false | status=clean | size=569647 | rows=11120
+- path=results/runs/w1_fir_offtarget_s7_logparsed.json | category=result_json | head=false | status=clean | size=155
+- path=results/runs/w1_fir_rank_d512_l04_s909.json | category=result_json | head=false | status=clean | size=6387 | metrics={"gold_rho": 0.8804619324108044}
+- path=results/runs/w1_fir_rank_d512_l04_s909_predictions.csv | category=result_csv | head=false | status=clean | size=569711 | rows=11120
+- path=results/runs/w1_nibi_d384_gate_s1111.json | category=result_json | head=false | status=clean | size=5300 | metrics={"gold_rho": 0.8825185547891855}
+- path=results/runs/w1_nibi_d384_gate_s1111_predictions.csv | category=result_csv | head=false | status=clean | size=569760 | rows=11120
+- path=results/runs/w1_nibi_d512_gate_s2222.json | category=result_json | head=false | status=clean | size=6138 | metrics={"gold_rho": 0.882677745511461}
+- path=results/runs/w1_nibi_d512_gate_s2222_predictions.csv | category=result_csv | head=false | status=clean | size=569792 | rows=11120
+- path=results/runs/w1_nibi_offtarget_s42.json | category=result_json | head=false | status=clean | size=285
+- path=results/runs/w1_nibi_rank_d384_l03_s777.json | category=result_json | head=false | status=clean | size=5426 | metrics={"gold_rho": 0.8783771604320413}
+- path=results/runs/w1_nibi_rank_d384_l03_s777_predictions.csv | category=result_csv | head=false | status=clean | size=569691 | rows=11120
+- path=results/runs/w1_rorqual_d384_gate_s515_retry.json | category=result_json | head=false | status=clean | size=4740 | metrics={"gold_rho": 0.8821547902685557}
+- path=results/runs/w1_rorqual_d384_gate_s515_retry_predictions.csv | category=result_csv | head=false | status=clean | size=569618 | rows=11120
+- path=results/runs/w1_rorqual_offtarget_s99.json | category=result_json | head=false | status=clean | size=285
+- path=results/runs/w1_rorqual_rank_d384_l035_s1313.json | category=result_json | head=false | status=clean | size=5826 | metrics={"gold_rho": 0.8755829960888063}
+- path=results/runs/w1_rorqual_rank_d384_l035_s1313_predictions.csv | category=result_csv | head=false | status=clean | size=569690 | rows=11120
+- path=results/runs/w20_best_ensemble_after_w18fir_predictions.csv | category=result_csv | head=false | status=clean | size=642431 | rows=11120
+- path=results/runs/w20_progress_summary_after_w18fir.json | category=result_json | head=false | status=clean | size=17766
+- path=results/runs/w21_best_ensemble_latest_predictions.csv | category=result_csv | head=false | status=clean | size=655241 | rows=11120
+- path=results/runs/w21_fir_cnn_d640_xattn_s9905.json | category=result_json | head=false | status=clean | size=6946 | metrics={"gold_rho": 0.8796512558475065}
+- path=results/runs/w21_fir_cnn_d640_xattn_s9905_predictions.csv | category=result_csv | head=false | status=clean | size=569608 | rows=11120
+- path=results/runs/w21_fir_cnn_d640_xattn_s9906.json | category=result_json | head=false | status=clean | size=8906 | metrics={"gold_rho": 0.8778932609677212}
+- path=results/runs/w21_fir_cnn_d640_xattn_s9906_predictions.csv | category=result_csv | head=false | status=clean | size=569699 | rows=11120
+- path=results/runs/w21_fir_cnn_d640_xattn_s9907.json | category=result_json | head=false | status=clean | size=7651 | metrics={"gold_rho": 0.8779995180268266}
+- path=results/runs/w21_fir_cnn_d640_xattn_s9907_predictions.csv | category=result_csv | head=false | status=clean | size=569778 | rows=11120
+- path=results/runs/w21_fir_cnn_d640_xattn_s9908.json | category=result_json | head=false | status=clean | size=7231 | metrics={"gold_rho": 0.881312974750723}
+- path=results/runs/w21_fir_cnn_d640_xattn_s9908_predictions.csv | category=result_csv | head=false | status=clean | size=569757 | rows=11120
+- path=results/runs/w21_fir_mamba_d512_gate_s9901.json | category=result_json | head=false | status=clean | size=5513 | metrics={"gold_rho": 0.8693070357310514}
+- path=results/runs/w21_fir_mamba_d512_gate_s9901_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w21_fir_mamba_d512_gate_s9902.json | category=result_json | head=false | status=clean | size=5929 | metrics={"gold_rho": 0.8570027451350736}
+- path=results/runs/w21_fir_mamba_d512_gate_s9902_predictions.csv | category=result_csv | head=false | status=clean | size=569865 | rows=11120
+- path=results/runs/w21_fir_mamba_d512_gate_s9903.json | category=result_json | head=false | status=clean | size=5795 | metrics={"gold_rho": 0.8619582436251884}
+- path=results/runs/w21_fir_mamba_d512_gate_s9903_predictions.csv | category=result_csv | head=false | status=clean | size=569688 | rows=11120
+- path=results/runs/w21_fir_mamba_d512_gate_s9904.json | category=result_json | head=false | status=clean | size=5514 | metrics={"gold_rho": 0.853536306067157}
+- path=results/runs/w21_fir_mamba_d512_gate_s9904_predictions.csv | category=result_csv | head=false | status=clean | size=569826 | rows=11120
+- path=results/runs/w21_progress_summary_latest.json | category=result_json | head=false | status=clean | size=18866
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9913.json | category=result_json | head=false | status=clean | size=6814 | metrics={"gold_rho": 0.8791152750089466}
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9913_predictions.csv | category=result_csv | head=false | status=clean | size=569718 | rows=11120
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9914.json | category=result_json | head=false | status=clean | size=6820 | metrics={"gold_rho": 0.8792901428004473}
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9914_predictions.csv | category=result_csv | head=false | status=clean | size=569855 | rows=11120
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9915.json | category=result_json | head=false | status=clean | size=7377 | metrics={"gold_rho": 0.8819561814368867}
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9915_predictions.csv | category=result_csv | head=false | status=clean | size=569645 | rows=11120
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9916.json | category=result_json | head=false | status=clean | size=7925 | metrics={"gold_rho": 0.8808333563961486}
+- path=results/runs/w21_rorqual_cnn_d640_xattn_s9916_predictions.csv | category=result_csv | head=false | status=clean | size=569806 | rows=11120
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9909.json | category=result_json | head=false | status=clean | size=5942 | metrics={"gold_rho": 0.8566438157506335}
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9909_predictions.csv | category=result_csv | head=false | status=clean | size=569760 | rows=11120
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9910.json | category=result_json | head=false | status=clean | size=5517 | metrics={"gold_rho": 0.8634672283201764}
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9910_predictions.csv | category=result_csv | head=false | status=clean | size=569800 | rows=11120
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9911.json | category=result_json | head=false | status=clean | size=5939 | metrics={"gold_rho": 0.8678057302031151}
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9911_predictions.csv | category=result_csv | head=false | status=clean | size=569665 | rows=11120
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9912.json | category=result_json | head=false | status=clean | size=5381 | metrics={"gold_rho": 0.8681644063310789}
+- path=results/runs/w21_rorqual_mamba_d512_gate_s9912_predictions.csv | category=result_csv | head=false | status=clean | size=569546 | rows=11120
+- path=results/runs/w21_submitted_jobs_20260225_120010.txt | category=other | head=false | status=clean | size=736
+- path=results/runs/w22_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=655241 | rows=11120
+- path=results/runs/w22_best_ensemble_plus_ridgestack_predictions.csv | category=result_csv | head=false | status=clean | size=655241 | rows=11120
+- path=results/runs/w22_progress_summary_partial.json | category=result_json | head=false | status=clean | size=18867
+- path=results/runs/w22_progress_summary_plus_ridgestack.json | category=result_json | head=false | status=clean | size=18875
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9941.json | category=result_json | head=false | status=clean | size=8080 | metrics={"gold_rho": 0.8774930679090115}
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9941_predictions.csv | category=result_csv | head=false | status=clean | size=569576 | rows=11120
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9942.json | category=result_json | head=false | status=clean | size=7653 | metrics={"gold_rho": 0.8785990349597705}
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9942_predictions.csv | category=result_csv | head=false | status=clean | size=569589 | rows=11120
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9943.json | category=result_json | head=false | status=clean | size=6823 | metrics={"gold_rho": 0.8802087116027228}
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9943_predictions.csv | category=result_csv | head=false | status=clean | size=569717 | rows=11120
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9944.json | category=result_json | head=false | status=clean | size=7934 | metrics={"gold_rho": 0.8794288717971973}
+- path=results/runs/w22_rorqual_cnn_d896_xattn_s9944_predictions.csv | category=result_csv | head=false | status=clean | size=569673 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9933.json | category=result_json | head=false | status=clean | size=5382 | metrics={"gold_rho": 0.8626959380050687}
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9933_predictions.csv | category=result_csv | head=false | status=clean | size=569582 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9934.json | category=result_json | head=false | status=clean | size=5382 | metrics={"gold_rho": 0.8716379630111334}
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9934_predictions.csv | category=result_csv | head=false | status=clean | size=569604 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9935.json | category=result_json | head=false | status=clean | size=5940 | metrics={"gold_rho": 0.8669248796471014}
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9935_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9936.json | category=result_json | head=false | status=clean | size=5944 | metrics={"gold_rho": 0.8643485326232251}
+- path=results/runs/w22_rorqual_mamba_d512_gate_s9936_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9937.json | category=result_json | head=false | status=clean | size=5658 | metrics={"gold_rho": 0.8645123166344901}
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9937_predictions.csv | category=result_csv | head=false | status=clean | size=569866 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9938.json | category=result_json | head=false | status=clean | size=5521 | metrics={"gold_rho": 0.866002371015203}
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9938_predictions.csv | category=result_csv | head=false | status=clean | size=569822 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9939.json | category=result_json | head=false | status=clean | size=5800 | metrics={"gold_rho": 0.8557200110187203}
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9939_predictions.csv | category=result_csv | head=false | status=clean | size=569786 | rows=11120
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9940.json | category=result_json | head=false | status=clean | size=5524 | metrics={"gold_rho": 0.8520451460164897}
+- path=results/runs/w22_rorqual_mamba_d640_gate_s9940_predictions.csv | category=result_csv | head=false | status=clean | size=569573 | rows=11120
+- path=results/runs/w22_submitted_jobs_20260225_151107.txt | category=other | head=false | status=clean | size=1108
+- path=results/runs/w23_best_ensemble_with_ridgestack_latest_predictions.csv | category=result_csv | head=false | status=clean | size=662180 | rows=11120
+- path=results/runs/w23_best_ensemble_with_ridgestack_quick_predictions.csv | category=result_csv | head=false | status=clean | size=662456 | rows=11120
+- path=results/runs/w23_fir_d640_m25_lr23_s9953.json | category=result_json | head=false | status=clean | size=7468 | metrics={"gold_rho": 0.8799709735834413}
+- path=results/runs/w23_fir_d640_m25_lr23_s9953_predictions.csv | category=result_csv | head=false | status=clean | size=569690 | rows=11120
+- path=results/runs/w23_fir_d640_m25_lr25_s9951.json | category=result_json | head=false | status=clean | size=6778 | metrics={"gold_rho": 0.8791828590116202}
+- path=results/runs/w23_fir_d640_m25_lr25_s9951_predictions.csv | category=result_csv | head=false | status=clean | size=569765 | rows=11120
+- path=results/runs/w23_fir_d640_m25_lr25_s9952.json | category=result_json | head=false | status=clean | size=8174 | metrics={"gold_rho": 0.8849995620865935}
+- path=results/runs/w23_fir_d640_m25_lr25_s9952_predictions.csv | category=result_csv | head=false | status=clean | size=569841 | rows=11120
+- path=results/runs/w23_fir_d640_m25_lr27_s9955.json | category=result_json | head=false | status=clean | size=7612 | metrics={"gold_rho": 0.8816918055062432}
+- path=results/runs/w23_fir_d640_m25_lr27_s9955_predictions.csv | category=result_csv | head=false | status=clean | size=569701 | rows=11120
+- path=results/runs/w23_fir_d640_m30_lr20_s9954.json | category=result_json | head=false | status=clean | size=7463 | metrics={"gold_rho": 0.8822111500213151}
+- path=results/runs/w23_fir_d640_m30_lr20_s9954_predictions.csv | category=result_csv | head=false | status=clean | size=569809 | rows=11120
+- path=results/runs/w23_fir_d640_xattn_lr20_s9958.json | category=result_json | head=false | status=clean | size=7233 | metrics={"gold_rho": 0.8792090386498317}
+- path=results/runs/w23_fir_d640_xattn_lr20_s9958_predictions.csv | category=result_csv | head=false | status=clean | size=569689 | rows=11120
+- path=results/runs/w23_fir_d768_m25_lr23_s9957.json | category=result_json | head=false | status=clean | size=7055 | metrics={"gold_rho": 0.8817128737691232}
+- path=results/runs/w23_fir_d768_m25_lr23_s9957_predictions.csv | category=result_csv | head=false | status=clean | size=569696 | rows=11120
+- path=results/runs/w23_fir_d768_m25_lr25_s9956.json | category=result_json | head=false | status=clean | size=6913 | metrics={"gold_rho": 0.8824465460829285}
+- path=results/runs/w23_fir_d768_m25_lr25_s9956_predictions.csv | category=result_csv | head=false | status=clean | size=569850 | rows=11120
+- path=results/runs/w23_fir_d896_xattn_lr20_s9959.json | category=result_json | head=false | status=clean | size=7504 | metrics={"gold_rho": 0.8809765531585144}
+- path=results/runs/w23_fir_d896_xattn_lr20_s9959_predictions.csv | category=result_csv | head=false | status=clean | size=569799 | rows=11120
+- path=results/runs/w23_fir_mamba_d640_lr25_s9960.json | category=result_json | head=false | status=clean | size=5930 | metrics={"gold_rho": 0.8534146462164863}
+- path=results/runs/w23_fir_mamba_d640_lr25_s9960_predictions.csv | category=result_csv | head=false | status=clean | size=569799 | rows=11120
+- path=results/runs/w23_progress_summary_with_ridgestack_latest.json | category=result_json | head=false | status=clean | size=19946
+- path=results/runs/w23_progress_summary_with_ridgestack_quick.json | category=result_json | head=false | status=clean | size=19945
+- path=results/runs/w23_rorqual_d640_m25_lr23_s9963.json | category=result_json | head=false | status=clean | size=7909 | metrics={"gold_rho": 0.8813679257072824}
+- path=results/runs/w23_rorqual_d640_m25_lr23_s9963_predictions.csv | category=result_csv | head=false | status=clean | size=569874 | rows=11120
+- path=results/runs/w23_rorqual_d640_m25_lr25_s9961.json | category=result_json | head=false | status=clean | size=7208 | metrics={"gold_rho": 0.8833993422263046}
+- path=results/runs/w23_rorqual_d640_m25_lr25_s9961_predictions.csv | category=result_csv | head=false | status=clean | size=569707 | rows=11120
+- path=results/runs/w23_rorqual_d640_m25_lr25_s9962.json | category=result_json | head=false | status=clean | size=7483 | metrics={"gold_rho": 0.8773508962633455}
+- path=results/runs/w23_rorqual_d640_m25_lr25_s9962_predictions.csv | category=result_csv | head=false | status=clean | size=569839 | rows=11120
+- path=results/runs/w23_rorqual_d640_m25_lr27_s9965.json | category=result_json | head=false | status=clean | size=7486 | metrics={"gold_rho": 0.8819829322674736}
+- path=results/runs/w23_rorqual_d640_m25_lr27_s9965_predictions.csv | category=result_csv | head=false | status=clean | size=569867 | rows=11120
+- path=results/runs/w23_rorqual_d640_m30_lr20_s9964.json | category=result_json | head=false | status=clean | size=8165 | metrics={"gold_rho": 0.8819117440569557}
+- path=results/runs/w23_rorqual_d640_m30_lr20_s9964_predictions.csv | category=result_csv | head=false | status=clean | size=569743 | rows=11120
+- path=results/runs/w23_rorqual_d640_xattn_lr20_s9968.json | category=result_json | head=false | status=clean | size=6822 | metrics={"gold_rho": 0.8776711941743512}
+- path=results/runs/w23_rorqual_d640_xattn_lr20_s9968_predictions.csv | category=result_csv | head=false | status=clean | size=569794 | rows=11120
+- path=results/runs/w23_rorqual_d768_m25_lr23_s9967.json | category=result_json | head=false | status=clean | size=7623 | metrics={"gold_rho": 0.8809501185590963}
+- path=results/runs/w23_rorqual_d768_m25_lr23_s9967_predictions.csv | category=result_csv | head=false | status=clean | size=569738 | rows=11120
+- path=results/runs/w23_rorqual_d768_m25_lr25_s9966.json | category=result_json | head=false | status=clean | size=6785 | metrics={"gold_rho": 0.8839887716498027}
+- path=results/runs/w23_rorqual_d768_m25_lr25_s9966_predictions.csv | category=result_csv | head=false | status=clean | size=569842 | rows=11120
+- path=results/runs/w23_rorqual_d896_xattn_lr20_s9969.json | category=result_json | head=false | status=clean | size=6817 | metrics={"gold_rho": 0.8825460485606268}
+- path=results/runs/w23_rorqual_d896_xattn_lr20_s9969_predictions.csv | category=result_csv | head=false | status=clean | size=569740 | rows=11120
+- path=results/runs/w23_rorqual_mamba_d640_lr25_s9970.json | category=result_json | head=false | status=clean | size=5940 | metrics={"gold_rho": 0.8453594569257358}
+- path=results/runs/w23_rorqual_mamba_d640_lr25_s9970_predictions.csv | category=result_csv | head=false | status=clean | size=569701 | rows=11120
+- path=results/runs/w23_submitted_jobs_20260225_152745.txt | category=other | head=false | status=clean | size=902
+- path=results/runs/w24_best_ensemble_partial_with_ridgestack_predictions.csv | category=result_csv | head=false | status=clean | size=662180 | rows=11120
+- path=results/runs/w24_progress_summary_partial_with_ridgestack.json | category=result_json | head=false | status=clean | size=20535
+- path=results/runs/w24_rorqual_d1024_gate_lr20_ep110_s10010.json | category=result_json | head=false | status=clean | size=6940 | metrics={"gold_rho": 0.8836659230978897}
+- path=results/runs/w24_rorqual_d1024_gate_lr20_ep110_s10010_predictions.csv | category=result_csv | head=false | status=clean | size=569723 | rows=11120
+- path=results/runs/w24_rorqual_d1024_xattn_lr18_ep105_s10011.json | category=result_json | head=false | status=clean | size=7542 | metrics={"gold_rho": 0.8860867771817882}
+- path=results/runs/w24_rorqual_d1024_xattn_lr18_ep105_s10011_predictions.csv | category=result_csv | head=false | status=clean | size=569719 | rows=11120
+- path=results/runs/w24_rorqual_d640_m20_lr30_ep120_s10006.json | category=result_json | head=false | status=clean | size=7915 | metrics={"gold_rho": 0.881118428081305}
+- path=results/runs/w24_rorqual_d640_m20_lr30_ep120_s10006_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w24_rorqual_d640_m25_lr25_ep130_s10004.json | category=result_json | head=false | status=clean | size=7786 | metrics={"gold_rho": 0.8812851693555932}
+- path=results/runs/w24_rorqual_d640_m25_lr25_ep130_s10004_predictions.csv | category=result_csv | head=false | status=clean | size=569727 | rows=11120
+- path=results/runs/w24_rorqual_d640_m35_lr20_ep130_s10005.json | category=result_json | head=false | status=clean | size=8058 | metrics={"gold_rho": 0.8810401882417589}
+- path=results/runs/w24_rorqual_d640_m35_lr20_ep130_s10005_predictions.csv | category=result_csv | head=false | status=clean | size=569720 | rows=11120
+- path=results/runs/w24_rorqual_d768_m25_lr25_ep130_s10001.json | category=result_json | head=false | status=clean | size=7507 | metrics={"gold_rho": 0.8783604557042701}
+- path=results/runs/w24_rorqual_d768_m25_lr25_ep130_s10001_predictions.csv | category=result_csv | head=false | status=clean | size=569769 | rows=11120
+- path=results/runs/w24_rorqual_d768_m25_lr27_ep130_s10002.json | category=result_json | head=false | status=clean | size=7635 | metrics={"gold_rho": 0.879133863740943}
+- path=results/runs/w24_rorqual_d768_m25_lr27_ep130_s10002_predictions.csv | category=result_csv | head=false | status=clean | size=569881 | rows=11120
+- path=results/runs/w24_rorqual_d768_m30_lr23_ep130_s10003.json | category=result_json | head=false | status=clean | size=7783 | metrics={"gold_rho": 0.881391615402841}
+- path=results/runs/w24_rorqual_d768_m30_lr23_ep130_s10003_predictions.csv | category=result_csv | head=false | status=clean | size=569591 | rows=11120
+- path=results/runs/w24_rorqual_d896_gate_lr20_ep115_s10007.json | category=result_json | head=false | status=clean | size=6936 | metrics={"gold_rho": 0.8803754858406914}
+- path=results/runs/w24_rorqual_d896_gate_lr20_ep115_s10007_predictions.csv | category=result_csv | head=false | status=clean | size=569819 | rows=11120
+- path=results/runs/w24_rorqual_d896_gate_lr23_ep115_s10008.json | category=result_json | head=false | status=clean | size=8333 | metrics={"gold_rho": 0.8805960726659926}
+- path=results/runs/w24_rorqual_d896_gate_lr23_ep115_s10008_predictions.csv | category=result_csv | head=false | status=clean | size=569713 | rows=11120
+- path=results/runs/w24_rorqual_d896_xattn_lr20_ep120_s10009.json | category=result_json | head=false | status=clean | size=7956 | metrics={"gold_rho": 0.8811642246439522}
+- path=results/runs/w24_rorqual_d896_xattn_lr20_ep120_s10009_predictions.csv | category=result_csv | head=false | status=clean | size=569857 | rows=11120
+- path=results/runs/w24_rorqual_mamba_d768_lr23_ep110_s10012.json | category=result_json | head=false | status=clean | size=6238 | metrics={"gold_rho": 0.8505032751879102}
+- path=results/runs/w24_rorqual_mamba_d768_lr23_ep110_s10012_predictions.csv | category=result_csv | head=false | status=clean | size=569690 | rows=11120
+- path=results/runs/w24_submitted_jobs_20260225_155233.txt | category=other | head=false | status=clean | size=671
+- path=results/runs/w25_best_ensemble_with_stackv2_predictions.csv | category=result_csv | head=false | status=clean | size=668742 | rows=11120
+- path=results/runs/w25_progress_summary_with_stackv2.json | category=result_json | head=false | status=clean | size=19948
+- path=results/runs/w25_rank_ridge_stack_v2.json | category=result_json | head=false | status=clean | size=1342 | metrics={"gold_rho": 0.9077479683436224}
+- path=results/runs/w25_rank_ridge_stack_v2_predictions.csv | category=result_csv | head=false | status=clean | size=671916 | rows=11120
+- path=results/runs/w26_best_ensemble_with_hgbr_stack_predictions.csv | category=result_csv | head=false | status=clean | size=663891 | rows=11120
+- path=results/runs/w26_hgbr_rank_stack_d8.json | category=result_json | head=false | status=clean | size=1540 | metrics={"gold_rho": 0.9283066371833375}
+- path=results/runs/w26_hgbr_rank_stack_d8_predictions.csv | category=result_csv | head=false | status=clean | size=665154 | rows=11120
+- path=results/runs/w26_progress_summary_with_hgbr_stack.json | category=result_json | head=false | status=clean | size=20202
+- path=results/runs/w27_best_ensemble_with_stackv3_predictions.csv | category=result_csv | head=false | status=clean | size=668519 | rows=11120
+- path=results/runs/w27_progress_summary_with_stackv3.json | category=result_json | head=false | status=clean | size=20878
+- path=results/runs/w27_rank_ridge_stack_v3.json | category=result_json | head=false | status=clean | size=1759 | metrics={"gold_rho": 0.9460964596368512}
+- path=results/runs/w27_rank_ridge_stack_v3_predictions.csv | category=result_csv | head=false | status=clean | size=671716 | rows=11120
+- path=results/runs/w28_fir_d1024_gate_lr18_s10101.json | category=result_json | head=false | status=clean | size=7343 | metrics={"gold_rho": 0.8819671944514171}
+- path=results/runs/w28_fir_d1024_gate_lr18_s10101_predictions.csv | category=result_csv | head=false | status=clean | size=569710 | rows=11120
+- path=results/runs/w28_fir_d1024_gate_lr20_s10102.json | category=result_json | head=false | status=clean | size=7343 | metrics={"gold_rho": 0.8838248110599363}
+- path=results/runs/w28_fir_d1024_gate_lr20_s10102_predictions.csv | category=result_csv | head=false | status=clean | size=569881 | rows=11120
+- path=results/runs/w28_fir_d1024_xattn_lr18_s10103.json | category=result_json | head=false | status=clean | size=6821 | metrics={"gold_rho": 0.8825016662433004}
+- path=results/runs/w28_fir_d1024_xattn_lr18_s10103_predictions.csv | category=result_csv | head=false | status=clean | size=569584 | rows=11120
+- path=results/runs/w28_fir_d1024_xattn_lr20_s10104.json | category=result_json | head=false | status=clean | size=6404 | metrics={"gold_rho": 0.8795891823004811}
+- path=results/runs/w28_fir_d1024_xattn_lr20_s10104_predictions.csv | category=result_csv | head=false | status=clean | size=569798 | rows=11120
+- path=results/runs/w28_fir_d640_gate_m25_lr30_s10109.json | category=result_json | head=false | status=clean | size=7769 | metrics={"gold_rho": 0.8794618247835978}
+- path=results/runs/w28_fir_d640_gate_m25_lr30_s10109_predictions.csv | category=result_csv | head=false | status=clean | size=569758 | rows=11120
+- path=results/runs/w28_fir_d768_gate_m25_lr27_s10108.json | category=result_json | head=false | status=clean | size=8602 | metrics={"gold_rho": 0.8819886913719276}
+- path=results/runs/w28_fir_d768_gate_m25_lr27_s10108_predictions.csv | category=result_csv | head=false | status=clean | size=569878 | rows=11120
+- path=results/runs/w28_fir_d768_gate_m30_lr23_s10107.json | category=result_json | head=false | status=clean | size=9303 | metrics={"gold_rho": 0.8791780395264698}
+- path=results/runs/w28_fir_d768_gate_m30_lr23_s10107_predictions.csv | category=result_csv | head=false | status=clean | size=569869 | rows=11120
+- path=results/runs/w28_fir_d896_gate_lr20_s10105.json | category=result_json | head=false | status=clean | size=7618 | metrics={"gold_rho": 0.8847302146766138}
+- path=results/runs/w28_fir_d896_gate_lr20_s10105_predictions.csv | category=result_csv | head=false | status=clean | size=569763 | rows=11120
+- path=results/runs/w28_fir_d896_xattn_lr20_s10106.json | category=result_json | head=false | status=clean | size=8068 | metrics={"gold_rho": 0.8809226436317652}
+- path=results/runs/w28_fir_d896_xattn_lr20_s10106_predictions.csv | category=result_csv | head=false | status=clean | size=569601 | rows=11120
+- path=results/runs/w28_fir_mamba_d768_lr23_s10110.json | category=result_json | head=false | status=clean | size=6355 | metrics={"gold_rho": 0.8441899461157487}
+- path=results/runs/w28_fir_mamba_d768_lr23_s10110_predictions.csv | category=result_csv | head=false | status=clean | size=569556 | rows=11120
+- path=results/runs/w28_rorqual_d1024_gate_lr18_s10111.json | category=result_json | head=false | status=clean | size=7496 | metrics={"gold_rho": 0.8855374921917464}
+- path=results/runs/w28_rorqual_d1024_gate_lr18_s10111_predictions.csv | category=result_csv | head=false | status=clean | size=569835 | rows=11120
+- path=results/runs/w28_rorqual_d1024_gate_lr20_s10112.json | category=result_json | head=false | status=clean | size=6930 | metrics={"gold_rho": 0.8838082795837789}
+- path=results/runs/w28_rorqual_d1024_gate_lr20_s10112_predictions.csv | category=result_csv | head=false | status=clean | size=569937 | rows=11120
+- path=results/runs/w28_rorqual_d1024_xattn_lr18_s10113.json | category=result_json | head=false | status=clean | size=7252 | metrics={"gold_rho": 0.8820304734530124}
+- path=results/runs/w28_rorqual_d1024_xattn_lr18_s10113_predictions.csv | category=result_csv | head=false | status=clean | size=569810 | rows=11120
+- path=results/runs/w28_rorqual_d1024_xattn_lr20_s10114.json | category=result_json | head=false | status=clean | size=6823 | metrics={"gold_rho": 0.8841574049673405}
+- path=results/runs/w28_rorqual_d1024_xattn_lr20_s10114_predictions.csv | category=result_csv | head=false | status=clean | size=569822 | rows=11120
+- path=results/runs/w28_rorqual_d640_gate_m25_lr30_s10119.json | category=result_json | head=false | status=clean | size=7921 | metrics={"gold_rho": 0.8777674821094479}
+- path=results/runs/w28_rorqual_d640_gate_m25_lr30_s10119_predictions.csv | category=result_csv | head=false | status=clean | size=569684 | rows=11120
+- path=results/runs/w28_rorqual_d768_gate_m25_lr27_s10118.json | category=result_json | head=false | status=clean | size=8471 | metrics={"gold_rho": 0.8795732397694823}
+- path=results/runs/w28_rorqual_d768_gate_m25_lr27_s10118_predictions.csv | category=result_csv | head=false | status=clean | size=569774 | rows=11120
+- path=results/runs/w28_rorqual_d768_gate_m30_lr23_s10117.json | category=result_json | head=false | status=clean | size=9036 | metrics={"gold_rho": 0.8826438381878903}
+- path=results/runs/w28_rorqual_d768_gate_m30_lr23_s10117_predictions.csv | category=result_csv | head=false | status=clean | size=569822 | rows=11120
+- path=results/runs/w28_rorqual_d896_gate_lr20_s10115.json | category=result_json | head=false | status=clean | size=8183 | metrics={"gold_rho": 0.8815995595862709}
+- path=results/runs/w28_rorqual_d896_gate_lr20_s10115_predictions.csv | category=result_csv | head=false | status=clean | size=569674 | rows=11120
+- path=results/runs/w28_rorqual_d896_xattn_lr20_s10116.json | category=result_json | head=false | status=clean | size=8219 | metrics={"gold_rho": 0.8806981866130223}
+- path=results/runs/w28_rorqual_d896_xattn_lr20_s10116_predictions.csv | category=result_csv | head=false | status=clean | size=569705 | rows=11120
+- path=results/runs/w28_rorqual_mamba_d768_lr23_s10120.json | category=result_json | head=false | status=clean | size=6090 | metrics={"gold_rho": 0.8381430825261863}
+- path=results/runs/w28_rorqual_mamba_d768_lr23_s10120_predictions.csv | category=result_csv | head=false | status=clean | size=569740 | rows=11120
+- path=results/runs/w28_submitted_jobs_20260225_194430.txt | category=other | head=false | status=clean | size=970
+- path=results/runs/w29_best_ensemble_with_hgbr_v2_predictions.csv | category=result_csv | head=false | status=clean | size=663664 | rows=11120
+- path=results/runs/w29_hgbr_rank_stack_d10.json | category=result_json | head=false | status=clean | size=1897 | metrics={"gold_rho": 0.9559292430410357}
+- path=results/runs/w29_hgbr_rank_stack_d10_predictions.csv | category=result_csv | head=false | status=clean | size=664993 | rows=11120
+- path=results/runs/w29_progress_summary_with_hgbr_v2.json | category=result_json | head=false | status=clean | size=20929
+- path=results/runs/w2_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=629104 | rows=11120
+- path=results/runs/w2_best_ensemble_report.json | category=result_json | head=false | status=clean | size=456
+- path=results/runs/w2_fir_d512_concat_s3141.json | category=result_json | head=false | status=clean | size=5308 | metrics={"gold_rho": 0.8805727493359736}
+- path=results/runs/w2_fir_d512_concat_s3141_predictions.csv | category=result_csv | head=false | status=clean | size=569691 | rows=11120
+- path=results/runs/w2_fir_d512_gate_s2020.json | category=result_json | head=false | status=clean | size=4742 | metrics={"gold_rho": 0.8843225411174899}
+- path=results/runs/w2_fir_d512_gate_s2020_predictions.csv | category=result_csv | head=false | status=clean | size=569832 | rows=11120
+- path=results/runs/w2_fir_d512_gate_s606.json | category=result_json | head=false | status=clean | size=5160 | metrics={"gold_rho": 0.8830179868241554}
+- path=results/runs/w2_fir_d512_gate_s606_predictions.csv | category=result_csv | head=false | status=clean | size=569851 | rows=11120
+- path=results/runs/w2_fir_d512_gate_s808.json | category=result_json | head=false | status=clean | size=4881 | metrics={"gold_rho": 0.8824090286923474}
+- path=results/runs/w2_fir_d512_gate_s808_predictions.csv | category=result_csv | head=false | status=clean | size=569873 | rows=11120
+- path=results/runs/w2_fir_d512_gate_s9090.json | category=result_json | head=false | status=clean | size=5581 | metrics={"gold_rho": 0.8851201202597386}
+- path=results/runs/w2_fir_d512_gate_s9090_predictions.csv | category=result_csv | head=false | status=clean | size=569847 | rows=11120
+- path=results/runs/w2_fir_d640_gate_s5151.json | category=result_json | head=false | status=clean | size=5433 | metrics={"gold_rho": 0.882543842007}
+- path=results/runs/w2_fir_d640_gate_s5151_predictions.csv | category=result_csv | head=false | status=clean | size=569759 | rows=11120
+- path=results/runs/w2_progress_summary.json | category=result_json | head=false | status=clean | size=569
+- path=results/runs/w30_best_ensemble_with_stackv4_predictions.csv | category=result_csv | head=false | status=clean | size=671393 | rows=11120
+- path=results/runs/w30_progress_summary_with_stackv4.json | category=result_json | head=false | status=clean | size=22275
+- path=results/runs/w30_rank_ridge_stack_v4.json | category=result_json | head=false | status=clean | size=2124 | metrics={"gold_rho": 0.9622263138552873}
+- path=results/runs/w30_rank_ridge_stack_v4_predictions.csv | category=result_csv | head=false | status=clean | size=671577 | rows=11120
+- path=results/runs/w31_best_ensemble_with_hgbr_v3_predictions.csv | category=result_csv | head=false | status=clean | size=663639 | rows=11120
+- path=results/runs/w31_hgbr_rank_stack_d8k300.json | category=result_json | head=false | status=clean | size=2261 | metrics={"gold_rho": 0.9685779654828338}
+- path=results/runs/w31_hgbr_rank_stack_d8k300_predictions.csv | category=result_csv | head=false | status=clean | size=665133 | rows=11120
+- path=results/runs/w31_progress_summary_with_hgbr_v3.json | category=result_json | head=false | status=clean | size=22266
+- path=results/runs/w32_best_ensemble_with_oof_predictions.csv | category=result_csv | head=false | status=clean | size=663822 | rows=11120
+- path=results/runs/w32_oof_hgbr_k300_d8_i300.json | category=result_json | head=false | status=clean | size=11084 | metrics={"gold_rho": 0.9696495436422776}
+- path=results/runs/w32_oof_hgbr_k300_d8_i300_predictions.csv | category=result_csv | head=false | status=clean | size=665141 | rows=11120
+- path=results/runs/w32_oof_ridge_k376_a0003.json | category=result_json | head=false | status=clean | size=13878 | metrics={"gold_rho": 0.9617314187045914}
+- path=results/runs/w32_oof_ridge_k376_a0003_predictions.csv | category=result_csv | head=false | status=clean | size=664987 | rows=11120
+- path=results/runs/w32_progress_summary_with_oof.json | category=result_json | head=false | status=clean | size=22363
+- path=results/runs/w33_best_ensemble_with_oof_v2_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w33_oof_hgbr_k240_d8_i300_lr004_s21.json | category=result_json | head=false | status=clean | size=2232 | metrics={"gold_rho": 0.9700928819028961}
+- path=results/runs/w33_oof_hgbr_k240_d8_i300_lr004_s21_predictions.csv | category=result_csv | head=false | status=clean | size=665172 | rows=11120
+- path=results/runs/w33_progress_summary_with_oof_v2.json | category=result_json | head=false | status=clean | size=22545
+- path=results/runs/w34_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665179 | rows=11120
+- path=results/runs/w34_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w34_conformal_split_from_w33.json | category=result_json | head=false | status=clean | size=410
+- path=results/runs/w34_offtarget_matched_eval_seed42.json | category=result_json | head=false | status=clean | size=1013
+- path=results/runs/w34_offtarget_matched_eval_seed99.json | category=result_json | head=false | status=clean | size=1010
+- path=results/runs/w34_offtarget_matched_summary.json | category=result_json | head=false | status=clean | size=619
+- path=results/runs/w34_on_target_significance_w33_vs_baseline.json | category=result_json | head=false | status=clean | size=588
+- path=results/runs/w34_progress_snapshot_now.json | category=result_json | head=false | status=clean | size=3177
+- path=results/runs/w34_progress_summary_complete.json | category=result_json | head=false | status=clean | size=23365
+- path=results/runs/w34_progress_summary_partial.json | category=result_json | head=false | status=clean | size=23363
+- path=results/runs/w34_rorqual_d1024_gate_lr16_ep140_s10203.json | category=result_json | head=false | status=clean | size=8064 | metrics={"gold_rho": 0.8829113632462328}
+- path=results/runs/w34_rorqual_d1024_gate_lr16_ep140_s10203_predictions.csv | category=result_csv | head=false | status=clean | size=569720 | rows=11120
+- path=results/runs/w34_rorqual_d1024_gate_lr18_ep140_s10201.json | category=result_json | head=false | status=clean | size=8061 | metrics={"gold_rho": 0.8848331289666287}
+- path=results/runs/w34_rorqual_d1024_gate_lr18_ep140_s10201_predictions.csv | category=result_csv | head=false | status=clean | size=569653 | rows=11120
+- path=results/runs/w34_rorqual_d1024_gate_lr18_ep140_s10202.json | category=result_json | head=false | status=clean | size=8616 | metrics={"gold_rho": 0.88417115590702}
+- path=results/runs/w34_rorqual_d1024_gate_lr18_ep140_s10202_predictions.csv | category=result_csv | head=false | status=clean | size=569787 | rows=11120
+- path=results/runs/w34_rorqual_d1024_gate_lr20_ep140_s10204.json | category=result_json | head=false | status=clean | size=9170 | metrics={"gold_rho": 0.8810986543830541}
+- path=results/runs/w34_rorqual_d1024_gate_lr20_ep140_s10204_predictions.csv | category=result_csv | head=false | status=clean | size=569790 | rows=11120
+- path=results/runs/w34_rorqual_d1024_xattn_lr16_ep130_s10207.json | category=result_json | head=false | status=clean | size=7540 | metrics={"gold_rho": 0.8821250838481546}
+- path=results/runs/w34_rorqual_d1024_xattn_lr16_ep130_s10207_predictions.csv | category=result_csv | head=false | status=clean | size=569638 | rows=11120
+- path=results/runs/w34_rorqual_d1024_xattn_lr18_ep130_s10205.json | category=result_json | head=false | status=clean | size=7408 | metrics={"gold_rho": 0.8811254618327224}
+- path=results/runs/w34_rorqual_d1024_xattn_lr18_ep130_s10205_predictions.csv | category=result_csv | head=false | status=clean | size=569812 | rows=11120
+- path=results/runs/w34_rorqual_d1024_xattn_lr18_ep130_s10206.json | category=result_json | head=false | status=clean | size=7400 | metrics={"gold_rho": 0.8810289560977131}
+- path=results/runs/w34_rorqual_d1024_xattn_lr18_ep130_s10206_predictions.csv | category=result_csv | head=false | status=clean | size=569607 | rows=11120
+- path=results/runs/w34_rorqual_d1024_xattn_lr20_ep130_s10208.json | category=result_json | head=false | status=clean | size=8932 | metrics={"gold_rho": 0.8805544552751386}
+- path=results/runs/w34_rorqual_d1024_xattn_lr20_ep130_s10208_predictions.csv | category=result_csv | head=false | status=clean | size=569749 | rows=11120
+- path=results/runs/w34_rorqual_d768_gate_m25_lr27_ep140_s10212.json | category=result_json | head=false | status=clean | size=8344 | metrics={"gold_rho": 0.879732859432121}
+- path=results/runs/w34_rorqual_d768_gate_m25_lr27_ep140_s10212_predictions.csv | category=result_csv | head=false | status=clean | size=569757 | rows=11120
+- path=results/runs/w34_rorqual_d768_gate_m30_lr23_ep140_s10211.json | category=result_json | head=false | status=clean | size=8627 | metrics={"gold_rho": 0.8815232275463665}
+- path=results/runs/w34_rorqual_d768_gate_m30_lr23_ep140_s10211_predictions.csv | category=result_csv | head=false | status=clean | size=569805 | rows=11120
+- path=results/runs/w34_rorqual_d896_gate_lr18_ep130_s10209.json | category=result_json | head=false | status=clean | size=8201 | metrics={"gold_rho": 0.8845130993586346}
+- path=results/runs/w34_rorqual_d896_gate_lr18_ep130_s10209_predictions.csv | category=result_csv | head=false | status=clean | size=569837 | rows=11120
+- path=results/runs/w34_rorqual_d896_xattn_lr18_ep130_s10210.json | category=result_json | head=false | status=clean | size=8093 | metrics={"gold_rho": 0.8824356029022963}
+- path=results/runs/w34_rorqual_d896_xattn_lr18_ep130_s10210_predictions.csv | category=result_csv | head=false | status=clean | size=569665 | rows=11120
+- path=results/runs/w34_submitted_jobs_20260225_223015.txt | category=other | head=false | status=clean | size=693
+- path=results/runs/w35_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665179 | rows=11120
+- path=results/runs/w35_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665179 | rows=11120
+- path=results/runs/w35_progress_summary_complete.json | category=result_json | head=false | status=clean | size=23911
+- path=results/runs/w35_progress_summary_partial.json | category=result_json | head=false | status=clean | size=23500
+- path=results/runs/w35_rorqual_d1024_gate_lr15_ep150_s10305.json | category=result_json | head=false | status=clean | size=7645 | metrics={"gold_rho": 0.8792379746636203}
+- path=results/runs/w35_rorqual_d1024_gate_lr15_ep150_s10305_predictions.csv | category=result_csv | head=false | status=clean | size=569742 | rows=11120
+- path=results/runs/w35_rorqual_d1024_xattn_lr15_ep140_s10306.json | category=result_json | head=false | status=clean | size=8238 | metrics={"gold_rho": 0.8835280535088031}
+- path=results/runs/w35_rorqual_d1024_xattn_lr15_ep140_s10306_predictions.csv | category=result_csv | head=false | status=clean | size=569972 | rows=11120
+- path=results/runs/w35_rorqual_d1152_gate_lr16_ep150_s10301.json | category=result_json | head=false | status=clean | size=8483 | metrics={"gold_rho": 0.8859353118548684}
+- path=results/runs/w35_rorqual_d1152_gate_lr16_ep150_s10301_predictions.csv | category=result_csv | head=false | status=clean | size=569730 | rows=11120
+- path=results/runs/w35_rorqual_d1152_gate_lr18_ep150_s10302.json | category=result_json | head=false | status=clean | size=8067 | metrics={"gold_rho": 0.8851447041483166}
+- path=results/runs/w35_rorqual_d1152_gate_lr18_ep150_s10302_predictions.csv | category=result_csv | head=false | status=clean | size=569751 | rows=11120
+- path=results/runs/w35_rorqual_d1152_xattn_lr16_ep140_s10303.json | category=result_json | head=false | status=clean | size=8242 | metrics={"gold_rho": 0.8817967277462408}
+- path=results/runs/w35_rorqual_d1152_xattn_lr16_ep140_s10303_predictions.csv | category=result_csv | head=false | status=clean | size=569772 | rows=11120
+- path=results/runs/w35_rorqual_d1152_xattn_lr18_ep140_s10304.json | category=result_json | head=false | status=clean | size=7544 | metrics={"gold_rho": 0.8811392596076227}
+- path=results/runs/w35_rorqual_d1152_xattn_lr18_ep140_s10304_predictions.csv | category=result_csv | head=false | status=clean | size=569619 | rows=11120
+- path=results/runs/w35_rorqual_d896_gate_lr17_ep140_s10307.json | category=result_json | head=false | status=clean | size=7771 | metrics={"gold_rho": 0.8834343129419449}
+- path=results/runs/w35_rorqual_d896_gate_lr17_ep140_s10307_predictions.csv | category=result_csv | head=false | status=clean | size=569815 | rows=11120
+- path=results/runs/w35_rorqual_d896_xattn_lr17_ep140_s10308.json | category=result_json | head=false | status=clean | size=8372 | metrics={"gold_rho": 0.8811352977828227}
+- path=results/runs/w35_rorqual_d896_xattn_lr17_ep140_s10308_predictions.csv | category=result_csv | head=false | status=clean | size=569706 | rows=11120
+- path=results/runs/w35_submitted_jobs_20260225_225827.txt | category=other | head=false | status=clean | size=458
+- path=results/runs/w36_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w36_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665179 | rows=11120
+- path=results/runs/w36_integrated_design_proxy_eval.json | category=result_json | head=false | status=clean | size=2703
+- path=results/runs/w36_integrated_design_proxy_eval_alpha15.json | category=result_json | head=false | status=clean | size=2713
+- path=results/runs/w36_integrated_design_proxy_eval_v2.json | category=result_json | head=false | status=clean | size=2767
+- path=results/runs/w36_integrated_design_proxy_ranked.csv | category=result_csv | head=false | status=clean | size=2422062 | rows=11120
+- path=results/runs/w36_integrated_design_proxy_ranked_alpha15.csv | category=result_csv | head=false | status=clean | size=2421793 | rows=11120
+- path=results/runs/w36_integrated_design_proxy_ranked_v2.csv | category=result_csv | head=false | status=clean | size=2435049 | rows=11120
+- path=results/runs/w36_progress_status_latest.json | category=result_json | head=false | status=clean | size=1803
+- path=results/runs/w36_progress_summary_complete.json | category=result_json | head=false | status=clean | size=24724
+- path=results/runs/w36_progress_summary_partial.json | category=result_json | head=false | status=clean | size=24249
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10405.json | category=result_json | head=false | status=clean | size=9325 | metrics={"gold_rho": 0.8843084147808995}
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10405_predictions.csv | category=result_csv | head=false | status=clean | size=569700 | rows=11120
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10406.json | category=result_json | head=false | status=clean | size=9173 | metrics={"gold_rho": 0.8836559892250297}
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10406_predictions.csv | category=result_csv | head=false | status=clean | size=569829 | rows=11120
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10407.json | category=result_json | head=false | status=clean | size=9867 | metrics={"gold_rho": 0.8854443441192323}
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10407_predictions.csv | category=result_csv | head=false | status=clean | size=569717 | rows=11120
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10408.json | category=result_json | head=false | status=clean | size=8903 | metrics={"gold_rho": 0.8876127539306263}
+- path=results/runs/w36_rorqual_d1152_gate_lr15_ep160_s10408_predictions.csv | category=result_csv | head=false | status=clean | size=569839 | rows=11120
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10401.json | category=result_json | head=false | status=clean | size=9172 | metrics={"gold_rho": 0.883757062096338}
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10401_predictions.csv | category=result_csv | head=false | status=clean | size=569808 | rows=11120
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10402.json | category=result_json | head=false | status=clean | size=9453 | metrics={"gold_rho": 0.8829016819182292}
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10402_predictions.csv | category=result_csv | head=false | status=clean | size=569658 | rows=11120
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10403.json | category=result_json | head=false | status=clean | size=9312 | metrics={"gold_rho": 0.8830560365365043}
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10403_predictions.csv | category=result_csv | head=false | status=clean | size=569654 | rows=11120
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10404.json | category=result_json | head=false | status=clean | size=10707 | metrics={"gold_rho": 0.8819665979656589}
+- path=results/runs/w36_rorqual_d1152_gate_lr16_ep160_s10404_predictions.csv | category=result_csv | head=false | status=clean | size=569714 | rows=11120
+- path=results/runs/w36_rorqual_d1280_gate_lr15_ep160_s10409.json | category=result_json | head=false | status=clean | size=9460 | metrics={"gold_rho": 0.8845794374215138}
+- path=results/runs/w36_rorqual_d1280_gate_lr15_ep160_s10409_predictions.csv | category=result_csv | head=false | status=clean | size=569774 | rows=11120
+- path=results/runs/w36_rorqual_d1280_gate_lr15_ep160_s10410.json | category=result_json | head=false | status=clean | size=9173 | metrics={"gold_rho": 0.8814218091585249}
+- path=results/runs/w36_rorqual_d1280_gate_lr15_ep160_s10410_predictions.csv | category=result_csv | head=false | status=clean | size=569823 | rows=11120
+- path=results/runs/w36_rorqual_d1280_gate_lr16_ep160_s10411.json | category=result_json | head=false | status=clean | size=8762 | metrics={"gold_rho": 0.883749563710968}
+- path=results/runs/w36_rorqual_d1280_gate_lr16_ep160_s10411_predictions.csv | category=result_csv | head=false | status=clean | size=569808 | rows=11120
+- path=results/runs/w36_rorqual_d1280_gate_lr16_ep160_s10412.json | category=result_json | head=false | status=clean | size=9873 | metrics={"gold_rho": 0.8844589362199027}
+- path=results/runs/w36_rorqual_d1280_gate_lr16_ep160_s10412_predictions.csv | category=result_csv | head=false | status=clean | size=569813 | rows=11120
+- path=results/runs/w36_submitted_jobs_20260225_232747.txt | category=other | head=false | status=clean | size=684
+- path=results/runs/w37_backfill_submitted_jobs_20260226_073744.txt | category=other | head=false | status=clean | size=448
+- path=results/runs/w37_best_ensemble_local_refresh_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w37_local_debug_mps_d896_gate_s10441.json | category=result_json | head=false | status=clean | size=2902 | metrics={"gold_rho": 0.8723049921881691}
+- path=results/runs/w37_local_debug_mps_d896_gate_s10441_predictions.csv | category=result_csv | head=false | status=clean | size=569602 | rows=11120
+- path=results/runs/w37_local_smoketest_s1.json | category=result_json | head=false | status=clean | size=2487 | metrics={"gold_rho": 0.7982973263285948}
+- path=results/runs/w37_local_smoketest_s1_predictions.csv | category=result_csv | head=false | status=clean | size=569561 | rows=11120
+- path=results/runs/w37_nibi_submitted_jobs_20260226_073041.txt | category=other | head=false | status=clean | size=424
+- path=results/runs/w37_progress_status_latest.json | category=result_json | head=false | status=clean | size=4650
+- path=results/runs/w37_progress_summary_local_refresh.json | category=result_json | head=false | status=clean | size=24843
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10419.json | category=result_json | head=false | status=clean | size=9202 | metrics={"gold_rho": 0.8833828799125819}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10419_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10420.json | category=result_json | head=false | status=clean | size=9619 | metrics={"gold_rho": 0.8826856135295241}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10420_predictions.csv | category=result_csv | head=false | status=clean | size=569923 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10421.json | category=result_json | head=false | status=clean | size=9345 | metrics={"gold_rho": 0.8835867101943327}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10421_predictions.csv | category=result_csv | head=false | status=clean | size=569683 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10422.json | category=result_json | head=false | status=clean | size=9614 | metrics={"gold_rho": 0.8815390745734744}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_m26d975_s10422_predictions.csv | category=result_csv | head=false | status=clean | size=569893 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10413.json | category=result_json | head=false | status=clean | size=9182 | metrics={"gold_rho": 0.8860383031300115}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10413_predictions.csv | category=result_csv | head=false | status=clean | size=569727 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10414.json | category=result_json | head=false | status=clean | size=8756 | metrics={"gold_rho": 0.8821976945980131}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10414_predictions.csv | category=result_csv | head=false | status=clean | size=569782 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10415.json | category=result_json | head=false | status=clean | size=9175 | metrics={"gold_rho": 0.8857135424524333}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10415_predictions.csv | category=result_csv | head=false | status=clean | size=569945 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10416.json | category=result_json | head=false | status=clean | size=8899 | metrics={"gold_rho": 0.8798076306440121}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10416_predictions.csv | category=result_csv | head=false | status=clean | size=569885 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10417.json | category=result_json | head=false | status=clean | size=8767 | metrics={"gold_rho": 0.8843431961224925}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10417_predictions.csv | category=result_csv | head=false | status=clean | size=569814 | rows=11120
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10418.json | category=result_json | head=false | status=clean | size=9046 | metrics={"gold_rho": 0.883476735592277}
+- path=results/runs/w37_rorqual_d1152_gate_lr15_ep160_s10418_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w37_rorqual_d1280_gate_lr15_ep170_s10423.json | category=result_json | head=false | status=clean | size=9463 | metrics={"gold_rho": 0.8815391856134985}
+- path=results/runs/w37_rorqual_d1280_gate_lr15_ep170_s10423_predictions.csv | category=result_csv | head=false | status=clean | size=569823 | rows=11120
+- path=results/runs/w37_rorqual_d1280_gate_lr15_ep170_s10424.json | category=result_json | head=false | status=clean | size=9317 | metrics={"gold_rho": 0.8837656539995115}
+- path=results/runs/w37_rorqual_d1280_gate_lr15_ep170_s10424_predictions.csv | category=result_csv | head=false | status=clean | size=569652 | rows=11120
+- path=results/runs/w37_runtime_snapshot.json | category=result_json | head=false | status=clean | size=2758
+- path=results/runs/w37_submitted_jobs_20260226_072639.txt | category=other | head=false | status=clean | size=716
+- path=results/runs/w37bf_rorqual_d1152_gate_lr15_ep120_s10433.json | category=result_json | head=false | status=clean | size=6947 | metrics={"gold_rho": 0.8832848261907597}
+- path=results/runs/w37bf_rorqual_d1152_gate_lr15_ep120_s10433_predictions.csv | category=result_csv | head=false | status=clean | size=569636 | rows=11120
+- path=results/runs/w37bf_rorqual_d1152_gate_lr15_ep120_s10434.json | category=result_json | head=false | status=clean | size=6667 | metrics={"gold_rho": 0.8804315017880212}
+- path=results/runs/w37bf_rorqual_d1152_gate_lr15_ep120_s10434_predictions.csv | category=result_csv | head=false | status=clean | size=569748 | rows=11120
+- path=results/runs/w37bf_rorqual_d1280_gate_lr15_ep120_s10435.json | category=result_json | head=false | status=clean | size=7510 | metrics={"gold_rho": 0.8849304730649299}
+- path=results/runs/w37bf_rorqual_d1280_gate_lr15_ep120_s10435_predictions.csv | category=result_csv | head=false | status=clean | size=569702 | rows=11120
+- path=results/runs/w37bf_rorqual_d896_xattn_lr16_ep120_s10436.json | category=result_json | head=false | status=clean | size=7264 | metrics={"gold_rho": 0.8845855593278636}
+- path=results/runs/w37bf_rorqual_d896_xattn_lr16_ep120_s10436_predictions.csv | category=result_csv | head=false | status=clean | size=569858 | rows=11120
+- path=results/runs/w38_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w38_best_ensemble_refresh2_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w38_local_strictA_ng20000_cpu_d512_gate_s10483_fg.json | category=result_json | head=false | status=clean | size=5430 | metrics={"gold_rho": 0.3513599678583402}
+- path=results/runs/w38_local_strictA_ng20000_cpu_d512_gate_s10483_fg_predictions.csv | category=result_csv | head=false | status=clean | size=136809 | rows=3056
+- path=results/runs/w38_progress_summary_partial.json | category=result_json | head=false | status=clean | size=25462
+- path=results/runs/w38_progress_summary_refresh2.json | category=result_json | head=false | status=clean | size=25965
+- path=results/runs/w38_runtime_snapshot.json | category=result_json | head=false | status=clean | size=3536
+- path=results/runs/w38_strict_submitted_jobs_20260226_080247.txt | category=other | head=false | status=clean | size=348
+- path=results/runs/w38s_rorqual_d768_gate_s10471.json | category=result_json | head=false | status=clean | size=7057 | metrics={"gold_rho": 0.37960236120794577}
+- path=results/runs/w38s_rorqual_d768_gate_s10471_predictions.csv | category=result_csv | head=false | status=clean | size=136763 | rows=3056
+- path=results/runs/w38s_rorqual_d768_xattn_s10473.json | category=result_json | head=false | status=clean | size=9059 | metrics={"gold_rho": 0.34644060855133957}
+- path=results/runs/w38s_rorqual_d768_xattn_s10473_predictions.csv | category=result_csv | head=false | status=clean | size=136899 | rows=3056
+- path=results/runs/w38s_rorqual_d896_gate_s10472.json | category=result_json | head=false | status=clean | size=6928 | metrics={"gold_rho": 0.3565640075197662}
+- path=results/runs/w38s_rorqual_d896_gate_s10472_predictions.csv | category=result_csv | head=false | status=clean | size=136866 | rows=3056
+- path=results/runs/w38s_rorqual_d896_xattn_s10474.json | category=result_json | head=false | status=clean | size=7939 | metrics={"gold_rho": 0.378856686606196}
+- path=results/runs/w38s_rorqual_d896_xattn_s10474_predictions.csv | category=result_csv | head=false | status=clean | size=136790 | rows=3056
+- path=results/runs/w39_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w39_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w39_best_ensemble_refresh1_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w39_integrated_design_proxy_eval.json | category=result_json | head=false | status=clean | size=2776
+- path=results/runs/w39_integrated_design_proxy_ranked.csv | category=result_csv | head=false | status=clean | size=2435086 | rows=11120
+- path=results/runs/w39_nibi_recover_submitted_jobs_20260226_082459.txt | category=other | head=false | status=clean | size=370
+- path=results/runs/w39_offtarget_matched_eval_s42.json | category=result_json | head=false | status=clean | size=995
+- path=results/runs/w39_progress_summary_complete.json | category=result_json | head=false | status=clean | size=26228
+- path=results/runs/w39_progress_summary_partial.json | category=result_json | head=false | status=clean | size=25964
+- path=results/runs/w39_progress_summary_refresh1.json | category=result_json | head=false | status=clean | size=25965
+- path=results/runs/w39_proposal_status_latest.json | category=result_json | head=false | status=clean | size=4954 | metrics={"best_splitA_nonstacked_ensemble_rho": 0.9015705795738254, "best_splitA_nonstacked_single_rho": 0.8876127539306263, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}
+- path=results/runs/w39n_nibi_d1152_gate_lr15_ep160_s10501.json | category=result_json | head=false | status=clean | size=9164 | metrics={"gold_rho": 0.882805276882582}
+- path=results/runs/w39n_nibi_d1152_gate_lr15_ep160_s10501_predictions.csv | category=result_csv | head=false | status=clean | size=569834 | rows=11120
+- path=results/runs/w39n_nibi_d1152_gate_lr15_ep160_s10502.json | category=result_json | head=false | status=clean | size=8900 | metrics={"gold_rho": 0.8846438674599263}
+- path=results/runs/w39n_nibi_d1152_gate_lr15_ep160_s10502_predictions.csv | category=result_csv | head=false | status=clean | size=569732 | rows=11120
+- path=results/runs/w39n_nibi_d1280_gate_lr15_ep170_s10503.json | category=result_json | head=false | status=clean | size=9179 | metrics={"gold_rho": 0.8846034588868711}
+- path=results/runs/w39n_nibi_d1280_gate_lr15_ep170_s10503_predictions.csv | category=result_csv | head=false | status=clean | size=569711 | rows=11120
+- path=results/runs/w39n_nibi_d896_xattn_lr16_ep120_s10504.json | category=result_json | head=false | status=clean | size=7532 | metrics={"gold_rho": 0.8851994801731946}
+- path=results/runs/w39n_nibi_d896_xattn_lr16_ep120_s10504_predictions.csv | category=result_csv | head=false | status=clean | size=569677 | rows=11120
+- path=results/runs/w39s_nibi_d768_gate_s10505.json | category=result_json | head=false | status=clean | size=7478 | metrics={"gold_rho": 0.37748053809184684}
+- path=results/runs/w39s_nibi_d768_gate_s10505_predictions.csv | category=result_csv | head=false | status=clean | size=136809 | rows=3056
+- path=results/runs/w39s_nibi_d768_xattn_s10507.json | category=result_json | head=false | status=clean | size=8073 | metrics={"gold_rho": 0.36114854111447175}
+- path=results/runs/w39s_nibi_d768_xattn_s10507_predictions.csv | category=result_csv | head=false | status=clean | size=136951 | rows=3056
+- path=results/runs/w39s_nibi_d896_gate_s10506.json | category=result_json | head=false | status=clean | size=7053 | metrics={"gold_rho": 0.37452384103856545}
+- path=results/runs/w39s_nibi_d896_gate_s10506_predictions.csv | category=result_csv | head=false | status=clean | size=136831 | rows=3056
+- path=results/runs/w39s_nibi_d896_xattn_s10508.json | category=result_json | head=false | status=clean | size=7371 | metrics={"gold_rho": 0.35677571920511764}
+- path=results/runs/w39s_nibi_d896_xattn_s10508_predictions.csv | category=result_csv | head=false | status=clean | size=136807 | rows=3056
+- path=results/runs/w3_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=417334 | rows=11120
+- path=results/runs/w3_local_mps_d512_gate_s3801.json | category=result_json | head=false | status=clean | size=5439 | metrics={"gold_rho": 0.881567954808481}
+- path=results/runs/w3_local_mps_d512_gate_s3801_predictions.csv | category=result_csv | head=false | status=clean | size=569773 | rows=11120
+- path=results/runs/w3_local_mps_d640_gate_s3802.json | category=result_json | head=false | status=clean | size=4887 | metrics={"gold_rho": 0.8848274407111775}
+- path=results/runs/w3_local_mps_d640_gate_s3802_predictions.csv | category=result_csv | head=false | status=clean | size=569640 | rows=11120
+- path=results/runs/w3_progress_summary.json | category=result_json | head=false | status=clean | size=558
+- path=results/runs/w3b_fir_d512_gate_s3201.json | category=result_json | head=false | status=clean | size=5433 | metrics={"gold_rho": 0.884678091058422}
+- path=results/runs/w3b_fir_d512_gate_s3201_predictions.csv | category=result_csv | head=false | status=clean | size=569819 | rows=11120
+- path=results/runs/w3b_fir_d512_gate_s3202.json | category=result_json | head=false | status=clean | size=4466 | metrics={"gold_rho": 0.8833860249453419}
+- path=results/runs/w3b_fir_d512_gate_s3202_predictions.csv | category=result_csv | head=false | status=clean | size=569761 | rows=11120
+- path=results/runs/w3b_fir_d640_gate_s3203.json | category=result_json | head=false | status=clean | size=4742 | metrics={"gold_rho": 0.8849701366249818}
+- path=results/runs/w3b_fir_d640_gate_s3203_predictions.csv | category=result_csv | head=false | status=clean | size=569806 | rows=11120
+- path=results/runs/w3b_nibi_d512_gate_s3001.json | category=result_json | head=false | status=clean | size=4882 | metrics={"gold_rho": 0.8808917496040233}
+- path=results/runs/w3b_nibi_d512_gate_s3001_predictions.csv | category=result_csv | head=false | status=clean | size=569679 | rows=11120
+- path=results/runs/w3b_nibi_d512_gate_s3002.json | category=result_json | head=false | status=clean | size=5023 | metrics={"gold_rho": 0.8808097957424276}
+- path=results/runs/w3b_nibi_d512_gate_s3002_predictions.csv | category=result_csv | head=false | status=clean | size=569902 | rows=11120
+- path=results/runs/w3b_nibi_d640_gate_s3003.json | category=result_json | head=false | status=clean | size=4467 | metrics={"gold_rho": 0.8817100694827951}
+- path=results/runs/w3b_nibi_d640_gate_s3003_predictions.csv | category=result_csv | head=false | status=clean | size=569736 | rows=11120
+- path=results/runs/w3b_rorqual_d512_gate_s3101.json | category=result_json | head=false | status=clean | size=5163 | metrics={"gold_rho": 0.8800157178752231}
+- path=results/runs/w3b_rorqual_d512_gate_s3101_predictions.csv | category=result_csv | head=false | status=clean | size=569731 | rows=11120
+- path=results/runs/w3b_rorqual_d512_gate_s3102.json | category=result_json | head=false | status=clean | size=4603 | metrics={"gold_rho": 0.8838367015387684}
+- path=results/runs/w3b_rorqual_d512_gate_s3102_predictions.csv | category=result_csv | head=false | status=clean | size=569923 | rows=11120
+- path=results/runs/w3b_rorqual_d640_gate_s3103.json | category=result_json | head=false | status=clean | size=4325 | metrics={"gold_rho": 0.8825295550896968}
+- path=results/runs/w3b_rorqual_d640_gate_s3103_predictions.csv | category=result_csv | head=false | status=clean | size=569763 | rows=11120
+- path=results/runs/w3pr_fir_d512_gate_s3701.json | category=result_json | head=false | status=clean | size=6140 | metrics={"gold_rho": 0.8839703151062781}
+- path=results/runs/w3pr_fir_d512_gate_s3701_predictions.csv | category=result_csv | head=false | status=clean | size=569606 | rows=11120
+- path=results/runs/w40_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w40_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w40_nibi_submitted_jobs_20260226_084844.txt | category=other | head=false | status=clean | size=495
+- path=results/runs/w40_progress_summary_complete.json | category=result_json | head=false | status=clean | size=26754
+- path=results/runs/w40_progress_summary_partial.json | category=result_json | head=false | status=clean | size=26227
+- path=results/runs/w40_proposal_status_latest.json | category=result_json | head=false | status=clean | size=3658 | metrics={"best_splitA_nonstacked_ensemble_rho": 0.9015705795738254, "best_splitA_nonstacked_single_rho": 0.8876127539306263, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}
+- path=results/runs/w40_rorqual_recover_submitted_jobs_20260226_090922.txt | category=other | head=false | status=clean | size=696
+- path=results/runs/w40_rorqual_submitted_jobs_20260226_084000.txt | category=other | head=false | status=clean | size=684
+- path=results/runs/w40_runtime_snapshot.json | category=result_json | head=false | status=clean | size=2521
+- path=results/runs/w40n_nibi_d1024_gate_lr14_ep220_s10625.json | category=result_json | head=false | status=clean | size=9168 | metrics={"gold_rho": 0.8826762031067572}
+- path=results/runs/w40n_nibi_d1024_gate_lr14_ep220_s10625_predictions.csv | category=result_csv | head=false | status=clean | size=569841 | rows=11120
+- path=results/runs/w40n_nibi_d1152_gate_lr14_ep220_s10621.json | category=result_json | head=false | status=clean | size=9448 | metrics={"gold_rho": 0.8852148774921659}
+- path=results/runs/w40n_nibi_d1152_gate_lr14_ep220_s10621_predictions.csv | category=result_csv | head=false | status=clean | size=569712 | rows=11120
+- path=results/runs/w40n_nibi_d1152_gate_lr15_ep200_s10622.json | category=result_json | head=false | status=clean | size=10570 | metrics={"gold_rho": 0.8823926923681686}
+- path=results/runs/w40n_nibi_d1152_gate_lr15_ep200_s10622_predictions.csv | category=result_csv | head=false | status=clean | size=569773 | rows=11120
+- path=results/runs/w40n_nibi_d1280_gate_lr13_ep220_s10623.json | category=result_json | head=false | status=clean | size=9600 | metrics={"gold_rho": 0.8836339686210148}
+- path=results/runs/w40n_nibi_d1280_gate_lr13_ep220_s10623_predictions.csv | category=result_csv | head=false | status=clean | size=569819 | rows=11120
+- path=results/runs/w40n_nibi_d1280_gate_lr14_ep190_s10624.json | category=result_json | head=false | status=clean | size=9452 | metrics={"gold_rho": 0.8864173112369356}
+- path=results/runs/w40n_nibi_d1280_gate_lr14_ep190_s10624_predictions.csv | category=result_csv | head=false | status=clean | size=569684 | rows=11120
+- path=results/runs/w40n_nibi_d640_gate_lr18_ep240_s10628.json | category=result_json | head=false | status=clean | size=9870 | metrics={"gold_rho": 0.8836684707463952}
+- path=results/runs/w40n_nibi_d640_gate_lr18_ep240_s10628_predictions.csv | category=result_csv | head=false | status=clean | size=569829 | rows=11120
+- path=results/runs/w40n_nibi_d896_gate_lr16_ep180_s10627.json | category=result_json | head=false | status=clean | size=9307 | metrics={"gold_rho": 0.8854633654393369}
+- path=results/runs/w40n_nibi_d896_gate_lr16_ep180_s10627_predictions.csv | category=result_csv | head=false | status=clean | size=569760 | rows=11120
+- path=results/runs/w40n_nibi_d896_xattn_lr14_ep150_s10626.json | category=result_json | head=false | status=clean | size=9764 | metrics={"gold_rho": 0.8829779059173833}
+- path=results/runs/w40n_nibi_d896_xattn_lr14_ep150_s10626_predictions.csv | category=result_csv | head=false | status=clean | size=569925 | rows=11120
+- path=results/runs/w40s_nibi_d1024_gate_s10629.json | category=result_json | head=false | status=clean | size=9165 | metrics={"gold_rho": 0.3993800995551319}
+- path=results/runs/w40s_nibi_d1024_gate_s10629_predictions.csv | category=result_csv | head=false | status=clean | size=136777 | rows=3056
+- path=results/runs/w40s_nibi_d896_gate_s10630.json | category=result_json | head=false | status=clean | size=9288 | metrics={"gold_rho": 0.398690713933369}
+- path=results/runs/w40s_nibi_d896_gate_s10630_predictions.csv | category=result_csv | head=false | status=clean | size=136836 | rows=3056
+- path=results/runs/w41_backfill_nibi_submitted_jobs_20260226_103512.txt | category=other | head=false | status=clean | size=530
+- path=results/runs/w41_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w41_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w41_nibi_submitted_jobs_20260226_103301.txt | category=other | head=false | status=clean | size=1494
+- path=results/runs/w41_progress_summary_complete.json | category=result_json | head=false | status=clean | size=29883
+- path=results/runs/w41_progress_summary_partial.json | category=result_json | head=false | status=clean | size=29882
+- path=results/runs/w41_proposal_status_latest.json | category=result_json | head=false | status=clean | size=3652 | metrics={"best_splitA_nonstacked_ensemble_rho": 0.9016480418184549, "best_splitA_nonstacked_single_rho": 0.8878492081034145, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}
+- path=results/runs/w41_rorqual_submitted_jobs_20260226_103929.txt | category=other | head=false | status=clean | size=696
+- path=results/runs/w41_runtime_snapshot.json | category=result_json | head=false | status=clean | size=188
+- path=results/runs/w41bf_nibi_d1024_gate_lr14_ep140_s10760.json | category=result_json | head=false | status=clean | size=7506 | metrics={"gold_rho": 0.8837563836044154}
+- path=results/runs/w41bf_nibi_d1024_gate_lr14_ep140_s10760_predictions.csv | category=result_csv | head=false | status=clean | size=569744 | rows=11120
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10751.json | category=result_json | head=false | status=clean | size=7781 | metrics={"gold_rho": 0.8834174005949955}
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10751_predictions.csv | category=result_csv | head=false | status=clean | size=569834 | rows=11120
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10752.json | category=result_json | head=false | status=clean | size=7501 | metrics={"gold_rho": 0.8829543738163453}
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10752_predictions.csv | category=result_csv | head=false | status=clean | size=569867 | rows=11120
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10753.json | category=result_json | head=false | status=clean | size=6943 | metrics={"gold_rho": 0.8841504740967574}
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10753_predictions.csv | category=result_csv | head=false | status=clean | size=569719 | rows=11120
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10754.json | category=result_json | head=false | status=clean | size=7226 | metrics={"gold_rho": 0.8829843139555587}
+- path=results/runs/w41bf_nibi_d1152_gate_lr15_ep120_s10754_predictions.csv | category=result_csv | head=false | status=clean | size=569888 | rows=11120
+- path=results/runs/w41bf_nibi_d1280_gate_lr14_ep130_s10755.json | category=result_json | head=false | status=clean | size=6801 | metrics={"gold_rho": 0.8840645807834031}
+- path=results/runs/w41bf_nibi_d1280_gate_lr14_ep130_s10755_predictions.csv | category=result_csv | head=false | status=clean | size=569807 | rows=11120
+- path=results/runs/w41bf_nibi_d1280_gate_lr14_ep130_s10756.json | category=result_json | head=false | status=clean | size=8056 | metrics={"gold_rho": 0.8835119824785006}
+- path=results/runs/w41bf_nibi_d1280_gate_lr14_ep130_s10756_predictions.csv | category=result_csv | head=false | status=clean | size=569641 | rows=11120
+- path=results/runs/w41bf_nibi_d1280_gate_lr14_ep130_s10757.json | category=result_json | head=false | status=clean | size=7365 | metrics={"gold_rho": 0.8836681331917531}
+- path=results/runs/w41bf_nibi_d1280_gate_lr14_ep130_s10757_predictions.csv | category=result_csv | head=false | status=clean | size=569535 | rows=11120
+- path=results/runs/w41bf_nibi_d896_xattn_lr14_ep110_s10758.json | category=result_json | head=false | status=clean | size=7950 | metrics={"gold_rho": 0.8835518154548695}
+- path=results/runs/w41bf_nibi_d896_xattn_lr14_ep110_s10758_predictions.csv | category=result_csv | head=false | status=clean | size=569626 | rows=11120
+- path=results/runs/w41bf_nibi_d896_xattn_lr14_ep110_s10759.json | category=result_json | head=false | status=clean | size=7104 | metrics={"gold_rho": 0.8833896010883107}
+- path=results/runs/w41bf_nibi_d896_xattn_lr14_ep110_s10759_predictions.csv | category=result_csv | head=false | status=clean | size=569692 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10701.json | category=result_json | head=false | status=clean | size=10016 | metrics={"gold_rho": 0.8855979661518062}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10701_predictions.csv | category=result_csv | head=false | status=clean | size=569808 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10702.json | category=result_json | head=false | status=clean | size=10010 | metrics={"gold_rho": 0.8838827593082325}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10702_predictions.csv | category=result_csv | head=false | status=clean | size=569765 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10703.json | category=result_json | head=false | status=clean | size=10009 | metrics={"gold_rho": 0.8842666364000639}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10703_predictions.csv | category=result_csv | head=false | status=clean | size=569656 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10704.json | category=result_json | head=false | status=clean | size=11271 | metrics={"gold_rho": 0.8817939306552156}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10704_predictions.csv | category=result_csv | head=false | status=clean | size=569824 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10705.json | category=result_json | head=false | status=clean | size=9598 | metrics={"gold_rho": 0.8837861593254609}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10705_predictions.csv | category=result_csv | head=false | status=clean | size=569732 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10706.json | category=result_json | head=false | status=clean | size=10151 | metrics={"gold_rho": 0.8846589483517567}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10706_predictions.csv | category=result_csv | head=false | status=clean | size=569661 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10707.json | category=result_json | head=false | status=clean | size=10147 | metrics={"gold_rho": 0.8863279824745534}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10707_predictions.csv | category=result_csv | head=false | status=clean | size=569673 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10708.json | category=result_json | head=false | status=clean | size=10575 | metrics={"gold_rho": 0.8840555243041512}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10708_predictions.csv | category=result_csv | head=false | status=clean | size=569671 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10709.json | category=result_json | head=false | status=clean | size=9453 | metrics={"gold_rho": 0.8823907113862755}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10709_predictions.csv | category=result_csv | head=false | status=clean | size=569694 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10710.json | category=result_json | head=false | status=clean | size=9875 | metrics={"gold_rho": 0.8852082848934165}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10710_predictions.csv | category=result_csv | head=false | status=clean | size=569718 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10711.json | category=result_json | head=false | status=clean | size=11274 | metrics={"gold_rho": 0.8808578756182631}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10711_predictions.csv | category=result_csv | head=false | status=clean | size=569671 | rows=11120
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10712.json | category=result_json | head=false | status=clean | size=10862 | metrics={"gold_rho": 0.8832554789748659}
+- path=results/runs/w41n_nibi_d1152_gate_lr15_ep170_s10712_predictions.csv | category=result_csv | head=false | status=clean | size=569862 | rows=11120
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10721.json | category=result_json | head=false | status=clean | size=10430 | metrics={"gold_rho": 0.8866997713280144}
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10721_predictions.csv | category=result_csv | head=false | status=clean | size=569734 | rows=11120
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10722.json | category=result_json | head=false | status=clean | size=10160 | metrics={"gold_rho": 0.8840472559603875}
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10722_predictions.csv | category=result_csv | head=false | status=clean | size=569705 | rows=11120
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10723.json | category=result_json | head=false | status=clean | size=10431 | metrics={"gold_rho": 0.8849054732508175}
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10723_predictions.csv | category=result_csv | head=false | status=clean | size=569889 | rows=11120
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10724.json | category=result_json | head=false | status=clean | size=10990 | metrics={"gold_rho": 0.8822031283380758}
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10724_predictions.csv | category=result_csv | head=false | status=clean | size=569863 | rows=11120
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10725.json | category=result_json | head=false | status=clean | size=10433 | metrics={"gold_rho": 0.8836600660631072}
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10725_predictions.csv | category=result_csv | head=false | status=clean | size=569765 | rows=11120
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10726.json | category=result_json | head=false | status=clean | size=10565 | metrics={"gold_rho": 0.8848540303756166}
+- path=results/runs/w41n_nibi_d1280_gate_lr14_ep200_s10726_predictions.csv | category=result_csv | head=false | status=clean | size=569802 | rows=11120
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10731.json | category=result_json | head=false | status=clean | size=9757 | metrics={"gold_rho": 0.8813771522347893}
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10731_predictions.csv | category=result_csv | head=false | status=clean | size=569750 | rows=11120
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10732.json | category=result_json | head=false | status=clean | size=10044 | metrics={"gold_rho": 0.8848987946548279}
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10732_predictions.csv | category=result_csv | head=false | status=clean | size=569687 | rows=11120
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10733.json | category=result_json | head=false | status=clean | size=10882 | metrics={"gold_rho": 0.8835976030822057}
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10733_predictions.csv | category=result_csv | head=false | status=clean | size=569628 | rows=11120
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10734.json | category=result_json | head=false | status=clean | size=9490 | metrics={"gold_rho": 0.8823932033906847}
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10734_predictions.csv | category=result_csv | head=false | status=clean | size=569713 | rows=11120
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10735.json | category=result_json | head=false | status=clean | size=11018 | metrics={"gold_rho": 0.8829215685608952}
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10735_predictions.csv | category=result_csv | head=false | status=clean | size=569856 | rows=11120
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10736.json | category=result_json | head=false | status=clean | size=11016 | metrics={"gold_rho": 0.8793055510062108}
+- path=results/runs/w41n_nibi_d896_xattn_lr14_ep160_s10736_predictions.csv | category=result_csv | head=false | status=clean | size=569773 | rows=11120
+- path=results/runs/w41r_probe_train_s10801.json | category=result_json | head=false | status=clean | size=4946 | metrics={"gold_rho": 0.883382788268024}
+- path=results/runs/w41r_probe_train_s10801_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10811.json | category=result_json | head=false | status=clean | size=10300 | metrics={"gold_rho": 0.8828864155808025}
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10811_predictions.csv | category=result_csv | head=false | status=clean | size=569812 | rows=11120
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10812.json | category=result_json | head=false | status=clean | size=9879 | metrics={"gold_rho": 0.8847403029815628}
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10812_predictions.csv | category=result_csv | head=false | status=clean | size=569915 | rows=11120
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10813.json | category=result_json | head=false | status=clean | size=9600 | metrics={"gold_rho": 0.8835697290358526}
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10813_predictions.csv | category=result_csv | head=false | status=clean | size=569722 | rows=11120
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10814.json | category=result_json | head=false | status=clean | size=9463 | metrics={"gold_rho": 0.8847481082621315}
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10814_predictions.csv | category=result_csv | head=false | status=clean | size=569669 | rows=11120
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10815.json | category=result_json | head=false | status=clean | size=9459 | metrics={"gold_rho": 0.8821039695108709}
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10815_predictions.csv | category=result_csv | head=false | status=clean | size=569747 | rows=11120
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10816.json | category=result_json | head=false | status=clean | size=9873 | metrics={"gold_rho": 0.8858828145574631}
+- path=results/runs/w41r_rorqual_d1152_gate_lr15_ep180_s10816_predictions.csv | category=result_csv | head=false | status=clean | size=569905 | rows=11120
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10821.json | category=result_json | head=false | status=clean | size=10439 | metrics={"gold_rho": 0.8830128228576631}
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10821_predictions.csv | category=result_csv | head=false | status=clean | size=569747 | rows=11120
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10822.json | category=result_json | head=false | status=clean | size=9881 | metrics={"gold_rho": 0.8841759109219319}
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10822_predictions.csv | category=result_csv | head=false | status=clean | size=569681 | rows=11120
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10823.json | category=result_json | head=false | status=clean | size=9739 | metrics={"gold_rho": 0.884389479729843}
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10823_predictions.csv | category=result_csv | head=false | status=clean | size=569772 | rows=11120
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10824.json | category=result_json | head=false | status=clean | size=9885 | metrics={"gold_rho": 0.8848820995863953}
+- path=results/runs/w41r_rorqual_d1280_gate_lr14_ep200_s10824_predictions.csv | category=result_csv | head=false | status=clean | size=569738 | rows=11120
+- path=results/runs/w41r_rorqual_d896_xattn_lr14_ep160_s10831.json | category=result_json | head=false | status=clean | size=9351 | metrics={"gold_rho": 0.8878492081034145}
+- path=results/runs/w41r_rorqual_d896_xattn_lr14_ep160_s10831_predictions.csv | category=result_csv | head=false | status=clean | size=569636 | rows=11120
+- path=results/runs/w41r_rorqual_d896_xattn_lr14_ep160_s10832.json | category=result_json | head=false | status=clean | size=9630 | metrics={"gold_rho": 0.88579470012564}
+- path=results/runs/w41r_rorqual_d896_xattn_lr14_ep160_s10832_predictions.csv | category=result_csv | head=false | status=clean | size=569723 | rows=11120
+- path=results/runs/w41s_nibi_d1024_gate_s10741.json | category=result_json | head=false | status=clean | size=9584 | metrics={"gold_rho": 0.38839121134680143}
+- path=results/runs/w41s_nibi_d1024_gate_s10741_predictions.csv | category=result_csv | head=false | status=clean | size=136822 | rows=3056
+- path=results/runs/w41s_nibi_d1024_gate_s10742.json | category=result_json | head=false | status=clean | size=9444 | metrics={"gold_rho": 0.39467186261800924}
+- path=results/runs/w41s_nibi_d1024_gate_s10742_predictions.csv | category=result_csv | head=false | status=clean | size=136789 | rows=3056
+- path=results/runs/w41s_nibi_d1024_gate_s10743.json | category=result_json | head=false | status=clean | size=9575 | metrics={"gold_rho": 0.388918949200409}
+- path=results/runs/w41s_nibi_d1024_gate_s10743_predictions.csv | category=result_csv | head=false | status=clean | size=136831 | rows=3056
+- path=results/runs/w41s_nibi_d1280_gate_s10744.json | category=result_json | head=false | status=clean | size=10001 | metrics={"gold_rho": 0.39368483396378223}
+- path=results/runs/w41s_nibi_d1280_gate_s10744_predictions.csv | category=result_csv | head=false | status=clean | size=136845 | rows=3056
+- path=results/runs/w41s_nibi_d1280_gate_s10745.json | category=result_json | head=false | status=clean | size=9856 | metrics={"gold_rho": 0.3964145991899343}
+- path=results/runs/w41s_nibi_d1280_gate_s10745_predictions.csv | category=result_csv | head=false | status=clean | size=136870 | rows=3056
+- path=results/runs/w41s_nibi_d1280_gate_s10746.json | category=result_json | head=false | status=clean | size=10147 | metrics={"gold_rho": 0.35658844257044836}
+- path=results/runs/w41s_nibi_d1280_gate_s10746_predictions.csv | category=result_csv | head=false | status=clean | size=136902 | rows=3056
+- path=results/runs/w42_backfill_rorqual_submitted_jobs_20260226_114406.txt | category=other | head=false | status=clean | size=354
+- path=results/runs/w42_best_ensemble_complete_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w42_best_ensemble_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w42_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w42_best_ensemble_refresh1_predictions.csv | category=result_csv | head=false | status=clean | size=665107 | rows=11120
+- path=results/runs/w42_mirror_nibi_submitted_jobs_20260226_114646.txt | category=other | head=false | status=clean | size=890
+- path=results/runs/w42_nibi_submitted_jobs_20260226_111905.txt | category=other | head=false | status=clean | size=1456
+- path=results/runs/w42_progress_summary_complete.json | category=result_json | head=false | status=clean | size=34094
+- path=results/runs/w42_progress_summary_complete_partial.json | category=result_json | head=false | status=clean | size=32998
+- path=results/runs/w42_progress_summary_partial.json | category=result_json | head=false | status=clean | size=31792
+- path=results/runs/w42_progress_summary_refresh1.json | category=result_json | head=false | status=clean | size=32588
+- path=results/runs/w42_proposal_status_latest.json | category=result_json | head=false | status=clean | size=3420 | metrics={"best_splitA_nonstacked_ensemble_rho": 0.9016698051977805, "best_splitA_nonstacked_single_rho": 0.8878492081034145, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}
+- path=results/runs/w42_rorqual_submitted_jobs_20260226_111905.txt | category=other | head=false | status=clean | size=696
+- path=results/runs/w42_runtime_snapshot.json | category=result_json | head=false | status=clean | size=188
+- path=results/runs/w42bf_rorqual_d1152_gate_lr15_ep130_s10963.json | category=result_json | head=false | status=clean | size=6529 | metrics={"gold_rho": 0.8822791767892626}
+- path=results/runs/w42bf_rorqual_d1152_gate_lr15_ep130_s10963_predictions.csv | category=result_csv | head=false | status=clean | size=569729 | rows=11120
+- path=results/runs/w42bf_rorqual_d1152_gate_lr15_ep130_s10964.json | category=result_json | head=false | status=clean | size=7368 | metrics={"gold_rho": 0.8849522538280143}
+- path=results/runs/w42bf_rorqual_d1152_gate_lr15_ep130_s10964_predictions.csv | category=result_csv | head=false | status=clean | size=569864 | rows=11120
+- path=results/runs/w42bf_rorqual_d1280_gate_lr14_ep140_s10965.json | category=result_json | head=false | status=clean | size=6952 | metrics={"gold_rho": 0.883742627162184}
+- path=results/runs/w42bf_rorqual_d1280_gate_lr14_ep140_s10965_predictions.csv | category=result_csv | head=false | status=clean | size=569605 | rows=11120
+- path=results/runs/w42bf_rorqual_d1280_gate_lr14_ep140_s10966.json | category=result_json | head=false | status=clean | size=6949 | metrics={"gold_rho": 0.8834852620496116}
+- path=results/runs/w42bf_rorqual_d1280_gate_lr14_ep140_s10966_predictions.csv | category=result_csv | head=false | status=clean | size=569700 | rows=11120
+- path=results/runs/w42bf_rorqual_d896_xattn_lr14_ep120_s10961.json | category=result_json | head=false | status=clean | size=8382 | metrics={"gold_rho": 0.8819974058031117}
+- path=results/runs/w42bf_rorqual_d896_xattn_lr14_ep120_s10961_predictions.csv | category=result_csv | head=false | status=clean | size=569821 | rows=11120
+- path=results/runs/w42bf_rorqual_d896_xattn_lr14_ep120_s10962.json | category=result_json | head=false | status=clean | size=7539 | metrics={"gold_rho": 0.8822893325031669}
+- path=results/runs/w42bf_rorqual_d896_xattn_lr14_ep120_s10962_predictions.csv | category=result_csv | head=false | status=clean | size=569669 | rows=11120
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10945.json | category=result_json | head=false | status=clean | size=9728 | metrics={"gold_rho": 0.8845217173742763}
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10945_predictions.csv | category=result_csv | head=false | status=clean | size=569636 | rows=11120
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10946.json | category=result_json | head=false | status=clean | size=11132 | metrics={"gold_rho": 0.8815553113028949}
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10946_predictions.csv | category=result_csv | head=false | status=clean | size=569766 | rows=11120
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10947.json | category=result_json | head=false | status=clean | size=10014 | metrics={"gold_rho": 0.8829047674578938}
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10947_predictions.csv | category=result_csv | head=false | status=clean | size=569697 | rows=11120
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10948.json | category=result_json | head=false | status=clean | size=10574 | metrics={"gold_rho": 0.8841837329066428}
+- path=results/runs/w42m_nibi_d1152_gate_lr15_ep190_s10948_predictions.csv | category=result_csv | head=false | status=clean | size=569672 | rows=11120
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10949.json | category=result_json | head=false | status=clean | size=12248 | metrics={"gold_rho": 0.879997947508866}
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10949_predictions.csv | category=result_csv | head=false | status=clean | size=569766 | rows=11120
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10950.json | category=result_json | head=false | status=clean | size=10576 | metrics={"gold_rho": 0.8856835761355453}
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10950_predictions.csv | category=result_csv | head=false | status=clean | size=569656 | rows=11120
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10951.json | category=result_json | head=false | status=clean | size=10013 | metrics={"gold_rho": 0.8841601835645797}
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10951_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10952.json | category=result_json | head=false | status=clean | size=9734 | metrics={"gold_rho": 0.8828214311274923}
+- path=results/runs/w42m_nibi_d1280_gate_lr14_ep210_s10952_predictions.csv | category=result_csv | head=false | status=clean | size=569619 | rows=11120
+- path=results/runs/w42m_nibi_d896_xattn_lr14_ep180_s10942.json | category=result_json | head=false | status=clean | size=9907 | metrics={"gold_rho": 0.8821070695327933}
+- path=results/runs/w42m_nibi_d896_xattn_lr14_ep180_s10942_predictions.csv | category=result_csv | head=false | status=clean | size=569641 | rows=11120
+- path=results/runs/w42m_nibi_d896_xattn_lr14_ep180_s10943.json | category=result_json | head=false | status=clean | size=9902 | metrics={"gold_rho": 0.8801995902072419}
+- path=results/runs/w42m_nibi_d896_xattn_lr14_ep180_s10943_predictions.csv | category=result_csv | head=false | status=clean | size=569859 | rows=11120
+- path=results/runs/w42m_nibi_d896_xattn_lr14_ep180_s10944.json | category=result_json | head=false | status=clean | size=10185 | metrics={"gold_rho": 0.8798514390458337}
+- path=results/runs/w42m_nibi_d896_xattn_lr14_ep180_s10944_predictions.csv | category=result_csv | head=false | status=clean | size=569842 | rows=11120
+- path=results/runs/w42mb_nibi_d1152_gate_lr15_ep130_s10963.json | category=result_json | head=false | status=clean | size=11130 | metrics={"gold_rho": 0.8805436099444997}
+- path=results/runs/w42mb_nibi_d1152_gate_lr15_ep130_s10963_predictions.csv | category=result_csv | head=false | status=clean | size=569615 | rows=11120
+- path=results/runs/w42mb_nibi_d1152_gate_lr15_ep130_s10964.json | category=result_json | head=false | status=clean | size=9600 | metrics={"gold_rho": 0.8831645172415467}
+- path=results/runs/w42mb_nibi_d1152_gate_lr15_ep130_s10964_predictions.csv | category=result_csv | head=false | status=clean | size=569809 | rows=11120
+- path=results/runs/w42mb_nibi_d1280_gate_lr14_ep140_s10965.json | category=result_json | head=false | status=clean | size=9732 | metrics={"gold_rho": 0.8834792770370249}
+- path=results/runs/w42mb_nibi_d1280_gate_lr14_ep140_s10965_predictions.csv | category=result_csv | head=false | status=clean | size=569635 | rows=11120
+- path=results/runs/w42mb_nibi_d1280_gate_lr14_ep140_s10966.json | category=result_json | head=false | status=clean | size=9740 | metrics={"gold_rho": 0.8852396090266389}
+- path=results/runs/w42mb_nibi_d1280_gate_lr14_ep140_s10966_predictions.csv | category=result_csv | head=false | status=clean | size=569742 | rows=11120
+- path=results/runs/w42mb_nibi_d896_xattn_lr14_ep120_s10961.json | category=result_json | head=false | status=clean | size=11020 | metrics={"gold_rho": 0.8825837979695393}
+- path=results/runs/w42mb_nibi_d896_xattn_lr14_ep120_s10961_predictions.csv | category=result_csv | head=false | status=clean | size=569755 | rows=11120
+- path=results/runs/w42mb_nibi_d896_xattn_lr14_ep120_s10962.json | category=result_json | head=false | status=clean | size=10317 | metrics={"gold_rho": 0.8835834948353495}
+- path=results/runs/w42mb_nibi_d896_xattn_lr14_ep120_s10962_predictions.csv | category=result_csv | head=false | status=clean | size=569784 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10921.json | category=result_json | head=false | status=clean | size=10566 | metrics={"gold_rho": 0.8853205138245064}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10921_predictions.csv | category=result_csv | head=false | status=clean | size=569595 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10922.json | category=result_json | head=false | status=clean | size=10007 | metrics={"gold_rho": 0.8826257290481236}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10922_predictions.csv | category=result_csv | head=false | status=clean | size=569758 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10923.json | category=result_json | head=false | status=clean | size=10300 | metrics={"gold_rho": 0.8828614289028176}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10923_predictions.csv | category=result_csv | head=false | status=clean | size=569638 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10924.json | category=result_json | head=false | status=clean | size=10856 | metrics={"gold_rho": 0.8846507274881097}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10924_predictions.csv | category=result_csv | head=false | status=clean | size=569929 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10925.json | category=result_json | head=false | status=clean | size=10281 | metrics={"gold_rho": 0.883579414333487}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10925_predictions.csv | category=result_csv | head=false | status=clean | size=569753 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10926.json | category=result_json | head=false | status=clean | size=9586 | metrics={"gold_rho": 0.8812512159162819}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10926_predictions.csv | category=result_csv | head=false | status=clean | size=569737 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10927.json | category=result_json | head=false | status=clean | size=9863 | metrics={"gold_rho": 0.8845644349112423}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10927_predictions.csv | category=result_csv | head=false | status=clean | size=569788 | rows=11120
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10928.json | category=result_json | head=false | status=clean | size=9867 | metrics={"gold_rho": 0.8842655556191215}
+- path=results/runs/w42n_nibi_d1152_gate_lr15_ep190_s10928_predictions.csv | category=result_csv | head=false | status=clean | size=569891 | rows=11120
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10931.json | category=result_json | head=false | status=clean | size=10149 | metrics={"gold_rho": 0.88272055141212}
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10931_predictions.csv | category=result_csv | head=false | status=clean | size=569552 | rows=11120
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10932.json | category=result_json | head=false | status=clean | size=11267 | metrics={"gold_rho": 0.8832383311096569}
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10932_predictions.csv | category=result_csv | head=false | status=clean | size=569847 | rows=11120
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10933.json | category=result_json | head=false | status=clean | size=11541 | metrics={"gold_rho": 0.8804408646647542}
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10933_predictions.csv | category=result_csv | head=false | status=clean | size=569804 | rows=11120
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10934.json | category=result_json | head=false | status=clean | size=9738 | metrics={"gold_rho": 0.8815741949730961}
+- path=results/runs/w42n_nibi_d1280_gate_lr14_ep210_s10934_predictions.csv | category=result_csv | head=false | status=clean | size=569588 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10911.json | category=result_json | head=false | status=clean | size=10596 | metrics={"gold_rho": 0.8851887075280546}
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10911_predictions.csv | category=result_csv | head=false | status=clean | size=569721 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10912.json | category=result_json | head=false | status=clean | size=10326 | metrics={"gold_rho": 0.8843560251557017}
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10912_predictions.csv | category=result_csv | head=false | status=clean | size=569729 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10913.json | category=result_json | head=false | status=clean | size=10601 | metrics={"gold_rho": 0.8829269115063897}
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10913_predictions.csv | category=result_csv | head=false | status=clean | size=569851 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10914.json | category=result_json | head=false | status=clean | size=11432 | metrics={"gold_rho": 0.8813809338710212}
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10914_predictions.csv | category=result_csv | head=false | status=clean | size=569863 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10915.json | category=result_json | head=false | status=clean | size=9757 | metrics={"gold_rho": 0.884657330502495}
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10915_predictions.csv | category=result_csv | head=false | status=clean | size=569649 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10916.json | category=result_json | head=false | status=clean | size=11854 | metrics={"gold_rho": 0.881032946508966}
+- path=results/runs/w42n_nibi_d896_xattn_lr13_ep200_s10916_predictions.csv | category=result_csv | head=false | status=clean | size=569640 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10901.json | category=result_json | head=false | status=clean | size=10463 | metrics={"gold_rho": 0.8852003150918211}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10901_predictions.csv | category=result_csv | head=false | status=clean | size=569662 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10902.json | category=result_json | head=false | status=clean | size=10740 | metrics={"gold_rho": 0.8814418566169065}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10902_predictions.csv | category=result_csv | head=false | status=clean | size=569848 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10903.json | category=result_json | head=false | status=clean | size=10179 | metrics={"gold_rho": 0.8849305769484093}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10903_predictions.csv | category=result_csv | head=false | status=clean | size=569721 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10904.json | category=result_json | head=false | status=clean | size=11436 | metrics={"gold_rho": 0.8825912028563748}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10904_predictions.csv | category=result_csv | head=false | status=clean | size=569691 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10905.json | category=result_json | head=false | status=clean | size=10044 | metrics={"gold_rho": 0.8820350548791895}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10905_predictions.csv | category=result_csv | head=false | status=clean | size=569874 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10906.json | category=result_json | head=false | status=clean | size=9906 | metrics={"gold_rho": 0.8815521670597812}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10906_predictions.csv | category=result_csv | head=false | status=clean | size=569637 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10907.json | category=result_json | head=false | status=clean | size=10455 | metrics={"gold_rho": 0.8826812725183697}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10907_predictions.csv | category=result_csv | head=false | status=clean | size=569701 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10908.json | category=result_json | head=false | status=clean | size=10462 | metrics={"gold_rho": 0.883491765845573}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10908_predictions.csv | category=result_csv | head=false | status=clean | size=569794 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10909.json | category=result_json | head=false | status=clean | size=10043 | metrics={"gold_rho": 0.8870777151922419}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10909_predictions.csv | category=result_csv | head=false | status=clean | size=569526 | rows=11120
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10910.json | category=result_json | head=false | status=clean | size=10746 | metrics={"gold_rho": 0.883185422432532}
+- path=results/runs/w42n_nibi_d896_xattn_lr14_ep180_s10910_predictions.csv | category=result_csv | head=false | status=clean | size=569622 | rows=11120
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10945.json | category=result_json | head=false | status=clean | size=10442 | metrics={"gold_rho": 0.8842137476091614}
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10945_predictions.csv | category=result_csv | head=false | status=clean | size=569821 | rows=11120
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10946.json | category=result_json | head=false | status=clean | size=10023 | metrics={"gold_rho": 0.882665672232228}
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10946_predictions.csv | category=result_csv | head=false | status=clean | size=569688 | rows=11120
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10947.json | category=result_json | head=false | status=clean | size=12815 | metrics={"gold_rho": 0.8770706048476129}
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10947_predictions.csv | category=result_csv | head=false | status=clean | size=569773 | rows=11120
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10948.json | category=result_json | head=false | status=clean | size=10577 | metrics={"gold_rho": 0.881984289436809}
+- path=results/runs/w42r_rorqual_d1152_gate_lr15_ep190_s10948_predictions.csv | category=result_csv | head=false | status=clean | size=569847 | rows=11120
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10949.json | category=result_json | head=false | status=clean | size=10022 | metrics={"gold_rho": 0.8840150131519035}
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10949_predictions.csv | category=result_csv | head=false | status=clean | size=569747 | rows=11120
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10950.json | category=result_json | head=false | status=clean | size=10018 | metrics={"gold_rho": 0.882750738048205}
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10950_predictions.csv | category=result_csv | head=false | status=clean | size=569696 | rows=11120
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10951.json | category=result_json | head=false | status=clean | size=10715 | metrics={"gold_rho": 0.8849262497271334}
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10951_predictions.csv | category=result_csv | head=false | status=clean | size=569731 | rows=11120
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10952.json | category=result_json | head=false | status=clean | size=10163 | metrics={"gold_rho": 0.8843892720544395}
+- path=results/runs/w42r_rorqual_d1280_gate_lr14_ep210_s10952_predictions.csv | category=result_csv | head=false | status=clean | size=569931 | rows=11120
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10941.json | category=result_json | head=false | status=clean | size=10323 | metrics={"gold_rho": 0.8819494404219015}
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10941_predictions.csv | category=result_csv | head=false | status=clean | size=569675 | rows=11120
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10942.json | category=result_json | head=false | status=clean | size=10048 | metrics={"gold_rho": 0.8823984347495688}
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10942_predictions.csv | category=result_csv | head=false | status=clean | size=569715 | rows=11120
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10943.json | category=result_json | head=false | status=clean | size=10193 | metrics={"gold_rho": 0.8825460669980402}
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10943_predictions.csv | category=result_csv | head=false | status=clean | size=569674 | rows=11120
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10944.json | category=result_json | head=false | status=clean | size=10330 | metrics={"gold_rho": 0.883656195576766}
+- path=results/runs/w42r_rorqual_d896_xattn_lr14_ep180_s10944_predictions.csv | category=result_csv | head=false | status=clean | size=569860 | rows=11120
+- path=results/runs/w43_nibi_submitted_jobs_20260226_123119.txt | category=other | head=false | status=clean | size=972
+- path=results/runs/w43_rorqual_submitted_jobs_20260226_123119.txt | category=other | head=false | status=clean | size=720
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11011.json | category=result_json | head=false | status=clean | size=10188 | metrics={"gold_rho": 0.881795842809907}
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11011_predictions.csv | category=result_csv | head=false | status=clean | size=569745 | rows=11120
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11012.json | category=result_json | head=false | status=clean | size=10051 | metrics={"gold_rho": 0.8835607167622501}
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11012_predictions.csv | category=result_csv | head=false | status=clean | size=569738 | rows=11120
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11013.json | category=result_json | head=false | status=clean | size=11437 | metrics={"gold_rho": 0.8814252775405237}
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11013_predictions.csv | category=result_csv | head=false | status=clean | size=569724 | rows=11120
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11014.json | category=result_json | head=false | status=clean | size=11997 | metrics={"gold_rho": 0.8818612325448336}
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11014_predictions.csv | category=result_csv | head=false | status=clean | size=569726 | rows=11120
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11015.json | category=result_json | head=false | status=clean | size=9906 | metrics={"gold_rho": 0.8827961151884901}
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11015_predictions.csv | category=result_csv | head=false | status=clean | size=569596 | rows=11120
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11016.json | category=result_json | head=false | status=clean | size=10181 | metrics={"gold_rho": 0.8836877016937204}
+- path=results/runs/w43n_nibi_d1024_xattn_lr13_ep200_s11016_predictions.csv | category=result_csv | head=false | status=clean | size=569658 | rows=11120
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11001.json | category=result_json | head=false | status=clean | size=10714 | metrics={"gold_rho": 0.8839382071343949}
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11001_predictions.csv | category=result_csv | head=false | status=clean | size=569722 | rows=11120
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11002.json | category=result_json | head=false | status=clean | size=10987 | metrics={"gold_rho": 0.883629742998754}
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11002_predictions.csv | category=result_csv | head=false | status=clean | size=569713 | rows=11120
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11003.json | category=result_json | head=false | status=clean | size=10853 | metrics={"gold_rho": 0.8826763483145357}
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11003_predictions.csv | category=result_csv | head=false | status=clean | size=569776 | rows=11120
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11004.json | category=result_json | head=false | status=clean | size=11129 | metrics={"gold_rho": 0.8845975770266077}
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11004_predictions.csv | category=result_csv | head=false | status=clean | size=569860 | rows=11120
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11005.json | category=result_json | head=false | status=clean | size=11278 | metrics={"gold_rho": 0.8850579755669409}
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11005_predictions.csv | category=result_csv | head=false | status=clean | size=569763 | rows=11120
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11006.json | category=result_json | head=false | status=clean | size=10709 | metrics={"gold_rho": 0.885670134443092}
+- path=results/runs/w43n_nibi_d1536_gate_lr12_ep220_s11006_predictions.csv | category=result_csv | head=false | status=clean | size=569835 | rows=11120
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11021.json | category=result_json | head=false | status=clean | size=9729 | metrics={"gold_rho": 0.8324072553700872}
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11021_predictions.csv | category=result_csv | head=false | status=clean | size=569899 | rows=11120
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11024.json | category=result_json | head=false | status=clean | size=9451 | metrics={"gold_rho": 0.8474036572609942}
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11024_predictions.csv | category=result_csv | head=false | status=clean | size=569853 | rows=11120
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11025.json | category=result_json | head=false | status=clean | size=9316 | metrics={"gold_rho": 0.8530245507567256}
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11025_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11026.json | category=result_json | head=false | status=clean | size=9317 | metrics={"gold_rho": 0.8563641657049007}
+- path=results/runs/w43n_nibi_mamba_d768_gate_lr18_ep220_s11026_predictions.csv | category=result_csv | head=false | status=clean | size=569811 | rows=11120
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11035.json | category=result_json | head=false | status=clean | size=10051 | metrics={"gold_rho": 0.8803007434304686}
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11035_predictions.csv | category=result_csv | head=false | status=clean | size=569545 | rows=11120
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11036.json | category=result_json | head=false | status=clean | size=10190 | metrics={"gold_rho": 0.8816500886645109}
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11036_predictions.csv | category=result_csv | head=false | status=clean | size=569739 | rows=11120
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11037.json | category=result_json | head=false | status=clean | size=10601 | metrics={"gold_rho": 0.8863053486919019}
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11037_predictions.csv | category=result_csv | head=false | status=clean | size=569675 | rows=11120
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11038.json | category=result_json | head=false | status=clean | size=10887 | metrics={"gold_rho": 0.8807588257696896}
+- path=results/runs/w43r_rorqual_d1024_xattn_lr13_ep200_s11038_predictions.csv | category=result_csv | head=false | status=clean | size=569754 | rows=11120
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11031.json | category=result_json | head=false | status=clean | size=10298 | metrics={"gold_rho": 0.8851716733638254}
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11031_predictions.csv | category=result_csv | head=false | status=clean | size=569766 | rows=11120
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11032.json | category=result_json | head=false | status=clean | size=11143 | metrics={"gold_rho": 0.8837499684860287}
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11032_predictions.csv | category=result_csv | head=false | status=clean | size=569809 | rows=11120
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11033.json | category=result_json | head=false | status=clean | size=10719 | metrics={"gold_rho": 0.8820505714788074}
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11033_predictions.csv | category=result_csv | head=false | status=clean | size=569897 | rows=11120
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11034.json | category=result_json | head=false | status=clean | size=10445 | metrics={"gold_rho": 0.8852012293465958}
+- path=results/runs/w43r_rorqual_d1536_gate_lr12_ep220_s11034_predictions.csv | category=result_csv | head=false | status=clean | size=569714 | rows=11120
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11039.json | category=result_json | head=false | status=clean | size=25411 | metrics={"gold_rho": 0.8323461387458356}
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11039_predictions.csv | category=result_csv | head=false | status=clean | size=569640 | rows=11120
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11040.json | category=result_json | head=false | status=clean | size=9185 | metrics={"gold_rho": 0.8412812173647582}
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11040_predictions.csv | category=result_csv | head=false | status=clean | size=569691 | rows=11120
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11041.json | category=result_json | head=false | status=clean | size=9037 | metrics={"gold_rho": 0.8295467214342753}
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11041_predictions.csv | category=result_csv | head=false | status=clean | size=569726 | rows=11120
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11042.json | category=result_json | head=false | status=clean | size=8763 | metrics={"gold_rho": 0.8542427610173421}
+- path=results/runs/w43r_rorqual_mamba_d768_gate_lr18_ep220_s11042_predictions.csv | category=result_csv | head=false | status=clean | size=569709 | rows=11120
+- path=results/runs/w44_best_nonstacked_superopt_predictions.csv | category=result_csv | head=false | status=clean | size=665111 | rows=11120
+- path=results/runs/w44_nibi_submitted_jobs_20260226_140854.txt | category=other | head=false | status=clean | size=964
+- path=results/runs/w44_nonstacked_superopt_summary.json | category=result_json | head=false | status=clean | size=1611 | metrics={"best_rho": 0.9021753769112824}
+- path=results/runs/w44_proposal_status_latest.json | category=result_json | head=false | status=clean | size=3953 | metrics={"best_splitA_nonstacked_ensemble_rho": 0.9021753769112824, "best_splitA_nonstacked_single_rho": 0.8890178778000554, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}
+- path=results/runs/w44_rorqual_submitted_jobs_20260226_140854.txt | category=other | head=false | status=clean | size=724
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11107.json | category=result_json | head=false | status=clean | size=11021 | metrics={"gold_rho": 0.8815771646781397}
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11107_predictions.csv | category=result_csv | head=false | status=clean | size=569716 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11108.json | category=result_json | head=false | status=clean | size=11433 | metrics={"gold_rho": 0.8810800476496269}
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11108_predictions.csv | category=result_csv | head=false | status=clean | size=569743 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11109.json | category=result_json | head=false | status=clean | size=10181 | metrics={"gold_rho": 0.8800822641301381}
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11109_predictions.csv | category=result_csv | head=false | status=clean | size=569714 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11110.json | category=result_json | head=false | status=clean | size=11018 | metrics={"gold_rho": 0.884953865962662}
+- path=results/runs/w44n_nibi_d896_xattn_lr13_ep240_s11110_predictions.csv | category=result_csv | head=false | status=clean | size=569671 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11101.json | category=result_json | head=false | status=clean | size=10602 | metrics={"gold_rho": 0.8839653264373387}
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11101_predictions.csv | category=result_csv | head=false | status=clean | size=569670 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11102.json | category=result_json | head=false | status=clean | size=11012 | metrics={"gold_rho": 0.8822030022629153}
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11102_predictions.csv | category=result_csv | head=false | status=clean | size=569782 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11103.json | category=result_json | head=false | status=clean | size=10605 | metrics={"gold_rho": 0.8832994837791194}
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11103_predictions.csv | category=result_csv | head=false | status=clean | size=569661 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11104.json | category=result_json | head=false | status=clean | size=10320 | metrics={"gold_rho": 0.8805258604498194}
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11104_predictions.csv | category=result_csv | head=false | status=clean | size=569689 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11105.json | category=result_json | head=false | status=clean | size=11302 | metrics={"gold_rho": 0.8833434417903018}
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11105_predictions.csv | category=result_csv | head=false | status=clean | size=569603 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11106.json | category=result_json | head=false | status=clean | size=10461 | metrics={"gold_rho": 0.8856021418525586}
+- path=results/runs/w44n_nibi_d896_xattn_lr14_ep200_s11106_predictions.csv | category=result_csv | head=false | status=clean | size=569727 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11121.json | category=result_json | head=false | status=clean | size=11163 | metrics={"gold_rho": 0.8806228437617787}
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11121_predictions.csv | category=result_csv | head=false | status=clean | size=569746 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11122.json | category=result_json | head=false | status=clean | size=11162 | metrics={"gold_rho": 0.8821646300829185}
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11122_predictions.csv | category=result_csv | head=false | status=clean | size=569672 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11123.json | category=result_json | head=false | status=clean | size=10740 | metrics={"gold_rho": 0.8890178778000554}
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11123_predictions.csv | category=result_csv | head=false | status=clean | size=569839 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11124.json | category=result_json | head=false | status=clean | size=11014 | metrics={"gold_rho": 0.8863798816445025}
+- path=results/runs/w44n_nibi_d896_xattn_lr15_ep180_s11124_predictions.csv | category=result_csv | head=false | status=clean | size=569619 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11111.json | category=result_json | head=false | status=clean | size=17171 | metrics={"gold_rho": 0.8746715440316769}
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11111_predictions.csv | category=result_csv | head=false | status=clean | size=570016 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11112.json | category=result_json | head=false | status=clean | size=16050 | metrics={"gold_rho": 0.8732234806074245}
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11112_predictions.csv | category=result_csv | head=false | status=clean | size=569911 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11113.json | category=result_json | head=false | status=clean | size=18719 | metrics={"gold_rho": 0.8713705307843104}
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11113_predictions.csv | category=result_csv | head=false | status=clean | size=569849 | rows=11120
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11114.json | category=result_json | head=false | status=clean | size=15485 | metrics={"gold_rho": 0.87232027577749}
+- path=results/runs/w44n_nibi_d896_xattn_nocell_lr14_ep200_s11114_predictions.csv | category=result_csv | head=false | status=clean | size=569908 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11135.json | category=result_json | head=false | status=clean | size=9633 | metrics={"gold_rho": 0.8834252986241826}
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11135_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11136.json | category=result_json | head=false | status=clean | size=9917 | metrics={"gold_rho": 0.8829887932869325}
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11136_predictions.csv | category=result_csv | head=false | status=clean | size=569764 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11137.json | category=result_json | head=false | status=clean | size=10886 | metrics={"gold_rho": 0.8839574517066586}
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11137_predictions.csv | category=result_csv | head=false | status=clean | size=569719 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11138.json | category=result_json | head=false | status=clean | size=11450 | metrics={"gold_rho": 0.8825751920389246}
+- path=results/runs/w44r_rorqual_d896_xattn_lr13_ep240_s11138_predictions.csv | category=result_csv | head=false | status=clean | size=569763 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11131.json | category=result_json | head=false | status=clean | size=10324 | metrics={"gold_rho": 0.8827872183342248}
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11131_predictions.csv | category=result_csv | head=false | status=clean | size=569771 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11132.json | category=result_json | head=false | status=clean | size=10043 | metrics={"gold_rho": 0.8819137517170232}
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11132_predictions.csv | category=result_csv | head=false | status=clean | size=569792 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11133.json | category=result_json | head=false | status=clean | size=10460 | metrics={"gold_rho": 0.8856865159470264}
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11133_predictions.csv | category=result_csv | head=false | status=clean | size=569713 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11134.json | category=result_json | head=false | status=clean | size=9759 | metrics={"gold_rho": 0.8840626900651538}
+- path=results/runs/w44r_rorqual_d896_xattn_lr14_ep200_s11134_predictions.csv | category=result_csv | head=false | status=clean | size=569700 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11139.json | category=result_json | head=false | status=clean | size=16887 | metrics={"gold_rho": 0.8684362011781096}
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11139_predictions.csv | category=result_csv | head=false | status=clean | size=569959 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11140.json | category=result_json | head=false | status=clean | size=14801 | metrics={"gold_rho": 0.8714280674558788}
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11140_predictions.csv | category=result_csv | head=false | status=clean | size=569906 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11141.json | category=result_json | head=false | status=clean | size=13123 | metrics={"gold_rho": 0.8742346210497947}
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11141_predictions.csv | category=result_csv | head=false | status=clean | size=569864 | rows=11120
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11142.json | category=result_json | head=false | status=clean | size=20131 | metrics={"gold_rho": 0.8704447705011337}
+- path=results/runs/w44r_rorqual_d896_xattn_nocell_lr14_ep200_s11142_predictions.csv | category=result_csv | head=false | status=clean | size=569877 | rows=11120
+- path=results/runs/w45_nibi_submitted_jobs_20260226_150155.txt | category=other | head=false | status=clean | size=1172
+- path=results/runs/w45_rorqual_submitted_jobs_20260226_150155.txt | category=other | head=false | status=clean | size=710
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11221.json | category=result_json | head=false | status=clean | size=10457 | metrics={"gold_rho": 0.8830640750486839}
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11221_predictions.csv | category=result_csv | head=false | status=clean | size=569780 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11222.json | category=result_json | head=false | status=clean | size=12417 | metrics={"gold_rho": 0.8774291524434843}
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11222_predictions.csv | category=result_csv | head=false | status=clean | size=569823 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11223.json | category=result_json | head=false | status=clean | size=11576 | metrics={"gold_rho": 0.8853947978317857}
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11223_predictions.csv | category=result_csv | head=false | status=clean | size=569697 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11224.json | category=result_json | head=false | status=clean | size=11019 | metrics={"gold_rho": 0.8831358824670701}
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11224_predictions.csv | category=result_csv | head=false | status=clean | size=569810 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11225.json | category=result_json | head=false | status=clean | size=10878 | metrics={"gold_rho": 0.8842639995821309}
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11225_predictions.csv | category=result_csv | head=false | status=clean | size=569614 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11226.json | category=result_json | head=false | status=clean | size=11159 | metrics={"gold_rho": 0.8873341192970752}
+- path=results/runs/w45n_nibi_d896_xattn_lr14_ep220_s11226_predictions.csv | category=result_csv | head=false | status=clean | size=569700 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11201.json | category=result_json | head=false | status=clean | size=10461 | metrics={"gold_rho": 0.8833931146996132}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11201_predictions.csv | category=result_csv | head=false | status=clean | size=569657 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11202.json | category=result_json | head=false | status=clean | size=11854 | metrics={"gold_rho": 0.8844268154759977}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11202_predictions.csv | category=result_csv | head=false | status=clean | size=569645 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11203.json | category=result_json | head=false | status=clean | size=12419 | metrics={"gold_rho": 0.8805136239165864}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11203_predictions.csv | category=result_csv | head=false | status=clean | size=569610 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11204.json | category=result_json | head=false | status=clean | size=11864 | metrics={"gold_rho": 0.8834087548908995}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11204_predictions.csv | category=result_csv | head=false | status=clean | size=569628 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11205.json | category=result_json | head=false | status=clean | size=10730 | metrics={"gold_rho": 0.8826331093896512}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11205_predictions.csv | category=result_csv | head=false | status=clean | size=569762 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11206.json | category=result_json | head=false | status=clean | size=11580 | metrics={"gold_rho": 0.8774279646651499}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11206_predictions.csv | category=result_csv | head=false | status=clean | size=569901 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11207.json | category=result_json | head=false | status=clean | size=11308 | metrics={"gold_rho": 0.8834741662864589}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11207_predictions.csv | category=result_csv | head=false | status=clean | size=569871 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11208.json | category=result_json | head=false | status=clean | size=11022 | metrics={"gold_rho": 0.8842475834054234}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11208_predictions.csv | category=result_csv | head=false | status=clean | size=569647 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11209.json | category=result_json | head=false | status=clean | size=10884 | metrics={"gold_rho": 0.8837505294296667}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11209_predictions.csv | category=result_csv | head=false | status=clean | size=569751 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11210.json | category=result_json | head=false | status=clean | size=11580 | metrics={"gold_rho": 0.8810751051277288}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11210_predictions.csv | category=result_csv | head=false | status=clean | size=569600 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11211.json | category=result_json | head=false | status=clean | size=10605 | metrics={"gold_rho": 0.8839368126321986}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11211_predictions.csv | category=result_csv | head=false | status=clean | size=569805 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11212.json | category=result_json | head=false | status=clean | size=11008 | metrics={"gold_rho": 0.885539681901368}
+- path=results/runs/w45n_nibi_d896_xattn_lr15_ep180_s11212_predictions.csv | category=result_csv | head=false | status=clean | size=569820 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11231.json | category=result_json | head=false | status=clean | size=15223 | metrics={"gold_rho": 0.878277081187505}
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11231_predictions.csv | category=result_csv | head=false | status=clean | size=569874 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11232.json | category=result_json | head=false | status=clean | size=12838 | metrics={"gold_rho": 0.8758481434117562}
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11232_predictions.csv | category=result_csv | head=false | status=clean | size=569981 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11233.json | category=result_json | head=false | status=clean | size=19148 | metrics={"gold_rho": 0.8674666205883687}
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11233_predictions.csv | category=result_csv | head=false | status=clean | size=569776 | rows=11120
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11234.json | category=result_json | head=false | status=clean | size=16883 | metrics={"gold_rho": 0.8730807457424419}
+- path=results/runs/w45n_nibi_d896_xattn_nocell_lr15_ep180_s11234_predictions.csv | category=result_csv | head=false | status=clean | size=569794 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11247.json | category=result_json | head=false | status=clean | size=9771 | metrics={"gold_rho": 0.875943055788066}
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11247_predictions.csv | category=result_csv | head=false | status=clean | size=569740 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11248.json | category=result_json | head=false | status=clean | size=11718 | metrics={"gold_rho": 0.8852470876028773}
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11248_predictions.csv | category=result_csv | head=false | status=clean | size=569819 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11249.json | category=result_json | head=false | status=clean | size=11719 | metrics={"gold_rho": 0.8826628504054438}
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11249_predictions.csv | category=result_csv | head=false | status=clean | size=569783 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11250.json | category=result_json | head=false | status=clean | size=10737 | metrics={"gold_rho": 0.8868390585238917}
+- path=results/runs/w45r_rorqual_d896_xattn_lr14_ep220_s11250_predictions.csv | category=result_csv | head=false | status=clean | size=569862 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11241.json | category=result_json | head=false | status=clean | size=10599 | metrics={"gold_rho": 0.8836769844881827}
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11241_predictions.csv | category=result_csv | head=false | status=clean | size=570028 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11242.json | category=result_json | head=false | status=clean | size=11168 | metrics={"gold_rho": 0.8833952960467193}
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11242_predictions.csv | category=result_csv | head=false | status=clean | size=569765 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11243.json | category=result_json | head=false | status=clean | size=10191 | metrics={"gold_rho": 0.881891946027091}
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11243_predictions.csv | category=result_csv | head=false | status=clean | size=569810 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11244.json | category=result_json | head=false | status=clean | size=10326 | metrics={"gold_rho": 0.8824725178272994}
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11244_predictions.csv | category=result_csv | head=false | status=clean | size=569701 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11245.json | category=result_json | head=false | status=clean | size=11309 | metrics={"gold_rho": 0.8803066347607061}
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11245_predictions.csv | category=result_csv | head=false | status=clean | size=569758 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11246.json | category=result_json | head=false | status=clean | size=11580 | metrics={"gold_rho": 0.8844560086543913}
+- path=results/runs/w45r_rorqual_d896_xattn_lr15_ep180_s11246_predictions.csv | category=result_csv | head=false | status=clean | size=569815 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_nocell_lr15_ep180_s11251.json | category=result_json | head=false | status=clean | size=11593 | metrics={"gold_rho": 0.8744595275761491}
+- path=results/runs/w45r_rorqual_d896_xattn_nocell_lr15_ep180_s11251_predictions.csv | category=result_csv | head=false | status=clean | size=569873 | rows=11120
+- path=results/runs/w45r_rorqual_d896_xattn_nocell_lr15_ep180_s11252.json | category=result_json | head=false | status=clean | size=13546 | metrics={"gold_rho": 0.8751176727728643}
+- path=results/runs/w45r_rorqual_d896_xattn_nocell_lr15_ep180_s11252_predictions.csv | category=result_csv | head=false | status=clean | size=569788 | rows=11120
+- path=results/runs/w46_best_nonstacked_superopt_complete_predictions.csv | category=result_csv | head=false | status=clean | size=665018 | rows=11120
+- path=results/runs/w46_best_nonstacked_superopt_refresh1_predictions.csv | category=result_csv | head=false | status=clean | size=664977 | rows=11120
+- path=results/runs/w46_best_nonstacked_superopt_seeded21_init_predictions.csv | category=result_csv | head=false | status=clean | size=664984 | rows=11120
+- path=results/runs/w46_best_nonstacked_superopt_seeded21_predictions.csv | category=result_csv | head=false | status=clean | size=665084 | rows=11120
+- path=results/runs/w46_best_nonstacked_superopt_seeded_predictions.csv | category=result_csv | head=false | status=clean | size=664988 | rows=11120
+- path=results/runs/w46_blend_over_w44_superopt.json | category=result_json | head=false | status=clean | size=1633 | metrics={"best_rho": 0.9021753769112824}
+- path=results/runs/w46_blend_over_w44_superopt_predictions.csv | category=result_csv | head=false | status=clean | size=663891 | rows=11120
+- path=results/runs/w46_nibi_submitted_jobs_20260226_231637.txt | category=other | head=false | status=clean | size=0
+- path=results/runs/w46_nibi_submitted_jobs_20260226_231652.txt | category=other | head=false | status=clean | size=0
+- path=results/runs/w46_nibi_submitted_jobs_20260226_231737.txt | category=other | head=false | status=clean | size=728
+- path=results/runs/w46_nonstacked_superopt_complete.json | category=result_json | head=false | status=clean | size=1601 | metrics={"best_rho": 0.9009359098500296}
+- path=results/runs/w46_nonstacked_superopt_refresh1.json | category=result_json | head=false | status=clean | size=1449 | metrics={"best_rho": 0.9007643678491051}
+- path=results/runs/w46_nonstacked_superopt_seeded.json | category=result_json | head=false | status=clean | size=2870 | metrics={"best_rho": 0.9006573786604982}
+- path=results/runs/w46_nonstacked_superopt_seeded21.json | category=result_json | head=false | status=clean | size=1853 | metrics={"best_rho": 0.9005715234397519}
+- path=results/runs/w46_nonstacked_superopt_seeded21_init.json | category=result_json | head=false | status=clean | size=1863 | metrics={"best_rho": 0.9005713851816456}
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11321.json | category=result_json | head=false | status=clean | size=10743 | metrics={"gold_rho": 0.8857912583547324}
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11321_predictions.csv | category=result_csv | head=false | status=clean | size=569822 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11322.json | category=result_json | head=false | status=clean | size=11429 | metrics={"gold_rho": 0.8832542990955624}
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11322_predictions.csv | category=result_csv | head=false | status=clean | size=569758 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11323.json | category=result_json | head=false | status=clean | size=10469 | metrics={"gold_rho": 0.8849444952241814}
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11323_predictions.csv | category=result_csv | head=false | status=clean | size=569628 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11324.json | category=result_json | head=false | status=clean | size=10191 | metrics={"gold_rho": 0.8844296352378287}
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11324_predictions.csv | category=result_csv | head=false | status=clean | size=569879 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11325.json | category=result_json | head=false | status=clean | size=11016 | metrics={"gold_rho": 0.8818387643150644}
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11325_predictions.csv | category=result_csv | head=false | status=clean | size=569647 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11326.json | category=result_json | head=false | status=clean | size=10602 | metrics={"gold_rho": 0.8853667312163042}
+- path=results/runs/w46n_nibi_d896_xattn_lr14_ep220_s11326_predictions.csv | category=result_csv | head=false | status=clean | size=569632 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11301.json | category=result_json | head=false | status=clean | size=11014 | metrics={"gold_rho": 0.8835074145603792}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11301_predictions.csv | category=result_csv | head=false | status=clean | size=569622 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11302.json | category=result_json | head=false | status=clean | size=10327 | metrics={"gold_rho": 0.8861919847546741}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11302_predictions.csv | category=result_csv | head=false | status=clean | size=569791 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11303.json | category=result_json | head=false | status=clean | size=10468 | metrics={"gold_rho": 0.8826706904994217}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11303_predictions.csv | category=result_csv | head=false | status=clean | size=569585 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11304.json | category=result_json | head=false | status=clean | size=11019 | metrics={"gold_rho": 0.8825745483840322}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11304_predictions.csv | category=result_csv | head=false | status=clean | size=569764 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11305.json | category=result_json | head=false | status=clean | size=10595 | metrics={"gold_rho": 0.8821902730113454}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11305_predictions.csv | category=result_csv | head=false | status=clean | size=569686 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11306.json | category=result_json | head=false | status=clean | size=11160 | metrics={"gold_rho": 0.8836055466969269}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11306_predictions.csv | category=result_csv | head=false | status=clean | size=569762 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11307.json | category=result_json | head=false | status=clean | size=11164 | metrics={"gold_rho": 0.8810513404461326}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11307_predictions.csv | category=result_csv | head=false | status=clean | size=569837 | rows=11120
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11308.json | category=result_json | head=false | status=clean | size=11162 | metrics={"gold_rho": 0.882639099914511}
+- path=results/runs/w46n_nibi_d896_xattn_lr15_ep180_s11308_predictions.csv | category=result_csv | head=false | status=clean | size=569703 | rows=11120
+- path=results/runs/w47_nibi_submitted_jobs_20260226_235956.txt | category=other | head=false | status=clean | size=826
+- path=results/runs/w47_proposal_status_latest.json | category=result_json | head=false | status=clean | size=4494 | metrics={"best_splitA_nonstacked_ensemble_rho": 0.9021753769112824, "best_splitA_nonstacked_single_rho": 0.8890178778000554, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}
+- path=results/runs/w47_runtime_snapshot.json | category=result_json | head=false | status=clean | size=581
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11401.json | category=result_json | head=false | status=clean | size=10303 | metrics={"gold_rho": 0.8832959573315079}
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11401_predictions.csv | category=result_csv | head=false | status=clean | size=569836 | rows=11120
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11402.json | category=result_json | head=false | status=clean | size=10440 | metrics={"gold_rho": 0.8845736726863292}
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11402_predictions.csv | category=result_csv | head=false | status=clean | size=569800 | rows=11120
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11403.json | category=result_json | head=false | status=clean | size=10993 | metrics={"gold_rho": 0.8856620737974604}
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11403_predictions.csv | category=result_csv | head=false | status=clean | size=569733 | rows=11120
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11404.json | category=result_json | head=false | status=clean | size=10158 | metrics={"gold_rho": 0.8840100042094516}
+- path=results/runs/w47n_nibi_d896_gate_beta_lr15_ep180_s11404_predictions.csv | category=result_csv | head=false | status=clean | size=569820 | rows=11120
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11411.json | category=result_json | head=false | status=clean | size=12666 | metrics={"gold_rho": 0.879536721306324}
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11411_predictions.csv | category=result_csv | head=false | status=clean | size=569573 | rows=11120
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11412.json | category=result_json | head=false | status=clean | size=10975 | metrics={"gold_rho": 0.8801912866188615}
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11412_predictions.csv | category=result_csv | head=false | status=clean | size=569777 | rows=11120
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11413.json | category=result_json | head=false | status=clean | size=10818 | metrics={"gold_rho": 0.881926269383717}
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11413_predictions.csv | category=result_csv | head=false | status=clean | size=569736 | rows=11120
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11414.json | category=result_json | head=false | status=clean | size=9984 | metrics={"gold_rho": 0.8793773010631635}
+- path=results/runs/w47n_nibi_d896_xattn_mse_lr15_ep180_s11414_predictions.csv | category=result_csv | head=false | status=clean | size=569714 | rows=11120
+- path=results/runs/w47n_nibi_dnabert2_d768_gate_beta_lr12_ep120_s11431.json | category=result_json | head=false | status=clean | size=19442 | metrics={"gold_rho": 0.6381006572686826}
+- path=results/runs/w47n_nibi_dnabert2_d768_gate_beta_lr12_ep120_s11431_predictions.csv | category=result_csv | head=false | status=clean | size=569423 | rows=11120
+- path=results/runs/w47n_nibi_dnabert2_d768_gate_beta_lr12_ep120_s11432.json | category=result_json | head=false | status=clean | size=16900 | metrics={"gold_rho": 0.6355879008716323}
+- path=results/runs/w47n_nibi_dnabert2_d768_gate_beta_lr12_ep120_s11432_predictions.csv | category=result_csv | head=false | status=clean | size=569222 | rows=11120
+- path=results/runs/w48_nibi_submitted_jobs_20260227_003826.txt | category=other | head=false | status=clean | size=620
+- path=results/runs/w48_partial_blend_over_w44.json | category=result_json | head=false | status=clean | size=529 | metrics={"best_rho": 0.9021753769112824}
+- path=results/runs/w48_rorqual_submitted_jobs_20260227_003826.txt | category=other | head=false | status=clean | size=434
+- path=results/runs/w48n_nibi_dhf_fc512_l01_s11525.json | category=result_json | head=false | status=clean | size=29230 | metrics={"gold_rho": 0.8745966229648172}
+- path=results/runs/w48n_nibi_dhf_fc512_l01_s11525_predictions.csv | category=result_csv | head=false | status=clean | size=475934 | rows=11120
+- path=results/runs/w48n_nibi_dhf_fc512_l01_s11526.json | category=result_json | head=false | status=clean | size=28038 | metrics={"gold_rho": 0.8749865255729476}
+- path=results/runs/w48n_nibi_dhf_fc512_l01_s11526_predictions.csv | category=result_csv | head=false | status=clean | size=475639 | rows=11120
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11521.json | category=result_json | head=false | status=clean | size=31570 | metrics={"gold_rho": 0.8770961899108193}
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11521_predictions.csv | category=result_csv | head=false | status=clean | size=475919 | rows=11120
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11522.json | category=result_json | head=false | status=clean | size=35268 | metrics={"gold_rho": 0.8775016307457554}
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11522_predictions.csv | category=result_csv | head=false | status=clean | size=475769 | rows=11120
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11523.json | category=result_json | head=false | status=clean | size=31953 | metrics={"gold_rho": 0.8775709701916694}
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11523_predictions.csv | category=result_csv | head=false | status=clean | size=475974 | rows=11120
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11524.json | category=result_json | head=false | status=clean | size=26733 | metrics={"gold_rho": 0.878003557479705}
+- path=results/runs/w48n_nibi_dhf_fc640_l02_s11524_predictions.csv | category=result_csv | head=false | status=clean | size=475999 | rows=11120
+- path=results/runs/w48n_nibi_rank_d896_concat_l020_s11505.json | category=result_json | head=false | status=clean | size=11555 | metrics={"gold_rho": 0.8808082827680844}
+- path=results/runs/w48n_nibi_rank_d896_concat_l020_s11505_predictions.csv | category=result_csv | head=false | status=clean | size=569719 | rows=11120
+- path=results/runs/w48n_nibi_rank_d896_concat_l020_s11506.json | category=result_json | head=false | status=clean | size=11742 | metrics={"gold_rho": 0.8784923144951872}
+- path=results/runs/w48n_nibi_rank_d896_concat_l020_s11506_predictions.csv | category=result_csv | head=false | status=clean | size=569794 | rows=11120
+- path=results/runs/w48n_nibi_rank_d896_concat_l020_s11507.json | category=result_json | head=false | status=clean | size=11567 | metrics={"gold_rho": 0.8808801087852357}
+- path=results/runs/w48n_nibi_rank_d896_concat_l020_s11507_predictions.csv | category=result_csv | head=false | status=clean | size=569796 | rows=11120
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11501.json | category=result_json | head=false | status=clean | size=11936 | metrics={"gold_rho": 0.879697084745137}
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11501_predictions.csv | category=result_csv | head=false | status=clean | size=569793 | rows=11120
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11502.json | category=result_json | head=false | status=clean | size=12509 | metrics={"gold_rho": 0.8771741302209708}
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11502_predictions.csv | category=result_csv | head=false | status=clean | size=569686 | rows=11120
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11503.json | category=result_json | head=false | status=clean | size=11176 | metrics={"gold_rho": 0.8829080585667807}
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11503_predictions.csv | category=result_csv | head=false | status=clean | size=569768 | rows=11120
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11504.json | category=result_json | head=false | status=clean | size=10780 | metrics={"gold_rho": 0.8792700163746637}
+- path=results/runs/w48n_nibi_rank_d896_gate_l020_s11504_predictions.csv | category=result_csv | head=false | status=clean | size=569712 | rows=11120
+- path=results/runs/w48r_rorqual_dhf_fc640_l02_s11536.json | category=result_json | head=false | status=clean | size=28102 | metrics={"gold_rho": 0.8770233234923469}
+- path=results/runs/w48r_rorqual_dhf_fc640_l02_s11536_predictions.csv | category=result_csv | head=false | status=clean | size=476030 | rows=11120
+- path=results/runs/w48r_rorqual_dhf_fc640_l02_s11537.json | category=result_json | head=false | status=clean | size=24198 | metrics={"gold_rho": 0.8793206505231967}
+- path=results/runs/w48r_rorqual_dhf_fc640_l02_s11537_predictions.csv | category=result_csv | head=false | status=clean | size=475983 | rows=11120
+- path=results/runs/w48r_rorqual_dhf_fc640_l02_s11538.json | category=result_json | head=false | status=clean | size=33347 | metrics={"gold_rho": 0.8797118347457944}
+- path=results/runs/w48r_rorqual_dhf_fc640_l02_s11538_predictions.csv | category=result_csv | head=false | status=clean | size=475859 | rows=11120
+- path=results/runs/w48r_rorqual_rank_d896_concat_l020_s11534.json | category=result_json | head=false | status=clean | size=11372 | metrics={"gold_rho": 0.8772379242854697}
+- path=results/runs/w48r_rorqual_rank_d896_concat_l020_s11534_predictions.csv | category=result_csv | head=false | status=clean | size=569616 | rows=11120
+- path=results/runs/w48r_rorqual_rank_d896_concat_l020_s11535.json | category=result_json | head=false | status=clean | size=10792 | metrics={"gold_rho": 0.8825200982118785}
+- path=results/runs/w48r_rorqual_rank_d896_concat_l020_s11535_predictions.csv | category=result_csv | head=false | status=clean | size=569715 | rows=11120
+- path=results/runs/w48r_rorqual_rank_d896_gate_l020_s11531.json | category=result_json | head=false | status=clean | size=11366 | metrics={"gold_rho": 0.8793508857620014}
+- path=results/runs/w48r_rorqual_rank_d896_gate_l020_s11531_predictions.csv | category=result_csv | head=false | status=clean | size=569768 | rows=11120
+- path=results/runs/w48r_rorqual_rank_d896_gate_l020_s11532.json | category=result_json | head=false | status=clean | size=11758 | metrics={"gold_rho": 0.8806946923952497}
+- path=results/runs/w48r_rorqual_rank_d896_gate_l020_s11532_predictions.csv | category=result_csv | head=false | status=clean | size=569723 | rows=11120
+- path=results/runs/w48r_rorqual_rank_d896_gate_l020_s11533.json | category=result_json | head=false | status=clean | size=10985 | metrics={"gold_rho": 0.8804245649918279}
+- path=results/runs/w48r_rorqual_rank_d896_gate_l020_s11533_predictions.csv | category=result_csv | head=false | status=clean | size=569855 | rows=11120
+- path=results/runs/w49_best_nonstacked_blend_single_predictions.csv | category=result_csv | head=false | status=clean | size=664990 | rows=11120
+- path=results/runs/w49_blend_over_w44_full.json | category=result_json | head=false | status=clean | size=1463
+- path=results/runs/w49_nibi_submitted_jobs_20260227_005255.txt | category=other | head=false | status=clean | size=1178
+- path=results/runs/w49_nonstacked_blend_single_summary.json | category=result_json | head=false | status=clean | size=426 | metrics={"best_rho": 0.9021760895699669}
+- path=results/runs/w49_proposal_status_latest.json | category=result_json | head=false | status=clean | size=9055 | metrics={"best_splitA_nonstacked_ensemble_rho": 0.9108903031450908, "best_splitA_nonstacked_single_rho": 0.8892076527146103, "conformal_empirical_coverage": 0.9034172661870503, "offtarget_pair_test_auroc": 0.9999832097198535}
+- path=results/runs/w49_rorqual_submitted_jobs_20260227_005255.txt | category=other | head=false | status=clean | size=1310
+- path=results/runs/w49_runtime_snapshot.json | category=result_json | head=false | status=clean | size=1362
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11621.json | category=result_json | head=false | status=clean | size=11587 | metrics={"gold_rho": 0.8845925880654756}
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11621_predictions.csv | category=result_csv | head=false | status=clean | size=569622 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11622.json | category=result_json | head=false | status=clean | size=10751 | metrics={"gold_rho": 0.8828499610308191}
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11622_predictions.csv | category=result_csv | head=false | status=clean | size=569724 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11623.json | category=result_json | head=false | status=clean | size=11160 | metrics={"gold_rho": 0.8852708488194736}
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11623_predictions.csv | category=result_csv | head=false | status=clean | size=569715 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11624.json | category=result_json | head=false | status=clean | size=12147 | metrics={"gold_rho": 0.883169658525075}
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11624_predictions.csv | category=result_csv | head=false | status=clean | size=569765 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11625.json | category=result_json | head=false | status=clean | size=11304 | metrics={"gold_rho": 0.8860568052373387}
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11625_predictions.csv | category=result_csv | head=false | status=clean | size=569636 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11626.json | category=result_json | head=false | status=clean | size=11586 | metrics={"gold_rho": 0.8838525999227332}
+- path=results/runs/w49n_nibi_d896_xattn_lr145_ep200_s11626_predictions.csv | category=result_csv | head=false | status=clean | size=569625 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11601.json | category=result_json | head=false | status=clean | size=10606 | metrics={"gold_rho": 0.8840658068102173}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11601_predictions.csv | category=result_csv | head=false | status=clean | size=569672 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11602.json | category=result_json | head=false | status=clean | size=12138 | metrics={"gold_rho": 0.882460133195186}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11602_predictions.csv | category=result_csv | head=false | status=clean | size=569806 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11603.json | category=result_json | head=false | status=clean | size=11723 | metrics={"gold_rho": 0.8816375638406182}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11603_predictions.csv | category=result_csv | head=false | status=clean | size=569670 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11604.json | category=result_json | head=false | status=clean | size=10887 | metrics={"gold_rho": 0.8821719616057782}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11604_predictions.csv | category=result_csv | head=false | status=clean | size=569722 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11605.json | category=result_json | head=false | status=clean | size=10735 | metrics={"gold_rho": 0.8871754875134}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11605_predictions.csv | category=result_csv | head=false | status=clean | size=569752 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11606.json | category=result_json | head=false | status=clean | size=11014 | metrics={"gold_rho": 0.8831739957118641}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11606_predictions.csv | category=result_csv | head=false | status=clean | size=569809 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11607.json | category=result_json | head=false | status=clean | size=10451 | metrics={"gold_rho": 0.88060220265071}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11607_predictions.csv | category=result_csv | head=false | status=clean | size=569660 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11608.json | category=result_json | head=false | status=clean | size=10599 | metrics={"gold_rho": 0.885954290651042}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11608_predictions.csv | category=result_csv | head=false | status=clean | size=569740 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11609.json | category=result_json | head=false | status=clean | size=11019 | metrics={"gold_rho": 0.8836707250474769}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11609_predictions.csv | category=result_csv | head=false | status=clean | size=569764 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11610.json | category=result_json | head=false | status=clean | size=10604 | metrics={"gold_rho": 0.8841255265997268}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11610_predictions.csv | category=result_csv | head=false | status=clean | size=569736 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11611.json | category=result_json | head=false | status=clean | size=11577 | metrics={"gold_rho": 0.8833238114703611}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11611_predictions.csv | category=result_csv | head=false | status=clean | size=569685 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11612.json | category=result_json | head=false | status=clean | size=9900 | metrics={"gold_rho": 0.8833513858113452}
+- path=results/runs/w49n_nibi_d896_xattn_lr15_ep180_s11612_predictions.csv | category=result_csv | head=false | status=clean | size=569691 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11631.json | category=result_json | head=false | status=clean | size=18966 | metrics={"gold_rho": 0.8724116582985674}
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11631_predictions.csv | category=result_csv | head=false | status=clean | size=569842 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11632.json | category=result_json | head=false | status=clean | size=11553 | metrics={"gold_rho": 0.8730459418495792}
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11632_predictions.csv | category=result_csv | head=false | status=clean | size=569815 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11633.json | category=result_json | head=false | status=clean | size=17139 | metrics={"gold_rho": 0.8703936819831997}
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11633_predictions.csv | category=result_csv | head=false | status=clean | size=569905 | rows=11120
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11634.json | category=result_json | head=false | status=clean | size=16161 | metrics={"gold_rho": 0.8748538143516595}
+- path=results/runs/w49n_nibi_d896_xattn_nocell_lr15_ep180_s11634_predictions.csv | category=result_csv | head=false | status=clean | size=569830 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11661.json | category=result_json | head=false | status=clean | size=11869 | metrics={"gold_rho": 0.883223377315468}
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11661_predictions.csv | category=result_csv | head=false | status=clean | size=569764 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11662.json | category=result_json | head=false | status=clean | size=12428 | metrics={"gold_rho": 0.8825664394041003}
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11662_predictions.csv | category=result_csv | head=false | status=clean | size=569741 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11663.json | category=result_json | head=false | status=clean | size=10612 | metrics={"gold_rho": 0.8821523755251305}
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11663_predictions.csv | category=result_csv | head=false | status=clean | size=569732 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11664.json | category=result_json | head=false | status=clean | size=10749 | metrics={"gold_rho": 0.8822073899075095}
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11664_predictions.csv | category=result_csv | head=false | status=clean | size=569667 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11665.json | category=result_json | head=false | status=clean | size=12285 | metrics={"gold_rho": 0.8822532203575085}
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11665_predictions.csv | category=result_csv | head=false | status=clean | size=569815 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11666.json | category=result_json | head=false | status=clean | size=11031 | metrics={"gold_rho": 0.8852089624141113}
+- path=results/runs/w49r_rorqual_d896_xattn_lr145_ep200_s11666_predictions.csv | category=result_csv | head=false | status=clean | size=569749 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11641.json | category=result_json | head=false | status=clean | size=10328 | metrics={"gold_rho": 0.881911290147127}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11641_predictions.csv | category=result_csv | head=false | status=clean | size=569742 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11642.json | category=result_json | head=false | status=clean | size=9760 | metrics={"gold_rho": 0.8795421744791088}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11642_predictions.csv | category=result_csv | head=false | status=clean | size=569683 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11643.json | category=result_json | head=false | status=clean | size=10462 | metrics={"gold_rho": 0.8858404234088004}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11643_predictions.csv | category=result_csv | head=false | status=clean | size=569712 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11644.json | category=result_json | head=false | status=clean | size=10462 | metrics={"gold_rho": 0.8820479045496378}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11644_predictions.csv | category=result_csv | head=false | status=clean | size=569754 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11645.json | category=result_json | head=false | status=clean | size=10611 | metrics={"gold_rho": 0.8839941131800991}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11645_predictions.csv | category=result_csv | head=false | status=clean | size=569719 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11646.json | category=result_json | head=false | status=clean | size=11027 | metrics={"gold_rho": 0.8855048672266072}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11646_predictions.csv | category=result_csv | head=false | status=clean | size=569787 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11647.json | category=result_json | head=false | status=clean | size=11028 | metrics={"gold_rho": 0.8791644520296441}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11647_predictions.csv | category=result_csv | head=false | status=clean | size=569764 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11648.json | category=result_json | head=false | status=clean | size=10611 | metrics={"gold_rho": 0.8801482136012779}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11648_predictions.csv | category=result_csv | head=false | status=clean | size=569850 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11649.json | category=result_json | head=false | status=clean | size=10606 | metrics={"gold_rho": 0.8838723894096004}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11649_predictions.csv | category=result_csv | head=false | status=clean | size=569745 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11650.json | category=result_json | head=false | status=clean | size=10742 | metrics={"gold_rho": 0.8785293129356961}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11650_predictions.csv | category=result_csv | head=false | status=clean | size=569808 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11651.json | category=result_json | head=false | status=clean | size=10890 | metrics={"gold_rho": 0.8827405826393658}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11651_predictions.csv | category=result_csv | head=false | status=clean | size=569772 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11652.json | category=result_json | head=false | status=clean | size=11164 | metrics={"gold_rho": 0.8849562950140606}
+- path=results/runs/w49r_rorqual_d896_xattn_lr15_ep180_s11652_predictions.csv | category=result_csv | head=false | status=clean | size=569798 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11671.json | category=result_json | head=false | status=clean | size=12820 | metrics={"gold_rho": 0.8729659247799998}
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11671_predictions.csv | category=result_csv | head=false | status=clean | size=569958 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11672.json | category=result_json | head=false | status=clean | size=13652 | metrics={"gold_rho": 0.8749831527962284}
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11672_predictions.csv | category=result_csv | head=false | status=clean | size=569838 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11673.json | category=result_json | head=false | status=clean | size=14218 | metrics={"gold_rho": 0.8730219603644378}
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11673_predictions.csv | category=result_csv | head=false | status=clean | size=569845 | rows=11120
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11674.json | category=result_json | head=false | status=clean | size=12117 | metrics={"gold_rho": 0.8739922431673242}
+- path=results/runs/w49r_rorqual_d896_xattn_nocell_lr15_ep180_s11674_predictions.csv | category=result_csv | head=false | status=clean | size=569925 | rows=11120
+- path=results/runs/w4_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=628807 | rows=11120
+- path=results/runs/w4_local_mps_d640_gate_s3803.json | category=result_json | head=false | status=clean | size=4885 | metrics={"gold_rho": 0.886192179533941}
+- path=results/runs/w4_local_mps_d640_gate_s3803_predictions.csv | category=result_csv | head=false | status=clean | size=569515 | rows=11120
+- path=results/runs/w4_progress_summary.json | category=result_json | head=false | status=clean | size=4151
+- path=results/runs/w50_stagewise_blend_predictions.csv | category=result_csv | head=false | status=clean | size=665035 | rows=11120
+- path=results/runs/w50_stagewise_blend_summary.json | category=result_json | head=false | status=clean | size=1573 | metrics={"best_rho": 0.9023208125178478}
+- path=results/runs/w50opt_nibi_submitted_jobs_20260227_064711.txt | category=other | head=false | status=clean | size=168
+- path=results/runs/w50opt_nibi_w2_summary.json | category=result_json | head=false | status=clean | size=843 | metrics={"best_trial_number": 58, "best_value": 0.8885224276761265, "n_trials_total": 68}
+- path=results/runs/w50opt_nibi_w2_t0000_predictions.csv | category=result_csv | head=false | status=clean | size=569743 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0004_predictions.csv | category=result_csv | head=false | status=clean | size=569790 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0008_predictions.csv | category=result_csv | head=false | status=clean | size=569704 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0012_predictions.csv | category=result_csv | head=false | status=clean | size=569942 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0017_predictions.csv | category=result_csv | head=false | status=clean | size=569871 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0021_predictions.csv | category=result_csv | head=false | status=clean | size=569791 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0024_predictions.csv | category=result_csv | head=false | status=clean | size=569815 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0028_predictions.csv | category=result_csv | head=false | status=clean | size=569747 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0032_predictions.csv | category=result_csv | head=false | status=clean | size=569712 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0036_predictions.csv | category=result_csv | head=false | status=clean | size=569855 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0040_predictions.csv | category=result_csv | head=false | status=clean | size=569880 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0043_predictions.csv | category=result_csv | head=false | status=clean | size=569663 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0047_predictions.csv | category=result_csv | head=false | status=clean | size=569609 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0052_predictions.csv | category=result_csv | head=false | status=clean | size=570120 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0054_predictions.csv | category=result_csv | head=false | status=clean | size=569613 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0057_predictions.csv | category=result_csv | head=false | status=clean | size=569921 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0061.json | category=result_json | head=false | status=clean | size=23442 | metrics={"gold_rho": 0.8868827100544927}
+- path=results/runs/w50opt_nibi_w2_t0061_predictions.csv | category=result_csv | head=false | status=clean | size=569862 | rows=11120
+- path=results/runs/w50opt_nibi_w2_t0066_predictions.csv | category=result_csv | head=false | status=clean | size=570070 | rows=11120
+- path=results/runs/w50opt_nibi_w4_summary.json | category=result_json | head=false | status=clean | size=846 | metrics={"best_trial_number": 65, "best_value": 0.8892076527146103, "n_trials_total": 71}
+- path=results/runs/w50opt_nibi_w4_t0001_predictions.csv | category=result_csv | head=false | status=clean | size=569858 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0005_predictions.csv | category=result_csv | head=false | status=clean | size=569777 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0009_predictions.csv | category=result_csv | head=false | status=clean | size=569816 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0013_predictions.csv | category=result_csv | head=false | status=clean | size=570136 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0018_predictions.csv | category=result_csv | head=false | status=clean | size=569740 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0020_predictions.csv | category=result_csv | head=false | status=clean | size=569849 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0025_predictions.csv | category=result_csv | head=false | status=clean | size=569747 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0029_predictions.csv | category=result_csv | head=false | status=clean | size=570036 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0033_predictions.csv | category=result_csv | head=false | status=clean | size=569710 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0038.json | category=result_json | head=false | status=clean | size=29431 | metrics={"gold_rho": 0.8869545770769571}
+- path=results/runs/w50opt_nibi_w4_t0038_predictions.csv | category=result_csv | head=false | status=clean | size=569749 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0046_predictions.csv | category=result_csv | head=false | status=clean | size=569595 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0050_predictions.csv | category=result_csv | head=false | status=clean | size=569619 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0053_predictions.csv | category=result_csv | head=false | status=clean | size=569630 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0056_predictions.csv | category=result_csv | head=false | status=clean | size=569671 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0060_predictions.csv | category=result_csv | head=false | status=clean | size=569732 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0062_predictions.csv | category=result_csv | head=false | status=clean | size=569711 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0067_predictions.csv | category=result_csv | head=false | status=clean | size=569786 | rows=11120
+- path=results/runs/w50opt_nibi_w4_t0069_predictions.csv | category=result_csv | head=false | status=clean | size=569700 | rows=11120
+- path=results/runs/w50opt_nibi_w5_summary.json | category=result_json | head=false | status=clean | size=846 | metrics={"best_trial_number": 65, "best_value": 0.8892076527146103, "n_trials_total": 72}
+- path=results/runs/w50opt_nibi_w5_t0002_predictions.csv | category=result_csv | head=false | status=clean | size=569803 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0006.json | category=result_json | head=false | status=clean | size=10440 | metrics={"gold_rho": 0.8876847081854383}
+- path=results/runs/w50opt_nibi_w5_t0006_predictions.csv | category=result_csv | head=false | status=clean | size=569658 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0010_predictions.csv | category=result_csv | head=false | status=clean | size=569652 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0014_predictions.csv | category=result_csv | head=false | status=clean | size=569731 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0016_predictions.csv | category=result_csv | head=false | status=clean | size=569966 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0022_predictions.csv | category=result_csv | head=false | status=clean | size=569807 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0026_predictions.csv | category=result_csv | head=false | status=clean | size=569761 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0031_predictions.csv | category=result_csv | head=false | status=clean | size=569819 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0035_predictions.csv | category=result_csv | head=false | status=clean | size=569675 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0039_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0042_predictions.csv | category=result_csv | head=false | status=clean | size=569980 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0045_predictions.csv | category=result_csv | head=false | status=clean | size=569725 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0049_predictions.csv | category=result_csv | head=false | status=clean | size=569769 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0055_predictions.csv | category=result_csv | head=false | status=clean | size=569766 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0058.json | category=result_json | head=false | status=clean | size=24005 | metrics={"gold_rho": 0.8885224276761265}
+- path=results/runs/w50opt_nibi_w5_t0058_predictions.csv | category=result_csv | head=false | status=clean | size=569784 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0064.json | category=result_json | head=false | status=clean | size=30428 | metrics={"gold_rho": 0.8879672773703121}
+- path=results/runs/w50opt_nibi_w5_t0064_predictions.csv | category=result_csv | head=false | status=clean | size=569683 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0068.json | category=result_json | head=false | status=clean | size=25427 | metrics={"gold_rho": 0.8866105640653936}
+- path=results/runs/w50opt_nibi_w5_t0068_predictions.csv | category=result_csv | head=false | status=clean | size=569806 | rows=11120
+- path=results/runs/w50opt_nibi_w5_t0071_predictions.csv | category=result_csv | head=false | status=clean | size=569991 | rows=11120
+- path=results/runs/w50opt_nibi_w6_summary.json | category=result_json | head=false | status=clean | size=846 | metrics={"best_trial_number": 65, "best_value": 0.8892076527146103, "n_trials_total": 71}
+- path=results/runs/w50opt_nibi_w6_t0003_predictions.csv | category=result_csv | head=false | status=clean | size=569787 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0007_predictions.csv | category=result_csv | head=false | status=clean | size=569807 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0011_predictions.csv | category=result_csv | head=false | status=clean | size=569737 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0015_predictions.csv | category=result_csv | head=false | status=clean | size=569689 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0019.json | category=result_json | head=false | status=clean | size=10311 | metrics={"gold_rho": 0.888274497058953}
+- path=results/runs/w50opt_nibi_w6_t0019_predictions.csv | category=result_csv | head=false | status=clean | size=569828 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0023_predictions.csv | category=result_csv | head=false | status=clean | size=569914 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0027_predictions.csv | category=result_csv | head=false | status=clean | size=569766 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0030_predictions.csv | category=result_csv | head=false | status=clean | size=569701 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0034_predictions.csv | category=result_csv | head=false | status=clean | size=569933 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0037_predictions.csv | category=result_csv | head=false | status=clean | size=570013 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0041_predictions.csv | category=result_csv | head=false | status=clean | size=569955 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0044_predictions.csv | category=result_csv | head=false | status=clean | size=569769 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0048_predictions.csv | category=result_csv | head=false | status=clean | size=569689 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0051.json | category=result_json | head=false | status=clean | size=28157 | metrics={"gold_rho": 0.8882885874171377}
+- path=results/runs/w50opt_nibi_w6_t0051_predictions.csv | category=result_csv | head=false | status=clean | size=569606 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0059.json | category=result_json | head=false | status=clean | size=17312 | metrics={"gold_rho": 0.8880468276037263}
+- path=results/runs/w50opt_nibi_w6_t0059_predictions.csv | category=result_csv | head=false | status=clean | size=569773 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0063_predictions.csv | category=result_csv | head=false | status=clean | size=569755 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0065.err.log | category=log_file | head=false | status=clean | size=295 | lines=2
+- path=results/runs/w50opt_nibi_w6_t0065.json | category=result_json | head=false | status=clean | size=26280 | metrics={"gold_rho": 0.8892076527146103}
+- path=results/runs/w50opt_nibi_w6_t0065.out.log | category=log_file | head=false | status=clean | size=11736 | lines=182
+- path=results/runs/w50opt_nibi_w6_t0065_predictions.csv | category=result_csv | head=false | status=clean | size=569805 | rows=11120
+- path=results/runs/w50opt_nibi_w6_t0070_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w50opt_rorqual_submitted_jobs_20260227_064711.txt | category=other | head=false | status=clean | size=136
+- path=results/runs/w50opt_rorqual_w3_t0000_predictions.csv | category=result_csv | head=false | status=clean | size=569613 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0001_predictions.csv | category=result_csv | head=false | status=clean | size=569682 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0002_predictions.csv | category=result_csv | head=false | status=clean | size=569684 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0003_predictions.csv | category=result_csv | head=false | status=clean | size=569722 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0004_predictions.csv | category=result_csv | head=false | status=clean | size=569960 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0005_predictions.csv | category=result_csv | head=false | status=clean | size=569790 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0006_predictions.csv | category=result_csv | head=false | status=clean | size=569738 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0007_predictions.csv | category=result_csv | head=false | status=clean | size=569970 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0008_predictions.csv | category=result_csv | head=false | status=clean | size=569690 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0009_predictions.csv | category=result_csv | head=false | status=clean | size=569954 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0010_predictions.csv | category=result_csv | head=false | status=clean | size=569966 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0011_predictions.csv | category=result_csv | head=false | status=clean | size=569751 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0012_predictions.csv | category=result_csv | head=false | status=clean | size=569747 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0013_predictions.csv | category=result_csv | head=false | status=clean | size=569676 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0014_predictions.csv | category=result_csv | head=false | status=clean | size=569768 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0015_predictions.csv | category=result_csv | head=false | status=clean | size=569813 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0016_predictions.csv | category=result_csv | head=false | status=clean | size=569697 | rows=11120
+- path=results/runs/w50opt_rorqual_w3_t0017_predictions.csv | category=result_csv | head=false | status=clean | size=569820 | rows=11120
+- path=results/runs/w50opt_runtime_snapshot.json | category=result_json | head=false | status=clean | size=678
+- path=results/runs/w51_optuna_coordinate_refine_predictions.csv | category=result_csv | head=false | status=clean | size=664971 | rows=11120
+- path=results/runs/w51_optuna_coordinate_refine_summary.json | category=result_json | head=false | status=clean | size=2727 | metrics={"gap_to_0_911": 0.00023770152437563308}
+- path=results/runs/w51_optuna_expanded_coordinate_predictions.csv | category=result_csv | head=false | status=clean | size=664906 | rows=11120
+- path=results/runs/w51_optuna_expanded_coordinate_summary.json | category=result_json | head=false | status=clean | size=1132 | metrics={"best_rho": 0.9108779278031668, "gap_to_0_911": 0.000122072196833245}
+- path=results/runs/w51_optuna_expanded_search_predictions.csv | category=result_csv | head=false | status=clean | size=664955 | rows=11120
+- path=results/runs/w51_optuna_expanded_search_summary.json | category=result_json | head=false | status=clean | size=1121 | metrics={"best_rho": 0.9108673834680832, "gap_to_0_911": 0.00013261653191687373}
+- path=results/runs/w51_optuna_rankspace_search_predictions.csv | category=result_csv | head=false | status=clean | size=656406 | rows=11120
+- path=results/runs/w51_optuna_rankspace_search_summary.json | category=result_json | head=false | status=clean | size=1080 | metrics={"best_rho": 0.9112039569741006, "gap_to_0_911": -0.0002039569741005831}
+- path=results/runs/w51_optuna_stochastic_search_predictions.csv | category=result_csv | head=false | status=clean | size=664991 | rows=11120
+- path=results/runs/w51_optuna_stochastic_search_summary.json | category=result_json | head=false | status=clean | size=1412 | metrics={"best_rho": 0.9106131810799091, "gap_to_0_911": 0.00038681892009095886}
+- path=results/runs/w51_runtime_snapshot.json | category=result_json | head=false | status=clean | size=4390 | metrics={"gap_to_0_911": 0.00010969685490924697}
+- path=results/runs/w51opt_offtarget_nibi_resubmitted_20260228_015449.txt | category=other | head=false | status=clean | size=114
+- path=results/runs/w51opt_offtarget_nibi_resubmitted_20260228_020000.txt | category=other | head=false | status=clean | size=117
+- path=results/runs/w51opt_offtarget_nibi_submitted_jobs_20260227_221917.txt | category=other | head=false | status=clean | size=152
+- path=results/runs/w51opt_offtarget_nibi_w1r_summary.json | category=result_json | head=false | status=clean | size=1113 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 61}
+- path=results/runs/w51opt_offtarget_nibi_w2r_summary.json | category=result_json | head=false | status=clean | size=1113 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 62}
+- path=results/runs/w51opt_offtarget_nibi_w3_summary.json | category=result_json | head=false | status=clean | size=1113 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 16}
+- path=results/runs/w51opt_offtarget_nibi_w4r_summary.json | category=result_json | head=false | status=clean | size=1113 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 64}
+- path=results/runs/w51opt_offtarget_rorqual_resubmitted_20260227_223823.txt | category=other | head=false | status=clean | size=45
+- path=results/runs/w51opt_offtarget_rorqual_submitted_jobs_20260227_221917.txt | category=other | head=false | status=clean | size=176
+- path=results/runs/w51opt_offtarget_rorqual_w1_summary.json | category=result_json | head=false | status=clean | size=1131 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 64}
+- path=results/runs/w51opt_offtarget_rorqual_w2r_summary.json | category=result_json | head=false | status=clean | size=1131 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 64}
+- path=results/runs/w51opt_offtarget_rorqual_w3_summary.json | category=result_json | head=false | status=clean | size=1131 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 60}
+- path=results/runs/w51opt_offtarget_rorqual_w4_summary.json | category=result_json | head=false | status=clean | size=1131 | metrics={"best_trial_number": 5, "best_value": 1.0, "n_trials_total": 63}
+- path=results/runs/w52_all_local_optuna_coordinate_predictions.csv | category=result_csv | head=false | status=clean | size=664975 | rows=11120
+- path=results/runs/w52_all_local_optuna_coordinate_summary.json | category=result_json | head=false | status=clean | size=1136 | metrics={"best_rho": 0.9108858595029408, "gap_to_0_911": 0.00011414049705926743}
+- path=results/runs/w52_pair_addition_search_predictions.csv | category=result_csv | head=false | status=clean | size=665008 | rows=11120
+- path=results/runs/w52_pair_addition_search_summary.json | category=result_json | head=false | status=clean | size=2273 | metrics={"gap_to_0_911": 0.00011199212273937942}
+- path=results/runs/w52_triple_addition_search_predictions.csv | category=result_csv | head=false | status=clean | size=665008 | rows=11120
+- path=results/runs/w52_triple_addition_search_summary.json | category=result_json | head=false | status=clean | size=481 | metrics={"best_rho": 0.9108891526683431, "gap_to_0_911": 0.00011084733165689364}
+- path=results/runs/w53_fullpool_pair_search_predictions.csv | category=result_csv | head=false | status=clean | size=665012 | rows=11120
+- path=results/runs/w53_fullpool_pair_search_summary.json | category=result_json | head=false | status=clean | size=2767 | metrics={"gap_to_0_911": 0.00011002556753825221}
+- path=results/runs/w54_local_stochastic_around_fullpool_pair_summary.json | category=result_json | head=false | status=clean | size=326 | metrics={"best_rho": 0.9108899744324619, "gap_to_0_911": 0.00011002556753814119}
+- path=results/runs/w54b_exact_tiny_alpha_full90_summary.json | category=result_json | head=false | status=clean | size=266 | metrics={"best_rho": 0.9108899744324618, "gap_to_0_911": 0.00011002556753825221}
+- path=results/runs/w55_fullpool_triple_search_predictions.csv | category=result_csv | head=false | status=clean | size=665026 | rows=11120
+- path=results/runs/w55_fullpool_triple_search_summary.json | category=result_json | head=false | status=clean | size=488 | metrics={"best_rho": 0.9108902328051612, "gap_to_0_911": 0.0001097671948387946}
+- path=results/runs/w55b_exact_tiny_alpha_full90_predictions.csv | category=result_csv | head=false | status=clean | size=664989 | rows=11120
+- path=results/runs/w55b_exact_tiny_alpha_full90_summary.json | category=result_json | head=false | status=clean | size=532 | metrics={"best_rho": 0.9108903031450908, "gap_to_0_911": 0.00010969685490924697}
+- path=results/runs/w57opt_local_mps_t0000.err.log | category=log_file | head=false | status=clean | size=0 | lines=0
+- path=results/runs/w57opt_local_mps_t0000.json | category=result_json | head=false | status=clean | size=10162 | metrics={"gold_rho": 0.8834756385822382}
+- path=results/runs/w57opt_local_mps_t0000.out.log | category=log_file | head=false | status=clean | size=4304 | lines=69
+- path=results/runs/w57opt_local_mps_t0000_predictions.csv | category=result_csv | head=false | status=clean | size=569803 | rows=11120
+- path=results/runs/w57opt_local_mps_t0001.err.log | category=log_file | head=false | status=clean | size=0 | lines=0
+- path=results/runs/w57opt_local_mps_t0001.out.log | category=log_file | head=false | status=clean | size=3255 | lines=52
+- path=results/runs/w57opt_local_offtarget_cpu_t0000.err.log | category=log_file | head=false | status=clean | size=0 | lines=0
+- path=results/runs/w57opt_local_offtarget_cpu_t0000.out.log | category=log_file | head=false | status=clean | size=1379 | lines=24
+- path=results/runs/w57opt_local_offtarget_cpu_t0000.pt | category=other | head=false | status=clean | size=9418917
+- path=results/runs/w58pilot_fir_submitted_jobs_20260302_190000.txt | category=other | head=false | status=clean | size=59
+- path=results/runs/w59opt_nibi_submitted_jobs_20260302_185705.txt | category=other | head=false | status=clean | size=56
+- path=results/runs/w59opt_rorqual_submitted_jobs_20260302_185705.txt | category=other | head=false | status=clean | size=68
+- path=results/runs/w5_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=664982 | rows=11120
+- path=results/runs/w5_fir_d640_gate_mix40_s3906.json | category=result_json | head=false | status=clean | size=7109 | metrics={"gold_rho": 0.87771050633634}
+- path=results/runs/w5_fir_d640_gate_mix40_s3906_predictions.csv | category=result_csv | head=false | status=clean | size=569869 | rows=11120
+- path=results/runs/w5_fir_d640_gate_s3901.json | category=result_json | head=false | status=clean | size=5294 | metrics={"gold_rho": 0.8805488113306145}
+- path=results/runs/w5_fir_d640_gate_s3901_predictions.csv | category=result_csv | head=false | status=clean | size=569811 | rows=11120
+- path=results/runs/w5_fir_d768_gate_s3903.json | category=result_json | head=false | status=clean | size=5303 | metrics={"gold_rho": 0.8824122457112584}
+- path=results/runs/w5_fir_d768_gate_s3903_predictions.csv | category=result_csv | head=false | status=clean | size=569721 | rows=11120
+- path=results/runs/w5_fir_rank_d768_l025_s3911.json | category=result_json | head=false | status=clean | size=4674 | metrics={"gold_rho": 0.8815598808572344}
+- path=results/runs/w5_fir_rank_d768_l025_s3911_predictions.csv | category=result_csv | head=false | status=clean | size=569839 | rows=11120
+- path=results/runs/w5_local_mps_d768_gate_s3913.json | category=result_json | head=false | status=clean | size=5441 | metrics={"gold_rho": 0.879700633770196}
+- path=results/runs/w5_local_mps_d768_gate_s3913_predictions.csv | category=result_csv | head=false | status=clean | size=569804 | rows=11120
+- path=results/runs/w5_nibi_d640_gate_mix10_s3907.json | category=result_json | head=false | status=clean | size=4736 | metrics={"gold_rho": 0.8787687521576613}
+- path=results/runs/w5_nibi_d640_gate_mix10_s3907_predictions.csv | category=result_csv | head=false | status=clean | size=569503 | rows=11120
+- path=results/runs/w5_nibi_d640_gate_mse_s3909.json | category=result_json | head=false | status=clean | size=5762 | metrics={"gold_rho": 0.8772158095143915}
+- path=results/runs/w5_nibi_d640_gate_mse_s3909_predictions.csv | category=result_csv | head=false | status=clean | size=569590 | rows=11120
+- path=results/runs/w5_nibi_d640_gate_s3902.json | category=result_json | head=false | status=clean | size=5437 | metrics={"gold_rho": 0.8773932404256934}
+- path=results/runs/w5_nibi_d640_gate_s3902_predictions.csv | category=result_csv | head=false | status=clean | size=569559 | rows=11120
+- path=results/runs/w5_nibi_d768_gate_s3904.json | category=result_json | head=false | status=clean | size=5582 | metrics={"gold_rho": 0.8804477386587367}
+- path=results/runs/w5_nibi_d768_gate_s3904_predictions.csv | category=result_csv | head=false | status=clean | size=570000 | rows=11120
+- path=results/runs/w5_progress_summary.json | category=result_json | head=false | status=clean | size=4647
+- path=results/runs/w5_rorqual_d640_concat_s3908.json | category=result_json | head=false | status=clean | size=7531 | metrics={"gold_rho": 0.8780117762371032}
+- path=results/runs/w5_rorqual_d640_concat_s3908_predictions.csv | category=result_csv | head=false | status=clean | size=569836 | rows=11120
+- path=results/runs/w5_rorqual_d640_gate_s3905.json | category=result_json | head=false | status=clean | size=5449 | metrics={"gold_rho": 0.8806148795186176}
+- path=results/runs/w5_rorqual_d640_gate_s3905_predictions.csv | category=result_csv | head=false | status=clean | size=569733 | rows=11120
+- path=results/runs/w5_rorqual_d896_gate_s3912.json | category=result_json | head=false | status=clean | size=6138 | metrics={"gold_rho": 0.880388215681201}
+- path=results/runs/w5_rorqual_d896_gate_s3912_predictions.csv | category=result_csv | head=false | status=clean | size=569757 | rows=11120
+- path=results/runs/w5_rorqual_rank_d640_l035_s3910.json | category=result_json | head=false | status=clean | size=5438 | metrics={"gold_rho": 0.8801303733969725}
+- path=results/runs/w5_rorqual_rank_d640_l035_s3910_predictions.csv | category=result_csv | head=false | status=clean | size=569681 | rows=11120
+- path=results/runs/w5f_rorqual_d640_gate_s3923.json | category=result_json | head=false | status=clean | size=4460 | metrics={"gold_rho": 0.877801494966102}
+- path=results/runs/w5f_rorqual_d640_gate_s3923_predictions.csv | category=result_csv | head=false | status=clean | size=569778 | rows=11120
+- path=results/runs/w6_best_ensemble_latest_predictions.csv | category=result_csv | head=false | status=clean | size=665081 | rows=11120
+- path=results/runs/w6_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=664881 | rows=11120
+- path=results/runs/w6_best_ensemble_predictions.csv | category=result_csv | head=false | status=clean | size=665032 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4001.json | category=result_json | head=false | status=clean | size=6563 | metrics={"gold_rho": 0.8782958891438871}
+- path=results/runs/w6_fir_d640_gate_s4001_predictions.csv | category=result_csv | head=false | status=clean | size=569917 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4002.json | category=result_json | head=false | status=clean | size=5303 | metrics={"gold_rho": 0.8812937971079028}
+- path=results/runs/w6_fir_d640_gate_s4002_predictions.csv | category=result_csv | head=false | status=clean | size=569764 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4003.json | category=result_json | head=false | status=clean | size=4743 | metrics={"gold_rho": 0.878571993996653}
+- path=results/runs/w6_fir_d640_gate_s4003_predictions.csv | category=result_csv | head=false | status=clean | size=569877 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4004.json | category=result_json | head=false | status=clean | size=5166 | metrics={"gold_rho": 0.8801101187490951}
+- path=results/runs/w6_fir_d640_gate_s4004_predictions.csv | category=result_csv | head=false | status=clean | size=569660 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4005.json | category=result_json | head=false | status=clean | size=5580 | metrics={"gold_rho": 0.8794987925623249}
+- path=results/runs/w6_fir_d640_gate_s4005_predictions.csv | category=result_csv | head=false | status=clean | size=569777 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4006.json | category=result_json | head=false | status=clean | size=5028 | metrics={"gold_rho": 0.879512249437394}
+- path=results/runs/w6_fir_d640_gate_s4006_predictions.csv | category=result_csv | head=false | status=clean | size=569911 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4007.json | category=result_json | head=false | status=clean | size=5442 | metrics={"gold_rho": 0.8808726354142471}
+- path=results/runs/w6_fir_d640_gate_s4007_predictions.csv | category=result_csv | head=false | status=clean | size=569828 | rows=11120
+- path=results/runs/w6_fir_d640_gate_s4008.json | category=result_json | head=false | status=clean | size=6978 | metrics={"gold_rho": 0.8808949802965582}
+- path=results/runs/w6_fir_d640_gate_s4008_predictions.csv | category=result_csv | head=false | status=clean | size=569795 | rows=11120
+- path=results/runs/w6_fir_d768_gate_s4101.json | category=result_json | head=false | status=clean | size=5585 | metrics={"gold_rho": 0.8822810404664148}
+- path=results/runs/w6_fir_d768_gate_s4101_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w6_fir_d768_gate_s4102.json | category=result_json | head=false | status=clean | size=5166 | metrics={"gold_rho": 0.8807380071009998}
+- path=results/runs/w6_fir_d768_gate_s4102_predictions.csv | category=result_csv | head=false | status=clean | size=569848 | rows=11120
+- path=results/runs/w6_fir_d768_gate_s4103.json | category=result_json | head=false | status=clean | size=5860 | metrics={"gold_rho": 0.8806300214455316}
+- path=results/runs/w6_fir_d768_gate_s4103_predictions.csv | category=result_csv | head=false | status=clean | size=569776 | rows=11120
+- path=results/runs/w6_fir_d768_gate_s4104.json | category=result_json | head=false | status=clean | size=5443 | metrics={"gold_rho": 0.8750858230460679}
+- path=results/runs/w6_fir_d768_gate_s4104_predictions.csv | category=result_csv | head=false | status=clean | size=569774 | rows=11120
+- path=results/runs/w6_fir_rank_d768_l020_s4201.json | category=result_json | head=false | status=clean | size=3902 | metrics={"gold_rho": 0.8783945421418333}
+- path=results/runs/w6_fir_rank_d768_l020_s4201_predictions.csv | category=result_csv | head=false | status=clean | size=569867 | rows=11120
+- path=results/runs/w6_fir_rank_d768_l020_s4202.json | category=result_json | head=false | status=clean | size=4285 | metrics={"gold_rho": 0.8803192788359844}
+- path=results/runs/w6_fir_rank_d768_l020_s4202_predictions.csv | category=result_csv | head=false | status=clean | size=569689 | rows=11120
+- path=results/runs/w6_fir_rank_d768_l020_s4203.json | category=result_json | head=false | status=clean | size=5436 | metrics={"gold_rho": 0.879311997917009}
+- path=results/runs/w6_fir_rank_d768_l020_s4203_predictions.csv | category=result_csv | head=false | status=clean | size=569770 | rows=11120
+- path=results/runs/w6_fir_rank_d768_l020_s4204.json | category=result_json | head=false | status=clean | size=5820 | metrics={"gold_rho": 0.8802738086500888}
+- path=results/runs/w6_fir_rank_d768_l020_s4204_predictions.csv | category=result_csv | head=false | status=clean | size=569781 | rows=11120
+- path=results/runs/w6_progress_summary.json | category=result_json | head=false | status=clean | size=5769
+- path=results/runs/w6_progress_summary_latest.json | category=result_json | head=false | status=clean | size=6152
+- path=results/runs/w6_progress_summary_partial.json | category=result_json | head=false | status=clean | size=5187
+- path=results/runs/w7_best_ensemble_fast_predictions.csv | category=result_csv | head=false | status=clean | size=664984 | rows=11120
+- path=results/runs/w7_best_ensemble_latest_predictions.csv | category=result_csv | head=false | status=clean | size=664956 | rows=11120
+- path=results/runs/w7_fir_rand_01_s5000_d640_gate.json | category=result_json | head=false | status=clean | size=5865 | metrics={"gold_rho": 0.8774909159189814}
+- path=results/runs/w7_fir_rand_01_s5000_d640_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569683 | rows=11120
+- path=results/runs/w7_fir_rand_02_s5001_d768_gate.json | category=result_json | head=false | status=clean | size=5161 | metrics={"gold_rho": 0.8821038579766144}
+- path=results/runs/w7_fir_rand_02_s5001_d768_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569732 | rows=11120
+- path=results/runs/w7_fir_rand_03_s5002_d640_concat.json | category=result_json | head=false | status=clean | size=5169 | metrics={"gold_rho": 0.878158462613728}
+- path=results/runs/w7_fir_rand_03_s5002_d640_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569737 | rows=11120
+- path=results/runs/w7_fir_rand_04_s5003_d512_gate.json | category=result_json | head=false | status=clean | size=6564 | metrics={"gold_rho": 0.8787248272761446}
+- path=results/runs/w7_fir_rand_04_s5003_d512_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569811 | rows=11120
+- path=results/runs/w7_fir_rand_05_s5004_d896_gate.json | category=result_json | head=false | status=clean | size=4879 | metrics={"gold_rho": 0.876287451447175}
+- path=results/runs/w7_fir_rand_05_s5004_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569624 | rows=11120
+- path=results/runs/w7_fir_rand_06_s5005_d768_concat.json | category=result_json | head=false | status=clean | size=4746 | metrics={"gold_rho": 0.8800786498034383}
+- path=results/runs/w7_fir_rand_06_s5005_d768_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569777 | rows=11120
+- path=results/runs/w7_fir_rand_07_s5006_d512_gate.json | category=result_json | head=false | status=clean | size=5166 | metrics={"gold_rho": 0.8820892954720281}
+- path=results/runs/w7_fir_rand_07_s5006_d512_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569650 | rows=11120
+- path=results/runs/w7_fir_rand_08_s5007_d512_concat.json | category=result_json | head=false | status=clean | size=6273 | metrics={"gold_rho": 0.8771459493154946}
+- path=results/runs/w7_fir_rand_08_s5007_d512_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569710 | rows=11120
+- path=results/runs/w7_fir_rand_09_s5008_d512_gate.json | category=result_json | head=false | status=clean | size=4745 | metrics={"gold_rho": 0.8771722035322207}
+- path=results/runs/w7_fir_rand_09_s5008_d512_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569767 | rows=11120
+- path=results/runs/w7_fir_rand_10_s5009_d768_gate.json | category=result_json | head=false | status=clean | size=4322 | metrics={"gold_rho": 0.8834060552597062}
+- path=results/runs/w7_fir_rand_10_s5009_d768_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569658 | rows=11120
+- path=results/runs/w7_fir_rand_12_s5011_d768_gate.json | category=result_json | head=false | status=clean | size=4464 | metrics={"gold_rho": 0.8809102446111002}
+- path=results/runs/w7_fir_rand_12_s5011_d768_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w7_fir_rand_13_s5012_d640_gate.json | category=result_json | head=false | status=clean | size=6841 | metrics={"gold_rho": 0.8815676407706252}
+- path=results/runs/w7_fir_rand_13_s5012_d640_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569686 | rows=11120
+- path=results/runs/w7_fir_rand_14_s5013_d896_gate.json | category=result_json | head=false | status=clean | size=4877 | metrics={"gold_rho": 0.8798939058166563}
+- path=results/runs/w7_fir_rand_14_s5013_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569745 | rows=11120
+- path=results/runs/w7_fir_rand_15_s5014_d768_concat.json | category=result_json | head=false | status=clean | size=4461 | metrics={"gold_rho": 0.8784681094950663}
+- path=results/runs/w7_fir_rand_15_s5014_d768_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569736 | rows=11120
+- path=results/runs/w7_fir_rand_16_s5015_d896_concat.json | category=result_json | head=false | status=clean | size=4605 | metrics={"gold_rho": 0.8819598880666575}
+- path=results/runs/w7_fir_rand_16_s5015_d896_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569727 | rows=11120
+- path=results/runs/w7_fir_rand_17_s5016_d640_gate.json | category=result_json | head=false | status=clean | size=6978 | metrics={"gold_rho": 0.8800431266240275}
+- path=results/runs/w7_fir_rand_17_s5016_d640_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569604 | rows=11120
+- path=results/runs/w7_fir_rand_18_s5017_d768_gate.json | category=result_json | head=false | status=clean | size=6279 | metrics={"gold_rho": 0.87699785366448}
+- path=results/runs/w7_fir_rand_18_s5017_d768_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569700 | rows=11120
+- path=results/runs/w7_fir_rand_19_s5018_d768_concat.json | category=result_json | head=false | status=clean | size=6135 | metrics={"gold_rho": 0.8799059957275223}
+- path=results/runs/w7_fir_rand_19_s5018_d768_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569811 | rows=11120
+- path=results/runs/w7_fir_rand_20_s5019_d896_gate.json | category=result_json | head=false | status=clean | size=5719 | metrics={"gold_rho": 0.8767914344445336}
+- path=results/runs/w7_fir_rand_20_s5019_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569677 | rows=11120
+- path=results/runs/w7_fir_rand_21_s5020_d768_gate.json | category=result_json | head=false | status=clean | size=4745 | metrics={"gold_rho": 0.8830330812192912}
+- path=results/runs/w7_fir_rand_21_s5020_d768_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569794 | rows=11120
+- path=results/runs/w7_fir_rand_22_s5021_d640_gate.json | category=result_json | head=false | status=clean | size=5026 | metrics={"gold_rho": 0.8822305345503713}
+- path=results/runs/w7_fir_rand_22_s5021_d640_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569810 | rows=11120
+- path=results/runs/w7_fir_rand_23_s5022_d640_concat.json | category=result_json | head=false | status=clean | size=5167 | metrics={"gold_rho": 0.8810384854539701}
+- path=results/runs/w7_fir_rand_23_s5022_d640_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569683 | rows=11120
+- path=results/runs/w7_fir_rand_24_s5023_d896_concat.json | category=result_json | head=false | status=clean | size=4465 | metrics={"gold_rho": 0.8790115728290063}
+- path=results/runs/w7_fir_rand_24_s5023_d896_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569729 | rows=11120
+- path=results/runs/w7_nibi_rand_01_s6000_d640_gate.json | category=result_json | head=false | status=clean | size=6703 | metrics={"gold_rho": 0.8801984794535299}
+- path=results/runs/w7_nibi_rand_01_s6000_d640_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569836 | rows=11120
+- path=results/runs/w7_nibi_rand_02_s6001_d896_concat.json | category=result_json | head=false | status=clean | size=5170 | metrics={"gold_rho": 0.8784529264892802}
+- path=results/runs/w7_nibi_rand_02_s6001_d896_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569711 | rows=11120
+- path=results/runs/w7_nibi_rand_03_s6002_d896_concat.json | category=result_json | head=false | status=clean | size=4464 | metrics={"gold_rho": 0.8818247078126425}
+- path=results/runs/w7_nibi_rand_03_s6002_d896_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569822 | rows=11120
+- path=results/runs/w7_nibi_rand_04_s6003_d768_concat.json | category=result_json | head=false | status=clean | size=6558 | metrics={"gold_rho": 0.8798880674047398}
+- path=results/runs/w7_nibi_rand_04_s6003_d768_concat_predictions.csv | category=result_csv | head=false | status=clean | size=569782 | rows=11120
+- path=results/runs/w7_nibi_rand_05_s6004_d896_gate.json | category=result_json | head=false | status=clean | size=5573 | metrics={"gold_rho": 0.8817575143587971}
+- path=results/runs/w7_nibi_rand_05_s6004_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569696 | rows=11120
+- path=results/runs/w7_nibi_rand_06_s6005_d640_gate.json | category=result_json | head=false | status=clean | size=5161 | metrics={"gold_rho": 0.8793050176654831}
+- path=results/runs/w7_nibi_rand_06_s6005_d640_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569752 | rows=11120
+- path=results/runs/w7_nibi_rand_07_s6006_d896_gate.json | category=result_json | head=false | status=clean | size=5442 | metrics={"gold_rho": 0.8825341883344584}
+- path=results/runs/w7_nibi_rand_07_s6006_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569802 | rows=11120
+- path=results/runs/w7_nibi_rand_08_s6007_d896_gate.json | category=result_json | head=false | status=clean | size=4319 | metrics={"gold_rho": 0.8822855124058573}
+- path=results/runs/w7_nibi_rand_08_s6007_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569784 | rows=11120
+- path=results/runs/w7_nibi_rand_09_s6008_d768_gate.json | category=result_json | head=false | status=clean | size=5021 | metrics={"gold_rho": 0.8787606908591845}
+- path=results/runs/w7_nibi_rand_09_s6008_d768_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w7_nibi_rand_10_s6009_d896_gate.json | category=result_json | head=false | status=clean | size=4887 | metrics={"gold_rho": 0.8807439972960163}
+- path=results/runs/w7_nibi_rand_10_s6009_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569684 | rows=11120
+- path=results/runs/w7_nibi_rand_11_s6010_d896_gate.json | category=result_json | head=false | status=clean | size=4327 | metrics={"gold_rho": 0.8822123283149843}
+- path=results/runs/w7_nibi_rand_11_s6010_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569757 | rows=11120
+- path=results/runs/w7_nibi_rand_12_s6011_d896_gate.json | category=result_json | head=false | status=clean | size=5164 | metrics={"gold_rho": 0.8821234661437378}
+- path=results/runs/w7_nibi_rand_12_s6011_d896_gate_predictions.csv | category=result_csv | head=false | status=clean | size=569721 | rows=11120
+- path=results/runs/w7_progress_summary_fast.json | category=result_json | head=false | status=clean | size=8169
+- path=results/runs/w7_progress_summary_latest.json | category=result_json | head=false | status=clean | size=8172
+- path=results/runs/w8_best_ensemble_fast_predictions.csv | category=result_csv | head=false | status=clean | size=665031 | rows=11120
+- path=results/runs/w8_fir_d640_gate_s7001.json | category=result_json | head=false | status=clean | size=5859 | metrics={"gold_rho": 0.8787079339914527}
+- path=results/runs/w8_fir_d640_gate_s7001_predictions.csv | category=result_csv | head=false | status=clean | size=569745 | rows=11120
+- path=results/runs/w8_fir_d640_gate_s7002.json | category=result_json | head=false | status=clean | size=5994 | metrics={"gold_rho": 0.8792170697600914}
+- path=results/runs/w8_fir_d640_gate_s7002_predictions.csv | category=result_csv | head=false | status=clean | size=569933 | rows=11120
+- path=results/runs/w8_fir_d640_gate_s7003.json | category=result_json | head=false | status=clean | size=5020 | metrics={"gold_rho": 0.8808124840919624}
+- path=results/runs/w8_fir_d640_gate_s7003_predictions.csv | category=result_csv | head=false | status=clean | size=569766 | rows=11120
+- path=results/runs/w8_fir_d640_gate_s7004.json | category=result_json | head=false | status=clean | size=5292 | metrics={"gold_rho": 0.8779117853651122}
+- path=results/runs/w8_fir_d640_gate_s7004_predictions.csv | category=result_csv | head=false | status=clean | size=569806 | rows=11120
+- path=results/runs/w8_fir_d640_gate_s7005.json | category=result_json | head=false | status=clean | size=5731 | metrics={"gold_rho": 0.8805454550863425}
+- path=results/runs/w8_fir_d640_gate_s7005_predictions.csv | category=result_csv | head=false | status=clean | size=569879 | rows=11120
+- path=results/runs/w8_nibi_d768_gate_s7101.json | category=result_json | head=false | status=clean | size=6561 | metrics={"gold_rho": 0.8819257335546037}
+- path=results/runs/w8_nibi_d768_gate_s7101_predictions.csv | category=result_csv | head=false | status=clean | size=569737 | rows=11120
+- path=results/runs/w8_nibi_d768_gate_s7102.json | category=result_json | head=false | status=clean | size=4749 | metrics={"gold_rho": 0.8813475834428869}
+- path=results/runs/w8_nibi_d768_gate_s7102_predictions.csv | category=result_csv | head=false | status=clean | size=569651 | rows=11120
+- path=results/runs/w8_nibi_d768_gate_s7103.json | category=result_json | head=false | status=clean | size=6279 | metrics={"gold_rho": 0.8811011898704592}
+- path=results/runs/w8_nibi_d768_gate_s7103_predictions.csv | category=result_csv | head=false | status=clean | size=569723 | rows=11120
+- path=results/runs/w8_nibi_d768_gate_s7104.json | category=result_json | head=false | status=clean | size=4882 | metrics={"gold_rho": 0.8808166596143512}
+- path=results/runs/w8_nibi_d768_gate_s7104_predictions.csv | category=result_csv | head=false | status=clean | size=569695 | rows=11120
+- path=results/runs/w8_nibi_d768_gate_s7105.json | category=result_json | head=false | status=clean | size=4887 | metrics={"gold_rho": 0.8818033374218729}
+- path=results/runs/w8_nibi_d768_gate_s7105_predictions.csv | category=result_csv | head=false | status=clean | size=569757 | rows=11120
+- path=results/runs/w8_progress_summary_fast.json | category=result_json | head=false | status=clean | size=8676
+- path=results/runs/w8_rorqual_d896_gate_backfill_s7251.json | category=result_json | head=false | status=clean | size=5025 | metrics={"gold_rho": 0.8792927067808626}
+- path=results/runs/w8_rorqual_d896_gate_backfill_s7251_predictions.csv | category=result_csv | head=false | status=clean | size=569848 | rows=11120
+- path=results/runs/w8_rorqual_d896_gate_backfill_s7252.json | category=result_json | head=false | status=clean | size=4883 | metrics={"gold_rho": 0.8806002622396318}
+- path=results/runs/w8_rorqual_d896_gate_backfill_s7252_predictions.csv | category=result_csv | head=false | status=clean | size=569827 | rows=11120
+- path=results/runs/w8_rorqual_d896_gate_s7201.json | category=result_json | head=false | status=clean | size=5020 | metrics={"gold_rho": 0.8828872762874038}
+- path=results/runs/w8_rorqual_d896_gate_s7201_predictions.csv | category=result_csv | head=false | status=clean | size=569760 | rows=11120
+- path=results/runs/w8_rorqual_d896_gate_s7202.json | category=result_json | head=false | status=clean | size=4190 | metrics={"gold_rho": 0.8804124484653336}
+- path=results/runs/w8_rorqual_d896_gate_s7202_predictions.csv | category=result_csv | head=false | status=clean | size=569687 | rows=11120
+- path=results/runs/w8_rorqual_d896_gate_s7203.json | category=result_json | head=false | status=clean | size=6695 | metrics={"gold_rho": 0.8790282763770424}
+- path=results/runs/w8_rorqual_d896_gate_s7203_predictions.csv | category=result_csv | head=false | status=clean | size=569662 | rows=11120
+- path=results/runs/w8_rorqual_d896_gate_s7204.json | category=result_json | head=false | status=clean | size=6285 | metrics={"gold_rho": 0.8779907379296094}
+- path=results/runs/w8_rorqual_d896_gate_s7204_predictions.csv | category=result_csv | head=false | status=clean | size=569907 | rows=11120
+- path=results/runs/w8_rorqual_d896_gate_s7205.json | category=result_json | head=false | status=clean | size=5164 | metrics={"gold_rho": 0.8798700819179297}
+- path=results/runs/w8_rorqual_d896_gate_s7205_predictions.csv | category=result_csv | head=false | status=clean | size=569635 | rows=11120
+- path=results/runs/w9_best_ensemble_latest_predictions.csv | category=result_csv | head=false | status=clean | size=664880 | rows=11120
+- path=results/runs/w9_best_ensemble_partial_predictions.csv | category=result_csv | head=false | status=clean | size=665068 | rows=11120
+- path=results/runs/w9_fir_d768_gate_s7301.json | category=result_json | head=false | status=clean | size=6412 | metrics={"gold_rho": 0.8826965090261297}
+- path=results/runs/w9_fir_d768_gate_s7301_predictions.csv | category=result_csv | head=false | status=clean | size=569663 | rows=11120
+- path=results/runs/w9_fir_d768_gate_s7302.json | category=result_json | head=false | status=clean | size=5579 | metrics={"gold_rho": 0.8807735112789411}
+- path=results/runs/w9_fir_d768_gate_s7302_predictions.csv | category=result_csv | head=false | status=clean | size=569775 | rows=11120
+- path=results/runs/w9_fir_d768_gate_s7303.json | category=result_json | head=false | status=clean | size=6138 | metrics={"gold_rho": 0.880012849700447}
+- path=results/runs/w9_fir_d768_gate_s7303_predictions.csv | category=result_csv | head=false | status=clean | size=569674 | rows=11120
+- path=results/runs/w9_fir_d768_gate_s7304.json | category=result_json | head=false | status=clean | size=5164 | metrics={"gold_rho": 0.8802658896654402}
+- path=results/runs/w9_fir_d768_gate_s7304_predictions.csv | category=result_csv | head=false | status=clean | size=569732 | rows=11120
+- path=results/runs/w9_fir_d768_gate_s7305.json | category=result_json | head=false | status=clean | size=5439 | metrics={"gold_rho": 0.8825269492066768}
+- path=results/runs/w9_fir_d768_gate_s7305_predictions.csv | category=result_csv | head=false | status=clean | size=569685 | rows=11120
+- path=results/runs/w9_fir_d896_gate_s7401.json | category=result_json | head=false | status=clean | size=5725 | metrics={"gold_rho": 0.8798177329968401}
+- path=results/runs/w9_fir_d896_gate_s7401_predictions.csv | category=result_csv | head=false | status=clean | size=569751 | rows=11120
+- path=results/runs/w9_fir_d896_gate_s7402.json | category=result_json | head=false | status=clean | size=4322 | metrics={"gold_rho": 0.8817631792466577}
+- path=results/runs/w9_fir_d896_gate_s7402_predictions.csv | category=result_csv | head=false | status=clean | size=569672 | rows=11120
+- path=results/runs/w9_fir_d896_gate_s7403.json | category=result_json | head=false | status=clean | size=4880 | metrics={"gold_rho": 0.8802845779958026}
+- path=results/runs/w9_fir_d896_gate_s7403_predictions.csv | category=result_csv | head=false | status=clean | size=569735 | rows=11120
+- path=results/runs/w9_fir_d896_gate_s7404.json | category=result_json | head=false | status=clean | size=5440 | metrics={"gold_rho": 0.8826948252570063}
+- path=results/runs/w9_fir_d896_gate_s7404_predictions.csv | category=result_csv | head=false | status=clean | size=569769 | rows=11120
+- path=results/runs/w9_fir_d896_gate_s7405.json | category=result_json | head=false | status=clean | size=5442 | metrics={"gold_rho": 0.8843558173346246}
+- path=results/runs/w9_fir_d896_gate_s7405_predictions.csv | category=result_csv | head=false | status=clean | size=569752 | rows=11120
+- path=results/runs/w9_local_mps_d768_gate_s7701.json | category=result_json | head=false | status=clean | size=5167 | metrics={"gold_rho": 0.8826276459145183}
+- path=results/runs/w9_local_mps_d768_gate_s7701_predictions.csv | category=result_csv | head=false | status=clean | size=569660 | rows=11120
+- path=results/runs/w9_nibi_d768_gate_s7501.json | category=result_json | head=false | status=clean | size=5711 | metrics={"gold_rho": 0.8825020664827365}
+- path=results/runs/w9_nibi_d768_gate_s7501_predictions.csv | category=result_csv | head=false | status=clean | size=569754 | rows=11120
+- path=results/runs/w9_nibi_d768_gate_s7502.json | category=result_json | head=false | status=clean | size=6417 | metrics={"gold_rho": 0.8822624634513787}
+- path=results/runs/w9_nibi_d768_gate_s7502_predictions.csv | category=result_csv | head=false | status=clean | size=569925 | rows=11120
+- path=results/runs/w9_nibi_d768_gate_s7503.json | category=result_json | head=false | status=clean | size=5997 | metrics={"gold_rho": 0.8833166527825236}
+- path=results/runs/w9_nibi_d768_gate_s7503_predictions.csv | category=result_csv | head=false | status=clean | size=569720 | rows=11120
+- path=results/runs/w9_nibi_d768_gate_s7504.json | category=result_json | head=false | status=clean | size=6695 | metrics={"gold_rho": 0.8820202400792466}
+- path=results/runs/w9_nibi_d768_gate_s7504_predictions.csv | category=result_csv | head=false | status=clean | size=569746 | rows=11120
+- path=results/runs/w9_nibi_d768_gate_s7505.json | category=result_json | head=false | status=clean | size=8091 | metrics={"gold_rho": 0.8762132358675412}
+- path=results/runs/w9_nibi_d768_gate_s7505_predictions.csv | category=result_csv | head=false | status=clean | size=569799 | rows=11120
+- path=results/runs/w9_nibi_d896_gate_s7601.json | category=result_json | head=false | status=clean | size=4747 | metrics={"gold_rho": 0.882604428374193}
+- path=results/runs/w9_nibi_d896_gate_s7601_predictions.csv | category=result_csv | head=false | status=clean | size=569800 | rows=11120
+- path=results/runs/w9_nibi_d896_gate_s7602.json | category=result_json | head=false | status=clean | size=5723 | metrics={"gold_rho": 0.8827573404086531}
+- path=results/runs/w9_nibi_d896_gate_s7602_predictions.csv | category=result_csv | head=false | status=clean | size=569820 | rows=11120
+- path=results/runs/w9_nibi_d896_gate_s7603.json | category=result_json | head=false | status=clean | size=4330 | metrics={"gold_rho": 0.8819048315026523}
+- path=results/runs/w9_nibi_d896_gate_s7603_predictions.csv | category=result_csv | head=false | status=clean | size=569657 | rows=11120
+- path=results/runs/w9_nibi_d896_gate_s7604.json | category=result_json | head=false | status=clean | size=4744 | metrics={"gold_rho": 0.8838883542542707}
+- path=results/runs/w9_nibi_d896_gate_s7604_predictions.csv | category=result_csv | head=false | status=clean | size=569676 | rows=11120
+- path=results/runs/w9_nibi_d896_gate_s7605.json | category=result_json | head=false | status=clean | size=5725 | metrics={"gold_rho": 0.8761969741618656}
+- path=results/runs/w9_nibi_d896_gate_s7605_predictions.csv | category=result_csv | head=false | status=clean | size=569660 | rows=11120
+- path=results/runs/w9_progress_summary_latest.json | category=result_json | head=false | status=clean | size=9287
+- path=results/runs/w9_progress_summary_partial.json | category=result_json | head=false | status=clean | size=9176

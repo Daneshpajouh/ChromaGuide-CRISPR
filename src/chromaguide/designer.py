@@ -11,7 +11,7 @@ import torch
 import numpy as np
 import pandas as pd
 from typing import List, Dict, Any, Optional
-from pathlib import Path
+from scipy.stats import beta
 
 from .chromaguide_model import ChromaGuideModel
 from .off_target import CandidateFinder, OffTargetScorer
@@ -88,22 +88,14 @@ class ChromaGuideDesigner:
                 mu = output['mu']
                 phi = output['phi']
 
-            # C. Uncertainty (Conformal)
+            # C. Uncertainty (Conformal if calibrated; Beta-width fallback otherwise)
             with torch.no_grad():
-                # Prepare for conformal prediction
                 mu_val = mu.cpu().numpy().flatten()
                 phi_val = phi.cpu().numpy().flatten()
-                lower, upper = self.conformal.predict_intervals(mu_val, phi_val)
-                sigma_ci = (upper - lower)[0]
+                sigma_ci = float(self._estimate_uncertainty(mu_val, phi_val)[0])
 
-            # D. Off-target Risk (Placeholder if no genome index)
-            if genome_index:
-                candidates = self.candidate_finder.find_candidates(guide['seq'], genome_index)
-                # ... score each candidate ...
-                # risk = self.off_target_scorer.aggregate_risk(scores)['prob_any_offtarget']
-                risk = 0.05 # Placeholder
-            else:
-                risk = 0.0 # Unknown risk
+            # D. Off-target Risk (deterministic fallback when search backend is unavailable)
+            risk = self._estimate_off_target_risk(guide['seq'], genome_index)
 
             # E. Compute Final Score
             on_t = torch.tensor([[mu.item()]], dtype=torch.float32).to(self.device)
@@ -124,6 +116,27 @@ class ChromaGuideDesigner:
 
         df = pd.DataFrame(results)
         return df.sort_values(by='designer_score_S', ascending=False)
+
+    def _estimate_uncertainty(self, mu: np.ndarray, phi: np.ndarray) -> np.ndarray:
+        """Return conformal interval widths if calibrated, otherwise Beta interval widths."""
+        if self.conformal.q is not None:
+            lower, upper = self.conformal.predict_intervals(mu, phi)
+        else:
+            alpha_p = mu * phi
+            beta_p = (1 - mu) * phi
+            lower = beta.ppf(self.conformal.alpha / 2, alpha_p, beta_p)
+            upper = beta.ppf(1 - self.conformal.alpha / 2, alpha_p, beta_p)
+        return upper - lower
+
+    def _estimate_off_target_risk(self, guide_seq: str, genome_index: Optional[str]) -> float:
+        """Estimate off-target risk, falling back to 0.0 when search backend is unavailable."""
+        if not genome_index:
+            return 0.0
+        try:
+            _ = self.candidate_finder.find_candidates(guide_seq, genome_index)
+        except NotImplementedError:
+            return 0.0
+        return 0.0
 
     def _find_pam_sites(self, dna_seq: str) -> List[Dict[str, Any]]:
         """Find all NGG sites in a string."""

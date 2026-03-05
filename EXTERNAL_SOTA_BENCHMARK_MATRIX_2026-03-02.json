@@ -1,0 +1,123 @@
+{
+  "generated_utc": "2026-03-02T20:05:00Z",
+  "as_of_date": "2026-03-02",
+  "scope_note": "Primary-source external benchmark working reference for on-target, off-target, and integrated-design claim framing. This is a compact working matrix, not yet a full exhaustive literature review.",
+  "sources": [
+    {
+      "model": "CRISPR-FMC",
+      "year": 2025,
+      "task": "on_target",
+      "model_type": "single_model",
+      "benchmark_regime": "nine public CRISPR-Cas9 datasets plus cross-dataset transfer",
+      "datasets": [
+        {"name": "WT", "n": 55603},
+        {"name": "ESP", "n": 58616},
+        {"name": "HF", "n": 56887},
+        {"name": "xCas9", "n": 37738},
+        {"name": "SpCas9-NG", "n": 30585},
+        {"name": "Sniper-Cas9", "n": 37794},
+        {"name": "HCT116", "n": 4239},
+        {"name": "HELA", "n": 8101},
+        {"name": "HL60", "n": 2076}
+      ],
+      "reported_values": {
+        "WT": {"SCC": 0.861, "PCC": 0.889},
+        "ESP": {"SCC": 0.851, "PCC": 0.845},
+        "HF": {"SCC": 0.851, "PCC": 0.866},
+        "Sniper-Cas9": {"SCC": 0.935, "PCC": 0.957},
+        "HL60": {"SCC": 0.402, "PCC": 0.404},
+        "WT_to_HL60": {"SCC": 0.468, "PCC": 0.459},
+        "ESP_to_HL60": {"SCC": 0.448, "PCC": 0.432},
+        "mean_nine_dataset_ablation": {"SCC": 0.709, "PCC": 0.716}
+      },
+      "source_url": "https://www.frontiersin.org/journals/genome-editing/articles/10.3389/fgeed.2025.1643888/full"
+    },
+    {
+      "model": "CRISPR_HNN",
+      "year": 2025,
+      "task": "on_target",
+      "model_type": "single_model",
+      "benchmark_regime": "public on-target datasets",
+      "reported_values": {
+        "abstract_claim": "Surpasses existing models on public datasets"
+      },
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/40502933/"
+    },
+    {
+      "model": "CrnnCrispr",
+      "year": 2024,
+      "task": "on_target",
+      "model_type": "single_model",
+      "benchmark_regime": "nine public datasets, leave-one-cell-out, transfer learning",
+      "reported_values": {
+        "mean_large_scale_SCC": 0.756,
+        "mean_medium_scale_SCC": 0.768,
+        "transfer_HCT116_SCC": 0.768,
+        "transfer_HELA_SCC": 0.709,
+        "transfer_HL60_SCC": 0.545
+      },
+      "source_url": "https://www.mdpi.com/1422-0067/25/8/4429"
+    },
+    {
+      "model": "CCLMoff",
+      "year": 2025,
+      "task": "off_target",
+      "model_type": "single_model",
+      "benchmark_regime": "multi-assay cross-validation, cross-dataset transfer, leave-one-dataset-out",
+      "datasets_or_assays": [
+        "Extru-seq",
+        "SITE-seq",
+        "CIRCLE-seq",
+        "DISCOVER-seq",
+        "DISCOVER-seq+",
+        "CHANGE-seq",
+        "BLESS",
+        "GUIDE-seq",
+        "Digenome-seq",
+        "DIG-seq",
+        "IDLV",
+        "HTGTS",
+        "SURRO-seq"
+      ],
+      "reported_values": {
+        "CIRCLE_seq_cross_validation": {"AUROC": 0.985, "AUPRC": 0.524},
+        "CIRCLE_to_GUIDE": {"AUROC": 0.996, "AUPRC": 0.520},
+        "DIG_seq_leave_one_dataset_out": {"AUROC": 0.985, "AUPRC": 0.720},
+        "DISCOVER_seq_leave_one_dataset_out": {"AUROC": 0.944, "AUPRC_approx": 0.665},
+        "unseen_19_21nt_generalization": {"AUROC_approx": 0.8123}
+      },
+      "comparators_cited_in_same_source": {
+        "CRISPR-IP": {"AUROC": 0.945, "AUPRC": 0.337},
+        "MOFF": {"AUROC": 0.876, "AUPRC": 0.282},
+        "CRISPR-DNT": {"AUROC": 0.977, "AUPRC": 0.381}
+      },
+      "source_url": "https://www.nature.com/articles/s42003-025-08275-6"
+    },
+    {
+      "model": "DNABERT-Epi",
+      "year": 2025,
+      "task": "off_target",
+      "model_type": "single_model",
+      "benchmark_regime": "seven real off-target datasets against five SOTA baselines",
+      "reported_values": {
+        "abstract_claim": "Competitive or superior performance across seven distinct off-target datasets"
+      },
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/41223195/"
+    },
+    {
+      "model": "Benchmark Review (BIB)",
+      "year": 2023,
+      "task": "benchmark_methodology",
+      "model_type": "review",
+      "benchmark_regime": "10 on-target models on 9 datasets, 8 off-target models on 12 datasets",
+      "reported_values": {
+        "key_conclusion": "Cross-dataset generalization is substantially harder than within-dataset evaluation; small datasets and class imbalance materially degrade performance"
+      },
+      "source_url": "https://academic.oup.com/bib/article/24/6/bbad333/7286387"
+    }
+  ],
+  "integrated_design_note": {
+    "status": "no_single_universal_public_leaderboard",
+    "claim_requirement": "Define utility explicitly, benchmark against both on-target and off-target public baselines, and report ranking metrics such as NDCG@k and Top-k hit rate."
+  }
+}

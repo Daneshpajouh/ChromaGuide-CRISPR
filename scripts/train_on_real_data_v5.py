@@ -125,8 +125,11 @@ def main():
         seq_tensor = torch.zeros(len(seqs), 4, L, device=device, dtype=torch.float32)
         for j, seq in enumerate(seqs):
             for k, nt in enumerate(seq[:L]):
-                if nt.upper() in nt_map:
-                    seq_tensor[j, nt_map[nt.upper()], k] = 1
+                nt_u = nt.upper()
+                if nt_u in nt_map:
+                    seq_tensor[j, nt_map[nt_u], k] = 1.0
+                elif nt_u == 'N':
+                    seq_tensor[j, :, k] = 0.25
         return seq_tensor
 
     def prepare_epi(batch, device):

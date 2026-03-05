@@ -9,6 +9,7 @@ import numpy as np
 from pathlib import Path
 import json
 import logging
+import argparse
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -39,20 +40,26 @@ class LeakageControlledSplitter:
                 logger.warning(f"  Expected {full_path} not found")
         return datasets
 
-    def create_split_a(self, datasets, val_size=0.1, test_size=0.2):
+    def create_split_a(self, datasets, val_size=0.1, test_size=0.2, allow_sequence_fallback=False):
         logger.info("\n=== SPLIT A: GENE-HELD-OUT (PRIMARY) ===")
         split_a = {}
         for cell_line, df in datasets.items():
             genes = df['gene'].unique() if 'gene' in df.columns else []
             if len(genes) < 5:
-                logger.warning(f"Too few genes ({len(genes)}) in {cell_line}, using sequence split instead")
+                if not allow_sequence_fallback:
+                    raise ValueError(
+                        f"Split A requires real gene annotations. {cell_line} has only {len(genes)} unique genes."
+                    )
+                logger.warning(
+                    f"Too few genes ({len(genes)}) in {cell_line}; using explicit sequence-fallback mode."
+                )
                 df = df.drop_duplicates(subset=['sequence']).sample(frac=1, random_state=self.random_seed)
                 n = len(df)
                 n_test = int(n * test_size)
                 n_val = int(n * val_size)
                 split_a[cell_line] = {
-                    'train': df.iloc[n_val+n_test:],
-                    'validation': df.iloc[n_test:n_test+n_val],
+                    'train': df.iloc[n_val + n_test:],
+                    'validation': df.iloc[n_test:n_test + n_val],
                     'test': df.iloc[:n_test]
                 }
             else:
@@ -89,25 +96,80 @@ class LeakageControlledSplitter:
         self.splits['split_b'] = split_b
         return split_b
 
+    def create_split_c(self, datasets, test_cell_line='HeLa', val_size=0.1):
+        logger.info("\n=== SPLIT C: CELL-LINE-HELD-OUT ===")
+        if test_cell_line not in datasets:
+            raise ValueError(f"Requested held-out cell line '{test_cell_line}' not found in datasets")
+
+        train_pool = []
+        for cell_line, df in datasets.items():
+            if cell_line != test_cell_line:
+                train_pool.append(df.copy())
+        if not train_pool:
+            raise ValueError("No training cell lines available for Split C.")
+
+        train_all = pd.concat(train_pool).sample(frac=1, random_state=self.random_seed).reset_index(drop=True)
+        n_val = max(1, int(len(train_all) * val_size))
+        validation = train_all.iloc[:n_val].reset_index(drop=True)
+        train = train_all.iloc[n_val:].reset_index(drop=True)
+        test = datasets[test_cell_line].copy().reset_index(drop=True)
+
+        split_c = {
+            test_cell_line: {
+                'train': train,
+                'validation': validation,
+                'test': test,
+            }
+        }
+        logger.info(
+            f"  Held-out={test_cell_line}: Train={len(train)}, Val={len(validation)}, Test={len(test)}"
+        )
+        self.splits['split_c'] = split_c
+        return split_c
+
     def save_splits(self, output_dir):
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
+        split_dir_name = {
+            'split_a': 'split_a_gene_held_out',
+            'split_b': 'split_b_dataset_held_out',
+            'split_c': 'split_c_cellline_held_out',
+        }
         for split_name, split_data in self.splits.items():
-            split_dir = output_dir / split_name
+            split_dir = output_dir / split_dir_name.get(split_name, split_name)
             split_dir.mkdir(parents=True, exist_ok=True)
             for cell_line, subsets in split_data.items():
                 for subset_name, df in subsets.items():
                     path = split_dir / f"{cell_line}_{subset_name}.csv"
                     df.to_csv(path, index=False)
+            with open(split_dir / "metadata.json", "w") as f:
+                json.dump(
+                    {
+                        "split_name": split_name,
+                        "random_seed": self.random_seed,
+                        "files": sorted([p.name for p in split_dir.glob("*.csv")]),
+                    },
+                    f,
+                    indent=2,
+                )
         logger.info(f"✓ Splits saved to {output_dir}")
 
 def main():
-    data_dir = Path("data")
-    output_dir = Path("data/processed")
-    splitter = LeakageControlledSplitter(data_dir)
+    parser = argparse.ArgumentParser(description="Create leakage-controlled splits")
+    parser.add_argument("--data_dir", type=str, default="data")
+    parser.add_argument("--output_dir", type=str, default="data/processed")
+    parser.add_argument("--random_seed", type=int, default=42)
+    parser.add_argument("--test_cell_line", type=str, default="HeLa")
+    parser.add_argument("--allow_sequence_fallback", action="store_true")
+    args = parser.parse_args()
+
+    data_dir = Path(args.data_dir)
+    output_dir = Path(args.output_dir)
+    splitter = LeakageControlledSplitter(data_dir, random_seed=args.random_seed)
     datasets = splitter.load_raw_data()
-    splitter.create_split_a(datasets)
+    splitter.create_split_a(datasets, allow_sequence_fallback=args.allow_sequence_fallback)
     splitter.create_split_b(datasets)
+    splitter.create_split_c(datasets, test_cell_line=args.test_cell_line)
     splitter.save_splits(output_dir)
 
 if __name__ == "__main__":

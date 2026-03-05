@@ -12,16 +12,21 @@ def convert():
     with open(pkl_path, 'rb') as f:
         data = pickle.load(f)
 
-    bases = {1: 'A', 2: 'C', 3: 'G', 4: 'T', 5: 'N'}
+    # DeepHF tokenization (prediction_util.py):
+    # PAD=0, START=1, A=2, T=3, C=4, G=5
+    bases = {2: 'A', 3: 'T', 4: 'C', 5: 'G'}
     print("Decoding sequences...")
-    sequences = [''.join([bases.get(b, 'N') for b in s[:21]]) for s in data[0]]
+    sequences = []
+    for s in data[0]:
+        core = s[1:22] if len(s) >= 22 else s[:21]
+        sequences.append(''.join([bases.get(int(b), 'N') for b in core]))
 
     print("Creating DataFrame...")
     feats = data[1] # (N, 11)
     df_data = {
         'sequence': sequences,
         'efficiency': data[2],
-        'gene': 'placeholder_gene'
+        'gene': 'fallback_gene'
     }
     for i in range(feats.shape[1]):
         df_data[f'feat_{i}'] = feats[:, i]

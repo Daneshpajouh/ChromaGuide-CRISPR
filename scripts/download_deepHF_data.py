@@ -57,25 +57,36 @@ def download_deepHF_dataset(data_dir, source="github"):
         with open(output_path, 'rb') as f:
             data = pickle.load(f)
 
-        # Structure of pkl: [X (encoded), targets/features, labels]
-        # X is (N, 22), labels is (N,)
-        # mapping bases
-        bases = {1: 'A', 2: 'C', 3: 'G', 4: 'T', 5: 'N'}
+        # Structure of pkl: tuple(X_encoded, epi_features, labels)
+        # X_encoded is (N, 22) with a leading START token at index 0.
+        # DeepHF tokenization (prediction_util.py):
+        #   PAD=0, START=1, A=2, T=3, C=4, G=5
+        # Use indices [1:22] so each sample is a true 21-nt sequence.
+        bases = {2: 'A', 3: 'T', 4: 'C', 5: 'G'}
         sequences = []
         for seq_encoded in data[0]:
-            seq = "".join([bases.get(b, 'N') for b in seq_encoded[:21]]) # 21-mer
+            if len(seq_encoded) >= 22:
+                core = seq_encoded[1:22]
+            else:
+                core = seq_encoded[:21]
+            seq = "".join([bases.get(int(b), 'N') for b in core])
             sequences.append(seq)
 
-        # Target efficiency is usually in the last element (data[2]) or data[1]
-        # Let's assume data[2] are the labels based on shape (55604,)
+        # Target efficiency from labels array (data[2])
         efficiencies = data[2]
+        epi_features = data[1]
 
         # Create a combined dataframe
-        df = pd.DataFrame({
+        df_data = {
             'sequence': sequences,
             'efficiency': efficiencies,
-            'gene': 'placeholder_gene' # Default gene
-        })
+            # Public wt_seq_data_array.pkl does not expose gene IDs.
+            # Keep explicit fallback label and require split fallback mode downstream.
+            'gene': 'fallback_gene'
+        }
+        for i in range(epi_features.shape[1]):
+            df_data[f'feat_{i}'] = epi_features[:, i]
+        df = pd.DataFrame(df_data)
 
         # In DeepHF paper, there are 3 cell lines
         # HEK293T (~30k), HCT116 (~10k), HeLa (~10k)

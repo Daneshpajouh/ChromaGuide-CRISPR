@@ -1,0 +1,32 @@
+{
+  "as_of_date": "2026-03-03",
+  "matched_public_outputs_present": true,
+  "matched_public_on_target_complete": true,
+  "baseline_artifact": "results/public_benchmarks/FULL_PUBLIC_ON_TARGET_SUMMARY_2026-03-02.json",
+  "stronger_artifact": "results/public_benchmarks/STRONGER_PUBLIC_ON_TARGET_SUMMARY_2026-03-03.json",
+  "best_public_single_model_on_target": {
+    "config": "cnn_gru d_model=128 fusion=gate loss=beta epochs=10 batch=512 pretrain=none",
+    "mean_9_dataset_scc": 0.514802282952079,
+    "mean_9_dataset_gap_vs_target": -0.201197717047921,
+    "WT_to_HL60_scc": 0.44831826374137174,
+    "WT_to_HL60_gap": -0.01968173625862829,
+    "meets_all_frozen_on_target_thresholds": false
+  },
+  "claim_validity": {
+    "external_sota_claim_valid_now": false,
+    "reason": "The stronger full public on-target single-model run is still below the frozen thresholds, although it materially improves over baseline. Off-target public benchmark outputs are still incomplete."
+  },
+  "recommended_next_step": {
+    "type": "targeted_threshold_dataset_scout",
+    "datasets": [
+      "WT",
+      "ESP",
+      "HF",
+      "Sniper-Cas9",
+      "HL60"
+    ],
+    "transfer": [
+      "WT_to_HL60"
+    ]
+  }
+}

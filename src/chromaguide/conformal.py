@@ -8,11 +8,10 @@ Methodology from Section 5.3 of the ChromaGuide PhD Proposal:
   - Conformity scores are derived from the Beta distribution quantile function.
   - Provides mathematically guaranteed coverage 1 - alpha.
 """
-import torch
 import numpy as np
 from scipy.stats import beta
-from scipy.optimize import brentq
-from typing import Dict, List, Optional, Tuple
+from pathlib import Path
+from typing import Tuple
 
 
 class BetaConformalPredictor:
@@ -57,7 +56,9 @@ class BetaConformalPredictor:
         lower_q = beta.ppf(self.alpha / 2, alpha_p, beta_p)
         upper_q = beta.ppf(1 - self.alpha / 2, alpha_p, beta_p)
 
-        scores = np.maximum(lower_q - y, y - upper_q)
+        # Nonconformity should be non-negative:
+        # 0 for points inside [lower_q, upper_q], positive distance outside.
+        scores = np.maximum(np.maximum(lower_q - y, y - upper_q), 0.0)
         return scores
 
     def calibrate(
@@ -77,7 +78,7 @@ class BetaConformalPredictor:
         # Empirical quantile: (n+1)(1-alpha)/n
         level = np.ceil((n + 1) * (1 - self.alpha)) / n
         level = np.clip(level, 0, 1)
-        self.q = np.quantile(scores, level, method='higher')
+        self.q = float(np.quantile(scores, level, method='higher'))
 
     def predict_intervals(
         self,
@@ -104,8 +105,9 @@ class BetaConformalPredictor:
 
         # Expand by the calibrated quantile q
         # [lower - q, upper + q] and clip to [0, 1]
-        lower_bounds = np.clip(lower_q - self.q, 1e-6, 1.0 - 1e-6)
-        upper_bounds = np.clip(upper_q + self.q, 1e-6, 1.0 - 1e-6)
+        q = max(float(self.q), 0.0)
+        lower_bounds = np.clip(lower_q - q, 1e-6, 1.0 - 1e-6)
+        upper_bounds = np.clip(upper_q + q, 1e-6, 1.0 - 1e-6)
 
         return lower_bounds, upper_bounds
 
@@ -117,3 +119,34 @@ class BetaConformalPredictor:
         """Compute the width of the prediction intervals (sigma_CI)."""
         lower, upper = self.predict_intervals(mu, phi)
         return upper - lower
+
+    def save_calibration(self, path: str) -> None:
+        """Save calibrated conformal state (alpha and q)."""
+        if self.q is None:
+            raise ValueError("Cannot save calibration before calling calibrate().")
+
+        out_path = Path(path)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        np.savez(out_path, alpha=float(self.alpha), q=float(self.q))
+
+    def load_calibration(self, path: str) -> None:
+        """Load calibrated conformal state (alpha and q)."""
+        in_path = Path(path)
+        if not in_path.exists():
+            raise FileNotFoundError(f"Calibration file not found: {in_path}")
+
+        # Backward-compatible support:
+        # - npz: keys {'q', optional 'alpha'}
+        # - npy: single scalar/array with q
+        if in_path.suffix == ".npy":
+            q_arr = np.load(in_path, allow_pickle=False)
+            self.q = float(np.asarray(q_arr).reshape(-1)[0])
+            return
+
+        data = np.load(in_path, allow_pickle=False)
+        if "q" not in data:
+            raise ValueError(f"Invalid calibration file (missing q): {in_path}")
+
+        if "alpha" in data:
+            self.alpha = float(data["alpha"])
+        self.q = float(data["q"])

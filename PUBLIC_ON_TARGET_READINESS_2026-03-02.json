@@ -1,0 +1,97 @@
+{
+  "as_of_date": "2026-03-02",
+  "frozen_public_on_target_regime": "canonical 9-dataset Cas9 on-target benchmark, 5-fold CV, SCC primary, PCC secondary",
+  "leader_status": "dual_threshold_split_leadership",
+  "current_local_readiness": {
+    "claim_valid_full_public_run_possible_now": true,
+    "available_dataset_count": 9,
+    "missing_dataset_count": 0,
+    "available_datasets": [
+      "WT",
+      "ESP",
+      "HF",
+      "xCas9",
+      "SpCas9-NG",
+      "Sniper-Cas9",
+      "HCT116",
+      "HELA",
+      "HL60"
+    ],
+    "missing_datasets": [],
+    "dataset_status": [
+      {
+        "dataset": "WT",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/WT.csv",
+        "rows": 55603
+      },
+      {
+        "dataset": "ESP",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/ESP.csv",
+        "rows": 58616
+      },
+      {
+        "dataset": "HF",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/HF.csv",
+        "rows": 56887
+      },
+      {
+        "dataset": "xCas9",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/xCas9.csv",
+        "rows": 37738
+      },
+      {
+        "dataset": "SpCas9-NG",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/SpCas9-NG.csv",
+        "rows": 30585
+      },
+      {
+        "dataset": "Sniper-Cas9",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/Sniper-Cas9.csv",
+        "rows": 37794
+      },
+      {
+        "dataset": "HCT116",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/HCT116.csv",
+        "rows": 4239
+      },
+      {
+        "dataset": "HELA",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/HELA.csv",
+        "rows": 8101
+      },
+      {
+        "dataset": "HL60",
+        "available_locally": true,
+        "path": "data/public_benchmarks/on_target/canonical_9/HL60.csv",
+        "rows": 2076
+      }
+    ]
+  },
+  "required_evaluation_modes": {
+    "separate_dataset_mode": {
+      "required": true,
+      "description": "Run one matched evaluation per public dataset and report per-dataset SCC/PCC.",
+      "status_now": "ready"
+    },
+    "pooled_summary_mode": {
+      "required": true,
+      "description": "Aggregate separate-dataset outputs into frozen public summary metrics (9-dataset mean plus transfer-specific metrics).",
+      "status_now": "ready"
+    }
+  },
+  "minimum_next_actions": [
+    "The full canonical public on-target suite is now staged locally and ready for matched evaluation.",
+    "Run the current best single non-stacked model on each public dataset separately under matched protocol.",
+    "Report pooled summary only after all separate-dataset outputs are produced.",
+    "After the canonical suite is complete, run any additional public datasets as secondary evidence in the same separate-then-pooled style.",
+    "Do not treat scripts/download_deepHF_data.py output as canonical nine-dataset coverage; it only yields partial local DeepHF-derived tables, not the full frozen public suite."
+  ]
+}

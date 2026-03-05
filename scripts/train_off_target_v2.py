@@ -21,7 +21,8 @@ class CRISPRoffTDataset(Dataset):
             df['label'] = df['Validation'].astype(float)
         else:
             # Fallback for different dataset versions
-            df['label'] = ((df['Identity'] == 'ON') | (df['Identity'] == 'OFF')).astype(float)
+            # OFF = 1 (off-target), ON = 0 (on-target)
+            df['label'] = (df['Identity'] == 'OFF').astype(float)
 
         self.guides = df['Guide_sequence'].values
         self.targets = df['Target_sequence'].values

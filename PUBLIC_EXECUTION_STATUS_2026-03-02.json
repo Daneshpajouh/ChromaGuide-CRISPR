@@ -1,0 +1,145 @@
+{
+  "generated": "2026-03-03",
+  "phase_boundary": "cluster_first_on_target_handoff_complete",
+  "public_on_target": {
+    "canonical_suite_staged": true,
+    "full_9_dataset_ready_for_matched_runs": true,
+    "benchmark_venv_ready": true,
+    "best_completed_claim_valid_single_model": {
+      "summary_artifact": "results/public_benchmarks/STRONGER_PUBLIC_ON_TARGET_SUMMARY_2026-03-03.json",
+      "config": {
+        "encoder_type": "cnn_gru",
+        "d_model": 128,
+        "fusion": "gate",
+        "loss_type": "beta",
+        "epochs": 10,
+        "batch_size": 512,
+        "pretrain": "none"
+      },
+      "mean_9_dataset_scc": 0.514802282952079,
+      "mean_9_dataset_gap_vs_target": -0.201197717047921,
+      "wt_to_hl60_scc": 0.44831826374137174,
+      "wt_to_hl60_gap": -0.01968173625862829,
+      "meets_frozen_thresholds": false
+    },
+    "completed_scouts": {
+      "public_on_target_scout_clean": {
+        "summary_artifact": "results/public_benchmarks/optuna_public_on_target_clean/OPTUNA_PUBLIC_ON_TARGET_SUMMARY_2026-03-03.json",
+        "status": "complete",
+        "best_trial_number": 1,
+        "best_scout_score": 0.8627274804012964,
+        "best_trial_note": "This study completed before the tighter balanced-v2 search-space patch, so some sampled values fall outside the new constrained ranges."
+      }
+    },
+    "active_scouts": {
+      "public_on_target_balanced_v2": {
+        "status": "complete",
+        "study_db": "results/public_benchmarks/optuna/public_on_target_balanced_v2.db",
+        "summary_artifact": "results/public_benchmarks/optuna_public_on_target_balanced_v2/OPTUNA_PUBLIC_ON_TARGET_BALANCED_V2_2026-03-03.json",
+        "best_trial_number": 0,
+        "best_trial": {
+          "encoder_type": "mamba",
+          "d_model": 96,
+          "fusion": "gate",
+          "loss_type": "beta",
+          "lr": 0.0006251028636335222,
+          "dropout": 0.10617534828874074,
+          "batch_size": 256,
+          "epochs": 10
+        },
+        "promotion_decision": "promoted_to_cluster_full_run"
+      }
+    },
+    "cluster_submissions": {
+      "promoted_full_run_balanced_v2_t0_rorqual": {
+        "host": "rorqual",
+        "job_id": 7608231,
+        "status": "pending",
+        "wrapper": "scripts/slurm_public_on_target_full_run.sh",
+        "note": "This replaces the local promoted full run, which was stopped to prioritize cluster execution."
+      },
+      "public_on_target_optuna_rorqual": {
+        "host": "rorqual",
+        "job_id": 7608234,
+        "status": "pending",
+        "wrapper": "scripts/slurm_public_on_target_optuna.sh",
+        "note": "8-trial cluster scout expansion using the synchronized public on-target benchmark bundle."
+      }
+    }
+  },
+  "public_off_target": {
+    "modern_primary_suite_fully_staged": true,
+    "secondary_faststart_suite_available": true,
+    "cclmoff_primary_file": "data/public_benchmarks/off_target/primary_cclmoff/09212024_CCLMoff_dataset.csv",
+    "cclmoff_expected_bytes": 714692329,
+    "cclmoff_md5": "2a9be5c69a89c8eee3fdef0c03efae3a",
+    "method_map_generated": {
+      "artifact": "data/public_benchmarks/off_target/primary_cclmoff/method_map.json",
+      "blank_method_rows": 3282935,
+      "blank_method_policy": "excluded_from_claim_valid_frames_until_verified",
+      "new_local_evidence": "The unresolved blank guide set contains all 10 guides from the legacy UQAM CIRCLE-seq bundle plus one extra guide (GTCATCTTAGTCATTACCTGNGG). This is strong evidence of a CIRCLE-derived bucket, but not yet sufficient to relabel as claim-valid CIRCLE without explicit source confirmation."
+    },
+    "frozen_frames": {
+      "cclmoff_circle_cv": {
+        "artifact": "data/public_benchmarks/off_target/frames/cclmoff_circle_cv.json",
+        "status": "blocked",
+        "reason": "No resolved CIRCLE-seq rows exist in the staged CSV after excluding unresolved blank Method rows."
+      },
+      "cclmoff_circle_to_guide": {
+        "artifact": "data/public_benchmarks/off_target/frames/cclmoff_circle_to_guide.json",
+        "status": "blocked",
+        "reason": "Requires resolved CIRCLE-seq rows plus GUIDE-seq rows."
+      },
+      "cclmoff_lodo": {
+        "artifact": "data/public_benchmarks/off_target/frames/cclmoff_lodo.json",
+        "status": "ready_partial",
+        "claim_valid_for_frozen_thresholds": false,
+        "reason": "Runnable with resolved methods, but still not fully aligned to the frozen DIG-seq plus DISCOVER-seq+ threshold set."
+      },
+      "crispai_change_regression_uncertainty": {
+        "artifact": "data/public_benchmarks/off_target/frames/crispai_change_regression_uncertainty.json",
+        "status": "blocked",
+        "reason": "Processed CHANGE-seq table is not yet staged locally."
+      }
+    },
+    "manifest_path_smoke": {
+      "artifact": "results/public_benchmarks/public_off_target_lodo_manifest_smoke.json",
+      "status": "passed",
+      "note": "A one-epoch CPU smoke run completed through the new manifest-driven trainer path on cclmoff_lodo split 1."
+    },
+    "active_scouts": {
+      "public_off_target_lodo_manifest_v1": {
+        "status": "running",
+        "study_db": "results/public_benchmarks/optuna/public_off_target_lodo_manifest_v1.db",
+        "summary_artifact": "results/public_benchmarks/optuna_public_off_target_lodo_manifest_v1/OPTUNA_PUBLIC_OFF_TARGET_LODO_MANIFEST_V1_2026-03-03.json"
+      }
+    }
+  },
+  "cluster_execution": {
+    "local_wrapper_dry_runs_passed": true,
+    "submit_helper_uses_control_sockets": true,
+    "submit_helper_checks_scheduler_and_repo_path": true,
+    "beluga": {
+      "status": "blocked",
+      "reason": "Remote sbatch failed immediately due an incompatible Slurm plugin stack on the host."
+    },
+    "rorqual": {
+      "status": "active_cluster_execution",
+      "details": "Dry-run wrapper submissions were accepted by sbatch as jobs 7606933, 7606934, and 7606939, then cancelled. Real on-target jobs 7608231 and 7608234 are now queued."
+    },
+    "fir": {
+      "status": "skipped",
+      "reason": "sbatch not available in the current login environment."
+    },
+    "cedar": {
+      "status": "skipped",
+      "reason": "sbatch not available in the current login environment."
+    }
+  },
+  "next_actions": [
+    "Monitor rorqual jobs 7608231 and 7608234 and pull their result artifacts back once they start producing outputs.",
+    "Resolve or explicitly remap the unresolved blank Method bucket before counting any CCLMoff circle or transfer result as claim-valid.",
+    "Stage the processed CHANGE-seq table before attempting the crispAI-style regression and uncertainty frame.",
+    "Sync the off-target benchmark bundle to a SLURM-capable host before attempting non-dry-run off-target cluster jobs."
+  ]
+}

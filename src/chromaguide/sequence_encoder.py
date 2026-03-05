@@ -12,6 +12,7 @@ Inputs:
 Outputs:
   - Sequence embedding z_s of shape (batch, d_model)
 """
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -174,12 +175,14 @@ class DNABERT2Encoder(SequenceEncoder):
         self,
         d_model: int = 64,  # PhD proposal constraint
         use_fallback: bool = True,
+        freeze_backbone: bool = True,
         dropout: float = 0.1,
     ):
         super().__init__(d_model=d_model)
 
         self.d_model = d_model
         self.dropout_rate = dropout
+        self.freeze_backbone = freeze_backbone
 
         # Try to load BERT, but fall back to CNN if import fails
         self.use_bert = False
@@ -188,12 +191,11 @@ class DNABERT2Encoder(SequenceEncoder):
             from pathlib import Path
             from transformers import BertConfig, BertModel
 
-            # Load config from JSON cache directly
-            cache_dir = Path.home() / ".cache" / "huggingface" / "hub" / "models--zhihan1996--DNABERT-2-117M"
+            cache_dir = self._resolve_dnabert_cache_dir(Path)
             config_path = None
 
             # Find config.json in cache snapshots
-            if cache_dir.exists():
+            if cache_dir is not None and cache_dir.exists():
                 snapshots = sorted(cache_dir.glob("snapshots/*/config.json"))
                 if snapshots:
                     config_path = snapshots[0]
@@ -230,7 +232,7 @@ class DNABERT2Encoder(SequenceEncoder):
 
             # Load weights if available
             weights_path = None
-            if cache_dir.exists():
+            if cache_dir is not None and cache_dir.exists():
                 weight_files = sorted(cache_dir.glob("snapshots/*/pytorch_model.bin"))
                 if weight_files:
                     weights_path = weight_files[0]
@@ -264,6 +266,40 @@ class DNABERT2Encoder(SequenceEncoder):
                 raise
 
         self.dropout = nn.Dropout(dropout)
+
+    @staticmethod
+    def _resolve_dnabert_cache_dir(path_cls):
+        """Resolve DNABERT-2 HF cache path across local/HPC environments."""
+        model_subdir = "models--zhihan1996--DNABERT-2-117M"
+        candidates = []
+
+        explicit = os.environ.get("DNABERT2_CACHE_DIR", "").strip()
+        if explicit:
+            candidates.append(path_cls(explicit).expanduser())
+
+        hf_hub_cache = os.environ.get("HUGGINGFACE_HUB_CACHE", "").strip()
+        if hf_hub_cache:
+            base = path_cls(hf_hub_cache).expanduser()
+            candidates.extend([base / model_subdir, base])
+
+        hf_home = os.environ.get("HF_HOME", "").strip()
+        if hf_home:
+            base = path_cls(hf_home).expanduser()
+            candidates.extend([base / "hub" / model_subdir, base / model_subdir])
+
+        candidates.append(path_cls.home() / ".cache" / "huggingface" / "hub" / model_subdir)
+
+        seen = set()
+        for c in candidates:
+            key = str(c)
+            if key in seen:
+                continue
+            seen.add(key)
+            if c.exists():
+                return c
+
+        # Fall back to conventional default path for clearer logging behavior.
+        return path_cls.home() / ".cache" / "huggingface" / "hub" / model_subdir
 
     def _init_cnn_fallback(self, d_model: int, dropout: float):
         """Initialize CNN fallback architecture."""
@@ -312,8 +348,11 @@ class DNABERT2Encoder(SequenceEncoder):
         device = next(self.backbone.parameters()).device
         x = x.to(device)
 
-        # Forward
-        with torch.no_grad():
+        # Forward; optionally freeze the heavy DNABERT backbone.
+        if self.freeze_backbone:
+            with torch.no_grad():
+                outputs = self.backbone(x)
+        else:
             outputs = self.backbone(x)
 
         h = outputs[0].mean(dim=1)  # (batch, 768)
@@ -362,11 +401,9 @@ class MambaSequenceEncoder(SequenceEncoder):
     ):
         super().__init__(d_model=d_model)
 
-        # Input projection from one-hot to d_model
-        self.input_proj = nn.Sequential(
-            nn.Conv1d(in_channels, d_model, kernel_size=1),
-            nn.LayerNorm(d_model) if False else nn.Identity(),  # applied after transpose
-        )
+        # Input projection from one-hot to d_model.
+        # Use Linear over sequence positions instead of Conv1d(1x1) to avoid MPS backward issues.
+        self.input_proj = nn.Linear(in_channels, d_model)
         self.input_norm = nn.LayerNorm(d_model)
 
         # Build Mamba layers (simplified SSM blocks)
@@ -393,8 +430,9 @@ class MambaSequenceEncoder(SequenceEncoder):
         Returns:
             Sequence embedding (batch, d_model)
         """
-        # Project input: (batch, 4, L) -> (batch, d_model, L) -> (batch, L, d_model)
-        h = self.input_proj(x).transpose(1, 2)
+        # Project input: (batch, 4, L) -> (batch, L, 4) -> (batch, L, d_model)
+        h = x.transpose(1, 2).contiguous()
+        h = self.input_proj(h)
         h = self.input_norm(h)
 
         # Mamba layers with residual connections
@@ -467,16 +505,16 @@ class MambaBlock(nn.Module):
             Output tensor (batch, seq_len, d_model)
         """
         residual = x
-        x = self.norm(x)
+        x = self.norm(x).contiguous()
 
         # Split into two paths: SSM path and gate
         xz = self.in_proj(x)  # (B, L, 2*d_inner)
         x_ssm, z = xz.chunk(2, dim=-1)  # each (B, L, d_inner)
 
         # Causal convolution
-        x_ssm = x_ssm.transpose(1, 2)  # (B, d_inner, L)
+        x_ssm = x_ssm.transpose(1, 2).contiguous()  # (B, d_inner, L)
         x_ssm = self.conv1d(x_ssm)[:, :, :x.shape[1]]  # causal: trim to original length
-        x_ssm = x_ssm.transpose(1, 2)  # (B, L, d_inner)
+        x_ssm = x_ssm.transpose(1, 2).contiguous()  # (B, L, d_inner)
         x_ssm = F.silu(x_ssm)
 
         # Selective SSM
@@ -506,16 +544,17 @@ class MambaBlock(nn.Module):
         A = -torch.exp(self.A_log)  # (d_inner, d_state)
 
         # Sequential scan (can be parallelized with associative scan)
-        y = torch.zeros_like(x)
         h = torch.zeros(B, D, self.d_state, device=x.device, dtype=x.dtype)
+        outputs = []
 
         for t in range(L):
-            dt_t = dt[:, t, :].unsqueeze(-1)  # (B, D, 1)
+            x_t = x[:, t, :].contiguous()
+            dt_t = dt[:, t, :].contiguous().unsqueeze(-1)  # (B, D, 1)
             A_bar = torch.exp(A.unsqueeze(0) * dt_t)  # (B, D, N)
-            B_bar = dt_t * B_input[:, t, :].unsqueeze(1)  # (B, D, N)
+            B_bar = dt_t * B_input[:, t, :].contiguous().unsqueeze(1)  # (B, D, N)
 
-            h = A_bar * h + B_bar * x[:, t, :].unsqueeze(-1)  # (B, D, N)
-            y_t = (h * C_input[:, t, :].unsqueeze(1)).sum(-1)  # (B, D)
-            y[:, t, :] = y_t + self.D * x[:, t, :]
+            h = A_bar * h + B_bar * x_t.unsqueeze(-1)  # (B, D, N)
+            y_t = (h * C_input[:, t, :].contiguous().unsqueeze(1)).sum(-1)  # (B, D)
+            outputs.append(y_t + self.D * x_t)
 
-        return y
+        return torch.stack(outputs, dim=1)

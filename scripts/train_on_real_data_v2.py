@@ -1,4 +1,5 @@
 import os
+import random
 import torch
 import torch.nn as nn
 import pandas as pd
@@ -26,13 +27,23 @@ def main():
     parser.add_argument('--use_epi', action='store_true', default=True, help='Use epigenomics')
     parser.add_argument('--no_epi', action='store_false', dest='use_epi', help='Disable epigenomics')
     parser.add_argument('--learning_rate', '--lr', type=float, default=5e-4, help='Learning rate')
+    parser.add_argument('--dnabert_lr', type=float, default=1e-5, help='Backbone LR when using DNABERT-2')
     parser.add_argument('--epochs', type=int, default=15)
     parser.add_argument('--batch_size', type=int, default=250)
     parser.add_argument('--patience', type=int, default=7, help='Early stopping patience')
     parser.add_argument('--device', type=str, default='cpu', help='Device for training')
+    parser.add_argument('--seed', type=int, default=42, help='Random seed')
     parser.add_argument('--split', type=str, default='A', choices=['A', 'B', 'C'], help='Split type')
     parser.add_argument('--output_name', type=str, default='on_target_metrics.json', help='Output JSON file')
+    parser.add_argument('--freeze_dnabert', action='store_true', help='Freeze DNABERT-2 backbone weights')
     args = parser.parse_args()
+
+    # Reproducibility
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
 
     # Determine device
     if args.device == 'mps' and not torch.backends.mps.is_available():
@@ -42,7 +53,11 @@ def main():
         device = torch.device(args.device if args.device != 'cuda' or torch.cuda.is_available() else 'cpu')
 
     print(f"Using device: {device}", flush=True)
-    print(f"Config: Backbone={args.backbone}, Fusion={args.fusion}, UseEpi={args.use_epi}, Split={args.split}", flush=True)
+    print(
+        f"Config: Backbone={args.backbone}, Fusion={args.fusion}, UseEpi={args.use_epi}, "
+        f"Split={args.split}, Seed={args.seed}",
+        flush=True
+    )
 
     # Load data from splits
     split_name_map = {
@@ -84,15 +99,24 @@ def main():
         num_epi_bins=1,
         use_epigenomics=args.use_epi,
         use_gate_fusion=(args.fusion == 'gate'),
+        dnabert_freeze=args.freeze_dnabert,
         dropout=0.1,
     ).to(device)
 
     # Optimization
     if args.backbone == 'dnabert2':
-        # Low LR for transformer backbone
+        backbone_params = []
+        seq_other_params = []
+        for n, p in model.seq_encoder.named_parameters():
+            if n.startswith('backbone.'):
+                backbone_params.append(p)
+            else:
+                seq_other_params.append(p)
+        non_seq_params = [p for n, p in model.named_parameters() if not n.startswith('seq_encoder.')]
         optimizer = torch.optim.AdamW([
-            {'params': model.seq_encoder.parameters(), 'lr': 1e-5},
-            {'params': [p for n, p in model.named_parameters() if 'seq_encoder' not in n], 'lr': 1e-4}
+            {'params': backbone_params, 'lr': args.dnabert_lr},
+            {'params': seq_other_params, 'lr': args.learning_rate},
+            {'params': non_seq_params, 'lr': args.learning_rate},
         ], weight_decay=0.01)
     else:
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
@@ -119,7 +143,12 @@ def main():
             seq_tensor = torch.zeros(len(seqs), 4, L, device=device)
             for j, seq in enumerate(seqs):
                 for k, nt in enumerate(seq[:L]):
-                    if nt.upper() in nt_map: seq_tensor[j, nt_map[nt.upper()], k] = 1
+                    nt_u = nt.upper()
+                    if nt_u in nt_map:
+                        seq_tensor[j, nt_map[nt_u], k] = 1.0
+                    elif nt_u == 'N':
+                        # Preserve ambiguous-base information instead of all-zeros.
+                        seq_tensor[j, :, k] = 0.25
             return seq_tensor
 
     def prepare_batch_epi(batch, use_epi, device):
@@ -133,7 +162,7 @@ def main():
     for epoch in range(args.epochs):
         model.train()
         total_loss = 0
-        curr_train = train_df.sample(frac=1).reset_index(drop=True)
+        curr_train = train_df.sample(frac=1, random_state=args.seed + epoch).reset_index(drop=True)
 
         for i in range(0, len(curr_train), args.batch_size):
             batch = curr_train.iloc[i : i+args.batch_size]
@@ -168,6 +197,7 @@ def main():
                 val_labels.extend(batch['efficiency'].values)
 
         val_rho, _ = spearmanr(val_preds, val_labels)
+        val_rho = float(val_rho) if np.isfinite(val_rho) else -1.0
         epoch_loss = total_loss/(len(train_df)/args.batch_size)
         print(f"Epoch {epoch+1} | Loss: {epoch_loss:.4f} | Val Rho: {val_rho:.4f}", flush=True)
 
@@ -200,6 +230,7 @@ def main():
             test_labels.extend(batch['efficiency'].values)
 
     test_rho, _ = spearmanr(test_preds, test_labels)
+    test_rho = float(test_rho) if np.isfinite(test_rho) else float("nan")
     print(f"FINAL GOLD Rho: {test_rho:.4f}")
     results["gold_rho"] = float(test_rho)
 

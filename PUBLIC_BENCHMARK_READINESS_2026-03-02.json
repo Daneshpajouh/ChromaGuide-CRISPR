@@ -1,0 +1,45 @@
+{
+  "generated": "2026-03-02",
+  "on_target": {
+    "full_primary_suite_ready": true,
+    "available": [
+      "WT",
+      "ESP",
+      "HF",
+      "xCas9",
+      "SpCas9-NG",
+      "Sniper-Cas9",
+      "HCT116",
+      "HELA",
+      "HL60"
+    ],
+    "missing": [],
+    "separate_dataset_mode": "ready",
+    "pooled_summary_mode": "ready"
+  },
+  "off_target": {
+    "modern_primary_suite_ready": true,
+    "reason": "CCLMoff compiled bundle is fully staged locally; supplement-derived DNABERT-Epi and CHANGE-seq tables are still required for the secondary classifier and uncertainty frames.",
+    "support_repos_ready": true,
+    "cclmoff_dataset_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/off_target/primary_cclmoff/09212024_CCLMoff_dataset.csv",
+    "cclmoff_partial_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/off_target/primary_cclmoff/09212024_CCLMoff_dataset.csv.partial",
+    "cclmoff_expected_bytes": 714692329,
+    "cclmoff_actual_bytes": 714692329,
+    "cclmoff_partial_bytes": 0,
+    "primary_expected_datasets": [
+      "CIRCLE-seq",
+      "GUIDE-seq (Tsai 2015)",
+      "CHANGE-seq",
+      "DIG-seq",
+      "DISCOVER-seq",
+      "DISCOVER-seq+",
+      "TTISS"
+    ],
+    "secondary_faststart_ready": true
+  },
+  "next_steps": [
+    "Run single-model public on-target benchmarking now that the canonical nine CSVs are staged locally if on-target is fully ready.",
+    "Ensure the full CCLMoff dataset CSV is present at data/public_benchmarks/off_target/primary_cclmoff/09212024_CCLMoff_dataset.csv before any claim-valid off-target run.",
+    "Extract DNABERT-Epi supplement tables and CHANGE-seq processed site tables to complete the secondary classifier and uncertainty frames."
+  ]
+}

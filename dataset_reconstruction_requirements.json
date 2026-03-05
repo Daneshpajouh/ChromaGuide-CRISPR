@@ -1,0 +1,63 @@
+{
+  "canonical_on_target": {
+    "fast_path": {
+      "benchmark_ready": true,
+      "source": "CRISPR_HNN datasets repo",
+      "transformation": "clone repo and copy the nine CSVs from datasets/ into local canonical_9 storage"
+    },
+    "authoritative_raw_alternatives": {
+      "WT_ESP_HF": "DeepHF pickle arrays require decoding and optional sequence reconstruction",
+      "xCas9_SpCas9_NG_Sniper": "Kim 2020 supplement requires trimming 30nt context to 23nt benchmark format and min-max normalization",
+      "HCT116_HELA": "Hart 2015 supplement requires extracting guide and fitness columns and mapping to benchmark schema",
+      "HL60": "Wang 2014 supplement requires extracting guide and screening values and mapping to benchmark schema"
+    }
+  },
+  "extended_on_target": {
+    "DeepSpCas9_train": {
+      "what_is_missing": "benchmark-ready CSV",
+      "must_reconstruct": true,
+      "from_source": "Science Advances supplement S1",
+      "transformation": "extract 30nt sequences and activity labels; convert to standard CSV schema",
+      "supports": "secondary_on_target"
+    },
+    "CRISPRon_combined": {
+      "what_is_missing": "raw combined training CSV in repo",
+      "must_reconstruct": true,
+      "from_source": "Nature Communications supplement",
+      "transformation": "merge new and borrowed guide sets; preserve 30nt context and deltaG feature",
+      "supports": "secondary_on_target"
+    }
+  },
+  "canonical_off_target": {
+    "cclmoff_compiled": {
+      "what_is_missing": "local processed bundle",
+      "must_reconstruct": false,
+      "from_source": "CCLMoff Figshare release",
+      "transformation": "download processed bundle and normalize file paths into modern primary suite layout",
+      "supports": "classification_transfer_lodo"
+    },
+    "CHANGE-seq": {
+      "what_is_missing": "processed benchmark-ready site table",
+      "must_reconstruct": true,
+      "from_source": "GEO raw archive plus paper supplement or CHANGE-seq pipeline",
+      "transformation": "derive processed site-level table from raw archive or extract from supplement",
+      "supports": "classification_transfer_lodo and regression_uncertainty"
+    },
+    "DNABERT-Epi_primary_tables": {
+      "what_is_missing": "supplement-derived benchmark tables",
+      "must_reconstruct": true,
+      "from_source": "DNABERT-Epi paper supplement",
+      "transformation": "extract per-dataset tables and reproduce sgRNA-based folds",
+      "supports": "unified_classifier_secondary"
+    }
+  },
+  "secondary_off_target": {
+    "legacy_faststart_bundle": {
+      "what_is_missing": "none for quick experiments",
+      "must_reconstruct": false,
+      "from_source": "UQAM encoded bundle",
+      "transformation": "download bundle and unpack sklearn Bunch object for immediate ML inputs",
+      "supports": "legacy_faststart_bundle"
+    }
+  }
+}

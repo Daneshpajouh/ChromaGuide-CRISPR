@@ -1,0 +1,78 @@
+{
+  "on_target": {
+    "canonical_fast_path": {
+      "primary_link": "https://github.com/xx0220/CRISPR_HNN.git",
+      "mirror_link": "https://github.com/izhangcd/DeepHF.git",
+      "file_type": "git repository with CSV benchmark tables",
+      "availability": "live",
+      "source_of_record": "CRISPR_HNN benchmark-ready dataset packaging",
+      "notes": "Fastest way to acquire all nine canonical on-target datasets in benchmark-ready CSV form."
+    },
+    "deep_spcas9": {
+      "primary_link": "https://doi.org/10.1126/sciadv.aax9249",
+      "mirror_link": "https://www.ncbi.nlm.nih.gov/sra/SRP150719",
+      "file_type": "supplement table and SRA",
+      "availability": "live",
+      "source_of_record": "paper supplement",
+      "notes": "Supplement gives processed training table; SRA is raw sequencing only."
+    },
+    "crispron": {
+      "primary_link": "https://doi.org/10.1038/s41467-021-23576-0",
+      "mirror_link": "https://github.com/RTH-tools/crispron",
+      "file_type": "supplement table and model repo",
+      "availability": "live",
+      "source_of_record": "paper supplement",
+      "notes": "Repo contains weights, not raw training CSV."
+    },
+    "crispor_effdata": {
+      "primary_link": "https://github.com/maximilianh/crisporPaper.git",
+      "mirror_link": "https://portals.broadinstitute.org/gppx/crispick/public",
+      "file_type": "git repository with TSV datasets",
+      "availability": "live",
+      "source_of_record": "CRISPOR paper repo",
+      "notes": "Useful extended on-target suite for secondary evidence."
+    }
+  },
+  "off_target": {
+    "cclmoff_compiled": {
+      "primary_link": "https://ndownloader.figshare.com/files/49344577",
+      "mirror_link": null,
+      "file_type": "processed compiled dataset bundle",
+      "availability": "live",
+      "source_of_record": "CCLMoff Figshare release",
+      "notes": "Primary modern off-target source of record for compiled multi-assay benchmark. File name 09212024_CCLMoff_dataset.csv, size 714692329 bytes, MD5 2a9be5c69a89c8eee3fdef0c03efae3a."
+    },
+    "guideseq_pipeline": {
+      "primary_link": "https://github.com/tsailabSJ/guideseq",
+      "mirror_link": "http://bio.info.uqam.ca/data/II_4_listgarten_elevation_guideseq.csv",
+      "file_type": "pipeline repo plus legacy CSV mirror",
+      "availability": "live",
+      "source_of_record": "Tsai lab repo / paper supplement",
+      "notes": "Legacy mirror is convenience only, not source of record."
+    },
+    "circleseq_pipeline": {
+      "primary_link": "https://github.com/tsailabSJ/circleseq",
+      "mirror_link": "http://bio.info.uqam.ca/data/I_1_CIRCLE_seq_10gRNA_wholeDataset.csv",
+      "file_type": "pipeline repo plus legacy CSV mirror",
+      "availability": "live",
+      "source_of_record": "Tsai lab repo / paper supplement",
+      "notes": "Legacy mirror is convenience only, not source of record."
+    },
+    "changeseq": {
+      "primary_link": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE149295",
+      "mirror_link": "https://github.com/tsailabSJ/changeseq",
+      "file_type": "GEO raw archive plus processing repo",
+      "availability": "live",
+      "source_of_record": "GEO accession",
+      "notes": "Processed site tables still require extraction from supplement or reconstruction via pipeline."
+    },
+    "legacy_faststart_bundle": {
+      "primary_link": "http://bio.info.uqam.ca/data/encoded_data_for_experiments.pkl",
+      "mirror_link": "https://github.com/dagrate/public_data_crisprCas9",
+      "file_type": "encoded pickle bundle and git mirror",
+      "availability": "live",
+      "source_of_record": "UQAM legacy convenience release",
+      "notes": "Useful for fast iteration but not equivalent to the modern primary canonical off-target suite."
+    }
+  }
+}

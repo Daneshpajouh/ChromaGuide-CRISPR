@@ -22,6 +22,9 @@ def main():
     parser.add_argument("--model_path", type=str, default="best_model_on_target.pt")
     parser.add_argument("--data_path", type=str, default="data/real/merged.csv")
     parser.add_argument("--backbone", type=str, default="cnn_gru")
+    parser.add_argument("--d_model", type=int, default=64)
+    parser.add_argument("--use_epi", action="store_true", default=True)
+    parser.add_argument("--no_epi", action="store_false", dest="use_epi")
     parser.add_argument("--alpha", type=float, default=0.1, help="Miscoverage rate (0.1 = 90% coverage)")
     args = parser.parse_args()
 
@@ -35,8 +38,10 @@ def main():
     # Load Model
     model = ChromaGuideModel(
         encoder_type=args.backbone,
-        d_model=256 if args.backbone == 'cnn_gru' else 768,
-        use_epigenomics=False, # Standard seq-based calibration
+        d_model=args.d_model,
+        num_epi_tracks=11 if args.use_epi else 0,
+        num_epi_bins=1,
+        use_epigenomics=args.use_epi,
     ).to(device)
 
     model.load_state_dict(torch.load(args.model_path, map_location=device))
@@ -74,7 +79,13 @@ def main():
                     if nt.upper() in nt_map: seq_tensor[j, nt_map[nt.upper()], k] = 1
 
             # Predict
-            output = model(seq_tensor)
+            epi_tensor = None
+            if args.use_epi:
+                cols = [f'feat_{i}' for i in range(11)]
+                epi_data = batch[cols].values.astype(np.float32)
+                epi_tensor = torch.tensor(epi_data, device=device).unsqueeze(2)
+
+            output = model(seq_tensor, epi_tracks=epi_tensor)
 
             mus.extend(output['mu'].cpu().numpy().flatten())
             phis.extend(output['phi'].cpu().numpy().flatten())
@@ -87,10 +98,11 @@ def main():
         y=np.array(labels)
     )
 
-    # Save calibration quantile
+    # Save calibration quantile (new canonical format + legacy format)
+    predictor.save_calibration("conformal_calibration.npz")
     np.save("conformal_quantile.npy", np.array([predictor.q]))
     print(f"Calibration complete. Non-conformity quantile (q): {predictor.q:.4f}")
-    print("Saved conformal_quantile.npy")
+    print("Saved conformal_calibration.npz and conformal_quantile.npy")
 
     # Verify coverage on the calibration set itself
     lower, upper = predictor.predict_intervals(np.array(mus), np.array(phis))

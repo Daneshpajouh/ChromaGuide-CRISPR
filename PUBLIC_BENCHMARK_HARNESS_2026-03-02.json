@@ -1,0 +1,159 @@
+{
+  "generated": "2026-03-02",
+  "on_target": {
+    "all_inputs_ready": true,
+    "checks": {
+      "WT": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/WT.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 55603,
+        "schema_ok": true,
+        "exists": true
+      },
+      "ESP": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/ESP.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 58616,
+        "schema_ok": true,
+        "exists": true
+      },
+      "HF": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HF.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 56887,
+        "schema_ok": true,
+        "exists": true
+      },
+      "xCas9": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/xCas9.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 37738,
+        "schema_ok": true,
+        "exists": true
+      },
+      "SpCas9-NG": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/SpCas9-NG.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 30585,
+        "schema_ok": true,
+        "exists": true
+      },
+      "Sniper-Cas9": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/Sniper-Cas9.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 37794,
+        "schema_ok": true,
+        "exists": true
+      },
+      "HCT116": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HCT116.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 4239,
+        "schema_ok": true,
+        "exists": true
+      },
+      "HELA": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HELA.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 8101,
+        "schema_ok": true,
+        "exists": true
+      },
+      "HL60": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HL60.csv",
+        "header": [
+          "sgRNA",
+          "indel"
+        ],
+        "rows": 2076,
+        "schema_ok": true,
+        "exists": true
+      }
+    }
+  },
+  "off_target": {
+    "primary_cclmoff_bundle_present": true,
+    "primary_cclmoff_bundle_complete": true,
+    "primary_cclmoff_actual_bytes": 714692329,
+    "primary_cclmoff_partial_present": false,
+    "primary_cclmoff_partial_bytes": 0,
+    "secondary_faststart_present": true,
+    "primary_ready": true
+  },
+  "run_plan": {
+    "on_target_single_model_order": [
+      {
+        "dataset": "WT",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/WT.csv"
+      },
+      {
+        "dataset": "ESP",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/ESP.csv"
+      },
+      {
+        "dataset": "HF",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HF.csv"
+      },
+      {
+        "dataset": "xCas9",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/xCas9.csv"
+      },
+      {
+        "dataset": "SpCas9-NG",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/SpCas9-NG.csv"
+      },
+      {
+        "dataset": "Sniper-Cas9",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/Sniper-Cas9.csv"
+      },
+      {
+        "dataset": "HCT116",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HCT116.csv"
+      },
+      {
+        "dataset": "HELA",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HELA.csv"
+      },
+      {
+        "dataset": "HL60",
+        "input_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/on_target/canonical_9/HL60.csv"
+      }
+    ],
+    "after_on_target": [
+      "Compute per-dataset SCC/PCC.",
+      "Compute 9-dataset mean SCC/PCC.",
+      "Run WT-to-HL60 transfer evaluation separately."
+    ],
+    "off_target_primary_order": [
+      "Stage CCLMoff compiled bundle under data/public_benchmarks/off_target/primary_cclmoff.",
+      "Run CIRCLE-seq 5-fold CV.",
+      "Run CIRCLE-to-GUIDE transfer.",
+      "Run DIG-seq and DISCOVER-seq leave-one-dataset-out evaluations."
+    ]
+  },
+  "claim_note": "This harness validates inputs and the required run order; it does not substitute for matched benchmark training/evaluation results."
+}

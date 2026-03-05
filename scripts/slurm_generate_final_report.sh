@@ -14,9 +14,7 @@ export PYTHONPATH=~/chromaguide_experiments/src:$PYTHONPATH
 cd ~/chromaguide_experiments
 
 # Generate comprehensive final report with all results
-python3 scripts/generate_final_report.py \
-    --results_dir results/ \
-    --output_file results/FINAL_REPORT.md
+python3 scripts/generate_final_report.py
 
 echo "Final report generation completed at $(date)"
 echo "Report saved to: results/FINAL_REPORT.md"

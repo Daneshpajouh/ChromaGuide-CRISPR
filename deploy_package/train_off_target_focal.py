@@ -8,6 +8,7 @@ which downweights easy samples and focuses on hard examples.
 """
 
 import os
+import random
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -15,12 +16,24 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
 from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings('ignore')
 
-# Check CUDA availability
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {device}")
+def resolve_device(device_arg: str) -> torch.device:
+    """Resolve device string with graceful fallback."""
+    if device_arg == "auto":
+        if torch.cuda.is_available():
+            return torch.device("cuda")
+        if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+            return torch.device("mps")
+        return torch.device("cpu")
+
+    if device_arg == "cuda" and torch.cuda.is_available():
+        return torch.device("cuda")
+    if device_arg == "mps" and hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")
 
 def one_hot_encode(seq, length=23):
     """One-hot encode DNA sequences"""
@@ -227,7 +240,19 @@ def main():
     parser.add_argument('--epochs', type=int, default=200)
     parser.add_argument('--batch_size', type=int, default=512)
     parser.add_argument('--lr', type=float, default=0.0005)
+    parser.add_argument('--seed', type=int, default=42)
+    parser.add_argument('--device', type=str, default='auto', choices=['auto', 'cpu', 'mps', 'cuda'])
     args = parser.parse_args()
+
+    # Reproducibility
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+
+    device = resolve_device(args.device)
+    print(f"Using device: {device}")
     
     # Load data
     print(f"Loading data from {args.data_path}...")
@@ -236,10 +261,10 @@ def main():
     print(f"Data shape: {X.shape}, Labels: {y.shape}")
     print(f"OFF-target samples: {int(y.sum())} / {len(y)}")
     
-    # Split into train/val (80/20)
-    split_idx = int(0.8 * len(X))
-    X_train, X_val = X[:split_idx], X[split_idx:]
-    y_train, y_val = y[:split_idx], y[split_idx:]
+    # Stratified split into train/val (80/20)
+    X_train, X_val, y_train, y_val = train_test_split(
+        X, y, test_size=0.2, random_state=args.seed, stratify=y
+    )
     
     train_ds = TensorDataset(torch.from_numpy(X_train), torch.from_numpy(y_train))
     val_ds = TensorDataset(torch.from_numpy(X_val), torch.from_numpy(y_val))

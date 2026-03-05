@@ -30,8 +30,7 @@ import seaborn as sns
 # Import ChromaGuide modules
 import sys
 import os
-sys.path.insert(0, '/home/amird/chromaguide_experiments/src')
-sys.path.insert(0, '/Users/studio/Desktop/PhD/Proposal/src')
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 
 try:
     from chromaguide.chromaguide_model import ChromaGuideModel
@@ -167,15 +166,23 @@ class DesignerScoreEvaluator:
 
     def predict_off_target_risk(self, sequences: List[str]) -> np.ndarray:
         """Predict off-target risk scores."""
-        if self.off_target_model is None:
-            # Return dummy risk scores (low risk for all)
-            logger.info("Using dummy off-target risk scores")
-            return np.random.uniform(0.01, 0.05, len(sequences))
+        # Deterministic sequence-only fallback to avoid random/non-reproducible scores.
+        def fallback_risk(seq: str) -> float:
+            seq = seq.upper()
+            gc = (seq.count("G") + seq.count("C")) / max(len(seq), 1)
+            homopolymer_penalty = 0.0
+            for nt in "ACGT":
+                if nt * 4 in seq:
+                    homopolymer_penalty += 0.05
+            # Center around low baseline risk with bounded adjustment.
+            return float(np.clip(0.02 + abs(gc - 0.5) * 0.2 + homopolymer_penalty, 0.0, 1.0))
 
-        # Implementation would depend on the off-target model architecture
-        # For now, return dummy scores
-        logger.info("Using dummy off-target risk scores (no off-target model)")
-        return np.random.uniform(0.01, 0.1, len(sequences))
+        if self.off_target_model is None:
+            logger.info("Using deterministic fallback off-target risk scores")
+            return np.array([fallback_risk(s) for s in sequences], dtype=np.float32)
+
+        logger.info("Off-target model path provided but per-site inference is not wired; using deterministic fallback scores")
+        return np.array([fallback_risk(s) for s in sequences], dtype=np.float32)
 
     def predict_uncertainty(self, mu_predictions: np.ndarray, phi_predictions: np.ndarray) -> np.ndarray:
         """Predict uncertainty using conformal prediction intervals."""

@@ -1,4 +1,5 @@
 import os
+import random
 import torch
 import torch.nn as nn
 import pandas as pd
@@ -30,9 +31,17 @@ def main():
     parser.add_argument('--batch_size', type=int, default=250)
     parser.add_argument('--patience', type=int, default=7, help='Early stopping patience')
     parser.add_argument('--device', type=str, default='cpu', help='Device for training')
+    parser.add_argument('--seed', type=int, default=42, help='Random seed')
     parser.add_argument('--split', type=str, default='A', choices=['A', 'B', 'C'], help='Split type')
     parser.add_argument('--output_name', type=str, default='on_target_metrics.json', help='Output JSON file')
     args = parser.parse_args()
+
+    # Reproducibility
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
 
     # Determine device
     if args.device == 'mps' and not torch.backends.mps.is_available():
@@ -42,7 +51,11 @@ def main():
         device = torch.device(args.device if args.device != 'cuda' or torch.cuda.is_available() else 'cpu')
 
     print(f"Using device: {device}", flush=True)
-    print(f"Config: Backbone={args.backbone}, Fusion={args.fusion}, UseEpi={args.use_epi}, Split={args.split}", flush=True)
+    print(
+        f"Config: Backbone={args.backbone}, Fusion={args.fusion}, UseEpi={args.use_epi}, "
+        f"Split={args.split}, Seed={args.seed}",
+        flush=True
+    )
 
     # Load data from splits
     split_name_map = {
@@ -133,7 +146,7 @@ def main():
     for epoch in range(args.epochs):
         model.train()
         total_loss = 0
-        curr_train = train_df.sample(frac=1).reset_index(drop=True)
+        curr_train = train_df.sample(frac=1, random_state=args.seed + epoch).reset_index(drop=True)
 
         for i in range(0, len(curr_train), args.batch_size):
             batch = curr_train.iloc[i : i+args.batch_size]
@@ -168,6 +181,7 @@ def main():
                 val_labels.extend(batch['efficiency'].values)
 
         val_rho, _ = spearmanr(val_preds, val_labels)
+        val_rho = float(val_rho) if np.isfinite(val_rho) else -1.0
         epoch_loss = total_loss/(len(train_df)/args.batch_size)
         print(f"Epoch {epoch+1} | Loss: {epoch_loss:.4f} | Val Rho: {val_rho:.4f}", flush=True)
 
@@ -200,6 +214,7 @@ def main():
             test_labels.extend(batch['efficiency'].values)
 
     test_rho, _ = spearmanr(test_preds, test_labels)
+    test_rho = float(test_rho) if np.isfinite(test_rho) else float("nan")
     print(f"FINAL GOLD Rho: {test_rho:.4f}")
     results["gold_rho"] = float(test_rho)
 

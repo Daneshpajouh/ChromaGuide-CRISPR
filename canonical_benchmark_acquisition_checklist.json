@@ -1,0 +1,43 @@
+{
+  "generated": "2026-03-02",
+  "primary_on_target_suite": {
+    "suite_name": "canonical_9_dataset_cas9_on_target",
+    "fully_acquirable_now": true,
+    "fastest_path": "git clone https://github.com/xx0220/CRISPR_HNN.git and copy datasets/*.csv",
+    "blocked_items": [],
+    "reconstructable_items": [],
+    "can_run_immediately_after_clone": true
+  },
+  "primary_off_target_suite": {
+    "suite_name": "modern_primary_off_target_multi_frame",
+    "fully_acquirable_now": false,
+    "fastest_path": "download https://ndownloader.figshare.com/files/49344577 into data/public_benchmarks/off_target/primary_cclmoff, then supplement with GEO/supplement extraction for CHANGE-seq and DNABERT-Epi tables",
+    "blocked_items": [
+      "CCLMoff compiled bundle not yet mirrored locally",
+      "DIG-seq/DISCOVER-seq/DISCOVER-seq+ processed tables easiest via CCLMoff Figshare",
+      "DNABERT-Epi unified classifier tables still require supplement extraction"
+    ],
+    "reconstructable_items": [
+      "CHANGE-seq processed site tables from GEO raw + pipeline",
+      "DNABERT-Epi tables from supplement",
+      "GUIDE-seq and CIRCLE-seq positives from paper repos with generated negatives"
+    ],
+    "can_run_immediately_after_clone": false
+  },
+  "secondary_off_target_faststart_suite": {
+    "suite_name": "legacy_uqam_dagrate_faststart",
+    "fully_acquirable_now": true,
+    "fastest_path": "download encoded_data_for_experiments.pkl or clone dagrate/public_data_crisprCas9",
+    "blocked_items": [],
+    "reconstructable_items": [],
+    "can_run_immediately_after_clone": true,
+    "claim_note": "Secondary convenience suite only; not a substitute for the modern primary external claim benchmark."
+  },
+  "next_required_actions": [
+    "Clone the CRISPR_HNN repo and stage the nine canonical on-target CSVs locally.",
+    "Clone the DeepHF and CRISPOR repos as authoritative/raw and extended mirrors.",
+    "Clone Tsai lab pipeline repos and dagrate convenience mirror for off-target preprocessing support.",
+    "Download or manually fetch the CCLMoff Figshare compiled bundle to complete the modern primary off-target suite.",
+    "Extract supplement-based tables for DNABERT-Epi and any assay datasets that are not already bundled in CCLMoff."
+  ]
+}

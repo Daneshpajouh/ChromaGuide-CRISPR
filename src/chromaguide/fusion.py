@@ -224,7 +224,12 @@ class NonRedundancyRegularizer(nn.Module):
         marginal = torch.cat([z_s, z_e_shuffled], dim=-1)
         t_marginal = self.network(marginal)  # (B, 1)
 
-        # MINE lower bound on MI
-        mi_estimate = t_joint.mean() - torch.log(torch.exp(t_marginal).mean() + 1e-8)
+        # MINE lower bound on MI. Use logsumexp form for numerical stability:
+        # log(mean(exp(t))) = logsumexp(t) - log(B)
+        t_marginal_flat = t_marginal.reshape(-1)
+        log_mean_exp = torch.logsumexp(t_marginal_flat, dim=0) - torch.log(
+            torch.tensor(float(t_marginal_flat.numel()), device=t_marginal.device)
+        )
+        mi_estimate = t_joint.mean() - log_mean_exp
 
         return mi_estimate

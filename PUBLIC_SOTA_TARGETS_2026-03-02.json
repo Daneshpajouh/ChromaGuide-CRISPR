@@ -1,0 +1,142 @@
+{
+  "as_of_date": "2026-03-02",
+  "source_type": "frozen_public_targets_from_external_sota_audit",
+  "purpose": "Machine-readable public benchmark target manifest for claim-valid comparison against current external SOTA.",
+  "notes": [
+    "These are public benchmark targets, not internal Split A targets.",
+    "Comparisons are only claim-valid when the same protocol is matched.",
+    "On-target public benchmarking is frozen as a dual-threshold regime: CRISPR_HNN for the nine-dataset average target, CRISPR-FMC for per-dataset strong targets, transfer, and small-data targets.",
+    "Off-target leadership remains benchmark-frame-specific; CCLMoff is frozen as the primary multi-assay transfer and leave-one-dataset-out public target in this manifest.",
+    "Additional public datasets beyond the frozen canonical suite are encouraged as secondary evidence, but they do not replace the canonical suite for the primary external claim."
+  ],
+  "on_target": {
+    "leader_status": "dual_threshold_split_leadership",
+    "frozen_benchmark_regime": "canonical 9-dataset Cas9 on-target benchmark, 5-fold CV, SCC primary, PCC secondary",
+    "leaders": {
+      "average_target_leader": "CRISPR_HNN",
+      "per_dataset_and_transfer_leader": "CRISPR-FMC"
+    },
+    "average_targets": {
+      "leader": "CRISPR_HNN",
+      "mean_SCC_9_dataset": 0.716,
+      "mean_PCC_9_dataset": 0.721
+    },
+    "per_dataset_targets": {
+      "leader": "CRISPR-FMC",
+      "WT": {
+        "metric": "SCC",
+        "target_value": 0.861
+      },
+      "ESP": {
+        "metric": "SCC",
+        "target_value": 0.851
+      },
+      "HF": {
+        "metric": "SCC",
+        "target_value": 0.865
+      },
+      "Sniper-Cas9": {
+        "metric": "SCC",
+        "target_value": 0.935
+      },
+      "HL60": {
+        "metric": "SCC",
+        "target_value": 0.402
+      }
+    },
+    "transfer_targets": {
+      "leader": "CRISPR-FMC",
+      "WT_to_HL60": {
+        "metric": "SCC",
+        "target_value": 0.468
+      },
+      "WT_to_HL60_PCC": {
+        "metric": "PCC",
+        "target_value": 0.459
+      }
+    },
+    "secondary_context": {
+      "CRISPR_HNN_large_dataset_mean_SCC": 0.859,
+      "CRISPR_HNN_medium_dataset_mean_SCC": 0.891,
+      "CrnnCrispr_mean_SCC": 0.701
+    },
+    "must_beat_rules": {
+      "minimum_external_claim": "Match the frozen 9-dataset benchmark regime and beat CRISPR_HNN on average while also meeting or beating the CRISPR-FMC transfer and small-data thresholds.",
+      "stronger_claim": "Beat CRISPR_HNN on the 9-dataset average and beat CRISPR-FMC on WT, at least one additional large dataset, HL60, and WT-to-HL60 transfer under matched protocol."
+    }
+  },
+  "off_target": {
+    "leader_single_model": "CCLMoff",
+    "benchmark_frames": {
+      "classification_transfer_lodo": "Primary modern multi-assay compiled benchmark with matched Cas-OFFinder negative generation.",
+      "unified_classifier_secondary": "DNABERT-Epi sgRNA-based unified classifier benchmark across CHANGE-seq, GUIDE-seq, and TTISS.",
+      "regression_uncertainty": "crispAI CHANGE-seq probabilistic regression and uncertainty benchmark."
+    },
+    "datasets": {
+      "CIRCLE-seq_CV": {
+        "metrics": {
+          "balanced_accuracy": 0.998,
+          "F1": 0.409,
+          "AUROC": 0.985,
+          "AUPRC": 0.524
+        }
+      },
+      "CIRCLE_to_GUIDE-seq": {
+        "metrics": {
+          "AUROC": 0.996,
+          "AUPRC": 0.52
+        }
+      },
+      "DIG-seq_LODO": {
+        "metrics": {
+          "AUROC": 0.985,
+          "AUPRC": 0.72
+        }
+      },
+      "DISCOVER-seq_plus_LODO": {
+        "metrics": {
+          "AUROC": 0.944,
+          "AUPRC": 0.665
+        }
+      },
+      "GUIDE-seq_LODO": {
+        "metrics": {
+          "AUROC": 0.81,
+          "AUPRC": 0.279
+        }
+      }
+    },
+    "secondary_thresholds": {
+      "DNABERT-Epi": {
+        "Lazzarotto_GUIDE-seq_PR_AUC": 0.5501,
+        "Lazzarotto_GUIDE-seq_ROC_AUC": 0.9857,
+        "Lazzarotto_GUIDE-seq_F1": 0.477,
+        "Lazzarotto_GUIDE-seq_MCC": 0.4968
+      },
+      "crispAI": {
+        "CHANGE-seq_test_Spearman": 0.5114,
+        "calibration_requirement": "qualitatively match or improve crispAI interval calibration on held-out CHANGE-seq"
+      }
+    },
+    "must_beat_rules": {
+      "primary": "Beat CCLMoff on a matched public assay-derived benchmark with matched negative construction.",
+      "stronger_claim": "Beat CCLMoff on both cross-dataset transfer and at least one leave-one-dataset-out setting.",
+      "secondary_classifier_context": "DNABERT-Epi is the secondary unified sgRNA-based classifier target when using that exact benchmark frame.",
+      "secondary_regression_context": "crispAI is the regression and uncertainty target when using CHANGE-seq probabilistic regression."
+    }
+  },
+  "integrated_design": {
+    "leader_status": "fragmented_no_universal_public_leaderboard",
+    "claim_requirement": "Define utility explicitly and benchmark with ranking metrics such as NDCG@k and Top-k hit rate against strong on-target and off-target component baselines."
+  },
+  "calibration": {
+    "status": "partially_externalized",
+    "note": "Off-target uncertainty has a strong external reference class, but a claim-valid on-target uncertainty benchmark remains underdefined."
+  },
+  "remaining_research_required": [
+    "Off-target negative-construction comparability audit",
+    "Benchmark-frame normalization across CCLMoff, DNABERT-Epi, and crispAI",
+    "Integrated design benchmark normalization",
+    "Optional on-target uncertainty closure if a directly comparable external target emerges"
+  ]
+}

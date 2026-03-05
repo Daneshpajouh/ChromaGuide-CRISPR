@@ -25,6 +25,6 @@ export TRANSFORMERS_CACHE="/home/amird/.cache/huggingface/hub"
 mkdir -p slurm_logs
 
 echo "Starting Python training script..."
-python3 -u scripts/train_on_real_data.py
+python3 -u scripts/train_on_real_data_v2.py --backbone dnabert2 --split A --epochs 50 --batch_size 250 --device cuda --seed 42
 
 echo "Job finished at $(date)"
