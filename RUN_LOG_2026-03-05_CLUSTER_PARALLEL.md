@@ -108,3 +108,48 @@ Important comparability note:
 - cedar jobs queue but remain blocked by unavailable nodes.
 - Uncertainty frame (`crispai_change_regression_uncertainty`) still blocked pending processed CHANGE-seq table staging.
 - CIRCLE/CIRCLE->GUIDE claim frames remain blocked until blank `Method` provenance is resolved in primary CCLMoff mapping policy.
+
+## Checkpoint Update (2026-03-05 15:15 PST)
+
+### Connection/Execution Health
+- Persistent SSH masters verified live for: `nibi`, `rorqual`, `fir`, `cedar`, `beluga`, `trillium`.
+- Scheduler probes:
+  - `nibi`: active (`9838859` running)
+  - `rorqual`: active (`7728224` running)
+  - `fir`: active (`25783647`, `25786572`, `25788418` running)
+  - `cedar`: queued only (node availability)
+  - `trillium`: active CPU searches (`1119483`, `1119950`, `1124392`, `1124393`)
+  - `beluga`: still blocked by Slurm plugin mismatch
+
+### Newly Harvested Artifacts
+Harvested into `results/public_benchmarks/cluster_harvest_20260305/`:
+- `nibi/full_run_best_FINAL_SUMMARY.json`
+- `nibi/off_target_manifest_sweep_summary.json`
+- `nibi/optuna_off_target_wave2_summary.json`
+- `rorqual/parallel_full_wave2_FINAL_SUMMARY.json`
+- `rorqual/off_target_manifest_sweep_summary.json`
+- `rorqual/optuna_off_target_wave2_summary.json`
+- `fir/full_run_best_FINAL_SUMMARY.json`
+- `fir/off_target_manifest_sweep_summary.json`
+- `fir/optuna_off_target_wave2_summary.json`
+- `trillium/optuna_on_target_summary.json`
+- `trillium/optuna_off_target_summary.json`
+
+### Current Metrics Delta
+- On-target best completed mean9 SCC remains below claim threshold:
+  - best: `0.5522381826371536` (nibi)
+  - threshold: `0.716`
+  - gap: `-0.16376181736284634`
+- Best WT->HL60 transfer remains near but below target:
+  - best: `0.46050464169905975`
+  - target: `0.468`
+  - gap: `-0.00749535830094028`
+- Off-target all-split LODO now aggregated on 3 clusters:
+  - nibi mean AUROC/AUPRC: `0.962681708886335 / 0.8828249823003957`
+  - rorqual mean AUROC/AUPRC: `0.9652139708033906 / 0.8875998885739973`
+  - fir mean AUROC/AUPRC: `0.9633986232867555 / 0.8842023967553448`
+
+### Claim Status (unchanged)
+- On-target: not claim-valid yet versus frozen thresholds.
+- Off-target: LODO frame now robustly aggregated; CIRCLE/CIRCLE->GUIDE still blocked by unresolved blank `Method` provenance.
+- Uncertainty/calibration: still blocked pending processed CHANGE-seq table staging.

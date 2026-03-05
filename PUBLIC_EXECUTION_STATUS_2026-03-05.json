@@ -1,0 +1,135 @@
+{
+  "generated_local_time": "2026-03-05T15:15:00-08:00",
+  "phase_boundary": "cluster_parallel_wave_active_with_lodo_aggregates_on_3_clusters",
+  "repo": {
+    "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
+    "branch": "Dev",
+    "head_commit": "31d57a0"
+  },
+  "cluster_state": {
+    "nibi": {
+      "status": "active",
+      "running_jobs": [
+        {"job_id": 9838859, "name": "pub_on_optuna", "state": "RUNNING"}
+      ],
+      "recent_completed": [
+        {"job_id": 9836031, "name": "pub_on_full", "state": "COMPLETED"},
+        {"job_id": 9838862, "name": "pub_off_optuna", "state": "COMPLETED"},
+        {"job_id": 9839196, "name": "pub_off_sweep", "state": "COMPLETED"},
+        {"job_id": 9836395, "name": "sota_fmc_pub", "state": "COMPLETED"}
+      ]
+    },
+    "rorqual": {
+      "status": "active",
+      "running_jobs": [
+        {"job_id": 7728224, "name": "pub_on_optuna", "state": "RUNNING"}
+      ],
+      "recent_completed": [
+        {"job_id": 7728103, "name": "pub_on_full", "state": "COMPLETED"},
+        {"job_id": 7728104, "name": "pub_off_cclmoff", "state": "COMPLETED"},
+        {"job_id": 7728225, "name": "pub_off_optuna", "state": "COMPLETED"},
+        {"job_id": 7728813, "name": "pub_off_sweep", "state": "COMPLETED"}
+      ]
+    },
+    "fir": {
+      "status": "active",
+      "running_jobs": [
+        {"job_id": 25783647, "name": "pub_on_full", "state": "RUNNING"},
+        {"job_id": 25788418, "name": "pub_on_optuna", "state": "RUNNING"},
+        {"job_id": 25786572, "name": "sota_fmc_pub", "state": "RUNNING"}
+      ],
+      "recent_completed": [
+        {"job_id": 25789949, "name": "pub_off_sweep", "state": "COMPLETED"},
+        {"job_id": 25788419, "name": "pub_off_optuna", "state": "COMPLETED"},
+        {"job_id": 25788108, "name": "pub_off_cclmoff", "state": "COMPLETED"}
+      ]
+    },
+    "cedar": {
+      "status": "queued_blocked_by_node_availability",
+      "pending_jobs": [66521796, 66521803, 66521805, 66521806, 66521935, 66521936, 66522228],
+      "reason": "ReqNodeNotAvail"
+    },
+    "trillium": {
+      "status": "active_cpu_search",
+      "running_jobs": [1119483, 1119950, 1124392, 1124393]
+    },
+    "beluga": {
+      "status": "blocked",
+      "reason": "Slurm plugin incompatibility (cc-tmpfs_mounts.so)"
+    }
+  },
+  "public_on_target": {
+    "best_completed_run": {
+      "host": "nibi",
+      "artifact": "results/public_benchmarks/cluster_harvest_20260305/nibi/full_run_best_FINAL_SUMMARY.json",
+      "mean_9_dataset_scc": 0.5522381826371536,
+      "WT_scc": 0.8424370688292431,
+      "ESP_scc": 0.8198967154899437,
+      "HF_scc": 0.798560354965847,
+      "Sniper_scc": 0.446090916888109,
+      "HL60_scc": 0.2275099682349664,
+      "gap_vs_mean_target_0_716": -0.16376181736284634
+    },
+    "best_transfer_wt_to_hl60": {
+      "host": "rorqual",
+      "mean_scc": 0.46050464169905975,
+      "gap_vs_target_0_468": -0.00749535830094028
+    },
+    "other_completed_reference": {
+      "rorqual_mean_9_dataset_scc": 0.550721131533518,
+      "fir_mean_9_dataset_scc": 0.5428726268587706
+    },
+    "meets_frozen_on_target_claim": false
+  },
+  "public_off_target": {
+    "full_lodo_sweep_completed": {
+      "nibi": {
+        "artifact": "results/public_benchmarks/cluster_harvest_20260305/nibi/off_target_manifest_sweep_summary.json",
+        "n_splits": 7,
+        "mean_auroc": 0.962681708886335,
+        "mean_auprc": 0.8828249823003957,
+        "min_auroc": 0.9378886071615636,
+        "max_auroc": 0.9850439882697948
+      },
+      "rorqual": {
+        "artifact": "results/public_benchmarks/cluster_harvest_20260305/rorqual/off_target_manifest_sweep_summary.json",
+        "n_splits": 7,
+        "mean_auroc": 0.9652139708033906,
+        "mean_auprc": 0.8875998885739973,
+        "min_auroc": 0.9387142478270178,
+        "max_auroc": 0.9850439882697948
+      },
+      "fir": {
+        "artifact": "results/public_benchmarks/cluster_harvest_20260305/fir/off_target_manifest_sweep_summary.json",
+        "n_splits": 7,
+        "mean_auroc": 0.9633986232867555,
+        "mean_auprc": 0.8842023967553448,
+        "min_auroc": 0.9378886071615636,
+        "max_auroc": 0.9850439882697948
+      }
+    },
+    "optuna_wave2_best": {
+      "host": "nibi",
+      "artifact": "results/public_benchmarks/cluster_harvest_20260305/nibi/optuna_off_target_wave2_summary.json",
+      "best_auroc": 0.986721680420105,
+      "best_auprc": 0.9646667674048945
+    },
+    "claim_validity": {
+      "circle_cv": "blocked_by_unresolved_blank_method_provenance",
+      "circle_to_guide": "blocked_by_unresolved_blank_method_provenance",
+      "lodo": "runnable_and_aggregated_on_3_clusters",
+      "meets_full_frozen_off_target_claim": false
+    }
+  },
+  "uncertainty_and_calibration": {
+    "status": "still_blocked_for_claim_valid_crispai_frame",
+    "blocked_reason": "Processed CHANGE-seq uncertainty table not yet staged from primary source"
+  },
+  "next_actions": [
+    "Harvest active on-target Optuna runs from nibi (9838859), rorqual (7728224), fir (25788418), and trillium CPU studies.",
+    "Promote top on-target trial to a new full 9x5 + WT->HL60 run once current Optuna wave completes.",
+    "Harvest fir full run (25783647) and FMC run (25786572) when completed and compare against frozen thresholds.",
+    "Resolve CCLMoff blank Method provenance to unblock CIRCLE and CIRCLE->GUIDE claim-valid frames.",
+    "Stage processed CHANGE-seq table for crispAI uncertainty benchmark frame and add calibration metrics run."
+  ]
+}
