@@ -153,3 +153,38 @@ Harvested into `results/public_benchmarks/cluster_harvest_20260305/`:
 - On-target: not claim-valid yet versus frozen thresholds.
 - Off-target: LODO frame now robustly aggregated; CIRCLE/CIRCLE->GUIDE still blocked by unresolved blank `Method` provenance.
 - Uncertainty/calibration: still blocked pending processed CHANGE-seq table staging.
+
+## Checkpoint Update (2026-03-05 evening PST)
+
+### Repo + Sync
+- Pushed latest script updates to `origin/Dev` at commit `1c50143`.
+- Synced updated `scripts/` to all cluster workdirs. Cedar required tar-over-SSH fallback because `rsync` is unavailable on login node.
+
+### Compatibility Fixes Applied
+- Fixed Python 3.9 incompatibility (`datetime.UTC`) by switching to `datetime.now(timezone.utc)` in:
+  - `scripts/stage_change_seq_proxy_table.py`
+  - `scripts/build_public_off_target_frames.py`
+
+### Fresh Smoke Submissions (post-fix)
+- nibi: `9844993` (off-target uncertainty smoke)
+- rorqual: `7730448` (off-target uncertainty smoke)
+- fir: `25800106` (GPU smoke pending), plus CPU fallback submission path validated
+- cedar: `66523835` (off-target uncertainty smoke)
+- trillium: `1126842` (off-target uncertainty smoke)
+- beluga: submission blocked (plugin incompatibility)
+
+### Full Parallel Wave Submitted
+- nibi: `9845034` (on-target full), `9845036` (on-target optuna), `9845037` (off-target optuna LODO), `9845038` (off-target uncertainty full)
+- rorqual: `7731085`, `7731105`, `7731133`, `7731166`
+- fir: `25800913`, `25800915`, `25800916`, `25800917` (with `--partition=gpubase_bygpu_b2` routing)
+- cedar: `66523848`, `66523849`, `66523850`, `66523851` (with `--partition=gpubase_bygpu_b2` routing)
+- trillium: `1126846` (off-target uncertainty full CPU)
+- beluga: full submission still blocked by plugin stack mismatch (`cc-tmpfs_mounts.so`)
+
+### Real-Time Queue Snapshot Summary
+- nibi: all new jobs pending on priority.
+- rorqual: all new jobs pending on priority.
+- fir: new full wave pending; existing `sota_fmc_pub` still running.
+- cedar: new full wave pending with `ReqNodeNotAvail` constraint.
+- trillium: existing CPU search jobs running; new smoke/full uncertainty jobs pending.
+- beluga: no runnable queue path due scheduler plugin failure.
