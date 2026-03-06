@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-03-06T05:31:41.466311+00:00",
-  "benchmark_wave": "cluster_smoke_to_full_parallel_2026-03-05_recovery",
+  "generated_at_utc": "2026-03-06T06:21:11.050460+00:00",
+  "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup",
   "jobs": {
     "nibi": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -14,7 +14,11 @@
       "full_off_target_state": "COMPLETED",
       "full_off_target_best_auroc": 0.9813238485224081,
       "full_off_target_best_auprc": 0.802543562705727,
-      "full_off_target_frame": "cclmoff_lodo"
+      "full_off_target_frame": "cclmoff_lodo",
+      "wave3_on_target_job_id": "9884210",
+      "wave3_on_target_state": "PENDING",
+      "wave3_off_target_job_id": "9884209",
+      "wave3_off_target_state": "PENDING"
     },
     "rorqual": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -25,7 +29,11 @@
       "full_on_target_job_id": "7760080",
       "full_on_target_state": "COMPLETED",
       "full_off_target_job_id": "7760522",
-      "full_off_target_state": "COMPLETED"
+      "full_off_target_state": "COMPLETED",
+      "wave3_on_target_job_id": "7762946",
+      "wave3_on_target_state": "PENDING",
+      "wave3_off_target_job_id": "7762945",
+      "wave3_off_target_state": "PENDING"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -39,7 +47,11 @@
       "full_on_target_attempt_2_job_id": "25869250",
       "full_on_target_attempt_2_state": "COMPLETED",
       "full_off_target_job_id": "25868665",
-      "full_off_target_state": "COMPLETED"
+      "full_off_target_state": "COMPLETED",
+      "wave3_on_target_job_id": "25873341",
+      "wave3_on_target_state": "PENDING",
+      "wave3_off_target_job_id": "25873340",
+      "wave3_off_target_state": "PENDING"
     },
     "cedar": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -56,7 +68,9 @@
       "cpu_full_off_target_job_id": "66526844",
       "cpu_full_off_target_state": "RUNNING",
       "cpu_full_on_target_job_id": "66526845",
-      "cpu_full_on_target_state": "RUNNING"
+      "cpu_full_on_target_state": "RUNNING",
+      "pending_blocked_optuna_canceled": true,
+      "pending_blocked_optuna_canceled_at": "2026-03-06"
     },
     "trillium": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -77,6 +91,7 @@
   "notes": [
     "Submit helper now injects sbatch --export=ALL,<vars> to avoid env loss on clusters that enforce --export=NONE.",
     "Off-target frame manifests were rebuilt to use repo-relative paths so remote jobs do not reference local macOS absolute paths.",
-    "Nibi/Fir/Rorqual full wave completed and harvested into results/public_benchmarks/cluster_harvest_20260306/."
+    "Nibi/Fir/Rorqual full wave completed and harvested into results/public_benchmarks/cluster_harvest_20260306/.",
+    "Launched follow-up wave3 across nibi/fir/rorqual: 3 on-target variants and 3 off-target LODO e12 variants for gap reduction."
   ]
 }
