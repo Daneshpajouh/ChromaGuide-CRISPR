@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T08:04:26.105257+00:00",
+  "generated_at_utc": "2026-03-06T08:05:32.566475+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup",
   "jobs": {
     "nibi": {
@@ -62,9 +62,11 @@
       "wave4_on_target_tag": "wave4_rorqual_on_mamba_d192_e18",
       "wave4_off_target_uncertainty_spearman": 0.24459921889499037,
       "upstream_sota_crispr_hnn_smoke_job_id": "7765996",
-      "upstream_sota_crispr_hnn_smoke_state": "PENDING",
+      "upstream_sota_crispr_hnn_smoke_state": "COMPLETED",
       "upstream_sota_crispr_hnn_smoke_failed_job_id": "7765955",
-      "upstream_sota_crispr_hnn_smoke_failed_reason": "missing keras_multi_head in dedicated tensorflow env"
+      "upstream_sota_crispr_hnn_smoke_failed_reason": "missing keras_multi_head in dedicated tensorflow env",
+      "upstream_sota_crispr_hnn_smoke_summary": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_wave1_smoke_SUMMARY.json",
+      "upstream_sota_crispr_hnn_smoke_mean_scc": 0.15351511984870853
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -133,6 +135,7 @@
     "Wave4 on-target jobs submitted: nibi (cnn_gru gate d128 e20) and rorqual (mamba gate d192 e18).",
     "Wave4 uncertainty completed on nibi/rorqual (CHANGE proxy Spearman: 0.2494 / 0.2446); still below frozen 0.5114 target for claim-valid calibration frame.",
     "Queued upstream comparative smokes on frozen public folds: CRISPR-FMC on nibi (9890598) and CRISPR_HNN on rorqual (7765834).",
-    "Upstream CRISPR_HNN smoke on rorqual was requeued as 7765996 after preparing a dedicated TensorFlow env and installing keras-multi-head."
+    "Upstream CRISPR_HNN smoke on rorqual was requeued as 7765996 after preparing a dedicated TensorFlow env and installing keras-multi-head.",
+    "Upstream CRISPR_HNN cluster smoke completed on rorqual with CPU fallback; WT 1-fold 512-row smoke mean SCC=0.15351511984870853."
   ]
 }
