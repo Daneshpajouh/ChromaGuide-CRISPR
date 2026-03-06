@@ -1,71 +1,71 @@
 {
-  "generated_at_utc": "2026-03-06T02:34:49.184147+00:00",
-  "benchmark_wave": "cluster_parallel_wave_2026-03-05_evening",
+  "generated_at_utc": "2026-03-06T04:26:34.246505+00:00",
+  "benchmark_wave": "cluster_smoke_to_full_parallel_2026-03-05_recovery",
   "jobs": {
     "nibi": {
-      "repo_dir": "$HOME/scratch/chromaguide_experiments",
-      "on_target_full_gate_job_id": "9862407",
-      "off_target_lodo_job_id": "9862408",
-      "on_target_full_xattn_job_id": "9862714",
-      "state": "PENDING_PRIORITY"
+      "repo_dir": "/scratch/amird/chromaguide_experiments",
+      "smoke_on_target_job_id": "9866824",
+      "smoke_on_target_state": "COMPLETED",
+      "smoke_off_target_job_id": "9868908",
+      "smoke_off_target_state": "COMPLETED",
+      "full_on_target_job_id": "9867328",
+      "full_on_target_state": "RUNNING",
+      "full_off_target_job_id": "9867329",
+      "full_off_target_state": "COMPLETED",
+      "full_off_target_best_auroc": 0.9813,
+      "full_off_target_best_auprc": 0.8025,
+      "full_off_target_frame": "cclmoff_lodo"
     },
     "rorqual": {
-      "repo_dir": "$HOME/chromaguide_experiments",
-      "on_target_full_gate_job_id": "7754787",
-      "on_target_full_xattn_job_id": "7755117",
-      "on_target_state": "RUNNING_PLUS_PENDING",
-      "off_target_lodo_job_id": "7754788",
-      "off_target_state": "COMPLETED",
-      "off_target_result_file": "results/cluster_harvest/rorqual/rorqual_off_target_lodo_20260305_181246.json",
-      "off_target_best_auroc": 0.9859604105571848,
-      "off_target_best_auprc": 0.9389281784201725,
-      "off_target_frame": "cclmoff_lodo (held-out BLESS split)",
-      "on_target_gate_completed_job_id": "7754787",
-      "on_target_gate_summary_file": "results/cluster_harvest/rorqual/rorqual_on_target_full_gate_20260305_181246_FINAL_SUMMARY.json",
-      "on_target_gate_metrics": {
-        "mean9_scc": 0.5171837923597841,
-        "WT_scc": 0.8381616930224562,
-        "ESP_scc": 0.8042298885904289,
-        "HF_scc": 0.7660774137191529,
-        "Sniper_Cas9_scc": 0.44419487500693733,
-        "HL60_scc": 0.2063619568594263,
-        "WT_to_HL60_scc": 0.449064632727875
-      },
-      "on_target_gate_deltas_vs_frozen": {
-        "mean9_scc": -0.1988162076402159,
-        "WT_scc": -0.022838306977543743,
-        "ESP_scc": -0.0467701114095711,
-        "HF_scc": -0.09892258628084705,
-        "Sniper_Cas9_scc": -0.4908051249930627,
-        "HL60_scc": -0.19563804314057373,
-        "WT_to_HL60_scc": -0.018935367272124998
-      },
-      "on_target_xattn_job_id": "7755117",
-      "on_target_xattn_state": "RUNNING"
+      "repo_dir": "/scratch/amird/chromaguide_experiments",
+      "smoke_on_target_job_id": "7758869",
+      "smoke_on_target_state": "COMPLETED",
+      "smoke_off_target_job_id": "7760079",
+      "smoke_off_target_state": "COMPLETED",
+      "full_on_target_job_id": "7760080",
+      "full_on_target_state": "RUNNING",
+      "full_off_target_job_id": "7760522",
+      "full_off_target_state": "RUNNING"
     },
     "fir": {
-      "repo_dir": "$HOME/scratch/chromaguide_experiments",
-      "download_full_job_id": "25829461",
-      "on_target_optuna_job_id": "25848828",
-      "off_target_optuna_job_id": "25848829",
-      "state": "DOWNLOAD_RUNNING_OPTUNA_PENDING",
-      "notes": "Previous fir optuna jobs 25847084/25847085 failed immediately due missing optuna in venv; resubmitted with VENV_BOOTSTRAP=1."
+      "repo_dir": "/scratch/amird/chromaguide_experiments",
+      "smoke_on_target_job_id": "25867139",
+      "smoke_on_target_state": "COMPLETED",
+      "smoke_off_target_job_id": "25867350",
+      "smoke_off_target_state": "COMPLETED",
+      "full_on_target_attempt_1_job_id": "25868664",
+      "full_on_target_attempt_1_state": "FAILED",
+      "full_on_target_attempt_1_failure": "numpy namespace/package corruption in scratch venv",
+      "full_on_target_attempt_2_job_id": "25869250",
+      "full_on_target_attempt_2_state": "RUNNING",
+      "full_off_target_job_id": "25868665",
+      "full_off_target_state": "COMPLETED"
     },
     "cedar": {
-      "repo_dir": "$HOME/scratch/chromaguide_experiments",
-      "download_full_job_id": "66526829",
-      "on_target_optuna_job_id": "66526833",
-      "off_target_optuna_job_id": "66526834",
-      "state": "DOWNLOAD_RUNNING_BENCHMARK_PENDING_REQNODENOTAVAIL"
+      "repo_dir": "/scratch/amird/chromaguide_experiments",
+      "gpu_smoke_attempt_job_ids": [
+        "66526835",
+        "66526836"
+      ],
+      "gpu_smoke_attempt_state": "CANCELED_OR_BLOCKED",
+      "gpu_smoke_attempt_notes": "ReqNodeNotAvail and home quota during bootstrap",
+      "cpu_smoke_on_target_job_id": "66526842",
+      "cpu_smoke_on_target_state": "RUNNING",
+      "cpu_smoke_off_target_job_id": "66526843",
+      "cpu_smoke_off_target_state": "COMPLETED",
+      "cpu_full_off_target_job_id": "66526844",
+      "cpu_full_off_target_state": "RUNNING",
+      "cpu_full_on_target_state": "PENDING_SMOKE_COMPLETION"
     },
     "trillium": {
-      "repo_dir": "/scratch/$USER/chromaguide_experiments",
-      "active_cpu_jobs": [
-        "1119483",
-        "1119950",
-        "1124392"
-      ],
-      "state": "CPU_BENCHMARK_JOBS_RUNNING"
+      "repo_dir": "/scratch/amird/chromaguide_experiments",
+      "cpu_smoke_on_target_job_id": "1128521",
+      "cpu_smoke_on_target_state": "RUNNING",
+      "cpu_smoke_off_target_job_id": "1128522",
+      "cpu_smoke_off_target_state": "COMPLETED",
+      "cpu_full_off_target_job_id": "1128530",
+      "cpu_full_off_target_state": "RUNNING",
+      "cpu_full_on_target_state": "PENDING_SMOKE_COMPLETION"
     },
     "beluga": {
       "state": "BLOCKED",
@@ -73,7 +73,8 @@
     }
   },
   "notes": [
-    "Rorqual off-target score is strong but not yet a full frozen-threshold claim across all required off-target frames.",
-    "On-target claim-valid status awaits completion of at least one full 9x5 + WT->HL60 run from current wave."
+    "Submit helper now injects sbatch --export=ALL,<vars> to avoid env loss on clusters that enforce --export=NONE.",
+    "Off-target frame manifests were rebuilt to use repo-relative paths so remote jobs do not reference local macOS absolute paths.",
+    "Beluga remains scheduler-blocked at infrastructure level; all other clusters are executing active jobs."
   ]
 }

@@ -3,7 +3,7 @@ set -euo pipefail
 
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 <cluster-host> <job-kind> [VAR=value ...]" >&2
-  echo "job-kind: on-target-optuna | on-target-full | off-target-cclmoff | off-target-optuna | off-target-uncertainty | off-target-uncertainty-cpu | off-target-uncertainty-trillium | downloads | downloads-trillium | downloads-trillium-smoke | downloads-trillium-full" >&2
+  echo "job-kind: on-target-optuna | on-target-full | on-target-full-cpu | off-target-cclmoff | off-target-cclmoff-cpu | off-target-optuna | off-target-uncertainty | off-target-uncertainty-cpu | off-target-uncertainty-trillium | downloads | downloads-trillium | downloads-trillium-smoke | downloads-trillium-full" >&2
   exit 1
 fi
 
@@ -18,8 +18,14 @@ case "$JOB_KIND" in
   on-target-full)
     REMOTE_SCRIPT="scripts/slurm_public_on_target_full_run.sh"
     ;;
+  on-target-full-cpu)
+    REMOTE_SCRIPT="scripts/slurm_public_on_target_full_run_cpu.sh"
+    ;;
   off-target-cclmoff)
     REMOTE_SCRIPT="scripts/slurm_public_off_target_cclmoff.sh"
+    ;;
+  off-target-cclmoff-cpu)
+    REMOTE_SCRIPT="scripts/slurm_public_off_target_cclmoff_cpu.sh"
     ;;
   off-target-optuna)
     REMOTE_SCRIPT="scripts/slurm_public_off_target_optuna.sh"
@@ -68,6 +74,7 @@ if [ "${SSH_CMD[0]}" = "ssh" ]; then
 fi
 
 ENV_PREFIX=""
+EXPORT_KV=()
 REMOTE_REPO_DIR=""
 SBATCH_ARGS=""
 for kv in "$@"; do
@@ -80,6 +87,7 @@ for kv in "$@"; do
       ;;
     *)
       ENV_PREFIX+="${kv} "
+      EXPORT_KV+=("$kv")
       ;;
   esac
 done
@@ -90,6 +98,16 @@ fi
 
 # Ensure wrappers receive the same REPO_DIR they are submitted from.
 ENV_PREFIX+="REPO_DIR=${REMOTE_REPO_DIR} "
+EXPORT_KV+=("REPO_DIR=${REMOTE_REPO_DIR}")
+
+SBATCH_EXPORT_ARG=""
+if [[ " ${SBATCH_ARGS} " != *" --export="* ]]; then
+  export_payload="ALL"
+  for kv in "${EXPORT_KV[@]}"; do
+    export_payload+=",${kv}"
+  done
+  SBATCH_EXPORT_ARG="--export=${export_payload}"
+fi
 
 SBATCH_BIN="$( "${SSH_CMD[@]}" "$CLUSTER_HOST" 'if command -v sbatch >/dev/null 2>&1; then command -v sbatch; elif [ -x /opt/software/slurm/bin/sbatch ]; then echo /opt/software/slurm/bin/sbatch; else echo ""; fi' )"
 if [ -z "$SBATCH_BIN" ]; then
@@ -97,7 +115,7 @@ if [ -z "$SBATCH_BIN" ]; then
   exit 0
 fi
 
-REMOTE_CMD="cd ${REMOTE_REPO_DIR} && ${ENV_PREFIX}${SBATCH_BIN} ${SBATCH_ARGS} ${REMOTE_SCRIPT}"
+REMOTE_CMD="cd ${REMOTE_REPO_DIR} && ${ENV_PREFIX}${SBATCH_BIN} ${SBATCH_EXPORT_ARG} ${SBATCH_ARGS} ${REMOTE_SCRIPT}"
 echo "Submitting to ${CLUSTER_HOST}: ${REMOTE_CMD}"
 if ! "${SSH_CMD[@]}" "$CLUSTER_HOST" "test -d ${REMOTE_REPO_DIR}"; then
   echo "Skipping ${CLUSTER_HOST}: ${REMOTE_REPO_DIR} missing" >&2

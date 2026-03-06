@@ -23,6 +23,13 @@ def default_method_aliases() -> dict[str, str]:
     }
 
 
+def to_repo_rel(path: Path, repo_root: Path) -> str:
+    try:
+        return path.resolve().relative_to(repo_root.resolve()).as_posix()
+    except ValueError:
+        return str(path.resolve())
+
+
 def build_guide_folds(unique_guides: list[str], fold_count: int, seed: int) -> list[list[str]]:
     guides = list(unique_guides)
     rng = random.Random(seed)
@@ -97,15 +104,15 @@ def to_method_entries(raw_stats: dict[str, dict], aliases: dict[str, str]) -> li
     return entries
 
 
-def ready_manifest_common(data_path: Path, method_map_path: Path) -> dict:
+def ready_manifest_common(data_path: Path, method_map_path: Path, repo_root: Path) -> dict:
     return {
-        "data_path": str(data_path),
-        "method_map_json": str(method_map_path),
+        "data_path": to_repo_rel(data_path, repo_root),
+        "method_map_json": to_repo_rel(method_map_path, repo_root),
         "seed": 42,
     }
 
 
-def build_circle_cv_manifest(data_path: Path, method_map_path: Path, canonical_stats: dict[str, dict]) -> dict:
+def build_circle_cv_manifest(data_path: Path, method_map_path: Path, canonical_stats: dict[str, dict], repo_root: Path) -> dict:
     stats = canonical_stats.get("CIRCLE-seq")
     if not stats or stats["rows"] == 0:
         return {
@@ -118,7 +125,7 @@ def build_circle_cv_manifest(data_path: Path, method_map_path: Path, canonical_s
             "split_mode": "guide_kfold",
             "fold_count": 5,
             "include_methods": ["CIRCLE-seq"],
-            **ready_manifest_common(data_path, method_map_path),
+            **ready_manifest_common(data_path, method_map_path, repo_root),
         }
 
     guides = sorted(stats["guides"])
@@ -132,11 +139,11 @@ def build_circle_cv_manifest(data_path: Path, method_map_path: Path, canonical_s
         "include_methods": ["CIRCLE-seq"],
         "exclude_methods": [UNRESOLVED_METHOD],
         "guide_folds": folds,
-        **ready_manifest_common(data_path, method_map_path),
+        **ready_manifest_common(data_path, method_map_path, repo_root),
     }
 
 
-def build_circle_to_guide_manifest(data_path: Path, method_map_path: Path, canonical_stats: dict[str, dict]) -> dict:
+def build_circle_to_guide_manifest(data_path: Path, method_map_path: Path, canonical_stats: dict[str, dict], repo_root: Path) -> dict:
     circle_ready = canonical_stats.get("CIRCLE-seq", {}).get("rows", 0) > 0
     guide_ready = canonical_stats.get("GUIDE-seq", {}).get("rows", 0) > 0
     if not (circle_ready and guide_ready):
@@ -148,7 +155,7 @@ def build_circle_to_guide_manifest(data_path: Path, method_map_path: Path, canon
             "include_methods": ["CIRCLE-seq", "GUIDE-seq"],
             "train_methods": ["CIRCLE-seq"],
             "test_methods": ["GUIDE-seq"],
-            **ready_manifest_common(data_path, method_map_path),
+            **ready_manifest_common(data_path, method_map_path, repo_root),
         }
     return {
         "frame_name": "cclmoff_circle_to_guide",
@@ -159,11 +166,11 @@ def build_circle_to_guide_manifest(data_path: Path, method_map_path: Path, canon
         "exclude_methods": [UNRESOLVED_METHOD],
         "train_methods": ["CIRCLE-seq"],
         "test_methods": ["GUIDE-seq"],
-        **ready_manifest_common(data_path, method_map_path),
+        **ready_manifest_common(data_path, method_map_path, repo_root),
     }
 
 
-def build_lodo_manifest(data_path: Path, method_map_path: Path, canonical_stats: dict[str, dict]) -> dict:
+def build_lodo_manifest(data_path: Path, method_map_path: Path, canonical_stats: dict[str, dict], repo_root: Path) -> dict:
     stable_methods = []
     for method_name, stats in canonical_stats.items():
         if method_name == UNRESOLVED_METHOD:
@@ -179,7 +186,7 @@ def build_lodo_manifest(data_path: Path, method_map_path: Path, canonical_stats:
             "blocked_reason": "Need at least two resolved methods with >=30 positives and >=1 negative for LODO.",
             "split_mode": "lodo",
             "candidate_methods": stable_methods,
-            **ready_manifest_common(data_path, method_map_path),
+            **ready_manifest_common(data_path, method_map_path, repo_root),
         }
 
     splits = []
@@ -204,19 +211,19 @@ def build_lodo_manifest(data_path: Path, method_map_path: Path, canonical_stats:
         "candidate_methods": stable_methods,
         "splits": splits,
         "note": "DIG-seq is not present as a resolved method name in the staged CSV; frozen DIG-seq thresholds remain unmatched.",
-        **ready_manifest_common(data_path, method_map_path),
+        **ready_manifest_common(data_path, method_map_path, repo_root),
     }
 
 
-def build_crispai_manifest(frames_dir: Path) -> dict:
+def build_crispai_manifest(frames_dir: Path, repo_root: Path) -> dict:
     change_seq_path = frames_dir.parent / "secondary_change_seq" / "CHANGE_seq_processed_table.csv"
     provenance_path = frames_dir.parent / "secondary_change_seq" / "CHANGE_seq_processed_table.provenance.json"
     status = "ready" if change_seq_path.exists() else "blocked"
     payload = {
         "frame_name": "crispai_change_regression_uncertainty",
         "status": status,
-        "data_path": str(change_seq_path),
-        "provenance_path": str(provenance_path),
+        "data_path": to_repo_rel(change_seq_path, repo_root),
+        "provenance_path": to_repo_rel(provenance_path, repo_root),
         "split_mode": "guide_holdout",
         "split_recipe": {
             "train_fraction": 0.70,
@@ -239,6 +246,10 @@ def build_crispai_manifest(frames_dir: Path) -> dict:
     payload["claim_valid_for_frozen_thresholds"] = True
     if provenance_path.exists():
         provenance = json.loads(provenance_path.read_text())
+        for key in ("input_csv", "output_csv", "source_csv", "source_path"):
+            value = provenance.get(key)
+            if isinstance(value, str):
+                provenance[key] = to_repo_rel(Path(value), repo_root)
         payload["provenance"] = provenance
         if provenance.get("is_proxy_from_cclmoff"):
             payload["status"] = "ready_proxy"
@@ -271,6 +282,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    repo_root = Path(__file__).resolve().parents[1]
     data_path = Path(args.data_path).resolve()
     method_map_path = Path(args.method_map_out).resolve()
     frames_dir = Path(args.frames_dir).resolve()
@@ -282,7 +294,7 @@ def main() -> None:
 
     method_map_payload = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "source_csv": str(data_path),
+        "source_csv": to_repo_rel(data_path, repo_root),
         "unresolved_method_name": UNRESOLVED_METHOD,
         "policy": {
             "blank_method_rows": "excluded_from_claim_valid_frames_until_verified",
@@ -307,17 +319,17 @@ def main() -> None:
     write_json(method_map_path, method_map_payload)
 
     frame_payloads = {
-        "cclmoff_circle_cv.json": build_circle_cv_manifest(data_path, method_map_path, canonical_stats),
-        "cclmoff_circle_to_guide.json": build_circle_to_guide_manifest(data_path, method_map_path, canonical_stats),
-        "cclmoff_lodo.json": build_lodo_manifest(data_path, method_map_path, canonical_stats),
-        "crispai_change_regression_uncertainty.json": build_crispai_manifest(frames_dir),
+        "cclmoff_circle_cv.json": build_circle_cv_manifest(data_path, method_map_path, canonical_stats, repo_root),
+        "cclmoff_circle_to_guide.json": build_circle_to_guide_manifest(data_path, method_map_path, canonical_stats, repo_root),
+        "cclmoff_lodo.json": build_lodo_manifest(data_path, method_map_path, canonical_stats, repo_root),
+        "crispai_change_regression_uncertainty.json": build_crispai_manifest(frames_dir, repo_root),
     }
     for filename, payload in frame_payloads.items():
         write_json(frames_dir / filename, payload)
 
     inventory = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "frames_dir": str(frames_dir),
+        "frames_dir": to_repo_rel(frames_dir, repo_root),
         "files": sorted(frame_payloads),
     }
     write_json(frames_dir / "frame_inventory.json", inventory)
