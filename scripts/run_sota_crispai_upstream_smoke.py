@@ -33,6 +33,21 @@ def main() -> None:
     out_json.parent.mkdir(parents=True, exist_ok=True)
 
     crispai_script = repo_root / "data" / "public_benchmarks" / "sources" / "crispAI_crispr-offtarget-uncertainty" / "crispAI_score" / "crispAI.py"
+    compat_script = repo_root / "scripts" / "apply_crispai_upstream_compat.py"
+
+    env = dict(os.environ)
+    env.pop("PYTHONPATH", None)
+    env["PYTHONNOUSERSITE"] = "1"
+
+    subprocess.run(
+        [args.python_bin, str(compat_script), "--repo-root", str(repo_root)],
+        cwd=repo_root,
+        env=env,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+
     cmd = [
         args.python_bin,
         str(crispai_script),
@@ -50,12 +65,9 @@ def main() -> None:
         "-1",
     ]
 
-    env = dict(os.environ)
-    env.pop("PYTHONPATH", None)
-    env["PYTHONNOUSERSITE"] = "1"
     proc = subprocess.run(
         cmd,
-        cwd=repo_root,
+        cwd=crispai_script.parent,
         env=env,
         capture_output=True,
         text=True,

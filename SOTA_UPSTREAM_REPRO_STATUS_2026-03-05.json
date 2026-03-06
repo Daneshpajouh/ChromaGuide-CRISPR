@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T10:18:55.410471+00:00",
+  "generated_at_utc": "2026-03-06T10:34:13.325915+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -114,10 +114,10 @@
       }
     },
     "crispAI": {
-      "status": "blocked_runtime_data_asset",
+      "status": "blocked_runtime_preprocess_edge_case",
       "summary": {
         "model": "crispAI_upstream_offt_score_smoke",
-        "generated_at_utc": "2026-03-06T00:40:21.284983+00:00",
+        "generated_at_utc": "2026-03-06T10:33:30.938581+00:00",
         "python_bin": "/Users/studio/.pyenv/versions/3.10.19/bin/python",
         "command": [
           "/Users/studio/.pyenv/versions/3.10.19/bin/python",
@@ -137,10 +137,10 @@
         ],
         "returncode": 1,
         "status": "blocked",
-        "stdout_tail": "16:40:20: Running crispAI in offt-score mode\n16:40:20: Input file /Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/example_offt_input.txt read successfully",
-        "stderr_tail": "/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/pybdm/utils.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import resource_stream\nTraceback (most recent call last):\n  File \"/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/crispAI.py\", line 146, in <module>\n    annotated_data = annotation_pipeline(offtarget_sites)\n  File \"/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/annotate_pi.py\", line 93, in annotation_pipeline\n    g = genomepy.Genome('GRCh38')\n  File \"/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/genomepy/genome/__init__.py\", line 54, in __init__\n    self.filename = self._parse_filename(name)\n  File \"/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/genomepy/genome/__init__.py\", line 139, in _parse_filename\n    raise FileNotFoundError(\nFileNotFoundError: could not find GRCh38.fa(.gz) in genome_dir /Users/studio/.local/share/genomes/GRCh38"
+        "stdout_tail": "02:33:28: Running crispAI in offt-score mode\n02:33:28: Input file /Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/example_offt_input.txt read successfully\nFlank sequences generated from GRCh38\nNuPoP occupancy and affinity annotations generated\nGC content annotation generated\nNucleotide BDM annotation generated\n02:33:30: Using device: cpu",
+        "stderr_tail": "/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/pybdm/utils.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import resource_stream\nTraceback (most recent call last):\n  File \"/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/crispAI.py\", line 175, in <module>\n    offtarget_data = preprocess_features(df = annotated_data,\n  File \"/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/utils.py\", line 58, in preprocess_features\n    nupop_affinity = np.stack([x for x in df['NuPoP affinity']], axis=0)\n  File \"/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/numpy/_core/shape_base.py\", line 456, in stack\n    raise ValueError('need at least one array to stack')\nValueError: need at least one array to stack"
       },
-      "remaining_action": "stage GRCh38 genome assets required by annotate_pi.py"
+      "remaining_action": "patch or adapt preprocess_features() for example-input rows that produce no stackable NuPoP affinity arrays after annotation filtering"
     }
   },
   "cluster_repro": {
