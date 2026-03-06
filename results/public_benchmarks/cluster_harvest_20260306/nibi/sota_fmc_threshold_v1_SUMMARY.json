@@ -1,0 +1,91 @@
+{
+  "model": "CRISPR-FMC-upstream",
+  "timestamp": "2026-03-06 06:12:22",
+  "device": "cuda:0",
+  "datasets": [
+    "WT"
+  ],
+  "config": {
+    "folds": 5,
+    "epochs": 10,
+    "batch_size": 256,
+    "embed_batch_size": 128,
+    "lr": 0.0003,
+    "weight_decay": 1e-06,
+    "max_rows": 0,
+    "seed": 220
+  },
+  "dataset_summaries": {
+    "WT": {
+      "dataset": "WT",
+      "folds": [
+        {
+          "dataset": "WT",
+          "fold": 0,
+          "test_scc": 0.814383459283821,
+          "test_pcc": 0.8413628935813904,
+          "best_val_scc": 0.8085453833389521,
+          "train_rows": 33361,
+          "val_rows": 11121,
+          "test_rows": 11121,
+          "duration_sec": 24.665083408355713,
+          "epochs": 10
+        },
+        {
+          "dataset": "WT",
+          "fold": 1,
+          "test_scc": 0.8077778704006199,
+          "test_pcc": 0.8373067378997803,
+          "best_val_scc": 0.8076376781410817,
+          "train_rows": 33361,
+          "val_rows": 11121,
+          "test_rows": 11121,
+          "duration_sec": 24.21852707862854,
+          "epochs": 10
+        },
+        {
+          "dataset": "WT",
+          "fold": 2,
+          "test_scc": 0.8038522908656136,
+          "test_pcc": 0.8244403004646301,
+          "best_val_scc": 0.8090032343324937,
+          "train_rows": 33362,
+          "val_rows": 11120,
+          "test_rows": 11121,
+          "duration_sec": 23.920125246047974,
+          "epochs": 10
+        },
+        {
+          "dataset": "WT",
+          "fold": 3,
+          "test_scc": 0.8085601712002595,
+          "test_pcc": 0.8310811519622803,
+          "best_val_scc": 0.8069575986254307,
+          "train_rows": 33363,
+          "val_rows": 11120,
+          "test_rows": 11120,
+          "duration_sec": 24.222994327545166,
+          "epochs": 10
+        },
+        {
+          "dataset": "WT",
+          "fold": 4,
+          "test_scc": 0.8125742505960553,
+          "test_pcc": 0.8339029550552368,
+          "best_val_scc": 0.8144677701189433,
+          "train_rows": 33362,
+          "val_rows": 11121,
+          "test_rows": 11120,
+          "duration_sec": 23.98360586166382,
+          "epochs": 10
+        }
+      ],
+      "mean_scc": 0.8094296084692738,
+      "std_scc": 0.00371537463690026,
+      "mean_pcc": 0.8336188077926636,
+      "std_pcc": 0.0057330118913047476
+    }
+  },
+  "mean_scc_across_datasets": 0.8094296084692738,
+  "mean_pcc_across_datasets": 0.8336188077926636
+}

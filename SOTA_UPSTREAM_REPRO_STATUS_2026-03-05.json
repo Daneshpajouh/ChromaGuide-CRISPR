@@ -156,7 +156,20 @@
         "WT"
       ],
       "folds": 1,
-      "epochs": 1
+      "epochs": 1,
+      "matched_threshold_run": {
+        "status": "completed_partial_dataset_only",
+        "cluster": "nibi",
+        "job_id": "9908311",
+        "run_tag": "sota_fmc_threshold_v1",
+        "summary_path": "results/public_benchmarks/cluster_harvest_20260306/nibi/sota_fmc_threshold_v1_SUMMARY.json",
+        "datasets_emitted": [
+          "WT"
+        ],
+        "WT_mean_scc": 0.8094296084692738,
+        "gap_vs_WT_target_0_861": -0.05157039153072619,
+        "note": "Submitted for WT, ESP, HF, Sniper-Cas9, HL60 but emitted WT only; needs runner-level diagnosis before being treated as a full matched upstream comparison."
+      }
     },
     "CRISPR_HNN": {
       "status": "passed_cluster_smoke_cpu_fallback",
