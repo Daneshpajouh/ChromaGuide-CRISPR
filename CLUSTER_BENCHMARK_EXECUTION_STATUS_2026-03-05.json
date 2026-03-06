@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T07:07:43.588419+00:00",
+  "generated_at_utc": "2026-03-06T07:12:29.116186+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup",
   "jobs": {
     "nibi": {
@@ -26,11 +26,12 @@
       "wave3_off_target_best_auprc": 0.802543562705727,
       "wave3_off_target_summary": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave3_nibi_off_lodo_e12.json",
       "wave4_off_target_uncertainty_job_id": "9887921",
-      "wave4_off_target_uncertainty_state": "RUNNING",
-      "wave4_off_target_uncertainty_output": "results/public_benchmarks/wave4_nibi_off_uncert_change_e12.json",
+      "wave4_off_target_uncertainty_state": "COMPLETED",
+      "wave4_off_target_uncertainty_output": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave4_nibi_off_uncert_change_e12.json",
       "wave4_on_target_job_id": "9888084",
       "wave4_on_target_state": "RUNNING",
-      "wave4_on_target_tag": "wave4_nibi_on_gate_d128_e20"
+      "wave4_on_target_tag": "wave4_nibi_on_gate_d128_e20",
+      "wave4_off_target_uncertainty_spearman": 0.24937135039537126
     },
     "rorqual": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -52,11 +53,12 @@
       "wave3_on_target_mean_9_scc": 0.5584626617240803,
       "wave3_on_target_wt_to_hl60_scc": 0.4601258883911631,
       "wave4_off_target_uncertainty_job_id": "7765459",
-      "wave4_off_target_uncertainty_state": "RUNNING",
-      "wave4_off_target_uncertainty_output": "results/public_benchmarks/wave4_rorqual_off_uncert_change_e12.json",
+      "wave4_off_target_uncertainty_state": "COMPLETED",
+      "wave4_off_target_uncertainty_output": "results/public_benchmarks/cluster_harvest_20260306/rorqual/wave4_rorqual_off_uncert_change_e12.json",
       "wave4_on_target_job_id": "7765492",
       "wave4_on_target_state": "PENDING",
-      "wave4_on_target_tag": "wave4_rorqual_on_mamba_d192_e18"
+      "wave4_on_target_tag": "wave4_rorqual_on_mamba_d192_e18",
+      "wave4_off_target_uncertainty_spearman": 0.24459921889499037
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -122,6 +124,7 @@
     "Launched follow-up wave3 across nibi/fir/rorqual: 3 on-target variants and 3 off-target LODO e12 variants for gap reduction.",
     "Wave3 nibi and rorqual on-target runs completed and harvested; rorqual wave3 currently best mean-9 SCC=0.5584626617240803.",
     "Wave4 off-target uncertainty jobs launched on nibi and rorqual; fir submission failed scheduler constraints for the current gpu wrapper.",
-    "Wave4 on-target jobs submitted: nibi (cnn_gru gate d128 e20) and rorqual (mamba gate d192 e18)."
+    "Wave4 on-target jobs submitted: nibi (cnn_gru gate d128 e20) and rorqual (mamba gate d192 e18).",
+    "Wave4 uncertainty completed on nibi/rorqual (CHANGE proxy Spearman: 0.2494 / 0.2446); still below frozen 0.5114 target for claim-valid calibration frame."
   ]
 }
