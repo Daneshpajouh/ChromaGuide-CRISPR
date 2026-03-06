@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T19:12:45.908713+00:00",
+  "generated_at_utc": "2026-03-06T19:50:14.882788+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup_plus_upstream_matched_runs",
   "jobs": {
     "nibi": {
@@ -92,9 +92,11 @@
       "upstream_sota_crispr_hnn_full_run_tag": "sota_hnn_threshold_v2",
       "upstream_sota_crispr_hnn_full_failed_job_id": "7771470",
       "upstream_sota_crispr_hnn_full_failed_reason": "submit helper injected generic VENV_DIR; job missed the dedicated TensorFlow env and failed on keras_multi_head import.",
-      "upstream_sota_crispr_fmc_full_job_id": "7807077",
+      "upstream_sota_crispr_fmc_full_job_id": "7809985",
       "upstream_sota_crispr_fmc_full_state": "PENDING",
-      "upstream_sota_crispr_fmc_full_run_tag": "sota_fmc_threshold_v3"
+      "upstream_sota_crispr_fmc_full_run_tag": "sota_fmc_threshold_v4",
+      "upstream_sota_crispr_fmc_full_failed_job_id": "7807077",
+      "upstream_sota_crispr_fmc_full_failed_reason": "compute-node bootstrap attempted rna-fm install before the env was provisioned; rna-fm is now installed on the login node env."
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -144,14 +146,23 @@
       "cpu_smoke_on_target_state": "COMPLETED",
       "cpu_smoke_off_target_job_id": "66526843",
       "cpu_smoke_off_target_state": "COMPLETED",
-      "cpu_full_off_target_job_id": "66526853",
-      "cpu_full_off_target_state": "PENDING_OR_RUNNING",
-      "cpu_full_on_target_job_id": "66526854",
-      "cpu_full_on_target_state": "PENDING_OR_RUNNING",
+      "cpu_full_off_target_job_id": "66526844",
+      "cpu_full_off_target_state": "COMPLETED",
+      "cpu_full_on_target_job_id": "66526845",
+      "cpu_full_on_target_state": "COMPLETED",
       "pending_blocked_optuna_canceled": true,
       "pending_blocked_optuna_canceled_at": "2026-03-06",
       "cpu_full_off_target_tag": "public_off_target_uncertainty_cedar_v2",
-      "cpu_full_on_target_tag": "wave5_cedar_on_cpu_gate_d128_e24"
+      "cpu_full_on_target_tag": "wave5_cedar_on_cpu_gate_d128_e24",
+      "cpu_full_off_target_best_auroc": 0.9799565299229684,
+      "cpu_full_off_target_best_auprc": 0.8478942452992994,
+      "cpu_full_off_target_summary": "results/public_benchmarks/full_cedar_off_cpu_20260305_lodo.json",
+      "cpu_full_on_target_summary": "results/public_benchmarks/full_cedar_on_cpu_20260305_gate/FINAL_SUMMARY.json",
+      "cpu_uncertainty_job_id": "66526853",
+      "cpu_uncertainty_state": "COMPLETED",
+      "cpu_uncertainty_output": "results/public_benchmarks/public_off_target_uncertainty_cedar_v2.json",
+      "cpu_wave5_on_target_job_id": "66526854",
+      "cpu_wave5_on_target_state": "OUT_OF_MEMORY"
     },
     "trillium": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -195,6 +206,8 @@
     "Wave5 nibi on-target completed with new best completed mean-9 SCC=0.5682911315182819; transfer on this run was 0.4579800863520026 and did not beat the standing WT->HL60 best.",
     "submit_public_benchmark_cluster_jobs.sh now falls back to plain --export=ALL when any env value contains commas, preventing DATASETS=WT,ESP,... from being truncated by Slurm export parsing.",
     "Resubmitted corrected upstream CRISPR_HNN full run on rorqual as 7805038 using the dedicated /scratch/amird/env_public_benchmark_hnn env.",
-    "Submitted corrected upstream CRISPR-FMC full multi-dataset run on rorqual as 7807077 after the nibi retry exposed cluster-specific GPU partition/model constraints."
+    "Submitted corrected upstream CRISPR-FMC full multi-dataset run on rorqual as 7807077 after the nibi retry exposed cluster-specific GPU partition/model constraints.",
+    "Harvested cedar completed CPU outputs: off-target LODO AUROC=0.9799565299229684, AUPRC=0.8478942452992994; uncertainty proxy completed with test Spearman=0.25406099959742734; full on-target CPU baseline completed but did not beat the standing bests.",
+    "Resubmitted corrected upstream CRISPR-FMC full run on rorqual as 7809985 after provisioning rna-fm into /scratch/amird/env_public_benchmark."
   ]
 }
