@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T04:31:07.023097+00:00",
+  "generated_at_utc": "2026-03-06T05:31:41.466311+00:00",
   "benchmark_wave": "cluster_smoke_to_full_parallel_2026-03-05_recovery",
   "jobs": {
     "nibi": {
@@ -12,8 +12,8 @@
       "full_on_target_state": "COMPLETED",
       "full_off_target_job_id": "9867329",
       "full_off_target_state": "COMPLETED",
-      "full_off_target_best_auroc": 0.9813,
-      "full_off_target_best_auprc": 0.8025,
+      "full_off_target_best_auroc": 0.9813238485224081,
+      "full_off_target_best_auprc": 0.802543562705727,
       "full_off_target_frame": "cclmoff_lodo"
     },
     "rorqual": {
@@ -23,9 +23,9 @@
       "smoke_off_target_job_id": "7760079",
       "smoke_off_target_state": "COMPLETED",
       "full_on_target_job_id": "7760080",
-      "full_on_target_state": "RUNNING",
+      "full_on_target_state": "COMPLETED",
       "full_off_target_job_id": "7760522",
-      "full_off_target_state": "RUNNING"
+      "full_off_target_state": "COMPLETED"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -37,7 +37,7 @@
       "full_on_target_attempt_1_state": "FAILED",
       "full_on_target_attempt_1_failure": "numpy namespace/package corruption in scratch venv",
       "full_on_target_attempt_2_job_id": "25869250",
-      "full_on_target_attempt_2_state": "RUNNING",
+      "full_on_target_attempt_2_state": "COMPLETED",
       "full_off_target_job_id": "25868665",
       "full_off_target_state": "COMPLETED"
     },
@@ -50,24 +50,24 @@
       "gpu_smoke_attempt_state": "CANCELED_OR_BLOCKED",
       "gpu_smoke_attempt_notes": "ReqNodeNotAvail and home quota during bootstrap",
       "cpu_smoke_on_target_job_id": "66526842",
-      "cpu_smoke_on_target_state": "RUNNING",
+      "cpu_smoke_on_target_state": "COMPLETED",
       "cpu_smoke_off_target_job_id": "66526843",
       "cpu_smoke_off_target_state": "COMPLETED",
       "cpu_full_off_target_job_id": "66526844",
       "cpu_full_off_target_state": "RUNNING",
       "cpu_full_on_target_job_id": "66526845",
-      "cpu_full_on_target_state": "RUNNING_OR_PENDING"
+      "cpu_full_on_target_state": "RUNNING"
     },
     "trillium": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
       "cpu_smoke_on_target_job_id": "1128521",
-      "cpu_smoke_on_target_state": "RUNNING",
+      "cpu_smoke_on_target_state": "TIMEOUT",
       "cpu_smoke_off_target_job_id": "1128522",
       "cpu_smoke_off_target_state": "COMPLETED",
       "cpu_full_off_target_job_id": "1128530",
       "cpu_full_off_target_state": "RUNNING",
       "cpu_full_on_target_job_id": "1128534",
-      "cpu_full_on_target_state": "RUNNING_OR_PENDING"
+      "cpu_full_on_target_state": "RUNNING"
     },
     "beluga": {
       "state": "BLOCKED",
@@ -77,6 +77,6 @@
   "notes": [
     "Submit helper now injects sbatch --export=ALL,<vars> to avoid env loss on clusters that enforce --export=NONE.",
     "Off-target frame manifests were rebuilt to use repo-relative paths so remote jobs do not reference local macOS absolute paths.",
-    "Beluga remains scheduler-blocked at infrastructure level; all other clusters have active benchmark jobs."
+    "Nibi/Fir/Rorqual full wave completed and harvested into results/public_benchmarks/cluster_harvest_20260306/."
   ]
 }

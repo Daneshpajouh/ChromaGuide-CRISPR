@@ -1,0 +1,135 @@
+{
+  "generated_at_utc": "2026-03-06T05:30:32.310447+00:00",
+  "as_of_date": "2026-03-06",
+  "repo_root": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
+  "inputs": {
+    "on_target_summaries": [
+      "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/full_nibi_on_FINAL_SUMMARY.json",
+      "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/fir/full2_fir_on_FINAL_SUMMARY.json",
+      "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/rorqual/full_rorqual_on_FINAL_SUMMARY.json"
+    ],
+    "off_target_lodo_completed": [
+      "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/full_nibi_off_lodo.json",
+      "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/fir/full_fir_off_lodo.json",
+      "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/rorqual/full_rorqual_off_lodo.json"
+    ],
+    "thresholds": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/public_claim_thresholds.json"
+  },
+  "scoreboard": [
+    {
+      "metric_id": "on_target.mean9_scc",
+      "section": "on_target",
+      "target": 0.716,
+      "best_value": 0.54376068941534,
+      "delta_best_minus_target": -0.17223931058466002,
+      "shortfall_to_target": 0.17223931058466002,
+      "pass": false,
+      "claim_valid": true,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/rorqual/full_rorqual_on_FINAL_SUMMARY.json"
+    },
+    {
+      "metric_id": "on_target.WT_scc",
+      "section": "on_target",
+      "target": 0.861,
+      "best_value": 0.8434589267710081,
+      "delta_best_minus_target": -0.0175410732289919,
+      "shortfall_to_target": 0.0175410732289919,
+      "pass": false,
+      "claim_valid": true,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/fir/full2_fir_on_FINAL_SUMMARY.json"
+    },
+    {
+      "metric_id": "on_target.ESP_scc",
+      "section": "on_target",
+      "target": 0.851,
+      "best_value": 0.814459948869789,
+      "delta_best_minus_target": -0.03654005113021097,
+      "shortfall_to_target": 0.03654005113021097,
+      "pass": false,
+      "claim_valid": true,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/full_nibi_on_FINAL_SUMMARY.json"
+    },
+    {
+      "metric_id": "on_target.HF_scc",
+      "section": "on_target",
+      "target": 0.865,
+      "best_value": 0.8056229562483607,
+      "delta_best_minus_target": -0.059377043751639325,
+      "shortfall_to_target": 0.059377043751639325,
+      "pass": false,
+      "claim_valid": true,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/rorqual/full_rorqual_on_FINAL_SUMMARY.json"
+    },
+    {
+      "metric_id": "on_target.Sniper_Cas9_scc",
+      "section": "on_target",
+      "target": 0.935,
+      "best_value": 0.44918247859453264,
+      "delta_best_minus_target": -0.4858175214054674,
+      "shortfall_to_target": 0.4858175214054674,
+      "pass": false,
+      "claim_valid": true,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/full_nibi_on_FINAL_SUMMARY.json"
+    },
+    {
+      "metric_id": "on_target.HL60_scc",
+      "section": "on_target",
+      "target": 0.402,
+      "best_value": 0.2233198933154897,
+      "delta_best_minus_target": -0.17868010668451031,
+      "shortfall_to_target": 0.17868010668451031,
+      "pass": false,
+      "claim_valid": true,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/rorqual/full_rorqual_on_FINAL_SUMMARY.json"
+    },
+    {
+      "metric_id": "on_target.WT_to_HL60_scc",
+      "section": "on_target",
+      "target": 0.468,
+      "best_value": 0.460145181019581,
+      "delta_best_minus_target": -0.00785481898041901,
+      "shortfall_to_target": 0.00785481898041901,
+      "pass": false,
+      "claim_valid": true,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/full_nibi_on_FINAL_SUMMARY.json"
+    },
+    {
+      "metric_id": "off_target_proxy.lodo_AUROC",
+      "section": "off_target_proxy_lodo",
+      "target": 0.985,
+      "best_value": 0.9813238485224081,
+      "delta_best_minus_target": -0.003676151477591927,
+      "shortfall_to_target": 0.003676151477591927,
+      "pass": false,
+      "claim_valid": false,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/full_nibi_off_lodo.json",
+      "note": "Proxy only; not a frozen matched CIRCLE/CIRCLE->GUIDE claim frame."
+    },
+    {
+      "metric_id": "off_target_proxy.lodo_AUPRC",
+      "section": "off_target_proxy_lodo",
+      "target": 0.72,
+      "best_value": 0.8486926415769726,
+      "delta_best_minus_target": 0.12869264157697258,
+      "shortfall_to_target": 0.0,
+      "pass": true,
+      "claim_valid": false,
+      "status": "scored",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/rorqual/full_rorqual_off_lodo.json",
+      "note": "Proxy only; not a frozen matched CIRCLE/CIRCLE->GUIDE claim frame."
+    }
+  ],
+  "summary": {
+    "on_target_passed": 0,
+    "on_target_total": 7,
+    "overall_claim_ready": false
+  }
+}
