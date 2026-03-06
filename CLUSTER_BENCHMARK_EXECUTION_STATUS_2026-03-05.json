@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-03-06T02:23:38.123279+00:00",
+  "benchmark_wave": "cluster_parallel_wave_2026-03-05_evening",
+  "jobs": {
+    "nibi": {
+      "repo_dir": "$HOME/scratch/chromaguide_experiments",
+      "on_target_full_job_id": "9862407",
+      "off_target_lodo_job_id": "9862408",
+      "state": "PENDING_PRIORITY"
+    },
+    "rorqual": {
+      "repo_dir": "$HOME/chromaguide_experiments",
+      "on_target_full_job_id": "7754787",
+      "on_target_state": "RUNNING",
+      "off_target_lodo_job_id": "7754788",
+      "off_target_state": "COMPLETED",
+      "off_target_result_file": "results/cluster_harvest/rorqual/rorqual_off_target_lodo_20260305_181246.json",
+      "off_target_best_auroc": 0.9859604105571848,
+      "off_target_best_auprc": 0.9389281784201725,
+      "off_target_frame": "cclmoff_lodo (held-out BLESS split)"
+    },
+    "fir": {
+      "repo_dir": "$HOME/scratch/chromaguide_experiments",
+      "download_full_job_id": "25829461",
+      "on_target_optuna_job_id": "25847084",
+      "off_target_optuna_job_id": "25847085",
+      "state": "DOWNLOAD_RUNNING_BENCHMARK_PENDING"
+    },
+    "cedar": {
+      "repo_dir": "$HOME/scratch/chromaguide_experiments",
+      "download_full_job_id": "66526829",
+      "on_target_optuna_job_id": "66526833",
+      "off_target_optuna_job_id": "66526834",
+      "state": "DOWNLOAD_RUNNING_BENCHMARK_PENDING_REQNODENOTAVAIL"
+    },
+    "trillium": {
+      "repo_dir": "/scratch/$USER/chromaguide_experiments",
+      "active_cpu_jobs": [
+        "1119483",
+        "1119950",
+        "1124392"
+      ],
+      "state": "CPU_BENCHMARK_JOBS_RUNNING"
+    },
+    "beluga": {
+      "state": "BLOCKED",
+      "blocked_reason": "sbatch plugin mismatch: /opt/software/slurm/lib64/slurm/cc-tmpfs_mounts.so incompatible version"
+    }
+  },
+  "notes": [
+    "Rorqual off-target score is strong but not yet a full frozen-threshold claim across all required off-target frames.",
+    "On-target claim-valid status awaits completion of at least one full 9x5 + WT->HL60 run from current wave."
+  ]
+}
