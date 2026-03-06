@@ -1,6 +1,6 @@
 {
   "generated_local_time": "2026-03-06T02:18:55.410964-08:00",
-  "phase_boundary": "external_sota_upstream_runtime_smokes_executed_with_concrete_blockers",
+  "phase_boundary": "external_sota_upstream_runtime_smokes_passed_for_fmc_hnn_cclmoff_crispai_benchmark_claims_still_pending",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
@@ -168,7 +168,12 @@
     "status": "proxy_ready_runnable_non_claim_valid",
     "frame_manifest": "data/public_benchmarks/off_target/frames/crispai_change_regression_uncertainty.json",
     "claim_valid_for_frozen_thresholds": false,
-    "latest_patch": "train_public_off_target_uncertainty.py now skips malformed/missing activity rows and reports skip counts."
+    "latest_patch": "train_public_off_target_uncertainty.py now skips malformed/missing activity rows and reports skip counts.",
+    "upstream_crispai_runtime_smoke": {
+      "status": "passed",
+      "artifact": "results/public_benchmarks/sota_crispai_upstream_smoke.json",
+      "note": "Upstream CLI now runs end-to-end on the example input with local compatibility shims; this is runtime reproduction, not a frozen claim-valid benchmark result."
+    }
   },
   "next_actions": [
     "Harvest first completed jobs from full-wave-v2/v3 queues and update benchmark summaries.",
@@ -207,12 +212,12 @@
       "crispr_fmc_upstream_public_smoke": "passed (WT fold0 SCC=0.307249)",
       "crispr_hnn_reconstructed_upstream_smoke": "passed (WT fold0 SCC=0.287753)",
       "cclmoff_upstream_import_smoke_with_compat_shim": "passed (sample pred=0.369248)",
-      "crispai_upstream_runtime": "blocked: missing GRCh38 genome assets"
+      "crispai_upstream_runtime": "passed (offt-score example smoke with local compat shims on GRCh38 assets)"
     },
     "upstream_runtime_status_artifact": "SOTA_UPSTREAM_REPRO_STATUS_2026-03-05.json",
     "next_unblockers": [
-      "Run genomepy install for GRCh38 and re-run crispAI smoke.",
       "Promote CRISPR-FMC and CRISPR_HNN from 1-fold smoke to 5-fold matched runs on threshold-driving datasets.",
+      "Promote crispAI from upstream smoke to matched public uncertainty/calibration benchmark runs on the staged CHANGE-style frame.",
       "After baseline runs, compute strict delta-vs-threshold table and update SOTA scoreboard."
     ],
     "artifacts": {
