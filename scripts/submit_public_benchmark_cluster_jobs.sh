@@ -3,7 +3,7 @@ set -euo pipefail
 
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 <cluster-host> <job-kind> [VAR=value ...]" >&2
-  echo "job-kind: on-target-optuna | on-target-full | on-target-full-cpu | off-target-cclmoff | off-target-cclmoff-cpu | off-target-optuna | off-target-uncertainty | off-target-uncertainty-cpu | off-target-uncertainty-trillium | downloads | downloads-trillium | downloads-trillium-smoke | downloads-trillium-full" >&2
+  echo "job-kind: on-target-optuna | on-target-full | on-target-full-cpu | off-target-cclmoff | off-target-cclmoff-cpu | off-target-optuna | off-target-uncertainty | off-target-uncertainty-cpu | off-target-uncertainty-trillium | sota-crispr-fmc | sota-crispr-hnn | downloads | downloads-trillium | downloads-trillium-smoke | downloads-trillium-full" >&2
   exit 1
 fi
 
@@ -38,6 +38,12 @@ case "$JOB_KIND" in
     ;;
   off-target-uncertainty-trillium)
     REMOTE_SCRIPT="scripts/slurm_public_off_target_uncertainty_trillium.sh"
+    ;;
+  sota-crispr-fmc)
+    REMOTE_SCRIPT="scripts/slurm_sota_crispr_fmc_public.sh"
+    ;;
+  sota-crispr-hnn)
+    REMOTE_SCRIPT="scripts/slurm_sota_crispr_hnn_public.sh"
     ;;
   downloads)
     REMOTE_SCRIPT="scripts/slurm_public_download_pipeline.sh"
