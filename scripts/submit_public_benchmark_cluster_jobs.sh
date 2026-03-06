@@ -93,12 +93,31 @@ for kv in "$@"; do
 done
 
 if [ -z "$REMOTE_REPO_DIR" ]; then
-  REMOTE_REPO_DIR="\$HOME/chromaguide_experiments"
+  REMOTE_REPO_DIR="$( "${SSH_CMD[@]}" "$CLUSTER_HOST" 'if [ -d /scratch/$USER/chromaguide_experiments ]; then echo /scratch/$USER/chromaguide_experiments; elif [ -d $HOME/chromaguide_experiments ]; then echo $HOME/chromaguide_experiments; else echo ""; fi' )"
+  if [ -z "$REMOTE_REPO_DIR" ]; then
+    REMOTE_REPO_DIR="/scratch/$USER/chromaguide_experiments"
+  fi
 fi
 
 # Ensure wrappers receive the same REPO_DIR they are submitted from.
 ENV_PREFIX+="REPO_DIR=${REMOTE_REPO_DIR} "
 EXPORT_KV+=("REPO_DIR=${REMOTE_REPO_DIR}")
+
+# Default VENV_DIR to scratch to avoid home quota failures, unless caller provided one.
+HAS_VENV_DIR=0
+for kv in "${EXPORT_KV[@]}"; do
+  case "$kv" in
+    VENV_DIR=*)
+      HAS_VENV_DIR=1
+      break
+      ;;
+  esac
+done
+if [ "$HAS_VENV_DIR" -eq 0 ]; then
+  REMOTE_VENV_DIR="$( "${SSH_CMD[@]}" "$CLUSTER_HOST" 'if [ -d /scratch/$USER ]; then echo /scratch/$USER/env_public_benchmark; else echo $HOME/env_public_benchmark; fi' )"
+  ENV_PREFIX+="VENV_DIR=${REMOTE_VENV_DIR} "
+  EXPORT_KV+=("VENV_DIR=${REMOTE_VENV_DIR}")
+fi
 
 SBATCH_EXPORT_ARG=""
 if [[ " ${SBATCH_ARGS} " != *" --export="* ]]; then

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T06:24:21.426513+00:00",
+  "generated_at_utc": "2026-03-06T07:05:52.207697+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup",
   "jobs": {
     "nibi": {
@@ -16,9 +16,18 @@
       "full_off_target_best_auprc": 0.802543562705727,
       "full_off_target_frame": "cclmoff_lodo",
       "wave3_on_target_job_id": "9884210",
-      "wave3_on_target_state": "PENDING_PRIORITY",
+      "wave3_on_target_state": "COMPLETED",
       "wave3_off_target_job_id": "9884209",
-      "wave3_off_target_state": "PENDING_PRIORITY"
+      "wave3_off_target_state": "COMPLETED",
+      "wave3_on_target_summary": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave3_nibi_on_xattn_d160_e12_FINAL_SUMMARY.json",
+      "wave3_on_target_mean_9_scc": 0.5531560792632374,
+      "wave3_on_target_wt_to_hl60_scc": 0.44924047911227094,
+      "wave3_off_target_best_auroc": 0.9813238485224081,
+      "wave3_off_target_best_auprc": 0.802543562705727,
+      "wave3_off_target_summary": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave3_nibi_off_lodo_e12.json",
+      "wave4_off_target_uncertainty_job_id": "9887921",
+      "wave4_off_target_uncertainty_state": "RUNNING",
+      "wave4_off_target_uncertainty_output": "results/public_benchmarks/wave4_nibi_off_uncert_change_e12.json"
     },
     "rorqual": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -31,9 +40,17 @@
       "full_off_target_job_id": "7760522",
       "full_off_target_state": "COMPLETED",
       "wave3_on_target_job_id": "7762946",
-      "wave3_on_target_state": "PENDING_PRIORITY",
+      "wave3_on_target_state": "COMPLETED",
       "wave3_off_target_job_id": "7762945",
-      "wave3_off_target_state": "PENDING_PRIORITY"
+      "wave3_off_target_state": "COMPLETED",
+      "wave3_off_target_best_auroc": 0.9805265419624751,
+      "wave3_off_target_best_auprc": 0.8486926415769726,
+      "wave3_on_target_summary": "results/public_benchmarks/cluster_harvest_20260306/rorqual/wave3_rorqual_on_gate_e16_FINAL_SUMMARY.json",
+      "wave3_on_target_mean_9_scc": 0.5584626617240803,
+      "wave3_on_target_wt_to_hl60_scc": 0.4601258883911631,
+      "wave4_off_target_uncertainty_job_id": "7765459",
+      "wave4_off_target_uncertainty_state": "RUNNING",
+      "wave4_off_target_uncertainty_output": "results/public_benchmarks/wave4_rorqual_off_uncert_change_e12.json"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -51,7 +68,11 @@
       "wave3_on_target_job_id": "25873341",
       "wave3_on_target_state": "RUNNING",
       "wave3_off_target_job_id": "25873340",
-      "wave3_off_target_state": "RUNNING"
+      "wave3_off_target_state": "COMPLETED",
+      "wave3_off_target_best_auroc": 0.9813238485224081,
+      "wave3_off_target_best_auprc": 0.802543562705727,
+      "wave4_off_target_uncertainty_submission": "FAILED",
+      "wave4_off_target_uncertainty_failure": "SBATCH rejected on fir (node configuration/time constraints for gpu wrapper)"
     },
     "cedar": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -92,6 +113,8 @@
     "Submit helper now injects sbatch --export=ALL,<vars> to avoid env loss on clusters that enforce --export=NONE.",
     "Off-target frame manifests were rebuilt to use repo-relative paths so remote jobs do not reference local macOS absolute paths.",
     "Nibi/Fir/Rorqual full wave completed and harvested into results/public_benchmarks/cluster_harvest_20260306/.",
-    "Launched follow-up wave3 across nibi/fir/rorqual: 3 on-target variants and 3 off-target LODO e12 variants for gap reduction."
+    "Launched follow-up wave3 across nibi/fir/rorqual: 3 on-target variants and 3 off-target LODO e12 variants for gap reduction.",
+    "Wave3 nibi and rorqual on-target runs completed and harvested; rorqual wave3 currently best mean-9 SCC=0.5584626617240803.",
+    "Wave4 off-target uncertainty jobs launched on nibi and rorqual; fir submission failed scheduler constraints for the current gpu wrapper."
   ]
 }

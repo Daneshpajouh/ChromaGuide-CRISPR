@@ -68,6 +68,8 @@ def best_on_target_values(summary_files: list[Path]) -> tuple[dict[str, float], 
     for path in summary_files:
         data = load_json(path)
         s = data["summary"]
+        if not bool(s.get("mean_9_dataset_claim_ready", False)):
+            continue
 
         current = {
             "mean9_scc": float(s["mean_9_dataset_progress"]),
@@ -84,6 +86,47 @@ def best_on_target_values(summary_files: list[Path]) -> tuple[dict[str, float], 
                 best_src[k] = str(path)
 
     return best_vals, best_src
+
+
+def collect_paths(repo: Path, patterns: list[str]) -> list[Path]:
+    out: list[Path] = []
+    seen: set[Path] = set()
+    for pattern in patterns:
+        for p in repo.glob(pattern):
+            rp = p.resolve()
+            if rp.exists() and rp not in seen:
+                out.append(rp)
+                seen.add(rp)
+    return out
+
+
+def best_transfer_value(transfer_fold_files: list[Path], fallback: float | None) -> tuple[float | None, str | None]:
+    best_val = fallback
+    best_src: str | None = "PUBLIC_EXECUTION_STATUS_2026-03-05.json" if fallback is not None else None
+    grouped: dict[Path, list[float]] = {}
+
+    for path in transfer_fold_files:
+        data = load_json(path)
+        if "gold_rho" in data:
+            val = float(data["gold_rho"])
+        elif "metrics" in data and "gold_rho" in data["metrics"]:
+            val = float(data["metrics"]["gold_rho"])
+        elif "gold_spearman" in data:
+            val = float(data["gold_spearman"])
+        else:
+            continue
+        run_dir = path.parent
+        grouped.setdefault(run_dir, []).append(val)
+
+    for run_dir, vals in grouped.items():
+        if len(vals) < 5:
+            continue
+        mean_val = float(sum(vals) / len(vals))
+        if best_val is None or mean_val > best_val:
+            best_val = mean_val
+            best_src = str(run_dir)
+
+    return best_val, best_src
 
 
 def best_lodo_by_method(sweep_files: list[Path]) -> dict[str, dict[str, Any]]:
@@ -115,24 +158,38 @@ def main() -> None:
     thr = load_json(repo / "public_claim_thresholds.json")
     status = load_json(repo / "PUBLIC_EXECUTION_STATUS_2026-03-05.json")
 
-    on_target_files = [
-        repo / "results/public_benchmarks/cluster_harvest_20260305/nibi/full_run_best_FINAL_SUMMARY.json",
-        repo / "results/public_benchmarks/cluster_harvest_20260305/rorqual/parallel_full_wave2_FINAL_SUMMARY.json",
-        repo / "results/public_benchmarks/cluster_harvest_20260305/fir/full_run_best_FINAL_SUMMARY.json",
-    ]
-    sweep_files = [
-        repo / "results/public_benchmarks/cluster_harvest_20260305/nibi/off_target_manifest_sweep_summary.json",
-        repo / "results/public_benchmarks/cluster_harvest_20260305/rorqual/off_target_manifest_sweep_summary.json",
-        repo / "results/public_benchmarks/cluster_harvest_20260305/fir/off_target_manifest_sweep_summary.json",
-    ]
-    uncertainty_files = [
-        repo / "results/public_benchmarks/cluster_harvest_20260305/nibi/public_off_target_uncertainty_change_seq.json",
-        repo / "results/public_benchmarks/cluster_harvest_20260305/rorqual/public_off_target_uncertainty_change_seq.json",
-    ]
+    on_target_files = collect_paths(
+        repo,
+        [
+            "results/public_benchmarks/cluster_harvest_*/**/*FINAL_SUMMARY*.json",
+            "results/public_benchmarks/*/FINAL_SUMMARY*.json",
+        ],
+    )
+    sweep_files = collect_paths(
+        repo,
+        [
+            "results/public_benchmarks/cluster_harvest_*/**/*off_target_manifest_sweep_summary*.json",
+            "results/public_benchmarks/**/off_target_manifest_sweep_summary*.json",
+        ],
+    )
+    uncertainty_files = collect_paths(
+        repo,
+        [
+            "results/public_benchmarks/cluster_harvest_*/**/public_off_target_uncertainty*.json",
+            "results/public_benchmarks/**/public_off_target_uncertainty*.json",
+        ],
+    )
+    transfer_fold_files = collect_paths(
+        repo,
+        [
+            "results/public_benchmarks/cluster_harvest_*/**/transfer/WT_to_HL60_fold*.json",
+            "results/public_benchmarks/**/transfer/WT_to_HL60_fold*.json",
+        ],
+    )
 
     best_on, best_on_src = best_on_target_values(on_target_files)
-    transfer_best = float(status["public_on_target"]["best_transfer_wt_to_hl60"]["mean_scc"])
-    transfer_src = "PUBLIC_EXECUTION_STATUS_2026-03-05.json"
+    transfer_fallback = float(status["public_on_target"]["best_transfer_wt_to_hl60"]["mean_scc"])
+    transfer_best, transfer_src = best_transfer_value(transfer_fold_files, transfer_fallback)
 
     rows: list[dict[str, Any]] = []
 
