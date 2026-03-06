@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T07:53:41.720461+00:00",
+  "generated_at_utc": "2026-03-06T08:04:26.104647+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -160,9 +160,12 @@
       "epochs": 1
     },
     "CRISPR_HNN": {
-      "status": "running_cluster_smoke",
+      "status": "queued_cluster_smoke_retry",
       "cluster": "rorqual",
-      "job_id": "7765834",
+      "job_id": "7765996",
+      "replaced_failed_job_id": "7765955",
+      "failed_reason": "missing keras_multi_head in dedicated tensorflow env",
+      "fix_applied": "installed tensorflow 2.17.0+computecanada and keras-multi-head into /scratch/amird/env_public_benchmark_hnn",
       "run_tag": "sota_hnn_wave1_smoke",
       "datasets": [
         "WT",
