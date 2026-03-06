@@ -1,10 +1,10 @@
 {
-  "generated_local_time": "2026-03-06T03:00:01.381757-08:00",
+  "generated_local_time": "2026-03-06T11:12:45.907970-08:00",
   "phase_boundary": "external_sota_upstream_runtime_smokes_passed_for_fmc_hnn_cclmoff_crispai_benchmark_claims_still_pending",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
-    "head_commit": "0e9f6b4"
+    "head_commit": "c22c3f0"
   },
   "cluster_state": {
     "nibi": {
@@ -103,14 +103,14 @@
   "public_on_target": {
     "best_completed_run": {
       "host": "nibi",
-      "artifact": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave4_nibi_on_gate_d128_e20_FINAL_SUMMARY.json",
-      "mean_9_dataset_scc": 0.5669744312773769,
-      "WT_scc": 0.8453855978444285,
-      "ESP_scc": 0.8194581719658441,
-      "HF_scc": 0.8209968325546927,
-      "Sniper_scc": 0.44689375062590553,
-      "HL60_scc": 0.2804783141963688,
-      "gap_vs_mean_target_0_716": -0.14902556872262307
+      "artifact": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave5_nibi_on_gate_d128_e24_FINAL_SUMMARY.json",
+      "mean_9_dataset_scc": 0.5682911315182819,
+      "WT_scc": 0.8445143189704376,
+      "ESP_scc": 0.8222946024796917,
+      "HF_scc": 0.8201955794751258,
+      "Sniper_scc": 0.45111613714226684,
+      "HL60_scc": 0.2694812197402902,
+      "gap_vs_mean_target_0_716": -0.14770886848171805
     },
     "best_transfer_wt_to_hl60": {
       "host": "nibi",
@@ -176,10 +176,10 @@
     }
   },
   "next_actions": [
-    "Harvest the two newly submitted matched upstream threshold-driving jobs: CRISPR-FMC on nibi (9908311) and CRISPR_HNN on rorqual (7771470).",
-    "Continue monitoring the three live trillium CPU jobs and harvest as soon as any complete.",
-    "Do not count fir as healthy for new gpu wrapper submissions until the scheduler time-limit policy is resolved.",
-    "Recompute SOTA gap tables after the next completed full-wave or upstream matched results land."
+    "Harvest the pending upstream matched jobs on rorqual: CRISPR_HNN (7805038) and CRISPR-FMC (7807077).",
+    "Harvest the live trillium on-target jobs and any cedar CPU completions as soon as they materialize.",
+    "Keep the corrected submit helper for comma-valued env vars; it is required for full multi-dataset upstream jobs.",
+    "Recompute SOTA gap tables after the next completed batch lands."
   ],
   "sota_source_repro": {
     "registry": "sota_model_source_registry.json",

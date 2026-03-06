@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T10:19:16.502775+00:00",
+  "generated_at_utc": "2026-03-06T19:08:40.863468+00:00",
   "as_of_date": "2026-03-06",
   "repo_root": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
   "inputs": {
@@ -8,6 +8,7 @@
     "on_target_summaries": [
       "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/fir/wave3_fir_on_mamba_d160_e12_FINAL_SUMMARY.json",
       "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/fir/full2_fir_on_FINAL_SUMMARY.json",
+      "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/wave5_nibi_on_gate_d128_e24_FINAL_SUMMARY.json",
       "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/wave4_nibi_on_gate_d128_e20_FINAL_SUMMARY.json",
       "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/full_nibi_on_FINAL_SUMMARY.json",
       "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/wave3_nibi_on_xattn_d160_e12_FINAL_SUMMARY.json",
@@ -38,13 +39,13 @@
       "metric_id": "on_target.mean9_scc",
       "section": "on_target",
       "target": 0.716,
-      "best_value": 0.5669744312773769,
-      "delta_best_minus_target": -0.14902556872262307,
-      "shortfall_to_target": 0.14902556872262307,
+      "best_value": 0.5682911315182819,
+      "delta_best_minus_target": -0.14770886848171805,
+      "shortfall_to_target": 0.14770886848171805,
       "pass": false,
       "claim_valid": true,
       "status": "scored",
-      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/wave4_nibi_on_gate_d128_e20_FINAL_SUMMARY.json",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/wave5_nibi_on_gate_d128_e24_FINAL_SUMMARY.json",
       "note": ""
     },
     {
@@ -64,13 +65,13 @@
       "metric_id": "on_target.ESP_scc",
       "section": "on_target",
       "target": 0.851,
-      "best_value": 0.8215513042098171,
-      "delta_best_minus_target": -0.029448695790182833,
-      "shortfall_to_target": 0.029448695790182833,
+      "best_value": 0.8222946024796917,
+      "delta_best_minus_target": -0.028705397520308318,
+      "shortfall_to_target": 0.028705397520308318,
       "pass": false,
       "claim_valid": true,
       "status": "scored",
-      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/rorqual/wave3_rorqual_on_gate_e16_FINAL_SUMMARY.json",
+      "source": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/cluster_harvest_20260306/nibi/wave5_nibi_on_gate_d128_e24_FINAL_SUMMARY.json",
       "note": ""
     },
     {

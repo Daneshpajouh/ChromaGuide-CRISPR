@@ -128,9 +128,20 @@ fi
 SBATCH_EXPORT_ARG=""
 if [[ " ${SBATCH_ARGS} " != *" --export="* ]]; then
   export_payload="ALL"
+  safe_for_inline_export=1
   for kv in "${EXPORT_KV[@]}"; do
-    export_payload+=",${kv}"
+    case "$kv" in
+      *=*,*)
+        safe_for_inline_export=0
+        break
+        ;;
+    esac
   done
+  if [ "$safe_for_inline_export" -eq 1 ]; then
+    for kv in "${EXPORT_KV[@]}"; do
+      export_payload+=",${kv}"
+    done
+  fi
   SBATCH_EXPORT_ARG="--export=${export_payload}"
 fi
 

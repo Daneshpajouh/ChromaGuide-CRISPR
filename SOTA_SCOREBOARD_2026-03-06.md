@@ -1,6 +1,6 @@
 # SOTA Scoreboard (2026-03-06)
 
-- Generated at: `2026-03-06T10:19:16.502775+00:00`
+- Generated at: `2026-03-06T19:06:49.243081+00:00`
 - Claim-valid passed: `0` / `7`
 - Claim-ready: `no`
 
@@ -8,9 +8,9 @@
 
 | Metric | Best | Target | Gap (best-target) | Pass | Claim-valid | Status |
 |---|---:|---:|---:|---|---|---|
-| on_target.mean9_scc | 0.5669744313 | 0.716 | -0.1490255687 | No | Yes | scored |
+| on_target.mean9_scc | 0.5682911315 | 0.716 | -0.1477088685 | No | Yes | scored |
 | on_target.WT_scc | 0.8453855978 | 0.861 | -0.0156144022 | No | Yes | scored |
-| on_target.ESP_scc | 0.8215513042 | 0.851 | -0.0294486958 | No | Yes | scored |
+| on_target.ESP_scc | 0.8222946025 | 0.851 | -0.0287053975 | No | Yes | scored |
 | on_target.HF_scc | 0.8218050761 | 0.865 | -0.0431949239 | No | Yes | scored |
 | on_target.Sniper_Cas9_scc | 0.4531969795 | 0.935 | -0.4818030205 | No | Yes | scored |
 | on_target.HL60_scc | 0.2804783142 | 0.402 | -0.1215216858 | No | Yes | scored |
