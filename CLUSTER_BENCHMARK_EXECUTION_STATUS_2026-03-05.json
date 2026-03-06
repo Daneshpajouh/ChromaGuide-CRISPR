@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T11:41:19.810562+00:00",
+  "generated_at_utc": "2026-03-06T12:16:44.888320+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup_plus_upstream_matched_runs",
   "jobs": {
     "nibi": {
@@ -134,12 +134,14 @@
       "cpu_smoke_on_target_state": "COMPLETED",
       "cpu_smoke_off_target_job_id": "66526843",
       "cpu_smoke_off_target_state": "COMPLETED",
-      "cpu_full_off_target_job_id": "66526844",
-      "cpu_full_off_target_state": "RUNNING",
-      "cpu_full_on_target_job_id": "66526845",
-      "cpu_full_on_target_state": "RUNNING",
+      "cpu_full_off_target_job_id": "66526853",
+      "cpu_full_off_target_state": "PENDING_OR_RUNNING",
+      "cpu_full_on_target_job_id": "66526854",
+      "cpu_full_on_target_state": "PENDING_OR_RUNNING",
       "pending_blocked_optuna_canceled": true,
-      "pending_blocked_optuna_canceled_at": "2026-03-06"
+      "pending_blocked_optuna_canceled_at": "2026-03-06",
+      "cpu_full_off_target_tag": "public_off_target_uncertainty_cedar_v2",
+      "cpu_full_on_target_tag": "wave5_cedar_on_cpu_gate_d128_e24"
     },
     "trillium": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -177,6 +179,8 @@
     "Submitted matched upstream threshold-driving public run for CRISPR_HNN on rorqual as job 7771470 (pending).",
     "fir rejected new gpu submissions for both uncertainty and on-target-full wrappers with Requested time limit is invalid; fir is not currently treated as a healthy launch target for those wrappers.",
     "Matched upstream CRISPR-FMC threshold-driving run on nibi completed, but only WT materialized in the emitted summary; WT mean SCC=0.8094296084692738 (gap to 0.861 target: -0.05157039153072619).",
-    "Submitted another internal full on-target run on nibi as job 9911949 (wave5_nibi_on_gate_d128_e24)."
+    "Submitted another internal full on-target run on nibi as job 9911949 (wave5_nibi_on_gate_d128_e24).",
+    "Submitted cedar CPU uncertainty run as job 66526853 (public_off_target_uncertainty_cedar_v2).",
+    "Fixed stale hardcoded partition in slurm_public_on_target_full_run_cpu.sh, synced it to cedar, and submitted cedar CPU on-target full run as job 66526854."
   ]
 }

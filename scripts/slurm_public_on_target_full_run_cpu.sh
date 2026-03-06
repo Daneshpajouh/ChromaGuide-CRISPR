@@ -1,7 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=pub_on_full_cpu
 #SBATCH --account=def-kwiese
-#SBATCH --partition=compute
 #SBATCH --time=48:00:00
 #SBATCH --ntasks=1
 #SBATCH --output=slurm_logs/public_on_target_full_cpu_%j.out
