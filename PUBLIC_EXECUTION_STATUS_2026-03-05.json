@@ -1,6 +1,6 @@
 {
-  "generated_local_time": "2026-03-05T16:10:00-08:00",
-  "phase_boundary": "sota_source_registry_acquired_and_pinned_plus_cluster_wave_running",
+  "generated_local_time": "2026-03-05T16:42:00-08:00",
+  "phase_boundary": "external_sota_upstream_runtime_smokes_executed_with_concrete_blockers",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
@@ -203,10 +203,23 @@
     "smoke_result": "all_targeted_entry_scripts_compile",
     "runtime_smoke_artifact": "SOTA_SOURCE_RUNTIME_SMOKE_2026-03-05.json",
     "runtime_smoke_highlights": {
-      "crispr_fmc_upstream_public_smoke": "passed",
-      "crispr_hnn_runtime": "blocked_missing_tensorflow",
-      "cclmoff_runtime": "blocked_missing_rnafm",
-      "crispai_runtime": "blocked_missing_genomepy_for_offt_score"
+      "crispr_fmc_upstream_public_smoke": "passed (WT fold0 SCC=0.307249)",
+      "crispr_hnn_reconstructed_upstream_smoke": "passed (WT fold0 SCC=0.287753)",
+      "cclmoff_upstream_import_smoke_with_compat_shim": "passed (sample pred=0.369248)",
+      "crispai_upstream_runtime": "blocked: missing GRCh38 genome assets"
+    },
+    "upstream_runtime_status_artifact": "SOTA_UPSTREAM_REPRO_STATUS_2026-03-05.json",
+    "next_unblockers": [
+      "Run genomepy install for GRCh38 and re-run crispAI smoke.",
+      "Promote CRISPR-FMC and CRISPR_HNN from 1-fold smoke to 5-fold matched runs on threshold-driving datasets.",
+      "After baseline runs, compute strict delta-vs-threshold table and update SOTA scoreboard."
+    ],
+    "artifacts": {
+      "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
+      "hnn_smoke": "results/public_benchmarks/sota_crispr_hnn_smoke/summary.json",
+      "cclmoff_smoke": "results/public_benchmarks/sota_cclmoff_upstream_smoke.json",
+      "crispai_smoke": "results/public_benchmarks/sota_crispai_upstream_smoke.json",
+      "upstream_runtime_status": "SOTA_UPSTREAM_REPRO_STATUS_2026-03-05.json"
     }
   }
 }

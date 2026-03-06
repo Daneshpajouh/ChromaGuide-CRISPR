@@ -1,0 +1,146 @@
+{
+  "generated_at_utc": "2026-03-06T00:40:49.747573+00:00",
+  "as_of_date": "2026-03-05",
+  "artifacts": {
+    "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
+    "hnn_smoke": "results/public_benchmarks/sota_crispr_hnn_smoke/summary.json",
+    "cclmoff_smoke": "results/public_benchmarks/sota_cclmoff_upstream_smoke.json",
+    "crispai_smoke": "results/public_benchmarks/sota_crispai_upstream_smoke.json"
+  },
+  "runtime_repro": {
+    "CRISPR_FMC": {
+      "status": "passed_smoke",
+      "summary": {
+        "model": "CRISPR-FMC-upstream",
+        "timestamp": "2026-03-05 16:05:19",
+        "device": "cpu",
+        "datasets": [
+          "WT"
+        ],
+        "config": {
+          "folds": 1,
+          "epochs": 1,
+          "batch_size": 128,
+          "embed_batch_size": 256,
+          "lr": 0.0003,
+          "weight_decay": 1e-06,
+          "max_rows": 512,
+          "seed": 220
+        },
+        "dataset_summaries": {
+          "WT": {
+            "dataset": "WT",
+            "folds": [
+              {
+                "dataset": "WT",
+                "fold": 0,
+                "test_scc": 0.30724946641718454,
+                "test_pcc": 0.27297242071561323,
+                "best_val_scc": 0.30694852141769946,
+                "train_rows": 512,
+                "val_rows": 512,
+                "test_rows": 512,
+                "duration_sec": 0.996901273727417,
+                "epochs": 1
+              }
+            ],
+            "mean_scc": 0.30724946641718454,
+            "std_scc": 0.0,
+            "mean_pcc": 0.27297242071561323,
+            "std_pcc": 0.0
+          }
+        },
+        "mean_scc_across_datasets": 0.30724946641718454,
+        "mean_pcc_across_datasets": 0.27297242071561323
+      }
+    },
+    "CRISPR_HNN": {
+      "status": "passed_smoke_reconstructed",
+      "summary": {
+        "model": "CRISPR_HNN_reconstructed_upstream_arch",
+        "generated_at_utc": "2026-03-06T00:30:47.049671+00:00",
+        "config": {
+          "datasets": [
+            "WT"
+          ],
+          "folds": 1,
+          "epochs": 1,
+          "batch_size": 128,
+          "seed": 2024,
+          "max_rows": 512
+        },
+        "dataset_summaries": {
+          "WT": {
+            "dataset": "WT",
+            "folds": [
+              {
+                "dataset": "WT",
+                "fold": 0,
+                "test_scc": 0.2877525041198888,
+                "test_pcc": 0.282636212343186,
+                "best_val_mae": 0.17821192741394043,
+                "train_rows": 512,
+                "val_rows": 512,
+                "test_rows": 512,
+                "epochs_ran": 1
+              }
+            ],
+            "mean_scc": 0.2877525041198888,
+            "std_scc": 0.0,
+            "mean_pcc": 0.282636212343186,
+            "std_pcc": 0.0
+          }
+        },
+        "mean_scc_across_datasets": 0.2877525041198888
+      },
+      "runtime_env": "/Users/studio/.pyenv/versions/3.10.19/bin/python"
+    },
+    "CCLMoff": {
+      "status": "passed_upstream_import_smoke_with_compat_shim",
+      "summary": {
+        "model": "CCLMoff_upstream_import_smoke",
+        "generated_at_utc": "2026-03-06T00:23:22.463324+00:00",
+        "device": "cpu",
+        "source_dir": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CCLMoff",
+        "data_csv": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/off_target/primary_cclmoff/09212024_CCLMoff_dataset.csv",
+        "sample": {
+          "sgRNA_seq": "GGGTGGGGGGAGTTTGCTCCTGG",
+          "off_seq": "GGATGGAGGGAGTTTGCTCCTGG",
+          "label": 1.0,
+          "pred": 0.3692476153373718
+        },
+        "status": "passed",
+        "note": "Runtime compatibility smoke only; not a claim-valid benchmark metric."
+      }
+    },
+    "crispAI": {
+      "status": "blocked_runtime_data_asset",
+      "summary": {
+        "model": "crispAI_upstream_offt_score_smoke",
+        "generated_at_utc": "2026-03-06T00:40:21.284983+00:00",
+        "python_bin": "/Users/studio/.pyenv/versions/3.10.19/bin/python",
+        "command": [
+          "/Users/studio/.pyenv/versions/3.10.19/bin/python",
+          "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/crispAI.py",
+          "--mode",
+          "offt-score",
+          "--input_file",
+          "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/example_offt_input.txt",
+          "--N_samples",
+          "100",
+          "--N_mismatch",
+          "2",
+          "--O",
+          "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/sota_crispai_smoke.csv",
+          "--gpu",
+          "-1"
+        ],
+        "returncode": 1,
+        "status": "blocked",
+        "stdout_tail": "16:40:20: Running crispAI in offt-score mode\n16:40:20: Input file /Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/example_offt_input.txt read successfully",
+        "stderr_tail": "/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/pybdm/utils.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import resource_stream\nTraceback (most recent call last):\n  File \"/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/crispAI.py\", line 146, in <module>\n    annotated_data = annotation_pipeline(offtarget_sites)\n  File \"/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/annotate_pi.py\", line 93, in annotation_pipeline\n    g = genomepy.Genome('GRCh38')\n  File \"/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/genomepy/genome/__init__.py\", line 54, in __init__\n    self.filename = self._parse_filename(name)\n  File \"/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/genomepy/genome/__init__.py\", line 139, in _parse_filename\n    raise FileNotFoundError(\nFileNotFoundError: could not find GRCh38.fa(.gz) in genome_dir /Users/studio/.local/share/genomes/GRCh38"
+      },
+      "remaining_action": "stage GRCh38 genome assets required by annotate_pi.py"
+    }
+  }
+}
