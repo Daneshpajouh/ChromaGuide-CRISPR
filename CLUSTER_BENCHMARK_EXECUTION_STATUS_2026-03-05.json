@@ -1,17 +1,19 @@
 {
-  "generated_at_utc": "2026-03-06T02:23:38.123279+00:00",
+  "generated_at_utc": "2026-03-06T02:29:17.210557+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-05_evening",
   "jobs": {
     "nibi": {
       "repo_dir": "$HOME/scratch/chromaguide_experiments",
-      "on_target_full_job_id": "9862407",
+      "on_target_full_gate_job_id": "9862407",
       "off_target_lodo_job_id": "9862408",
+      "on_target_full_xattn_job_id": "9862714",
       "state": "PENDING_PRIORITY"
     },
     "rorqual": {
       "repo_dir": "$HOME/chromaguide_experiments",
-      "on_target_full_job_id": "7754787",
-      "on_target_state": "RUNNING",
+      "on_target_full_gate_job_id": "7754787",
+      "on_target_full_xattn_job_id": "7755117",
+      "on_target_state": "RUNNING_PLUS_PENDING",
       "off_target_lodo_job_id": "7754788",
       "off_target_state": "COMPLETED",
       "off_target_result_file": "results/cluster_harvest/rorqual/rorqual_off_target_lodo_20260305_181246.json",
@@ -22,9 +24,10 @@
     "fir": {
       "repo_dir": "$HOME/scratch/chromaguide_experiments",
       "download_full_job_id": "25829461",
-      "on_target_optuna_job_id": "25847084",
-      "off_target_optuna_job_id": "25847085",
-      "state": "DOWNLOAD_RUNNING_BENCHMARK_PENDING"
+      "on_target_optuna_job_id": "25848828",
+      "off_target_optuna_job_id": "25848829",
+      "state": "DOWNLOAD_RUNNING_OPTUNA_PENDING",
+      "notes": "Previous fir optuna jobs 25847084/25847085 failed immediately due missing optuna in venv; resubmitted with VENV_BOOTSTRAP=1."
     },
     "cedar": {
       "repo_dir": "$HOME/scratch/chromaguide_experiments",
