@@ -1,5 +1,5 @@
 {
-  "generated_local_time": "2026-03-05T16:05:00-08:00",
+  "generated_local_time": "2026-03-05T16:10:00-08:00",
   "phase_boundary": "sota_source_registry_acquired_and_pinned_plus_cluster_wave_running",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
@@ -200,6 +200,13 @@
     ],
     "note": "Primary external repos are cloned/updated and commit-pinned; entries without public repos remain blocked pending code release/discovery.",
     "smoke_artifact": "SOTA_SOURCE_SMOKE_REPRO_2026-03-05.json",
-    "smoke_result": "all_targeted_entry_scripts_compile"
+    "smoke_result": "all_targeted_entry_scripts_compile",
+    "runtime_smoke_artifact": "SOTA_SOURCE_RUNTIME_SMOKE_2026-03-05.json",
+    "runtime_smoke_highlights": {
+      "crispr_fmc_upstream_public_smoke": "passed",
+      "crispr_hnn_runtime": "blocked_missing_tensorflow",
+      "cclmoff_runtime": "blocked_missing_rnafm",
+      "crispai_runtime": "blocked_missing_genomepy_for_offt_score"
+    }
   }
 }

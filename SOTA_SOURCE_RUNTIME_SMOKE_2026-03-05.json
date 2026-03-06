@@ -1,0 +1,53 @@
+{
+  "generated_at_utc": "2026-03-06T00:08:28.533780+00:00",
+  "as_of_date": "2026-03-05",
+  "environment_rule": "Use env -u PYTHONPATH PYTHONNOUSERSITE=1 for external baseline runtime to avoid host-site contamination.",
+  "runs": [
+    {
+      "id": "crispr_fmc_upstream_public_smoke",
+      "script": "scripts/run_sota_crispr_fmc_public.py",
+      "status": "passed",
+      "config": {
+        "datasets": [
+          "WT"
+        ],
+        "folds": 1,
+        "epochs": 1,
+        "max_rows": 512,
+        "device": "cpu"
+      },
+      "result": {
+        "test_scc": 0.30724946641718454,
+        "test_pcc": 0.27297242071561323
+      },
+      "artifact": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json"
+    },
+    {
+      "id": "crispr_hnn_upstream_train_entry",
+      "script": "data/public_benchmarks/sources/CRISPR_HNN/model_train.py",
+      "status": "failed_blocked",
+      "blocker": "ModuleNotFoundError: tensorflow",
+      "next_step": "Create isolated TF2.5 reproduction env for CRISPR_HNN baseline."
+    },
+    {
+      "id": "cclmoff_upstream_entry",
+      "script": "data/public_benchmarks/sources/CCLMoff/my_model.py",
+      "status": "failed_blocked",
+      "blocker": "ModuleNotFoundError: rnafm",
+      "next_step": "Install RNA-FM dependency stack or patch to local embedding cache for fair reproduction."
+    },
+    {
+      "id": "crispai_help_entry",
+      "script": "data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/crispAI.py --help",
+      "status": "passed",
+      "result": "CLI available"
+    },
+    {
+      "id": "crispai_offt_score_smoke",
+      "script": "data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/crispAI.py --mode offt-score",
+      "status": "failed_blocked",
+      "blocker": "ModuleNotFoundError: genomepy",
+      "next_step": "Install crispAI env deps (genomepy + R/NuPoP path) for claim-valid uncertainty replication."
+    }
+  ]
+}
