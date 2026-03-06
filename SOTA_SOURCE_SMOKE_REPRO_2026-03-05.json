@@ -1,0 +1,150 @@
+{
+  "CRISPR-FMC": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR-FMC/CRISPR_FMC_train.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR-FMC/CRISPR_FMC_model.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR-FMC/Encode.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "CRISPR_HNN": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR_HNN/model_train.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR_HNN/model.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR_HNN/csvtopkl.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "CCLMoff": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CCLMoff/preprocess.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CCLMoff/my_model.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CCLMoff/evaluate.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "crispAI_crispr-offtarget-uncertainty": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/crispAI.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "DeepCRISTL": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepCRISTL/main.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepCRISTL/main_tl.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "crispron": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispron/bin/DeepCRISPRon_train.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "AttnToCrispr": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/AttnToCrispr/attn_to_crispr.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/AttnToCrispr/OT_crispr_attn.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "CRISPR-Net": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR-Net/code/CRISPR_Net.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/CRISPR-Net/code/evaluate_CRISPR_Net.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "MOFF": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/MOFF/MOFF.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "off_target_prediction": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/off_target_prediction/predictions/cnn_std_keras.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/off_target_prediction/predictions/cnn_std_prediction_TF.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ],
+  "crisproff": [
+    {
+      "file": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crisproff/CRISPRspec_CRISPRoff_pipeline.py",
+      "exists": true,
+      "compile_ok": true,
+      "error": null
+    }
+  ]
+}

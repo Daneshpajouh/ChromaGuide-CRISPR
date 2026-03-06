@@ -198,6 +198,8 @@
       "off_target.crispr_ip",
       "off_target.crispr_dnt"
     ],
-    "note": "Primary external repos are cloned/updated and commit-pinned; entries without public repos remain blocked pending code release/discovery."
+    "note": "Primary external repos are cloned/updated and commit-pinned; entries without public repos remain blocked pending code release/discovery.",
+    "smoke_artifact": "SOTA_SOURCE_SMOKE_REPRO_2026-03-05.json",
+    "smoke_result": "all_targeted_entry_scripts_compile"
   }
 }

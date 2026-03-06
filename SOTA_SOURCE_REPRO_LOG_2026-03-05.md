@@ -9,6 +9,7 @@
 - `sota_model_source_registry.json`
 - `scripts/acquire_sota_model_sources.py`
 - `SOTA_SOURCE_REPRO_STATUS_2026-03-05.json`
+- `SOTA_SOURCE_SMOKE_REPRO_2026-03-05.json`
 - `data/public_benchmarks/acquisition/sota_source_acquisition_status.json`
 
 ## Acquisition Result (latest run)
@@ -25,6 +26,11 @@
 - `off_target.dnabert_epi`
 - `off_target.crispr_ip`
 - `off_target.crispr_dnt`
+
+## Smoke Repro Check
+- Performed Python parse smoke checks (entry scripts) on cloned repositories.
+- Result: all targeted entry scripts compiled successfully in local environment (`all_ok = true`).
+- Artifact: `SOTA_SOURCE_SMOKE_REPRO_2026-03-05.json`
 
 ## Notes
 - This run is source-control and provenance hardening, not a claim-valid benchmark win by itself.
