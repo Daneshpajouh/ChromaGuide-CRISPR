@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-03-06T01:35:08.073353+00:00",
+  "intent": "cluster-first download smoke->full rollout",
+  "clusters": {
+    "nibi": {
+      "repo_dir": "$HOME/scratch/chromaguide_experiments",
+      "smoke_job_id": "9853861",
+      "smoke_state": "COMPLETED",
+      "full_job_id": "9854943",
+      "full_state": "COMPLETED"
+    },
+    "rorqual": {
+      "repo_dir": "$HOME/chromaguide_experiments",
+      "smoke_job_id": "7752193",
+      "smoke_state": "COMPLETED",
+      "full_job_id": "7752216",
+      "full_state": "RUNNING"
+    },
+    "fir": {
+      "repo_dir": "$HOME/scratch/chromaguide_experiments",
+      "smoke_job_id": "25829432",
+      "smoke_state": "COMPLETED",
+      "full_job_id": "25829461",
+      "full_state": "RUNNING"
+    },
+    "cedar": {
+      "repo_dir": "$HOME/scratch/chromaguide_experiments",
+      "smoke_job_id": "66526828",
+      "smoke_state": "COMPLETED",
+      "full_job_id": "66526829",
+      "full_state": "RUNNING"
+    },
+    "trillium": {
+      "repo_dir": "/scratch/$USER/chromaguide_experiments",
+      "smoke_job_id": "1127345",
+      "smoke_state": "COMPLETED",
+      "full_job_id": "1127346",
+      "full_state": "RUNNING"
+    },
+    "beluga": {
+      "repo_dir": "$HOME/chromaguide_experiments",
+      "smoke_job_id": null,
+      "smoke_state": "BLOCKED",
+      "full_job_id": null,
+      "full_state": "BLOCKED",
+      "blocked_reason": "sbatch plugin mismatch on login host: /opt/software/slurm/lib64/slurm/cc-tmpfs_mounts.so incompatible version"
+    }
+  },
+  "notes": [
+    "Added dedicated Trillium smoke/full wrappers because sbatch there enforces --export=NONE and ignored inline env assignments.",
+    "Nibi/fir/cedar switched to scratch repo paths due home quota limits.",
+    "CCLMoff downloader made Linux/macOS portable (stat/md5 handling)."
+  ]
+}
