@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-03-06T10:18:55.410471+00:00",
-  "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup",
+  "generated_at_utc": "2026-03-06T11:00:01.380728+00:00",
+  "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup_plus_upstream_matched_runs",
   "jobs": {
     "nibi": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -38,7 +38,10 @@
       "wave4_on_target_mean_9_scc": 0.5669744312773769,
       "wave4_on_target_wt_to_hl60_scc": 0.4653505491794053,
       "upstream_sota_crispr_fmc_smoke_summary": "results/public_benchmarks/cluster_harvest_20260306/nibi/sota_fmc_wave1_smoke_SUMMARY.json",
-      "upstream_sota_crispr_fmc_smoke_mean_scc": -0.10761819350249809
+      "upstream_sota_crispr_fmc_smoke_mean_scc": -0.10761819350249809,
+      "upstream_sota_crispr_fmc_full_job_id": "9908311",
+      "upstream_sota_crispr_fmc_full_state": "PENDING",
+      "upstream_sota_crispr_fmc_full_run_tag": "sota_fmc_threshold_v1"
     },
     "rorqual": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -73,7 +76,10 @@
       "upstream_sota_crispr_hnn_smoke_summary": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_wave1_smoke_SUMMARY.json",
       "upstream_sota_crispr_hnn_smoke_mean_scc": 0.15351511984870853,
       "wave4_on_target_summary": "results/public_benchmarks/cluster_harvest_20260306/rorqual/wave4_rorqual_on_mamba_d192_e18_FINAL_SUMMARY.json",
-      "wave4_on_target_mean_9_scc": 0.5082493001401343
+      "wave4_on_target_mean_9_scc": 0.5082493001401343,
+      "upstream_sota_crispr_hnn_full_job_id": "7771470",
+      "upstream_sota_crispr_hnn_full_state": "PENDING",
+      "upstream_sota_crispr_hnn_full_run_tag": "sota_hnn_threshold_v1"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -97,7 +103,19 @@
       "wave4_off_target_uncertainty_submission": "FAILED",
       "wave4_off_target_uncertainty_failure": "SBATCH rejected on fir (node configuration/time constraints for gpu wrapper)",
       "wave3_on_target_summary": "results/public_benchmarks/cluster_harvest_20260306/fir/wave3_fir_on_mamba_d160_e12_FINAL_SUMMARY.json",
-      "wave3_on_target_mean_9_scc": 0.504804355095312
+      "wave3_on_target_mean_9_scc": 0.504804355095312,
+      "latest_submission_rejections": [
+        {
+          "job_kind": "off-target-uncertainty",
+          "attempted_at_utc": "2026-03-06T11:00:01.380977+00:00",
+          "reason": "Requested time limit is invalid on current fir policy for the gpu uncertainty wrapper."
+        },
+        {
+          "job_kind": "on-target-full",
+          "attempted_at_utc": "2026-03-06T11:00:01.380979+00:00",
+          "reason": "Requested time limit is invalid on current fir policy for the gpu on-target full wrapper."
+        }
+      ]
     },
     "cedar": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -149,6 +167,9 @@
     "Wave4 nibi on-target completed with new best completed mean-9 SCC=0.5669744312773769 and WT->HL60 SCC=0.4653505491794053.",
     "Wave4 rorqual on-target completed but did not beat the current best completed run.",
     "Wave3 fir on-target completed at mean-9 SCC=0.504804355095312.",
-    "Upstream CRISPR-FMC cluster smoke completed on nibi (WT 1-fold 512-row SCC=-0.10761819350249809 on cuda:0)."
+    "Upstream CRISPR-FMC cluster smoke completed on nibi (WT 1-fold 512-row SCC=-0.10761819350249809 on cuda:0).",
+    "Submitted matched upstream threshold-driving public run for CRISPR-FMC on nibi as job 9908311 (pending).",
+    "Submitted matched upstream threshold-driving public run for CRISPR_HNN on rorqual as job 7771470 (pending).",
+    "fir rejected new gpu submissions for both uncertainty and on-target-full wrappers with Requested time limit is invalid; fir is not currently treated as a healthy launch target for those wrappers."
   ]
 }

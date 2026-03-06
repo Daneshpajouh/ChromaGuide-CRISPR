@@ -1,10 +1,10 @@
 {
-  "generated_local_time": "2026-03-06T02:18:55.410964-08:00",
+  "generated_local_time": "2026-03-06T03:00:01.381757-08:00",
   "phase_boundary": "external_sota_upstream_runtime_smokes_passed_for_fmc_hnn_cclmoff_crispai_benchmark_claims_still_pending",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
-    "head_commit": "64775c8"
+    "head_commit": "0e9f6b4"
   },
   "cluster_state": {
     "nibi": {
@@ -176,11 +176,10 @@
     }
   },
   "next_actions": [
-    "Harvest first completed jobs from full-wave-v2/v3 queues and update benchmark summaries.",
-    "If nibi on-target jobs fail on torch namespace import, route nibi jobs through a validated Python stack (system-user-site or rebuilt wheel install).",
-    "Continue monitoring cedar resource constraints and spill excess load to rorqual/fir/trillium.",
-    "Recompute SOTA gap tables after first corrected full-wave results land.",
-    "Use SOTA_SOURCE_REPRO_STATUS_2026-03-05.json as the canonical external-baseline reproducibility ledger before claiming matched SOTA comparisons."
+    "Harvest the two newly submitted matched upstream threshold-driving jobs: CRISPR-FMC on nibi (9908311) and CRISPR_HNN on rorqual (7771470).",
+    "Continue monitoring the three live trillium CPU jobs and harvest as soon as any complete.",
+    "Do not count fir as healthy for new gpu wrapper submissions until the scheduler time-limit policy is resolved.",
+    "Recompute SOTA gap tables after the next completed full-wave or upstream matched results land."
   ],
   "sota_source_repro": {
     "registry": "sota_model_source_registry.json",
