@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T08:05:32.565918+00:00",
+  "generated_at_utc": "2026-03-06T10:18:55.410471+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -145,16 +145,15 @@
   },
   "cluster_repro": {
     "CRISPR_FMC": {
-      "status": "pending_cluster_smoke",
+      "status": "passed_cluster_smoke",
       "cluster": "nibi",
       "job_id": "9890598",
       "run_tag": "sota_fmc_wave1_smoke",
+      "device_effective": "cuda:0",
+      "summary_path": "results/public_benchmarks/cluster_harvest_20260306/nibi/sota_fmc_wave1_smoke_SUMMARY.json",
+      "mean_scc_across_datasets": -0.10761819350249809,
       "datasets": [
-        "WT",
-        "ESP",
-        "HF",
-        "Sniper-Cas9",
-        "HL60"
+        "WT"
       ],
       "folds": 1,
       "epochs": 1

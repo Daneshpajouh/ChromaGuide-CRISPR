@@ -1,5 +1,5 @@
 {
-  "generated_local_time": "2026-03-05T16:42:00-08:00",
+  "generated_local_time": "2026-03-06T02:18:55.410964-08:00",
   "phase_boundary": "external_sota_upstream_runtime_smokes_executed_with_concrete_blockers",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
@@ -103,23 +103,24 @@
   "public_on_target": {
     "best_completed_run": {
       "host": "nibi",
-      "artifact": "results/public_benchmarks/cluster_harvest_20260305/nibi/full_run_best_FINAL_SUMMARY.json",
-      "mean_9_dataset_scc": 0.5522381826371536,
-      "WT_scc": 0.8424370688292431,
-      "ESP_scc": 0.8198967154899437,
-      "HF_scc": 0.798560354965847,
-      "Sniper_scc": 0.446090916888109,
-      "HL60_scc": 0.2275099682349664,
-      "gap_vs_mean_target_0_716": -0.16376181736284634
+      "artifact": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave4_nibi_on_gate_d128_e20_FINAL_SUMMARY.json",
+      "mean_9_dataset_scc": 0.5669744312773769,
+      "WT_scc": 0.8453855978444285,
+      "ESP_scc": 0.8194581719658441,
+      "HF_scc": 0.8209968325546927,
+      "Sniper_scc": 0.44689375062590553,
+      "HL60_scc": 0.2804783141963688,
+      "gap_vs_mean_target_0_716": -0.14902556872262307
     },
     "best_transfer_wt_to_hl60": {
-      "host": "rorqual",
-      "mean_scc": 0.46050464169905975,
-      "gap_vs_target_0_468": -0.00749535830094028
+      "host": "nibi",
+      "mean_scc": 0.4653505491794053,
+      "gap_vs_target_0_468": -0.002649450820594701
     },
     "other_completed_reference": {
-      "rorqual_mean_9_dataset_scc": 0.550721131533518,
-      "fir_mean_9_dataset_scc": 0.5428726268587706
+      "rorqual_wave3_mean_9_dataset_scc": 0.5584626617240803,
+      "rorqual_wave4_mean_9_dataset_scc": 0.5082493001401343,
+      "fir_wave3_mean_9_dataset_scc": 0.504804355095312
     },
     "meets_frozen_on_target_claim": false
   },
