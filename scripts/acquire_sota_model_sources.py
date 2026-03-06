@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,6 +16,18 @@ from urllib.request import Request, urlopen
 def run_cmd(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
     proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
     return proc.returncode, proc.stdout.strip(), proc.stderr.strip()
+
+
+def resolve_git_bin() -> str:
+    for candidate in [
+        shutil.which("git"),
+        "/usr/bin/git",
+        "/cvmfs/soft.computecanada.ca/gentoo/2023/x86-64-v3/usr/bin/git",
+        "/cvmfs/soft.computecanada.ca/gentoo/2023/x86-64-v4/usr/bin/git",
+    ]:
+        if candidate and Path(candidate).exists():
+            return candidate
+    raise FileNotFoundError("git executable not found in PATH or known cluster locations")
 
 
 def check_url(url: str, timeout_sec: float = 12.0) -> dict[str, Any]:
@@ -49,7 +62,7 @@ def check_url(url: str, timeout_sec: float = 12.0) -> dict[str, Any]:
         return {"url": url, "ok": False, "http_status": None, "error": str(exc)}
 
 
-def get_git_metadata(path: Path) -> dict[str, Any]:
+def get_git_metadata(path: Path, git_bin: str) -> dict[str, Any]:
     if not (path / ".git").exists():
         return {
             "is_git_repo": False,
@@ -60,11 +73,11 @@ def get_git_metadata(path: Path) -> dict[str, Any]:
             "default_branch": None,
         }
 
-    _, origin_out, _ = run_cmd(["git", "remote", "get-url", "origin"], cwd=path)
-    _, sha_out, _ = run_cmd(["git", "rev-parse", "HEAD"], cwd=path)
-    _, sha_short_out, _ = run_cmd(["git", "rev-parse", "--short", "HEAD"], cwd=path)
-    _, branch_out, _ = run_cmd(["git", "branch", "--show-current"], cwd=path)
-    _, head_ref_out, _ = run_cmd(["git", "symbolic-ref", "refs/remotes/origin/HEAD"], cwd=path)
+    _, origin_out, _ = run_cmd([git_bin, "remote", "get-url", "origin"], cwd=path)
+    _, sha_out, _ = run_cmd([git_bin, "rev-parse", "HEAD"], cwd=path)
+    _, sha_short_out, _ = run_cmd([git_bin, "rev-parse", "--short", "HEAD"], cwd=path)
+    _, branch_out, _ = run_cmd([git_bin, "branch", "--show-current"], cwd=path)
+    _, head_ref_out, _ = run_cmd([git_bin, "symbolic-ref", "refs/remotes/origin/HEAD"], cwd=path)
     default_branch = None
     if head_ref_out and "/" in head_ref_out:
         default_branch = head_ref_out.rsplit("/", 1)[-1]
@@ -79,7 +92,7 @@ def get_git_metadata(path: Path) -> dict[str, Any]:
     }
 
 
-def clone_or_update_repo(repo_url: str, dest: Path, update_existing: bool) -> dict[str, Any]:
+def clone_or_update_repo(repo_url: str, dest: Path, update_existing: bool, git_bin: str) -> dict[str, Any]:
     if dest.exists() and (dest / ".git").exists():
         if not update_existing:
             return {
@@ -87,8 +100,8 @@ def clone_or_update_repo(repo_url: str, dest: Path, update_existing: bool) -> di
                 "action": "none",
                 "stderr": None,
             }
-        code_fetch, _, err_fetch = run_cmd(["git", "fetch", "--all", "--tags", "--prune"], cwd=dest)
-        code_pull, _, err_pull = run_cmd(["git", "pull", "--ff-only"], cwd=dest)
+        code_fetch, _, err_fetch = run_cmd([git_bin, "fetch", "--all", "--tags", "--prune"], cwd=dest)
+        code_pull, _, err_pull = run_cmd([git_bin, "pull", "--ff-only"], cwd=dest)
         return {
             "status": "updated" if code_fetch == 0 and code_pull == 0 else "update_failed",
             "action": "fetch_pull",
@@ -96,7 +109,7 @@ def clone_or_update_repo(repo_url: str, dest: Path, update_existing: bool) -> di
         }
 
     dest.parent.mkdir(parents=True, exist_ok=True)
-    code_clone, _, err_clone = run_cmd(["git", "clone", "--depth", "1", repo_url, str(dest)])
+    code_clone, _, err_clone = run_cmd([git_bin, "clone", "--depth", "1", repo_url, str(dest)])
     return {
         "status": "cloned" if code_clone == 0 else "clone_failed",
         "action": "clone",
@@ -169,6 +182,7 @@ def main() -> None:
 
     registry = load_registry(registry_path)
     source_root = (repo_root / registry.get("source_root", "data/public_benchmarks/sources")).resolve()
+    git_bin = resolve_git_bin()
 
     results: list[dict[str, Any]] = []
     for entry in registry["entries"]:
@@ -197,8 +211,8 @@ def main() -> None:
         if repo_url and local_subdir:
             local_path = source_root / local_subdir
             repo_payload["local_path"] = str(local_path)
-            repo_payload["acquisition"] = clone_or_update_repo(repo_url, local_path, args.update_existing)
-            repo_payload["git"] = get_git_metadata(local_path)
+            repo_payload["acquisition"] = clone_or_update_repo(repo_url, local_path, args.update_existing, git_bin)
+            repo_payload["git"] = get_git_metadata(local_path, git_bin)
 
         urls = []
         urls.extend(entry.get("docs_urls", []))

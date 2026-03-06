@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -29,7 +30,19 @@ REPO_SOURCES = {
 }
 
 
-def clone_or_update(name: str, url: str, dest: Path) -> dict:
+def resolve_git_bin() -> str:
+    for candidate in [
+        shutil.which("git"),
+        "/usr/bin/git",
+        "/cvmfs/soft.computecanada.ca/gentoo/2023/x86-64-v3/usr/bin/git",
+        "/cvmfs/soft.computecanada.ca/gentoo/2023/x86-64-v4/usr/bin/git",
+    ]:
+        if candidate and Path(candidate).exists():
+            return candidate
+    raise FileNotFoundError("git executable not found in PATH or known cluster locations")
+
+
+def clone_or_update(name: str, url: str, dest: Path, git_bin: str) -> dict:
     if dest.exists():
         return {
             "name": name,
@@ -38,7 +51,7 @@ def clone_or_update(name: str, url: str, dest: Path) -> dict:
             "status": "already_present",
         }
     dest.parent.mkdir(parents=True, exist_ok=True)
-    cmd = ["git", "clone", "--depth", "1", url, str(dest)]
+    cmd = [git_bin, "clone", "--depth", "1", url, str(dest)]
     proc = subprocess.run(cmd, capture_output=True, text=True)
     return {
         "name": name,
@@ -62,10 +75,11 @@ def main() -> None:
     repo = Path(args.repo_root).resolve()
     sources_root = repo / "data" / "public_benchmarks" / "sources"
     fetch_results = []
+    git_bin = resolve_git_bin()
 
     for name, url in REPO_SOURCES.items():
         dest = sources_root / name
-        fetch_results.append(clone_or_update(name, url, dest))
+        fetch_results.append(clone_or_update(name, url, dest, git_bin))
 
     source_map = {
         "generated": "2026-03-02",
@@ -82,9 +96,9 @@ def main() -> None:
     out_path = repo / args.output_json
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps({"fetch_results": fetch_results, "source_map": source_map}, indent=2), encoding="utf-8")
-    (repo / "data" / "public_benchmarks" / "acquisition" / "source_map.json").write_text(
-        json.dumps(source_map, indent=2), encoding="utf-8"
-    )
+    source_map_path = repo / "data" / "public_benchmarks" / "acquisition" / "source_map.json"
+    source_map_path.parent.mkdir(parents=True, exist_ok=True)
+    source_map_path.write_text(json.dumps(source_map, indent=2), encoding="utf-8")
     print(json.dumps({"fetch_results": fetch_results, "source_map": source_map}, indent=2))
 
 

@@ -3,7 +3,7 @@ set -euo pipefail
 
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 <cluster-host> <job-kind> [VAR=value ...]" >&2
-  echo "job-kind: on-target-optuna | on-target-full | off-target-cclmoff | off-target-optuna | off-target-uncertainty | off-target-uncertainty-cpu | off-target-uncertainty-trillium" >&2
+  echo "job-kind: on-target-optuna | on-target-full | off-target-cclmoff | off-target-optuna | off-target-uncertainty | off-target-uncertainty-cpu | off-target-uncertainty-trillium | downloads | downloads-trillium | downloads-trillium-smoke | downloads-trillium-full" >&2
   exit 1
 fi
 
@@ -32,6 +32,18 @@ case "$JOB_KIND" in
     ;;
   off-target-uncertainty-trillium)
     REMOTE_SCRIPT="scripts/slurm_public_off_target_uncertainty_trillium.sh"
+    ;;
+  downloads)
+    REMOTE_SCRIPT="scripts/slurm_public_download_pipeline.sh"
+    ;;
+  downloads-trillium)
+    REMOTE_SCRIPT="scripts/slurm_public_download_pipeline_trillium.sh"
+    ;;
+  downloads-trillium-smoke)
+    REMOTE_SCRIPT="scripts/slurm_public_download_pipeline_trillium_smoke.sh"
+    ;;
+  downloads-trillium-full)
+    REMOTE_SCRIPT="scripts/slurm_public_download_pipeline_trillium_full.sh"
     ;;
   *)
     echo "Unknown job kind: $JOB_KIND" >&2
