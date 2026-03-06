@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T06:21:11.050460+00:00",
+  "generated_at_utc": "2026-03-06T06:24:21.426513+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup",
   "jobs": {
     "nibi": {
@@ -16,9 +16,9 @@
       "full_off_target_best_auprc": 0.802543562705727,
       "full_off_target_frame": "cclmoff_lodo",
       "wave3_on_target_job_id": "9884210",
-      "wave3_on_target_state": "PENDING",
+      "wave3_on_target_state": "PENDING_PRIORITY",
       "wave3_off_target_job_id": "9884209",
-      "wave3_off_target_state": "PENDING"
+      "wave3_off_target_state": "PENDING_PRIORITY"
     },
     "rorqual": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -31,9 +31,9 @@
       "full_off_target_job_id": "7760522",
       "full_off_target_state": "COMPLETED",
       "wave3_on_target_job_id": "7762946",
-      "wave3_on_target_state": "PENDING",
+      "wave3_on_target_state": "PENDING_PRIORITY",
       "wave3_off_target_job_id": "7762945",
-      "wave3_off_target_state": "PENDING"
+      "wave3_off_target_state": "PENDING_PRIORITY"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -49,9 +49,9 @@
       "full_off_target_job_id": "25868665",
       "full_off_target_state": "COMPLETED",
       "wave3_on_target_job_id": "25873341",
-      "wave3_on_target_state": "PENDING",
+      "wave3_on_target_state": "RUNNING",
       "wave3_off_target_job_id": "25873340",
-      "wave3_off_target_state": "PENDING"
+      "wave3_off_target_state": "RUNNING"
     },
     "cedar": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
