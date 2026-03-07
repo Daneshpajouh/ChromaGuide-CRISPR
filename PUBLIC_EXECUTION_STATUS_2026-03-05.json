@@ -210,7 +210,14 @@
       "overlap_with_GUIDE_seq_sgRNA_type_guides": 10,
       "extra_unmatched_sgRNA_type_guide": "GTTGCCCCACAGGGCAGTAANGG",
       "claim_valid_relabeling_allowed": false,
-      "reason": "Current evidence is consistent with mixed or incompletely annotated legacy rows, not with a source-verified pure CIRCLE-seq frame."
+      "reason": "Current evidence is consistent with mixed or incompletely annotated legacy rows, not with a source-verified pure CIRCLE-seq frame.",
+      "source_consistency_check": {
+        "cclmoff_paper_table_1_expected_circle_seq_guides": 11,
+        "cclmoff_paper_table_1_expected_circle_seq_total_rows": 1683395,
+        "observed_blank_bucket_guides": 11,
+        "observed_blank_bucket_total_rows": 3282935,
+        "interpretation": "Guide-count parity alone is not sufficient. The blank bucket row count is far larger than the paper's reported CIRCLE-seq total, so the bucket cannot be safely relabeled as claim-valid CIRCLE-seq without source-level confirmation."
+      }
     }
   },
   "uncertainty_and_calibration": {
