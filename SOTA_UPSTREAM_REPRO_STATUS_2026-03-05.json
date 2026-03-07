@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-07T09:05:04.101258+00:00",
+  "generated_at_utc": "2026-03-07T09:30:44.070819+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -72,21 +72,19 @@
         "note": "Completed matched threshold-set run; weaker than the reconstructed CRISPR_HNN threshold-set run on all five tracked datasets."
       },
       "canonical9_public_run": {
-        "status": "submitted",
+        "status": "completed",
         "host": "rorqual",
         "job_id": "7838511",
         "run_tag": "sota_fmc_canonical9_v1",
-        "datasets": [
-          "WT",
-          "ESP",
-          "HF",
-          "xCas9",
-          "SpCas9-NG",
-          "Sniper-Cas9",
-          "HCT116",
-          "HELA",
-          "HL60"
-        ]
+        "summary": "results/public_benchmarks/cluster_harvest_20260307/rorqual/sota_fmc_canonical9_v1_SUMMARY.json",
+        "mean9_scc": 0.6522562120661721,
+        "mean9_gap_vs_0_716": -0.06374378793382784,
+        "WT_scc": 0.8125851053951321,
+        "ESP_scc": 0.7976085142367321,
+        "HF_scc": 0.7991272603984323,
+        "Sniper_Cas9_scc": 0.917174318917507,
+        "HL60_scc": 0.2811572207427854,
+        "note": "Completed canonical-9 rerun. Stronger than the FMC threshold-set run, but still below both the frozen mean9 target and the standing strict best."
       }
     },
     "CRISPR_HNN": {
@@ -163,6 +161,15 @@
           "HELA",
           "HL60"
         ]
+      },
+      "transfer_public_run": {
+        "status": "running",
+        "host": "rorqual",
+        "job_id": "7838661",
+        "run_tag": "sota_hnn_transfer_wt_hl60_v1",
+        "source_dataset": "WT",
+        "target_dataset": "HL60",
+        "folds": 5
       }
     },
     "CCLMoff": {
