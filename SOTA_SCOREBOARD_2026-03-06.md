@@ -1,6 +1,6 @@
 # SOTA Scoreboard (2026-03-06)
 
-- Generated at: `2026-03-06T19:06:49.243081+00:00`
+- Generated at: `2026-03-07T07:14:59.729933+00:00`
 - Claim-valid passed: `0` / `7`
 - Claim-ready: `no`
 
@@ -10,10 +10,10 @@
 |---|---:|---:|---:|---|---|---|
 | on_target.mean9_scc | 0.5682911315 | 0.716 | -0.1477088685 | No | Yes | scored |
 | on_target.WT_scc | 0.8453855978 | 0.861 | -0.0156144022 | No | Yes | scored |
-| on_target.ESP_scc | 0.8222946025 | 0.851 | -0.0287053975 | No | Yes | scored |
-| on_target.HF_scc | 0.8218050761 | 0.865 | -0.0431949239 | No | Yes | scored |
-| on_target.Sniper_Cas9_scc | 0.4531969795 | 0.935 | -0.4818030205 | No | Yes | scored |
-| on_target.HL60_scc | 0.2804783142 | 0.402 | -0.1215216858 | No | Yes | scored |
+| on_target.ESP_scc | 0.822481156 | 0.851 | -0.028518844 | No | Yes | scored |
+| on_target.HF_scc | 0.8237207152 | 0.865 | -0.0412792848 | No | Yes | scored |
+| on_target.Sniper_Cas9_scc | 0.9201776355 | 0.935 | -0.0148223645 | No | Yes | scored |
+| on_target.HL60_scc | 0.3127395392 | 0.402 | -0.0892604608 | No | Yes | scored |
 | on_target.WT_to_HL60_scc | 0.4653505492 | 0.468 | -0.0026494508 | No | Yes | scored |
 
 ## Off-Target Primary

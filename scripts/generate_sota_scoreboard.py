@@ -52,37 +52,56 @@ def metric_record(
     }
 
 
-def best_on_target_values(summary_files: list[Path]) -> tuple[dict[str, float], dict[str, str]]:
-    keys = {
-        "mean9_scc": ("mean_9_dataset_progress", None),
-        "WT_scc": ("completed_datasets", "WT"),
-        "ESP_scc": ("completed_datasets", "ESP"),
-        "HF_scc": ("completed_datasets", "HF"),
-        "Sniper_Cas9_scc": ("completed_datasets", "Sniper-Cas9"),
-        "HL60_scc": ("completed_datasets", "HL60"),
-    }
+def _extract_on_target_candidates(data: dict[str, Any]) -> dict[str, float]:
+    current: dict[str, float] = {}
 
+    # Native public benchmark summary shape.
+    if "summary" in data and isinstance(data["summary"], dict):
+        s = data["summary"]
+        if bool(s.get("mean_9_dataset_claim_ready", False)):
+            current["mean9_scc"] = float(s["mean_9_dataset_progress"])
+        completed = s.get("completed_datasets", {})
+        for metric_key, dataset_name in [
+            ("WT_scc", "WT"),
+            ("ESP_scc", "ESP"),
+            ("HF_scc", "HF"),
+            ("Sniper_Cas9_scc", "Sniper-Cas9"),
+            ("HL60_scc", "HL60"),
+        ]:
+            ds = completed.get(dataset_name)
+            if isinstance(ds, dict) and "mean_gold_rho" in ds:
+                current[metric_key] = float(ds["mean_gold_rho"])
+
+    # Upstream threshold summary shape used by reconstructed HNN/FMC runs.
+    ds_summaries = data.get("dataset_summaries", {})
+    if isinstance(ds_summaries, dict):
+        for metric_key, dataset_name in [
+            ("WT_scc", "WT"),
+            ("ESP_scc", "ESP"),
+            ("HF_scc", "HF"),
+            ("Sniper_Cas9_scc", "Sniper-Cas9"),
+            ("HL60_scc", "HL60"),
+        ]:
+            ds = ds_summaries.get(dataset_name)
+            if isinstance(ds, dict) and "mean_scc" in ds:
+                current[metric_key] = float(ds["mean_scc"])
+
+    return current
+
+
+def best_on_target_values(summary_files: list[Path]) -> tuple[dict[str, float], dict[str, str]]:
     best_vals: dict[str, float] = {}
     best_src: dict[str, str] = {}
 
     for path in summary_files:
         data = load_json(path)
-        s = data["summary"]
-        if not bool(s.get("mean_9_dataset_claim_ready", False)):
+        current = _extract_on_target_candidates(data)
+        if not current:
             continue
 
-        current = {
-            "mean9_scc": float(s["mean_9_dataset_progress"]),
-            "WT_scc": float(s["completed_datasets"]["WT"]["mean_gold_rho"]),
-            "ESP_scc": float(s["completed_datasets"]["ESP"]["mean_gold_rho"]),
-            "HF_scc": float(s["completed_datasets"]["HF"]["mean_gold_rho"]),
-            "Sniper_Cas9_scc": float(s["completed_datasets"]["Sniper-Cas9"]["mean_gold_rho"]),
-            "HL60_scc": float(s["completed_datasets"]["HL60"]["mean_gold_rho"]),
-        }
-
-        for k in keys:
+        for k, v in current.items():
             if k not in best_vals or current[k] > best_vals[k]:
-                best_vals[k] = current[k]
+                best_vals[k] = v
                 best_src[k] = str(path)
 
     return best_vals, best_src
@@ -162,7 +181,9 @@ def main() -> None:
         repo,
         [
             "results/public_benchmarks/cluster_harvest_*/**/*FINAL_SUMMARY*.json",
+            "results/public_benchmarks/cluster_harvest_*/**/*SUMMARY*.json",
             "results/public_benchmarks/*/FINAL_SUMMARY*.json",
+            "results/public_benchmarks/**/*SUMMARY*.json",
         ],
     )
     sweep_files = collect_paths(
@@ -199,8 +220,8 @@ def main() -> None:
             "on_target.mean9_scc",
             "on_target",
             thr["on_target"]["average_thresholds"]["mean_SCC_9_dataset"],
-            best_on["mean9_scc"],
-            best_on_src["mean9_scc"],
+            best_on.get("mean9_scc"),
+            best_on_src.get("mean9_scc"),
             True,
         )
     )
@@ -209,8 +230,8 @@ def main() -> None:
             "on_target.WT_scc",
             "on_target",
             thr["on_target"]["per_dataset_thresholds"]["WT_SCC"],
-            best_on["WT_scc"],
-            best_on_src["WT_scc"],
+            best_on.get("WT_scc"),
+            best_on_src.get("WT_scc"),
             True,
         )
     )
@@ -219,8 +240,8 @@ def main() -> None:
             "on_target.ESP_scc",
             "on_target",
             thr["on_target"]["per_dataset_thresholds"]["ESP_SCC"],
-            best_on["ESP_scc"],
-            best_on_src["ESP_scc"],
+            best_on.get("ESP_scc"),
+            best_on_src.get("ESP_scc"),
             True,
         )
     )
@@ -229,8 +250,8 @@ def main() -> None:
             "on_target.HF_scc",
             "on_target",
             thr["on_target"]["per_dataset_thresholds"]["HF_SCC"],
-            best_on["HF_scc"],
-            best_on_src["HF_scc"],
+            best_on.get("HF_scc"),
+            best_on_src.get("HF_scc"),
             True,
         )
     )
@@ -239,8 +260,8 @@ def main() -> None:
             "on_target.Sniper_Cas9_scc",
             "on_target",
             thr["on_target"]["per_dataset_thresholds"]["Sniper_Cas9_SCC"],
-            best_on["Sniper_Cas9_scc"],
-            best_on_src["Sniper_Cas9_scc"],
+            best_on.get("Sniper_Cas9_scc"),
+            best_on_src.get("Sniper_Cas9_scc"),
             True,
         )
     )
@@ -249,8 +270,8 @@ def main() -> None:
             "on_target.HL60_scc",
             "on_target",
             thr["on_target"]["per_dataset_thresholds"]["HL60_SCC"],
-            best_on["HL60_scc"],
-            best_on_src["HL60_scc"],
+            best_on.get("HL60_scc"),
+            best_on_src.get("HL60_scc"),
             True,
         )
     )

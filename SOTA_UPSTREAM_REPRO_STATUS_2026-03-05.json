@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-06T10:34:13.325915+00:00",
+  "generated_at_utc": "2026-03-07T07:14:35.591313+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -52,6 +52,14 @@
         },
         "mean_scc_across_datasets": 0.30724946641718454,
         "mean_pcc_across_datasets": 0.27297242071561323
+      },
+      "matched_public_threshold_run": {
+        "status": "pending_retry_with_staged_rna_fm_checkpoint",
+        "host": "rorqual",
+        "job_id": "7837633",
+        "run_tag": "sota_fmc_threshold_v5",
+        "checkpoint": "/scratch/amird/chromaguide_experiments/.cache/torch/hub/checkpoints/RNA-FM_pretrained.pth",
+        "checkpoint_staged": true
       }
     },
     "CRISPR_HNN": {
@@ -93,7 +101,42 @@
         },
         "mean_scc_across_datasets": 0.2877525041198888
       },
-      "runtime_env": "/Users/studio/.pyenv/versions/3.10.19/bin/python"
+      "runtime_env": "/Users/studio/.pyenv/versions/3.10.19/bin/python",
+      "matched_public_threshold_run": {
+        "status": "completed",
+        "host": "rorqual",
+        "job_id": "7805038",
+        "summary": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
+        "mean5_scc": 0.7389471214091585,
+        "WT_scc": 0.815616561212187,
+        "ESP_scc": 0.8224811559689161,
+        "HF_scc": 0.8237207151841439,
+        "Sniper_Cas9_scc": 0.9201776355277721,
+        "HL60_scc": 0.31273953915277347,
+        "WT_gap_vs_0_861": -0.045383438787813035,
+        "ESP_gap_vs_0_851": -0.028518844031083845,
+        "HF_gap_vs_0_865": -0.04127928481585608,
+        "Sniper_gap_vs_0_935": -0.014822364472227956,
+        "HL60_gap_vs_0_402": -0.08926046084722655,
+        "note": "Strongest completed upstream matched threshold-set run so far; still below latest frozen targets on all five datasets."
+      },
+      "canonical9_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "7837679",
+        "run_tag": "sota_hnn_canonical9_v1",
+        "datasets": [
+          "WT",
+          "ESP",
+          "HF",
+          "xCas9",
+          "SpCas9-NG",
+          "Sniper-Cas9",
+          "HCT116",
+          "HELA",
+          "HL60"
+        ]
+      }
     },
     "CCLMoff": {
       "status": "passed_upstream_import_smoke_with_compat_shim",

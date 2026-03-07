@@ -1,5 +1,5 @@
 {
-  "generated_local_time": "2026-03-06T11:12:45.907970-08:00",
+  "generated_local_time": "2026-03-06T23:14:35.591503-08:00",
   "phase_boundary": "external_sota_upstream_runtime_smokes_passed_for_fmc_hnn_cclmoff_crispai_benchmark_claims_still_pending",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
@@ -122,7 +122,46 @@
       "rorqual_wave4_mean_9_dataset_scc": 0.5082493001401343,
       "fir_wave3_mean_9_dataset_scc": 0.504804355095312
     },
-    "meets_frozen_on_target_claim": false
+    "meets_frozen_on_target_claim": false,
+    "best_completed_per_dataset": {
+      "WT_scc": {
+        "value": 0.8453855978444285,
+        "source": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave4_nibi_on_gate_d128_e20_FINAL_SUMMARY.json",
+        "gap_vs_target_0_861": -0.015614402155571527
+      },
+      "ESP_scc": {
+        "value": 0.8224811559689161,
+        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
+        "gap_vs_target_0_851": -0.028518844031083845
+      },
+      "HF_scc": {
+        "value": 0.8237207151841439,
+        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
+        "gap_vs_target_0_865": -0.04127928481585608
+      },
+      "Sniper_scc": {
+        "value": 0.9201776355277721,
+        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
+        "gap_vs_target_0_935": -0.014822364472227956
+      },
+      "HL60_scc": {
+        "value": 0.31273953915277347,
+        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
+        "gap_vs_target_0_402": -0.08926046084722655
+      },
+      "WT_to_HL60_scc": {
+        "value": 0.4653505491794053,
+        "source": "PUBLIC_EXECUTION_STATUS_2026-03-05.json",
+        "gap_vs_target_0_468": -0.002649450820594701
+      }
+    },
+    "best_upstream_threshold_driver_run": {
+      "host": "rorqual",
+      "artifact": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
+      "mean_5_dataset_scc": 0.7389471214091585,
+      "closest_gap_sniper": -0.014822364472227956,
+      "closest_gap_hl60": -0.08926046084722655
+    }
   },
   "public_off_target": {
     "full_lodo_sweep_completed": {
