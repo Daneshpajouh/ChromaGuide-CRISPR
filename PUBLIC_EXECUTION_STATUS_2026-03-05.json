@@ -1,5 +1,5 @@
 {
-  "generated_local_time": "2026-03-06T23:14:35.591503-08:00",
+  "generated_local_time": "2026-03-07T01:05:04.101467-08:00",
   "phase_boundary": "external_sota_upstream_runtime_smokes_passed_for_fmc_hnn_cclmoff_crispai_benchmark_claims_still_pending",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
@@ -197,10 +197,20 @@
       "best_auprc": 0.9646667674048945
     },
     "claim_validity": {
-      "circle_cv": "blocked_by_unresolved_blank_method_provenance",
-      "circle_to_guide": "blocked_by_unresolved_blank_method_provenance",
+      "circle_cv": "blocked_by_unresolved_blank_method_bucket_with_11_sgRNA_type_guides_and_no_source_verified_mapping",
+      "circle_to_guide": "blocked_by_unresolved_blank_method_bucket_with_10_GUIDE_overlap_guides_plus_1_extra_unverified_guide",
       "lodo": "runnable_and_aggregated_on_3_clusters",
       "meets_full_frozen_off_target_claim": false
+    },
+    "blank_method_bucket_note": {
+      "blank_method_rows": 3282935,
+      "blank_method_positive_rows": 6203,
+      "blank_method_negative_rows": 3276732,
+      "blank_method_unique_sgRNA_type_guides": 11,
+      "overlap_with_GUIDE_seq_sgRNA_type_guides": 10,
+      "extra_unmatched_sgRNA_type_guide": "GTTGCCCCACAGGGCAGTAANGG",
+      "claim_valid_relabeling_allowed": false,
+      "reason": "Current evidence is consistent with mixed or incompletely annotated legacy rows, not with a source-verified pure CIRCLE-seq frame."
     }
   },
   "uncertainty_and_calibration": {

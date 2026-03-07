@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-07T07:14:35.591313+00:00",
+  "generated_at_utc": "2026-03-07T09:05:04.101258+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup_plus_upstream_matched_runs",
   "jobs": {
     "nibi": {
@@ -93,7 +93,7 @@
       "upstream_sota_crispr_hnn_full_failed_job_id": "7771470",
       "upstream_sota_crispr_hnn_full_failed_reason": "submit helper injected generic VENV_DIR; job missed the dedicated TensorFlow env and failed on keras_multi_head import.",
       "upstream_sota_crispr_fmc_full_job_id": "7837633",
-      "upstream_sota_crispr_fmc_full_state": "PENDING",
+      "upstream_sota_crispr_fmc_full_state": "COMPLETED",
       "upstream_sota_crispr_fmc_full_run_tag": "sota_fmc_threshold_v5",
       "upstream_sota_crispr_fmc_full_failed_job_id": "7807077",
       "upstream_sota_crispr_fmc_full_failed_reason": "compute-node bootstrap attempted rna-fm install before the env was provisioned; rna-fm is now installed on the login node env.",
@@ -108,8 +108,18 @@
       "upstream_sota_crispr_hnn_full_hl60_gap_vs_0_402": -0.08926046084722655,
       "upstream_sota_crispr_fmc_checkpoint_staged": true,
       "upstream_sota_crispr_hnn_canonical9_job_id": "7837679",
-      "upstream_sota_crispr_hnn_canonical9_state": "PENDING",
-      "upstream_sota_crispr_hnn_canonical9_run_tag": "sota_hnn_canonical9_v1"
+      "upstream_sota_crispr_hnn_canonical9_state": "RUNNING",
+      "upstream_sota_crispr_hnn_canonical9_run_tag": "sota_hnn_canonical9_v1",
+      "upstream_sota_crispr_fmc_full_summary": "results/public_benchmarks/cluster_harvest_20260307/rorqual/sota_fmc_threshold_v5_SUMMARY.json",
+      "upstream_sota_crispr_fmc_full_mean5_scc": 0.7135268444717451,
+      "upstream_sota_crispr_fmc_full_wt_mean_scc": 0.8086449469401252,
+      "upstream_sota_crispr_fmc_full_esp_mean_scc": 0.7948284510907304,
+      "upstream_sota_crispr_fmc_full_hf_mean_scc": 0.7918653423465856,
+      "upstream_sota_crispr_fmc_full_sniper_mean_scc": 0.915999556422969,
+      "upstream_sota_crispr_fmc_full_hl60_mean_scc": 0.2562959255583153,
+      "upstream_sota_crispr_fmc_canonical9_job_id": "7838511",
+      "upstream_sota_crispr_fmc_canonical9_state": "PENDING",
+      "upstream_sota_crispr_fmc_canonical9_run_tag": "sota_fmc_canonical9_v1"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",

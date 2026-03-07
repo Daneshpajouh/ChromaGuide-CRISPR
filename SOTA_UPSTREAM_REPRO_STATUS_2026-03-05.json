@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-07T07:14:35.591313+00:00",
+  "generated_at_utc": "2026-03-07T09:05:04.101258+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -54,12 +54,39 @@
         "mean_pcc_across_datasets": 0.27297242071561323
       },
       "matched_public_threshold_run": {
-        "status": "pending_retry_with_staged_rna_fm_checkpoint",
+        "status": "completed",
         "host": "rorqual",
         "job_id": "7837633",
-        "run_tag": "sota_fmc_threshold_v5",
-        "checkpoint": "/scratch/amird/chromaguide_experiments/.cache/torch/hub/checkpoints/RNA-FM_pretrained.pth",
-        "checkpoint_staged": true
+        "summary": "results/public_benchmarks/cluster_harvest_20260307/rorqual/sota_fmc_threshold_v5_SUMMARY.json",
+        "mean5_scc": 0.7135268444717451,
+        "WT_scc": 0.8086449469401252,
+        "ESP_scc": 0.7948284510907304,
+        "HF_scc": 0.7918653423465856,
+        "Sniper_Cas9_scc": 0.915999556422969,
+        "HL60_scc": 0.2562959255583153,
+        "WT_gap_vs_0_861": -0.05235505305987476,
+        "ESP_gap_vs_0_851": -0.056171548909269564,
+        "HF_gap_vs_0_865": -0.07313465765341443,
+        "Sniper_gap_vs_0_935": -0.019000443577031012,
+        "HL60_gap_vs_0_402": -0.1457040744416847,
+        "note": "Completed matched threshold-set run; weaker than the reconstructed CRISPR_HNN threshold-set run on all five tracked datasets."
+      },
+      "canonical9_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "7838511",
+        "run_tag": "sota_fmc_canonical9_v1",
+        "datasets": [
+          "WT",
+          "ESP",
+          "HF",
+          "xCas9",
+          "SpCas9-NG",
+          "Sniper-Cas9",
+          "HCT116",
+          "HELA",
+          "HL60"
+        ]
       }
     },
     "CRISPR_HNN": {
