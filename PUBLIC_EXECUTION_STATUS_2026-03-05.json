@@ -1,10 +1,10 @@
 {
-  "generated_local_time": "2026-03-08T20:56:16.616277-07:00",
+  "generated_local_time": "2026-03-09T13:50:07.040826-07:00",
   "phase_boundary": "external_sota_upstream_runtime_smokes_passed_for_fmc_hnn_cclmoff_crispai_benchmark_claims_still_pending",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
-    "head_commit": "c22c3f0"
+    "head_commit": "7b8d4830ecdfe32c9258ea2b9bfc41661246f653"
   },
   "cluster_state": {
     "nibi": {
@@ -103,14 +103,14 @@
   "public_on_target": {
     "best_completed_run": {
       "host": "rorqual",
-      "artifact": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
-      "mean_9_dataset_scc": 0.6569609408669042,
-      "WT_scc": 0.815616561212187,
-      "ESP_scc": 0.8224811559689161,
-      "HF_scc": 0.8237207151841439,
-      "Sniper_scc": 0.9231005874343052,
-      "HL60_scc": 0.26976268923761465,
-      "gap_vs_mean_target_0_716": -0.05903905913309582
+      "artifact": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
+      "mean_9_dataset_scc": 0.6743715317106037,
+      "WT_scc": 0.8425246481935538,
+      "ESP_scc": 0.8361978319569829,
+      "HF_scc": 0.8383885437299339,
+      "Sniper_scc": 0.9262329589178382,
+      "HL60_scc": 0.31048031388763186,
+      "gap_vs_mean_target_0_716": -0.04162846828939626
     },
     "best_transfer_wt_to_hl60": {
       "host": "nibi",
@@ -130,24 +130,24 @@
         "gap_vs_target_0_861": -0.015614402155571527
       },
       "ESP_scc": {
-        "value": 0.8224811559689161,
-        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
-        "gap_vs_target_0_851": -0.028518844031083845
+        "value": 0.8361978319569829,
+        "source": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
+        "gap_vs_target_0_851": -0.014802168043017039
       },
       "HF_scc": {
-        "value": 0.8237207151841439,
-        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
-        "gap_vs_target_0_865": -0.04127928481585608
+        "value": 0.8383885437299339,
+        "source": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
+        "gap_vs_target_0_865": -0.026611456270066114
       },
       "Sniper_scc": {
-        "value": 0.9231005874343052,
-        "source": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
-        "gap_vs_target_0_935": -0.011899412565694822
+        "value": 0.9274682254601416,
+        "source": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v2_bs32_p7_SUMMARY.json",
+        "gap_vs_target_0_935": -0.007531774539858427
       },
       "HL60_scc": {
-        "value": 0.31273953915277347,
-        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
-        "gap_vs_target_0_402": -0.08926046084722655
+        "value": 0.3130585941476802,
+        "source": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v2_bs32_p7_SUMMARY.json",
+        "gap_vs_target_0_402": -0.0889414058523198
       },
       "WT_to_HL60_scc": {
         "value": 0.4653505491794053,
@@ -157,12 +157,12 @@
     },
     "best_upstream_threshold_driver_run": {
       "host": "rorqual",
-      "artifact": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
-      "mean_9_dataset_scc": 0.6569609408669042,
-      "closest_gap_sniper": -0.011899412565694822,
-      "wt_to_hl60_transfer_run_artifact": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_transfer_wt_hl60_v1_SUMMARY.json",
-      "wt_to_hl60_transfer_mean_scc": 0.4400799242761241,
-      "wt_to_hl60_transfer_gap": -0.027920075723875948
+      "artifact": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
+      "mean_9_dataset_scc": 0.6743715317106037,
+      "closest_gap_sniper": -0.007531774539858427,
+      "wt_to_hl60_transfer_run_artifact": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_transfer_wt_hl60_v2_bs32_p7_SUMMARY.json",
+      "wt_to_hl60_transfer_mean_scc": 0.45906355874581556,
+      "wt_to_hl60_transfer_gap": -0.008936441254184468
     }
   },
   "public_off_target": {
@@ -199,8 +199,8 @@
       "best_auprc": 0.9646667674048945
     },
     "claim_validity": {
-      "circle_cv": "blocked_by_unresolved_blank_method_bucket_with_11_sgRNA_type_guides_and_no_source_verified_mapping",
-      "circle_to_guide": "blocked_by_unresolved_blank_method_bucket_with_10_GUIDE_overlap_guides_plus_1_extra_unverified_guide",
+      "circle_cv": "blocked_by_unresolved_blank_method_bucket_whose_rows_match_combined_CIRCLE_seq_plus_bulged_GUIDE_seq_scale_not_a_source_verified_pure_CIRCLE_frame",
+      "circle_to_guide": "blocked_by_unresolved_blank_method_bucket_consistent_with_mixed_CIRCLE_seq_plus_bulged_GUIDE_seq_rows_so_it_cannot_be_used_as_a_claim_valid_train_frame",
       "lodo": "runnable_and_aggregated_on_3_clusters",
       "meets_full_frozen_off_target_claim": false
     },
@@ -218,7 +218,10 @@
         "cclmoff_paper_table_1_expected_circle_seq_total_rows": 1683395,
         "observed_blank_bucket_guides": 11,
         "observed_blank_bucket_total_rows": 3282935,
-        "interpretation": "Guide-count parity alone is not sufficient. The blank bucket row count is far larger than the paper's reported CIRCLE-seq total, so the bucket cannot be safely relabeled as claim-valid CIRCLE-seq without source-level confirmation."
+        "interpretation": "The blank bucket is not just larger than paper-reported CIRCLE-seq; it is effectively equal to the paper-reported CIRCLE-seq plus bulge-enabled GUIDE-seq totals (difference 1 row). That pattern is consistent with a mixed or collapsed legacy bucket, not a source-verified pure CIRCLE-seq frame.",
+        "cclmoff_paper_table_1_expected_guide_seq_bulge_total_rows": 1599541,
+        "circle_plus_guide_bulge_expected_rows": 3282936,
+        "difference_vs_observed_blank_bucket_rows": 1
       }
     }
   },

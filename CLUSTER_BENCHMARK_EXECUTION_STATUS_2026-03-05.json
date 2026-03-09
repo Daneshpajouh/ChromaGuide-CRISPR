@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-09T05:00:45.749730+00:00",
+  "generated_at_utc": "2026-03-09T20:53:05.136839+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup_plus_upstream_matched_runs",
   "jobs": {
     "nibi": {
@@ -133,14 +133,36 @@
       "upstream_sota_crispr_hnn_transfer_mean_scc": 0.4400799242761241,
       "upstream_sota_crispr_hnn_transfer_gap_vs_0_468": -0.027920075723875948,
       "upstream_sota_crispr_hnn_tuned_canonical9_job_id": "7948831",
-      "upstream_sota_crispr_hnn_tuned_canonical9_state": "RUNNING",
+      "upstream_sota_crispr_hnn_tuned_canonical9_state": "COMPLETED",
       "upstream_sota_crispr_hnn_tuned_canonical9_run_tag": "sota_hnn_canonical9_v2_bs32_p7",
       "upstream_sota_crispr_hnn_tuned_transfer_job_id": "7949163",
-      "upstream_sota_crispr_hnn_tuned_transfer_state": "RUNNING",
+      "upstream_sota_crispr_hnn_tuned_transfer_state": "COMPLETED",
       "upstream_sota_crispr_hnn_tuned_transfer_run_tag": "sota_hnn_transfer_wt_hl60_v2_bs32_p7",
       "upstream_sota_crispr_hnn_v3_canonical9_job_id": "7949371",
-      "upstream_sota_crispr_hnn_v3_canonical9_state": "PENDING",
-      "upstream_sota_crispr_hnn_v3_canonical9_run_tag": "sota_hnn_canonical9_v3_bs32_lr2e4_p7"
+      "upstream_sota_crispr_hnn_v3_canonical9_state": "COMPLETED",
+      "upstream_sota_crispr_hnn_v3_canonical9_run_tag": "sota_hnn_canonical9_v3_bs32_lr2e4_p7",
+      "upstream_sota_crispr_hnn_tuned_canonical9_summary": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v2_bs32_p7_SUMMARY.json",
+      "upstream_sota_crispr_hnn_tuned_canonical9_mean9_scc": 0.6722894901961219,
+      "upstream_sota_crispr_hnn_tuned_canonical9_gap_vs_0_716": -0.04371050980387803,
+      "upstream_sota_crispr_hnn_tuned_canonical9_sniper_mean_scc": 0.9274682254601416,
+      "upstream_sota_crispr_hnn_tuned_canonical9_hl60_mean_scc": 0.3130585941476802,
+      "upstream_sota_crispr_hnn_tuned_transfer_summary": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_transfer_wt_hl60_v2_bs32_p7_SUMMARY.json",
+      "upstream_sota_crispr_hnn_tuned_transfer_mean_scc": 0.45906355874581556,
+      "upstream_sota_crispr_hnn_tuned_transfer_gap_vs_0_468": -0.008936441254184468,
+      "upstream_sota_crispr_hnn_v3_canonical9_summary": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
+      "upstream_sota_crispr_hnn_v3_canonical9_mean9_scc": 0.6743715317106037,
+      "upstream_sota_crispr_hnn_v3_canonical9_gap_vs_0_716": -0.04162846828939626,
+      "upstream_sota_crispr_hnn_v3_canonical9_wt_mean_scc": 0.8425246481935538,
+      "upstream_sota_crispr_hnn_v3_canonical9_esp_mean_scc": 0.8361978319569829,
+      "upstream_sota_crispr_hnn_v3_canonical9_hf_mean_scc": 0.8383885437299339,
+      "upstream_sota_crispr_hnn_v3_canonical9_sniper_mean_scc": 0.9262329589178382,
+      "upstream_sota_crispr_hnn_v3_canonical9_hl60_mean_scc": 0.31048031388763186,
+      "upstream_sota_crispr_hnn_v4_canonical9_job_id": "7973286",
+      "upstream_sota_crispr_hnn_v4_canonical9_state": "PENDING",
+      "upstream_sota_crispr_hnn_v4_canonical9_run_tag": "sota_hnn_canonical9_v4_bs16_lr2e4_p8_e40",
+      "upstream_sota_crispr_hnn_transfer_v3_job_id": "7973285",
+      "upstream_sota_crispr_hnn_transfer_v3_state": "PENDING",
+      "upstream_sota_crispr_hnn_transfer_v3_run_tag": "sota_hnn_transfer_wt_hl60_v3_bs16_lr2e4_p8_e40"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -252,6 +274,8 @@
     "Resubmitted corrected upstream CRISPR_HNN full run on rorqual as 7805038 using the dedicated /scratch/amird/env_public_benchmark_hnn env.",
     "Submitted corrected upstream CRISPR-FMC full multi-dataset run on rorqual as 7807077 after the nibi retry exposed cluster-specific GPU partition/model constraints.",
     "Harvested cedar completed CPU outputs: off-target LODO AUROC=0.9799565299229684, AUPRC=0.8478942452992994; uncertainty proxy completed with test Spearman=0.25406099959742734; full on-target CPU baseline completed but did not beat the standing bests.",
-    "Resubmitted corrected upstream CRISPR-FMC full run on rorqual as 7809985 after provisioning rna-fm into /scratch/amird/env_public_benchmark."
+    "Resubmitted corrected upstream CRISPR-FMC full run on rorqual as 7809985 after provisioning rna-fm into /scratch/amird/env_public_benchmark.",
+    "Harvested rorqual tuned upstream HNN runs 7948831, 7949163, 7949371 on 2026-03-09; v3 now holds best completed mean9, v2 holds best completed Sniper-Cas9 and HL60 among upstream HNN reruns.",
+    "Submitted next rorqual HNN tuning wave on 2026-03-09: 7973286 canonical9 v4 (bs16, lr2e-4, p8, e40) and 7973285 WT->HL60 transfer v3 with matched settings."
   ]
 }

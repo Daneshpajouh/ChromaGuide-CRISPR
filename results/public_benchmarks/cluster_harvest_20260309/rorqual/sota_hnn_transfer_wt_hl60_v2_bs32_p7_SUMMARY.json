@@ -1,0 +1,81 @@
+{
+  "model": "CRISPR_HNN_reconstructed_upstream_arch_transfer",
+  "generated_at_utc": "2026-03-09T05:27:24.383669+00:00",
+  "config": {
+    "source_dataset": "WT",
+    "target_dataset": "HL60",
+    "folds": 5,
+    "epochs": 30,
+    "batch_size": 32,
+    "lr": 0.0001,
+    "patience": 7,
+    "seed": 2024,
+    "max_rows": 0
+  },
+  "folds": [
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 0,
+      "test_scc": 0.5068543682199745,
+      "test_pcc": 0.4805216854497445,
+      "best_val_mae": 0.0761738270521164,
+      "train_rows": 33361,
+      "val_rows": 11121,
+      "test_rows": 416,
+      "epochs_ran": 30
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 1,
+      "test_scc": 0.5284369303483559,
+      "test_pcc": 0.49545560260074073,
+      "best_val_mae": 0.07706977427005768,
+      "train_rows": 33361,
+      "val_rows": 11121,
+      "test_rows": 415,
+      "epochs_ran": 30
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 2,
+      "test_scc": 0.4092680084888048,
+      "test_pcc": 0.4106592211266026,
+      "best_val_mae": 0.08049947023391724,
+      "train_rows": 33362,
+      "val_rows": 11120,
+      "test_rows": 415,
+      "epochs_ran": 27
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 3,
+      "test_scc": 0.4215703952935488,
+      "test_pcc": 0.41466306641263906,
+      "best_val_mae": 0.08236351609230042,
+      "train_rows": 33363,
+      "val_rows": 11120,
+      "test_rows": 415,
+      "epochs_ran": 21
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 4,
+      "test_scc": 0.42918809137839403,
+      "test_pcc": 0.40612795840835014,
+      "best_val_mae": 0.08039048314094543,
+      "train_rows": 33362,
+      "val_rows": 11121,
+      "test_rows": 415,
+      "epochs_ran": 30
+    }
+  ],
+  "mean_scc": 0.45906355874581556,
+  "std_scc": 0.04873295361288553,
+  "mean_pcc": 0.4414855067996154,
+  "std_pcc": 0.03835740843522982
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-09T05:00:45.749730+00:00",
+  "generated_at_utc": "2026-03-09T20:53:05.136839+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -148,33 +148,33 @@
       "canonical9_public_run": {
         "status": "completed",
         "host": "rorqual",
-        "job_id": "7837679",
-        "run_tag": "sota_hnn_canonical9_v1",
-        "summary": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
-        "mean9_scc": 0.6569609408669042,
-        "mean9_gap_vs_0_716": -0.05903905913309582,
-        "WT_scc": 0.815616561212187,
-        "ESP_scc": 0.8224811559689161,
-        "HF_scc": 0.8237207151841439,
-        "Sniper_Cas9_scc": 0.9231005874343052,
-        "HL60_scc": 0.26976268923761465,
-        "note": "Strongest completed mean9 upstream run so far. Improves the strict mean9 and Sniper bests, but still misses the frozen targets."
+        "job_id": "7949371",
+        "run_tag": "sota_hnn_canonical9_v3_bs32_lr2e4_p7",
+        "summary": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
+        "mean9_scc": 0.6743715317106037,
+        "mean9_gap_vs_0_716": -0.04162846828939626,
+        "WT_scc": 0.8425246481935538,
+        "ESP_scc": 0.8361978319569829,
+        "HF_scc": 0.8383885437299339,
+        "Sniper_Cas9_scc": 0.9262329589178382,
+        "HL60_scc": 0.31048031388763186,
+        "note": "Current strongest completed upstream mean9 run. Improves mean9, ESP, and HF strict bests, but still misses the frozen targets."
       },
       "transfer_public_run": {
         "status": "completed",
         "host": "rorqual",
-        "job_id": "7838661",
-        "run_tag": "sota_hnn_transfer_wt_hl60_v1",
+        "job_id": "7949163",
+        "run_tag": "sota_hnn_transfer_wt_hl60_v2_bs32_p7",
         "source_dataset": "WT",
         "target_dataset": "HL60",
         "folds": 5,
-        "summary": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_transfer_wt_hl60_v1_SUMMARY.json",
-        "mean_scc": 0.4400799242761241,
-        "gap_vs_0_468": -0.027920075723875948,
-        "note": "Does not beat the standing public best WT->HL60 transfer score."
+        "summary": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_transfer_wt_hl60_v2_bs32_p7_SUMMARY.json",
+        "mean_scc": 0.45906355874581556,
+        "gap_vs_0_468": -0.008936441254184468,
+        "note": "Improved over upstream transfer v1 but still does not beat the standing public best WT->HL60 transfer score."
       },
       "canonical9_tuned_public_run": {
-        "status": "running",
+        "status": "completed",
         "host": "rorqual",
         "job_id": "7948831",
         "run_tag": "sota_hnn_canonical9_v2_bs32_p7",
@@ -192,7 +192,13 @@
         "epochs": 30,
         "batch_size": 32,
         "lr": 0.0001,
-        "patience": 7
+        "patience": 7,
+        "summary": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v2_bs32_p7_SUMMARY.json",
+        "mean9_scc": 0.6722894901961219,
+        "mean9_gap_vs_0_716": -0.04371050980387803,
+        "Sniper_Cas9_scc": 0.9274682254601416,
+        "HL60_scc": 0.3130585941476802,
+        "note": "Improves Sniper-Cas9 and HL60 over v1, but trails v3 on mean9."
       },
       "tuned_transfer_public_run": {
         "status": "running",
@@ -208,7 +214,7 @@
         "patience": 7
       },
       "canonical9_v3_public_run": {
-        "status": "submitted",
+        "status": "completed",
         "host": "rorqual",
         "job_id": "7949371",
         "run_tag": "sota_hnn_canonical9_v3_bs32_lr2e4_p7",
@@ -226,7 +232,52 @@
         "epochs": 30,
         "batch_size": 32,
         "lr": 0.0002,
-        "patience": 7
+        "patience": 7,
+        "summary": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
+        "mean9_scc": 0.6743715317106037,
+        "mean9_gap_vs_0_716": -0.04162846828939626,
+        "WT_scc": 0.8425246481935538,
+        "ESP_scc": 0.8361978319569829,
+        "HF_scc": 0.8383885437299339,
+        "Sniper_Cas9_scc": 0.9262329589178382,
+        "HL60_scc": 0.31048031388763186,
+        "note": "Best completed upstream canonical-9 mean9 run to date."
+      },
+      "canonical9_v4_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "7973286",
+        "run_tag": "sota_hnn_canonical9_v4_bs16_lr2e4_p8_e40",
+        "datasets": [
+          "WT",
+          "ESP",
+          "HF",
+          "xCas9",
+          "SpCas9-NG",
+          "Sniper-Cas9",
+          "HCT116",
+          "HELA",
+          "HL60"
+        ],
+        "epochs": 40,
+        "batch_size": 16,
+        "lr": 0.0002,
+        "patience": 8,
+        "note": "Next mean9-focused rerun opened after v3 improved mean9/ESP/HF but still missed WT and transfer targets."
+      },
+      "transfer_v3_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "7973285",
+        "run_tag": "sota_hnn_transfer_wt_hl60_v3_bs16_lr2e4_p8_e40",
+        "source_dataset": "WT",
+        "target_dataset": "HL60",
+        "folds": 5,
+        "epochs": 40,
+        "batch_size": 16,
+        "lr": 0.0002,
+        "patience": 8,
+        "note": "Next transfer-focused rerun opened because WT->HL60 remains the closest strict gap."
       }
     },
     "CCLMoff": {
