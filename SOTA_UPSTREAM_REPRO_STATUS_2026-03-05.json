@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-09T04:30:43.340539+00:00",
+  "generated_at_utc": "2026-03-09T05:00:45.749730+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -195,7 +195,7 @@
         "patience": 7
       },
       "tuned_transfer_public_run": {
-        "status": "submitted",
+        "status": "running",
         "host": "rorqual",
         "job_id": "7949163",
         "run_tag": "sota_hnn_transfer_wt_hl60_v2_bs32_p7",
@@ -205,6 +205,27 @@
         "epochs": 30,
         "batch_size": 32,
         "lr": 0.0001,
+        "patience": 7
+      },
+      "canonical9_v3_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "7949371",
+        "run_tag": "sota_hnn_canonical9_v3_bs32_lr2e4_p7",
+        "datasets": [
+          "WT",
+          "ESP",
+          "HF",
+          "xCas9",
+          "SpCas9-NG",
+          "Sniper-Cas9",
+          "HCT116",
+          "HELA",
+          "HL60"
+        ],
+        "epochs": 30,
+        "batch_size": 32,
+        "lr": 0.0002,
         "patience": 7
       }
     },

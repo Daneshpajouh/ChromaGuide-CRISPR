@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-09T04:30:43.340539+00:00",
+  "generated_at_utc": "2026-03-09T05:00:45.749730+00:00",
   "benchmark_wave": "cluster_parallel_wave_2026-03-06_followup_plus_upstream_matched_runs",
   "jobs": {
     "nibi": {
@@ -136,8 +136,11 @@
       "upstream_sota_crispr_hnn_tuned_canonical9_state": "RUNNING",
       "upstream_sota_crispr_hnn_tuned_canonical9_run_tag": "sota_hnn_canonical9_v2_bs32_p7",
       "upstream_sota_crispr_hnn_tuned_transfer_job_id": "7949163",
-      "upstream_sota_crispr_hnn_tuned_transfer_state": "PENDING",
-      "upstream_sota_crispr_hnn_tuned_transfer_run_tag": "sota_hnn_transfer_wt_hl60_v2_bs32_p7"
+      "upstream_sota_crispr_hnn_tuned_transfer_state": "RUNNING",
+      "upstream_sota_crispr_hnn_tuned_transfer_run_tag": "sota_hnn_transfer_wt_hl60_v2_bs32_p7",
+      "upstream_sota_crispr_hnn_v3_canonical9_job_id": "7949371",
+      "upstream_sota_crispr_hnn_v3_canonical9_state": "PENDING",
+      "upstream_sota_crispr_hnn_v3_canonical9_run_tag": "sota_hnn_canonical9_v3_bs32_lr2e4_p7"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
