@@ -1,0 +1,79 @@
+{
+  "model": "CRISPR_HNN_reconstructed_upstream_arch_transfer",
+  "generated_at_utc": "2026-03-07T10:07:42.747010+00:00",
+  "config": {
+    "source_dataset": "WT",
+    "target_dataset": "HL60",
+    "folds": 5,
+    "epochs": 20,
+    "batch_size": 64,
+    "seed": 2024,
+    "max_rows": 0
+  },
+  "folds": [
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 0,
+      "test_scc": 0.4864701195484762,
+      "test_pcc": 0.4713629468154351,
+      "best_val_mae": 0.08251795917749405,
+      "train_rows": 33361,
+      "val_rows": 11121,
+      "test_rows": 416,
+      "epochs_ran": 20
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 1,
+      "test_scc": 0.5068475619387068,
+      "test_pcc": 0.4874896147471101,
+      "best_val_mae": 0.08828289806842804,
+      "train_rows": 33361,
+      "val_rows": 11121,
+      "test_rows": 415,
+      "epochs_ran": 13
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 2,
+      "test_scc": 0.41118688802030867,
+      "test_pcc": 0.413801178485272,
+      "best_val_mae": 0.08329890668392181,
+      "train_rows": 33362,
+      "val_rows": 11120,
+      "test_rows": 415,
+      "epochs_ran": 20
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 3,
+      "test_scc": 0.3936530402546642,
+      "test_pcc": 0.3989638421999619,
+      "best_val_mae": 0.08853694796562195,
+      "train_rows": 33363,
+      "val_rows": 11120,
+      "test_rows": 415,
+      "epochs_ran": 14
+    },
+    {
+      "source_dataset": "WT",
+      "target_dataset": "HL60",
+      "fold": 4,
+      "test_scc": 0.4022420116184647,
+      "test_pcc": 0.3842823211700723,
+      "best_val_mae": 0.08366379886865616,
+      "train_rows": 33362,
+      "val_rows": 11121,
+      "test_rows": 415,
+      "epochs_ran": 18
+    }
+  ],
+  "mean_scc": 0.4400799242761241,
+  "std_scc": 0.04697220112951811,
+  "mean_pcc": 0.4311799806835703,
+  "std_pcc": 0.040803770580697465
+}

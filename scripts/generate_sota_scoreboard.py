@@ -54,6 +54,7 @@ def metric_record(
 
 def _extract_on_target_candidates(data: dict[str, Any]) -> dict[str, float]:
     current: dict[str, float] = {}
+    canonical_9 = {"WT", "ESP", "HF", "xCas9", "SpCas9-NG", "Sniper-Cas9", "HCT116", "HELA", "HL60"}
 
     # Native public benchmark summary shape.
     if "summary" in data and isinstance(data["summary"], dict):
@@ -75,6 +76,10 @@ def _extract_on_target_candidates(data: dict[str, Any]) -> dict[str, float]:
     # Upstream threshold summary shape used by reconstructed HNN/FMC runs.
     ds_summaries = data.get("dataset_summaries", {})
     if isinstance(ds_summaries, dict):
+        if canonical_9.issubset(set(ds_summaries)):
+            mean_scc = data.get("mean_scc_across_datasets")
+            if mean_scc is not None:
+                current["mean9_scc"] = float(mean_scc)
         for metric_key, dataset_name in [
             ("WT_scc", "WT"),
             ("ESP_scc", "ESP"),

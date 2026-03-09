@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-07T09:30:44.070819+00:00",
+  "generated_at_utc": "2026-03-09T04:02:00.355077+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -146,10 +146,38 @@
         "note": "Strongest completed upstream matched threshold-set run so far; still below latest frozen targets on all five datasets."
       },
       "canonical9_public_run": {
-        "status": "submitted",
+        "status": "completed",
         "host": "rorqual",
         "job_id": "7837679",
         "run_tag": "sota_hnn_canonical9_v1",
+        "summary": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
+        "mean9_scc": 0.6569609408669042,
+        "mean9_gap_vs_0_716": -0.05903905913309582,
+        "WT_scc": 0.815616561212187,
+        "ESP_scc": 0.8224811559689161,
+        "HF_scc": 0.8237207151841439,
+        "Sniper_Cas9_scc": 0.9231005874343052,
+        "HL60_scc": 0.26976268923761465,
+        "note": "Strongest completed mean9 upstream run so far. Improves the strict mean9 and Sniper bests, but still misses the frozen targets."
+      },
+      "transfer_public_run": {
+        "status": "completed",
+        "host": "rorqual",
+        "job_id": "7838661",
+        "run_tag": "sota_hnn_transfer_wt_hl60_v1",
+        "source_dataset": "WT",
+        "target_dataset": "HL60",
+        "folds": 5,
+        "summary": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_transfer_wt_hl60_v1_SUMMARY.json",
+        "mean_scc": 0.4400799242761241,
+        "gap_vs_0_468": -0.027920075723875948,
+        "note": "Does not beat the standing public best WT->HL60 transfer score."
+      },
+      "canonical9_tuned_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "7948831",
+        "run_tag": "sota_hnn_canonical9_v2_bs32_p7",
         "datasets": [
           "WT",
           "ESP",
@@ -160,16 +188,11 @@
           "HCT116",
           "HELA",
           "HL60"
-        ]
-      },
-      "transfer_public_run": {
-        "status": "running",
-        "host": "rorqual",
-        "job_id": "7838661",
-        "run_tag": "sota_hnn_transfer_wt_hl60_v1",
-        "source_dataset": "WT",
-        "target_dataset": "HL60",
-        "folds": 5
+        ],
+        "epochs": 30,
+        "batch_size": 32,
+        "lr": 0.0001,
+        "patience": 7
       }
     },
     "CCLMoff": {

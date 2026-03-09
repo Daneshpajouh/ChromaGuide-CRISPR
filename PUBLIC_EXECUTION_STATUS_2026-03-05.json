@@ -1,5 +1,5 @@
 {
-  "generated_local_time": "2026-03-07T01:05:04.101467-08:00",
+  "generated_local_time": "2026-03-08T20:56:16.616277-07:00",
   "phase_boundary": "external_sota_upstream_runtime_smokes_passed_for_fmc_hnn_cclmoff_crispai_benchmark_claims_still_pending",
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
@@ -102,15 +102,15 @@
   },
   "public_on_target": {
     "best_completed_run": {
-      "host": "nibi",
-      "artifact": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave5_nibi_on_gate_d128_e24_FINAL_SUMMARY.json",
-      "mean_9_dataset_scc": 0.5682911315182819,
-      "WT_scc": 0.8445143189704376,
-      "ESP_scc": 0.8222946024796917,
-      "HF_scc": 0.8201955794751258,
-      "Sniper_scc": 0.45111613714226684,
-      "HL60_scc": 0.2694812197402902,
-      "gap_vs_mean_target_0_716": -0.14770886848171805
+      "host": "rorqual",
+      "artifact": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
+      "mean_9_dataset_scc": 0.6569609408669042,
+      "WT_scc": 0.815616561212187,
+      "ESP_scc": 0.8224811559689161,
+      "HF_scc": 0.8237207151841439,
+      "Sniper_scc": 0.9231005874343052,
+      "HL60_scc": 0.26976268923761465,
+      "gap_vs_mean_target_0_716": -0.05903905913309582
     },
     "best_transfer_wt_to_hl60": {
       "host": "nibi",
@@ -140,9 +140,9 @@
         "gap_vs_target_0_865": -0.04127928481585608
       },
       "Sniper_scc": {
-        "value": 0.9201776355277721,
-        "source": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
-        "gap_vs_target_0_935": -0.014822364472227956
+        "value": 0.9231005874343052,
+        "source": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
+        "gap_vs_target_0_935": -0.011899412565694822
       },
       "HL60_scc": {
         "value": 0.31273953915277347,
@@ -157,10 +157,12 @@
     },
     "best_upstream_threshold_driver_run": {
       "host": "rorqual",
-      "artifact": "results/public_benchmarks/cluster_harvest_20260306/rorqual/sota_hnn_threshold_v2_SUMMARY.json",
-      "mean_5_dataset_scc": 0.7389471214091585,
-      "closest_gap_sniper": -0.014822364472227956,
-      "closest_gap_hl60": -0.08926046084722655
+      "artifact": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_canonical9_v1_SUMMARY.json",
+      "mean_9_dataset_scc": 0.6569609408669042,
+      "closest_gap_sniper": -0.011899412565694822,
+      "wt_to_hl60_transfer_run_artifact": "results/public_benchmarks/cluster_harvest_20260308/rorqual/sota_hnn_transfer_wt_hl60_v1_SUMMARY.json",
+      "wt_to_hl60_transfer_mean_scc": 0.4400799242761241,
+      "wt_to_hl60_transfer_gap": -0.027920075723875948
     }
   },
   "public_off_target": {

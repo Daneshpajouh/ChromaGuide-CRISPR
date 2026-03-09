@@ -39,6 +39,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--folds", type=int, default=5)
     p.add_argument("--epochs", type=int, default=20)
     p.add_argument("--batch-size", type=int, default=64)
+    p.add_argument("--lr", type=float, default=1e-4)
+    p.add_argument("--patience", type=int, default=5)
     p.add_argument("--seed", type=int, default=2024)
     p.add_argument("--max-rows", type=int, default=0)
     p.add_argument("--output-root", default="results/public_benchmarks/sota_crispr_hnn")
@@ -153,12 +155,12 @@ def main() -> None:
             model = CRISPR_HNN()
             model.compile(
                 loss="mean_absolute_error",
-                optimizer=tf.keras.optimizers.Adamax(learning_rate=1e-4),
+                optimizer=tf.keras.optimizers.Adamax(learning_rate=args.lr),
                 metrics=["mae"],
             )
             callbacks = [
-                tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True),
-                tf.keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=3, verbose=0),
+                tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=args.patience, restore_best_weights=True),
+                tf.keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=max(2, args.patience // 2), verbose=0),
             ]
             hist = model.fit(
                 [x1_tr, x2_tr],
@@ -207,6 +209,8 @@ def main() -> None:
             "folds": args.folds,
             "epochs": args.epochs,
             "batch_size": args.batch_size,
+            "lr": args.lr,
+            "patience": args.patience,
             "seed": args.seed,
             "max_rows": args.max_rows,
         },
