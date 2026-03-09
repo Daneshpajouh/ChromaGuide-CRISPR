@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-09T04:02:00.355077+00:00",
+  "generated_at_utc": "2026-03-09T04:30:43.340539+00:00",
   "as_of_date": "2026-03-05",
   "artifacts": {
     "fmc_smoke": "results/public_benchmarks/sota_crispr_fmc_smoke/summary.json",
@@ -174,7 +174,7 @@
         "note": "Does not beat the standing public best WT->HL60 transfer score."
       },
       "canonical9_tuned_public_run": {
-        "status": "submitted",
+        "status": "running",
         "host": "rorqual",
         "job_id": "7948831",
         "run_tag": "sota_hnn_canonical9_v2_bs32_p7",
@@ -189,6 +189,19 @@
           "HELA",
           "HL60"
         ],
+        "epochs": 30,
+        "batch_size": 32,
+        "lr": 0.0001,
+        "patience": 7
+      },
+      "tuned_transfer_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "7949163",
+        "run_tag": "sota_hnn_transfer_wt_hl60_v2_bs32_p7",
+        "source_dataset": "WT",
+        "target_dataset": "HL60",
+        "folds": 5,
         "epochs": 30,
         "batch_size": 32,
         "lr": 0.0001,
