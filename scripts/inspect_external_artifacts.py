@@ -9,10 +9,13 @@ import shutil
 import subprocess
 import sys
 import tarfile
-from datetime import datetime, UTC
+import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+
+import numpy as np
 
 
 REPOS = {
@@ -31,6 +34,32 @@ ZENODO_RECORDS = {
     "crispAI_data": 12609337,
     "crispAI_model": 13335960,
 }
+
+
+def rankdata(a: np.ndarray) -> np.ndarray:
+    order = np.argsort(a, kind="mergesort")
+    ranks = np.empty(len(a), dtype=float)
+    ranks[order] = np.arange(1, len(a) + 1, dtype=float)
+    vals = a[order]
+    i = 0
+    while i < len(a):
+        j = i + 1
+        while j < len(a) and vals[j] == vals[i]:
+            j += 1
+        if j - i > 1:
+            avg = (i + 1 + j) / 2.0
+            ranks[order[i:j]] = avg
+        i = j
+    return ranks
+
+
+def spearman_np(a: np.ndarray, b: np.ndarray) -> float:
+    aa = np.asarray(a).reshape(-1)
+    bb = np.asarray(b).reshape(-1)
+    m = min(len(aa), len(bb))
+    ra = rankdata(aa[:m])
+    rb = rankdata(bb[:m])
+    return float(np.corrcoef(ra, rb)[0, 1])
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -279,6 +308,107 @@ def inspect_docker(image: str) -> dict:
     }
 
 
+def inspect_crispai_downloads(download_dir: Path) -> dict:
+    data_gz = download_dir / "crispAI_result_reproduction.gz"
+    model_zip = download_dir / "crispAI_model.zip"
+    result: dict[str, object] = {
+        "download_dir": str(download_dir),
+        "data_bundle_present": data_gz.exists(),
+        "model_bundle_present": model_zip.exists(),
+    }
+
+    if model_zip.exists():
+        with zipfile.ZipFile(model_zip) as zf:
+            names = zf.namelist()
+        result["model_bundle"] = {
+            "path": str(model_zip),
+            "size": model_zip.stat().st_size,
+            "key_files": [
+                n
+                for n in names
+                if any(
+                    pat in n
+                    for pat in [
+                        "crispAI_score/crispAI.py",
+                        "crispAI_score/model.py",
+                        "crispAI_score/model_checkpoint/epoch:19-best_valid_loss:0.270.pt",
+                        "env/crispAI_env.yml",
+                        "env/R_env.csv",
+                    ]
+                )
+            ],
+        }
+
+    if not data_gz.exists():
+        result["status"] = "data_bundle_missing"
+        return result
+
+    key_members = [
+        "crispAI_result_reproduction/source_data/changeseq_offtarget_data_flank73_filtered_nupop_gc_bdm_preprocessed_train.csv",
+        "crispAI_result_reproduction/source_data/changeseq_offtarget_data_flank73_filtered_nupop_gc_bdm_preprocessed_test.csv",
+        "crispAI_result_reproduction/checkpoint/epoch:19-best_valid_loss:0.270.pt",
+        "crispAI_result_reproduction/Supplementary_tables/Supp_tab_7.py",
+        "crispAI_result_reproduction/Supplementary_tables/Supp_tabs_6_8_9_10_11_12_13_14.py",
+        "crispAI_result_reproduction/Fig4/changeseqtest_preds_median_scores_all.npy",
+        "crispAI_result_reproduction/Fig4/y_test.npy",
+    ]
+    with tarfile.open(data_gz, "r:gz") as tf:
+        names = tf.getnames()
+        names_set = set(names)
+        present = {name: name in names_set for name in key_members}
+
+        supp_tab_7_text = ""
+        supp_tabs_text = ""
+        if present[key_members[3]]:
+            supp_tab_7_text = tf.extractfile(key_members[3]).read().decode("utf-8", "replace")
+        if present[key_members[4]]:
+            supp_tabs_text = tf.extractfile(key_members[4]).read().decode("utf-8", "replace")
+
+        array_metrics: dict[str, object] = {}
+        if present[key_members[5]] and present[key_members[6]]:
+            preds = np.load(io.BytesIO(tf.extractfile(key_members[5]).read()), allow_pickle=True)
+            y_test = np.load(io.BytesIO(tf.extractfile(key_members[6]).read()), allow_pickle=True)
+            array_metrics = {
+                "changeseqtest_preds_median_scores_all_shape": list(preds.shape),
+                "y_test_shape": list(y_test.shape),
+                "saved_array_spearman": spearman_np(preds, y_test),
+            }
+
+    split_like = [
+        n
+        for n in names
+        if any(tok in n.lower() for tok in ["split", "validation", "valid", "fold"])
+    ]
+
+    result["data_bundle"] = {
+        "path": str(data_gz),
+        "size": data_gz.stat().st_size,
+        "key_members_present": present,
+        "split_like_members": split_like[:50],
+        "signals": {
+            "has_explicit_train_csv": present[key_members[0]],
+            "has_explicit_test_csv": present[key_members[1]],
+            "has_best_checkpoint": present[key_members[2]],
+            "has_test_eval_script": present[key_members[3]] or present[key_members[4]],
+            "has_saved_test_arrays": present[key_members[5]] and present[key_members[6]],
+            "has_explicit_split_manifest": any("split" in n.lower() for n in split_like),
+        },
+        "supplementary_script_evidence": {
+            "supp_tab_7_uses_test_csv": "preprocessed_test.csv" in supp_tab_7_text,
+            "supp_tab_7_uses_adjusted_target": "CHANGEseq_reads_adjusted" in supp_tab_7_text,
+            "supp_tabs_use_test_csv": "preprocessed_test.csv" in supp_tabs_text,
+            "supp_tabs_use_best_checkpoint": "epoch:19-best_valid_loss:0.270.pt" in supp_tabs_text,
+            "supp_tabs_compute_spearman": "spearmanr(" in supp_tabs_text,
+        },
+        "saved_array_metrics": array_metrics,
+        "artifact_level_verdict": "artifacts_present_for_exact_test_frame_execution"
+        if present[key_members[1]] and present[key_members[2]] and (present[key_members[3]] or present[key_members[4]])
+        else "parity_artifacts_incomplete",
+    }
+    result["status"] = "ok"
+    return result
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo-root", default=".")
@@ -291,12 +421,13 @@ def main() -> None:
     sources_dir.mkdir(parents=True, exist_ok=True)
 
     payload: dict[str, object] = {
-        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "repo_root": str(repo_root),
         "repos": {},
         "figshare": {},
         "zenodo": {},
         "docker": {},
+        "local_bundles": {},
     }
 
     for name, url in REPOS.items():
@@ -315,6 +446,9 @@ def main() -> None:
             payload["zenodo"][name] = {"status": "error", "error": f"{type(exc).__name__}: {exc}"}
 
     payload["docker"]["CCLMoff"] = inspect_docker("weiandu/cclmoff:gpu")
+    payload["local_bundles"]["crispAI"] = inspect_crispai_downloads(
+        repo_root / "data" / "external_artifact_inspection" / "downloads" / "crispAI"
+    )
 
     output_json.parent.mkdir(parents=True, exist_ok=True)
     output_json.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

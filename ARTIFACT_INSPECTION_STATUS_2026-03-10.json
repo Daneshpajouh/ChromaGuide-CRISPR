@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-10T08:00:21.547809+00:00",
+  "generated_at_utc": "2026-03-10T19:25:22.043434+00:00",
   "repo_root": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
   "repos": {
     "CRISPR_HNN": {
@@ -374,6 +374,66 @@
           "size": 0
         }
       ]
+    }
+  },
+  "local_bundles": {
+    "crispAI": {
+      "download_dir": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/downloads/crispAI",
+      "data_bundle_present": true,
+      "model_bundle_present": true,
+      "model_bundle": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/downloads/crispAI/crispAI_model.zip",
+        "size": 9663146,
+        "key_files": [
+          "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/crispAI.py",
+          "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/model.py",
+          "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/model_checkpoint/epoch:19-best_valid_loss:0.270.pt",
+          "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/R_env.csv",
+          "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/crispAI_env.yml"
+        ]
+      },
+      "data_bundle": {
+        "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/downloads/crispAI/crispAI_result_reproduction.gz",
+        "size": 1326615944,
+        "key_members_present": {
+          "crispAI_result_reproduction/source_data/changeseq_offtarget_data_flank73_filtered_nupop_gc_bdm_preprocessed_train.csv": true,
+          "crispAI_result_reproduction/source_data/changeseq_offtarget_data_flank73_filtered_nupop_gc_bdm_preprocessed_test.csv": true,
+          "crispAI_result_reproduction/checkpoint/epoch:19-best_valid_loss:0.270.pt": true,
+          "crispAI_result_reproduction/Supplementary_tables/Supp_tab_7.py": true,
+          "crispAI_result_reproduction/Supplementary_tables/Supp_tabs_6_8_9_10_11_12_13_14.py": true,
+          "crispAI_result_reproduction/Fig4/changeseqtest_preds_median_scores_all.npy": true,
+          "crispAI_result_reproduction/Fig4/y_test.npy": true
+        },
+        "split_like_members": [
+          "crispAI_result_reproduction/checkpoint/epoch:19-best_valid_loss:0.270.pt"
+        ],
+        "signals": {
+          "has_explicit_train_csv": true,
+          "has_explicit_test_csv": true,
+          "has_best_checkpoint": true,
+          "has_test_eval_script": true,
+          "has_saved_test_arrays": true,
+          "has_explicit_split_manifest": false
+        },
+        "supplementary_script_evidence": {
+          "supp_tab_7_uses_test_csv": true,
+          "supp_tab_7_uses_adjusted_target": true,
+          "supp_tabs_use_test_csv": true,
+          "supp_tabs_use_best_checkpoint": true,
+          "supp_tabs_compute_spearman": true
+        },
+        "saved_array_metrics": {
+          "changeseqtest_preds_median_scores_all_shape": [
+            168465
+          ],
+          "y_test_shape": [
+            168465
+          ],
+          "saved_array_spearman": 0.7386655585047665
+        },
+        "artifact_level_verdict": "artifacts_present_for_exact_test_frame_execution"
+      },
+      "status": "ok"
     }
   }
 }
