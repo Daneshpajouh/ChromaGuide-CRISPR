@@ -1,0 +1,233 @@
+{
+  "generated_at_utc": "2026-03-10T05:59:07.635626+00:00",
+  "repo_root": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
+  "repos": {
+    "CRISPR_HNN": {
+      "name": "CRISPR_HNN",
+      "url": "https://github.com/xx0220/CRISPR_HNN.git",
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/CRISPR_HNN",
+      "clone_exit_code": 0,
+      "clone_stdout": "",
+      "clone_stderr": "Cloning into '/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/CRISPR_HNN'...\n",
+      "head": "7ef953aa5105d7bb03775126a3467075d252ffe6",
+      "branch": "main",
+      "interesting_files": [
+        "README.md",
+        "datasets/ESP\uff08n=58616\uff09.csv",
+        "datasets/HCT116\uff08n=4239\uff09.csv",
+        "datasets/HELA\uff08n=8101\uff09.csv",
+        "datasets/HF\uff08n=56887\uff09.csv",
+        "datasets/HL60\uff08n=2076\uff09.csv",
+        "datasets/Sniper-Cas9\uff08n=37794\uff09.csv",
+        "datasets/SpCas9-NG\uff08n=30585\uff09.csv",
+        "datasets/WT\uff08n=55603\uff09.csv",
+        "datasets/test_ont.csv",
+        "datasets/xCas\uff08n=37738\uff09.csv",
+        "model_train.py",
+        "requirements.txt"
+      ],
+      "signals": {
+        "has_requirements": true,
+        "has_env": false,
+        "has_data": true,
+        "has_preprocess": false,
+        "has_split_logic": false,
+        "has_train_code": true,
+        "has_checkpoint_like": false
+      },
+      "status": "ok"
+    },
+    "CRISPR_FMC": {
+      "name": "CRISPR_FMC",
+      "url": "https://github.com/xx0220/CRISPR-FMC.git",
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/CRISPR_FMC",
+      "clone_exit_code": 0,
+      "clone_stdout": "",
+      "clone_stderr": "Cloning into '/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/CRISPR_FMC'...\n",
+      "head": "edf7bb4d6f481d7f201d530a2f79f82d39a580d2",
+      "branch": "main",
+      "interesting_files": [
+        "CRISPR_FMC_train.py",
+        "README.md",
+        "datasets/ESP.csv",
+        "datasets/HCT116.csv",
+        "datasets/HELA.csv",
+        "datasets/HF.csv",
+        "datasets/HL60.csv",
+        "datasets/Sniper-Cas9.csv",
+        "datasets/SpCas9-NG.csv",
+        "datasets/WT.csv",
+        "datasets/xCas.csv"
+      ],
+      "signals": {
+        "has_requirements": false,
+        "has_env": false,
+        "has_data": true,
+        "has_preprocess": false,
+        "has_split_logic": false,
+        "has_train_code": true,
+        "has_checkpoint_like": false
+      },
+      "status": "ok"
+    },
+    "DeepHF": {
+      "name": "DeepHF",
+      "url": "https://github.com/izhangcd/DeepHF.git",
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/DeepHF",
+      "clone_exit_code": 0,
+      "clone_stdout": "",
+      "clone_stderr": "Cloning into '/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/DeepHF'...\n",
+      "head": "4cd616cc37746f633d5baeb77b42fb7ede5a33b5",
+      "branch": "master",
+      "interesting_files": [
+        "README.md",
+        "data/esp_seq_data_array.pkl",
+        "data/hf_seq_data_array.pkl",
+        "data/wt_seq_data_array.pkl",
+        "models/DeepWt.hd5",
+        "models/DeepWt_T7.hd5",
+        "models/DeepWt_U6.hd5",
+        "models/esp_rnn_model.hd5",
+        "models/hf_rnn_model.hd5",
+        "prediction_util.py",
+        "training_util.py"
+      ],
+      "signals": {
+        "has_requirements": false,
+        "has_env": false,
+        "has_data": true,
+        "has_preprocess": false,
+        "has_split_logic": false,
+        "has_train_code": true,
+        "has_checkpoint_like": true
+      },
+      "status": "ok"
+    },
+    "CCLMoff": {
+      "name": "CCLMoff",
+      "url": "https://github.com/duwa2/CCLMoff.git",
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/CCLMoff",
+      "clone_exit_code": 0,
+      "clone_stdout": "",
+      "clone_stderr": "Cloning into '/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/CCLMoff'...\n",
+      "head": "77d7acd8d19629fb22d2ed15ab83d947d81eac6a",
+      "branch": "main",
+      "interesting_files": [
+        "README.md",
+        "environment.yml",
+        "preprocess.py",
+        "requirement.txt",
+        "run_inference.sh"
+      ],
+      "signals": {
+        "has_requirements": false,
+        "has_env": true,
+        "has_data": false,
+        "has_preprocess": true,
+        "has_split_logic": false,
+        "has_train_code": false,
+        "has_checkpoint_like": false
+      },
+      "status": "ok"
+    },
+    "crispAI": {
+      "name": "crispAI",
+      "url": "https://github.com/furkanozdenn/crispr-offtarget-uncertainty.git",
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/crispAI",
+      "clone_exit_code": 0,
+      "clone_stdout": "",
+      "clone_stderr": "Cloning into '/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/sources/crispAI'...\n",
+      "head": "cc8b72b1a2040db70722cd69ec814f84e2a34859",
+      "branch": "main",
+      "interesting_files": [
+        "README.md",
+        "crispAI_score/model_checkpoint/epoch:19-best_valid_loss:0.270.pt",
+        "env/R_env.csv",
+        "env/crispAI_env.yml",
+        "env/restore_environment.R"
+      ],
+      "signals": {
+        "has_requirements": false,
+        "has_env": true,
+        "has_data": false,
+        "has_preprocess": false,
+        "has_split_logic": false,
+        "has_train_code": false,
+        "has_checkpoint_like": true
+      },
+      "status": "ok"
+    }
+  },
+  "figshare": {
+    "CCLMoff": {
+      "id": 27080566,
+      "title": "CCLMoff: A CRISPR/Cas9 System Off-target Prediction Tool Using Language Model",
+      "doi": "10.6084/m9.figshare.27080566.v2",
+      "published_date": "2024-10-03T04:54:01Z",
+      "url_public_html": "https://figshare.com/articles/dataset/CCLMoff_A_CRISPR_Cas9_System_Off-target_Prediction_Tool_Using_Language_Model/27080566",
+      "files": [
+        {
+          "id": 49344577,
+          "name": "09212024_CCLMoff_dataset.csv",
+          "size": 714692329,
+          "supplied_md5": "2a9be5c69a89c8eee3fdef0c03efae3a",
+          "computed_md5": "2a9be5c69a89c8eee3fdef0c03efae3a",
+          "download_url": "https://ndownloader.figshare.com/files/49344577"
+        },
+        {
+          "id": 49576320,
+          "name": "CCLMoff_V1.ckpt",
+          "size": 568774755,
+          "supplied_md5": "80b311715969524a3972ab75928f3969",
+          "computed_md5": "80b311715969524a3972ab75928f3969",
+          "download_url": "https://ndownloader.figshare.com/files/49576320"
+        }
+      ]
+    }
+  },
+  "zenodo": {
+    "crispAI_data": {
+      "id": 12609337,
+      "doi": "10.5281/zenodo.12609337",
+      "title": "Learning to quantify uncertainty in off-target activity for CRISPR guide RNAs",
+      "publication_date": "2024-01-07",
+      "files": [
+        {
+          "key": "crispAI_result_reproduction.gz",
+          "size": 1326615944,
+          "checksum": "md5:da532fe80f971b9a1893c167de250c51",
+          "type": null,
+          "links": {
+            "self": "https://zenodo.org/api/records/12609337/files/crispAI_result_reproduction.gz/content"
+          }
+        }
+      ]
+    },
+    "crispAI_model": {
+      "id": 13335960,
+      "doi": "10.5281/zenodo.13335960",
+      "title": "furkanozdenn/crispr-offtarget-uncertainty: Initial Release",
+      "publication_date": "2024-08-17",
+      "files": [
+        {
+          "key": "furkanozdenn/crispr-offtarget-uncertainty-0.1.zip",
+          "size": 9663146,
+          "checksum": "md5:1dbc50a98f03235339252c0b66c5ba19",
+          "type": null,
+          "links": {
+            "self": "https://zenodo.org/api/records/13335960/files/furkanozdenn/crispr-offtarget-uncertainty-0.1.zip/content"
+          }
+        }
+      ]
+    }
+  },
+  "docker": {
+    "CCLMoff": {
+      "status": "ok",
+      "schemaVersion": 2,
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "manifest_count": 0,
+      "manifests": []
+    }
+  }
+}
