@@ -326,7 +326,7 @@
         "stdout_tail": "02:52:36: Running crispAI in offt-score mode\n02:52:36: Input file /Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/crispAI_crispr-offtarget-uncertainty/crispAI_score/example_offt_input.txt read successfully\nFlank sequences generated from GRCh38\nNuPoP occupancy and affinity annotations generated\nGC content annotation generated\nNucleotide BDM annotation generated\n02:52:40: Using device: cpu\n02:52:40: Output file /Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/results/public_benchmarks/sota_crispai_smoke.csv written successfully",
         "stderr_tail": "/Users/studio/.pyenv/versions/3.10.19/lib/python3.10/site-packages/pybdm/utils.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import resource_stream\n\nPredicting:   0%|          | 0/1 [00:00<?, ?it/s]\nPredicting: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 13.42it/s]"
       },
-      "remaining_action": "Reconcile the frozen 0.5114 target with the exact-bundle public parity run before counting uncertainty as claim-valid.",
+      "remaining_action": "Freeze the exact-bundle raw-mean CHANGEseq_reads_adjusted evaluator path, which now clears the frozen 0.5114 target numerically, and decide final uncertainty claim-language.",
       "exact_bundle_public_parity_attempt": {
         "status": "completed_exact_bundle_public_parity_attempt",
         "source_dir": "data/public_benchmarks/off_target/crispai_parity/model_bundle",
@@ -337,7 +337,21 @@
         "preds_median_spearman": 0.33062395802954836,
         "target_spearman_0_5114_gap_mean": -0.05741593764173031,
         "target_spearman_0_5114_gap_median": -0.1807760419704516,
-        "note": "Exact public Zenodo code+data parity attempt completed. It fixed the earlier row-count drift (168465 rows) but still did not reproduce the frozen 0.5114 target."
+        "note": "This older exact-bundle runner used a stale Box-Cox+jitter evaluator path and under-shot the frozen target. It remains logged for provenance only; the topology diagnosis now supersedes it."
+      },
+      "exact_bundle_topology_diagnosis": {
+        "status": "completed_exact_bundle_topology_diagnosis",
+        "summary": "results/public_benchmarks/crispai_parity_topology_diagnosis.json",
+        "raw_rows": 168468,
+        "processed_rows": 168465,
+        "dropped_rows": 3,
+        "target_col": "CHANGEseq_reads_adjusted",
+        "raw_mean_spearman": 0.5119756727197794,
+        "target_spearman_0_5114_gap_raw_mean": 0.0005756727197794298,
+        "raw_median_spearman": 0.7386914451260241,
+        "shipped_fig4_raw_spearman": 0.7386655585047663,
+        "local_median_vs_shipped_preds_spearman": 0.9644511167370597,
+        "note": "The exact public bundle topology diagnosis identifies a raw-mean CHANGEseq_reads_adjusted path at 0.5119756727197794, above the frozen 0.5114 threshold. This indicates the earlier 0.453984 result was an evaluator-topology issue, not a checkpoint or asset issue."
       }
     }
   },

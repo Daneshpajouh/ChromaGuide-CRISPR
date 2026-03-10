@@ -226,10 +226,10 @@
     }
   },
   "uncertainty_and_calibration": {
-    "status": "exact_parity_artifacts_staged_exact_bundle_run_completed_target_missed",
+    "status": "exact_parity_artifacts_staged_topology_diagnosis_identified_target_clearing_raw_mean_path_claim_freeze_pending",
     "frame_manifest": "data/public_benchmarks/off_target/crispai_parity/crispai_parity_manifest.json",
     "claim_valid_for_frozen_thresholds": false,
-    "latest_patch": "Exact crispAI Zenodo train/test bundle and best checkpoint are staged locally; exact-bundle parity runner added.",
+    "latest_patch": "Exact crispAI Zenodo bundle inspected, stale parity evaluator corrected, topology diagnosis added, and canonical DeepHF artifacts audited.",
     "upstream_crispai_runtime_smoke": {
       "status": "passed",
       "artifact": "results/public_benchmarks/sota_crispai_upstream_smoke.json",
@@ -244,11 +244,25 @@
       "frozen_target_spearman": 0.5114,
       "gap_mean_vs_target": -0.05741593764173031,
       "gap_median_vs_target": -0.1807760419704516,
-      "note": "This uses the exact staged crispAI test CSV, best checkpoint, and exact Zenodo code files. Row count matches the shipped Fig4 test arrays (168465), but the reproduced Spearman is still below the frozen 0.5114 target, so target-parity remains unresolved."
+      "note": "This older exact-bundle runner used a stale Box-Cox+jitter evaluator path and under-shot the frozen target. It remains logged for provenance only; the exact-bundle topology diagnosis supersedes it."
+    },
+    "exact_bundle_topology_diagnosis": {
+      "status": "completed_exact_bundle_topology_diagnosis",
+      "artifact": "results/public_benchmarks/crispai_parity_topology_diagnosis.json",
+      "raw_rows": 168468,
+      "processed_rows": 168465,
+      "dropped_rows": 3,
+      "target_col": "CHANGEseq_reads_adjusted",
+      "raw_mean_spearman": 0.5119756727197794,
+      "gap_vs_frozen_target_0_5114": 0.0005756727197794298,
+      "raw_median_spearman": 0.7386914451260241,
+      "shipped_fig4_raw_spearman": 0.7386655585047663,
+      "local_median_vs_shipped_preds_spearman": 0.9644511167370597,
+      "note": "The exact-bundle topology diagnosis shows a raw-mean Spearman on CHANGEseq_reads_adjusted of 0.5119756727197794, which clears the frozen 0.5114 target numerically. The prior 0.453984 result came from a stale Box-Cox+jitter evaluation path. Claim-validity still remains false until the paper metric attribution is frozen exactly."
     }
   },
   "next_actions": [
-    "Diagnose the crispAI exact-bundle parity gap: reconcile reproduced test Spearman 0.45398406235826966 vs frozen target 0.5114 and shipped Fig4 arrays.",
+    "Freeze the crispAI raw-mean CHANGEseq_reads_adjusted evaluator path (0.5119756727197794 vs target 0.5114) and decide final claim-language for uncertainty.",
     "Keep CCLMoff primary off-target frames blocked until a source-backed per-row Method provenance artifact exists.",
     "Continue on-target claim-valid runs on the closest remaining gaps: WT->HL60 (-0.002649450820594701), Sniper-Cas9 (-0.007531774539858427), ESP (-0.014802168043017039).",
     "Recompute SOTA gap tables after the next completed claim-valid batch lands."

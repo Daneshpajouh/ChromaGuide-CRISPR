@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Run a minimal crispAI parity evaluation on the exact staged test frame."""
+"""Run a crispAI parity evaluation on the exact staged test frame.
+
+This mirrors the published supplementary evaluation path as closely as possible
+using the shipped test CSV, best checkpoint, and Box-Cox scoring topology.
+"""
 
 from __future__ import annotations
 
@@ -34,6 +38,11 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument(
         "--output-json",
         default="results/public_benchmarks/crispai_parity_eval.json",
+    )
+    ap.add_argument(
+        "--compare-shipped-fig4",
+        action="store_true",
+        help="Compare locally reproduced arrays against shipped Fig4 arrays when present.",
     )
     return ap.parse_args()
 
@@ -121,12 +130,38 @@ def main() -> None:
         preds_mean.reshape(-1, 1) + model.eps + rng.normal(1, 1e-6, len(preds_mean)).reshape(-1, 1)
     ).reshape(-1)
     preds_median_scores = pt.fit_transform(
-        preds_median.reshape(-1, 1) + model.eps + rng.normal(1, 1e-6, len(preds_median)).reshape(-1, 1)
+        preds_median.reshape(-1, 1) + model.eps
     ).reshape(-1)
     y_test = pt.fit_transform(y.reshape(-1, 1) + model.eps).reshape(-1)
 
     preds_spearman = float(pd.Series(preds_scores).corr(pd.Series(y_test), method="spearman"))
     preds_median_spearman = float(pd.Series(preds_median_scores).corr(pd.Series(y_test), method="spearman"))
+
+    fig4 = {}
+    if args.compare_shipped_fig4:
+        fig4_preds_path = parity_dir / "data_bundle" / "changeseqtest_preds_median_scores_all.npy"
+        fig4_y_path = parity_dir / "data_bundle" / "y_test.npy"
+        if fig4_preds_path.exists() and fig4_y_path.exists():
+            shipped_preds = np.load(fig4_preds_path)
+            shipped_y = np.load(fig4_y_path)
+            fig4["available"] = True
+            fig4["preds_shape"] = list(shipped_preds.shape)
+            fig4["y_shape"] = list(shipped_y.shape)
+            fig4["raw_spearman_shipped_arrays"] = float(
+                pd.Series(shipped_preds).corr(pd.Series(shipped_y), method="spearman")
+            )
+            fig4["raw_spearman_local_median_vs_shipped_y"] = float(
+                pd.Series(preds_median).corr(pd.Series(shipped_y[: len(preds_median)]), method="spearman")
+            )
+            fig4["transformed_spearman_local_median_vs_local_y"] = preds_median_spearman
+            fig4["median_score_mse_vs_shipped"] = float(
+                np.mean((preds_median_scores - shipped_preds[: len(preds_median_scores)]) ** 2)
+            )
+            fig4["y_test_mse_vs_shipped"] = float(
+                np.mean((y_test - shipped_y[: len(y_test)]) ** 2)
+            )
+        else:
+            fig4["available"] = False
 
     payload = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -144,15 +179,24 @@ def main() -> None:
             "preds_mean_spearman": preds_spearman,
             "preds_median_spearman": preds_median_spearman,
         },
+        "array_diagnostics": {
+            "preds_mean_min": float(np.min(preds_mean)),
+            "preds_mean_max": float(np.max(preds_mean)),
+            "preds_median_min": float(np.min(preds_median)),
+            "preds_median_max": float(np.max(preds_median)),
+            "y_min": float(np.min(y)),
+            "y_max": float(np.max(y)),
+        },
         "claim_target": {
             "CHANGE_seq_test_Spearman": 0.5114,
             "gap_mean_vs_target": preds_spearman - 0.5114,
             "gap_median_vs_target": preds_median_spearman - 0.5114,
         },
+        "fig4_comparison": fig4,
         "notes": [
             "Runs the exact staged crispAI test CSV and best checkpoint.",
-            "Uses the published Box-Cox + Spearman scoring path from the supplementary evaluation script.",
-            "Uses a fixed RNG seed for the tiny positive jitter term to keep the run deterministic.",
+            "Mean path uses the supplementary Box-Cox + jitter topology.",
+            "Median path mirrors the supplementary script and does not inject jitter.",
         ],
         "status": "ok",
     }

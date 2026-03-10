@@ -1,0 +1,1710 @@
+{
+  "generated_at_utc": "2026-03-10T22:56:39.698423+00:00",
+  "deephf_root": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF",
+  "expected_data": [
+    "data/wt_seq_data_array.pkl",
+    "data/esp_seq_data_array.pkl",
+    "data/hf_seq_data_array.pkl"
+  ],
+  "expected_models": [
+    "models/DeepWt.hd5",
+    "models/DeepWt_T7.hd5",
+    "models/DeepWt_U6.hd5",
+    "models/esp_rnn_model.hd5",
+    "models/hf_rnn_model.hd5"
+  ],
+  "present": {
+    "data/wt_seq_data_array.pkl": true,
+    "data/esp_seq_data_array.pkl": true,
+    "data/hf_seq_data_array.pkl": true,
+    "models/DeepWt.hd5": true,
+    "models/DeepWt_T7.hd5": true,
+    "models/DeepWt_U6.hd5": true,
+    "models/esp_rnn_model.hd5": true,
+    "models/hf_rnn_model.hd5": true
+  },
+  "missing": [],
+  "data_summaries": {
+    "data/wt_seq_data_array.pkl": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/data/wt_seq_data_array.pkl",
+      "type": "tuple",
+      "tuple_len": 3,
+      "parts": [
+        {
+          "idx": 0,
+          "shape": [
+            55604,
+            22
+          ],
+          "dtype": "int32"
+        },
+        {
+          "idx": 1,
+          "shape": [
+            55604,
+            11
+          ],
+          "dtype": "float64"
+        },
+        {
+          "idx": 2,
+          "shape": [
+            55604
+          ],
+          "dtype": "float64"
+        }
+      ],
+      "sequence_tensor_shape": [
+        55604,
+        22
+      ],
+      "sample_token_ids_first_row": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        4,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        4,
+        4,
+        3
+      ],
+      "token_map": {
+        "0": "PAD",
+        "1": "START",
+        "2": "A",
+        "3": "T",
+        "4": "C",
+        "5": "G"
+      }
+    },
+    "data/esp_seq_data_array.pkl": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/data/esp_seq_data_array.pkl",
+      "type": "list",
+      "tuple_len": 3,
+      "parts": [
+        {
+          "idx": 0,
+          "shape": [
+            58617,
+            22
+          ],
+          "dtype": "int32"
+        },
+        {
+          "idx": 1,
+          "shape": [
+            58617,
+            11
+          ],
+          "dtype": "float64"
+        },
+        {
+          "idx": 2,
+          "shape": [
+            58617
+          ],
+          "dtype": "float64"
+        }
+      ],
+      "sequence_tensor_shape": [
+        58617,
+        22
+      ],
+      "sample_token_ids_first_row": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        4,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        4,
+        4,
+        3
+      ],
+      "token_map": {
+        "0": "PAD",
+        "1": "START",
+        "2": "A",
+        "3": "T",
+        "4": "C",
+        "5": "G"
+      }
+    },
+    "data/hf_seq_data_array.pkl": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/data/hf_seq_data_array.pkl",
+      "type": "tuple",
+      "tuple_len": 3,
+      "parts": [
+        {
+          "idx": 0,
+          "shape": [
+            56888,
+            22
+          ],
+          "dtype": "int32"
+        },
+        {
+          "idx": 1,
+          "shape": [
+            56888,
+            11
+          ],
+          "dtype": "float64"
+        },
+        {
+          "idx": 2,
+          "shape": [
+            56888
+          ],
+          "dtype": "float64"
+        }
+      ],
+      "sequence_tensor_shape": [
+        56888,
+        22
+      ],
+      "sample_token_ids_first_row": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        4,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        4,
+        4,
+        3
+      ],
+      "token_map": {
+        "0": "PAD",
+        "1": "START",
+        "2": "A",
+        "3": "T",
+        "4": "C",
+        "5": "G"
+      }
+    }
+  },
+  "model_summaries": {
+    "models/DeepWt.hd5": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/models/DeepWt.hd5",
+      "datasets": [
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_1/backward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_1/backward_lstm_2/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_1/backward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_1/forward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_1/forward_lstm_2/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_1/forward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Embbeding/Embbeding_1/embeddings:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2/bias:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2/kernel:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_6/bias:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_6/kernel:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/Adamax_1/iterations:0",
+          "shape": [],
+          "dtype": "int64"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_10:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_11:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_12:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_13:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_14:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_15:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_16:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_17:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_18:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_19:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_1:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_20:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_21:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_2:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_3:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_4:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_5:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_6:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_7:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_8:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_6/Adamax/Variable_9:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        }
+      ],
+      "attrs": {
+        "backend": "tensorflow",
+        "keras_version": "2.1.6",
+        "model_config": "{\"class_name\": \"Model\", \"config\": {\"name\": \"model_2\", \"layers\": [{\"name\": \"seq_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"seq_input\"}, \"inbound_nodes\": []}, {\"name\": \"Embbeding\", \"class_name\": \"Embedding\", \"config\": {\"name\": \"Embbeding\", \"trainable\": true, \"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"input_dim\": 7, \"output_dim\": 44, \"embeddings_initializer\": {\"class_name\": \"RandomUniform\", \"config\": {\"minval\": -0.05, \"maxval\": 0.05, \"seed\": null}}, \"embeddings_regularizer\": null, \"activity_regularizer\": null, \"embeddings_constraint\": null, \"mask_zero\": false, \"input_length\": 22}, \"inbound_nodes\": [[[\"seq_input\", 0, 0, {}]]]}, {\"name\": \"spatial_dropout1d_2\", \"class_name\": \"SpatialDropout1D\", \"config\": {\"name\": \"spatial_dropout1d_2\", \"trainable\": true, \"rate\": 0.2, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"Embbeding\", 0, 0, {}]]]}, {\"name\": \"Bidirectional\", \"class_name\": \"Bidirectional\", \"config\": {\"name\": \"Bidirectional\", \"trainable\": true, \"layer\": {\"class_name\": \"LSTM\", \"config\": {\"name\": \"lstm_2\", \"trainable\": true, \"return_sequences\": true, \"return_state\": false, \"go_backwards\": false, \"stateful\": false, \"unroll\": false, \"units\": 80, \"activation\": \"tanh\", \"recurrent_activation\": \"hard_sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"recurrent_initializer\": {\"class_name\": \"Orthogonal\", \"config\": {\"gain\": 1.0, \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"unit_forget_bias\": true, \"kernel_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"recurrent_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"recurrent_constraint\": null, \"bias_constraint\": null, \"dropout\": 0.5, \"recurrent_dropout\": 0.4, \"implementation\": 1}}, \"merge_mode\": \"concat\"}, \"inbound_nodes\": [[[\"spatial_dropout1d_2\", 0, 0, {}]]]}, {\"name\": \"flatten_2\", \"class_name\": \"Flatten\", \"config\": {\"name\": \"flatten_2\", \"trainable\": true, \"data_format\": \"channels_last\"}, \"inbound_nodes\": [[[\"Bidirectional\", 0, 0, {}]]]}, {\"name\": \"bio_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 11], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"bio_input\"}, \"inbound_nodes\": []}, {\"name\": \"concatenate_2\", \"class_name\": \"Concatenate\", \"config\": {\"name\": \"concatenate_2\", \"trainable\": true, \"axis\": -1}, \"inbound_nodes\": [[[\"flatten_2\", 0, 0, {}], [\"bio_input\", 0, 0, {}]]]}, {\"name\": \"dense_2\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_2\", \"trainable\": true, \"units\": 200, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"concatenate_2\", 0, 0, {}]]]}, {\"name\": \"dropout_2\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_2\", \"trainable\": true, \"rate\": 0.5, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_2\", 0, 0, {}]]]}, {\"name\": \"mix_output\", \"class_name\": \"Dense\", \"config\": {\"name\": \"mix_output\", \"trainable\": true, \"units\": 1, \"activation\": \"linear\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_2\", 0, 0, {}]]]}], \"input_layers\": [[\"seq_input\", 0, 0], [\"bio_input\", 0, 0]], \"output_layers\": [[\"mix_output\", 0, 0]]}}",
+        "training_config": "{\"optimizer_config\": {\"class_name\": \"Adamax\", \"config\": {\"lr\": 0.0010000000474974513, \"beta_1\": 0.8999999761581421, \"beta_2\": 0.9990000128746033, \"decay\": 0.0, \"epsilon\": 1e-07}}, \"loss\": \"mse\", \"metrics\": [], \"sample_weight_mode\": null, \"loss_weights\": null}"
+      }
+    },
+    "models/DeepWt_T7.hd5": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/models/DeepWt_T7.hd5",
+      "datasets": [
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_3/backward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_3/backward_lstm_2/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_3/backward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_3/forward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_3/forward_lstm_2/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_3/forward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Embbeding/Embbeding_3/embeddings:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2_3/bias:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2_3/kernel:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_3/bias:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_3/kernel:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/Adamax_3/iterations:0",
+          "shape": [],
+          "dtype": "int64"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_10:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_11:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_12:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_13:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_14:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_15:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_16:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_17:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_18:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_19:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_1:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_20:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_21:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_2:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_3:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_4:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_5:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_6:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_7:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_8:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_3/Adamax/Variable_9:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        }
+      ],
+      "attrs": {
+        "backend": "tensorflow",
+        "keras_version": "2.1.6",
+        "model_config": "{\"class_name\": \"Model\", \"config\": {\"name\": \"model_2\", \"layers\": [{\"name\": \"seq_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"seq_input\"}, \"inbound_nodes\": []}, {\"name\": \"Embbeding\", \"class_name\": \"Embedding\", \"config\": {\"name\": \"Embbeding\", \"trainable\": false, \"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"input_dim\": 7, \"output_dim\": 44, \"embeddings_initializer\": {\"class_name\": \"RandomUniform\", \"config\": {\"minval\": -0.05, \"maxval\": 0.05, \"seed\": null}}, \"embeddings_regularizer\": null, \"activity_regularizer\": null, \"embeddings_constraint\": null, \"mask_zero\": false, \"input_length\": 22}, \"inbound_nodes\": [[[\"seq_input\", 0, 0, {}]]]}, {\"name\": \"spatial_dropout1d_2\", \"class_name\": \"SpatialDropout1D\", \"config\": {\"name\": \"spatial_dropout1d_2\", \"trainable\": false, \"rate\": 0.2, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"Embbeding\", 0, 0, {}]]]}, {\"name\": \"Bidirectional\", \"class_name\": \"Bidirectional\", \"config\": {\"name\": \"Bidirectional\", \"trainable\": false, \"layer\": {\"class_name\": \"LSTM\", \"config\": {\"name\": \"lstm_2\", \"trainable\": true, \"return_sequences\": true, \"return_state\": false, \"go_backwards\": false, \"stateful\": false, \"unroll\": false, \"units\": 80, \"activation\": \"tanh\", \"recurrent_activation\": \"hard_sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"recurrent_initializer\": {\"class_name\": \"Orthogonal\", \"config\": {\"gain\": 1.0, \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"unit_forget_bias\": true, \"kernel_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"recurrent_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"recurrent_constraint\": null, \"bias_constraint\": null, \"dropout\": 0.5, \"recurrent_dropout\": 0.4, \"implementation\": 1}}, \"merge_mode\": \"concat\"}, \"inbound_nodes\": [[[\"spatial_dropout1d_2\", 0, 0, {}]]]}, {\"name\": \"flatten_2\", \"class_name\": \"Flatten\", \"config\": {\"name\": \"flatten_2\", \"trainable\": false, \"data_format\": \"channels_last\"}, \"inbound_nodes\": [[[\"Bidirectional\", 0, 0, {}]]]}, {\"name\": \"bio_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 11], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"bio_input\"}, \"inbound_nodes\": []}, {\"name\": \"concatenate_2\", \"class_name\": \"Concatenate\", \"config\": {\"name\": \"concatenate_2\", \"trainable\": false, \"axis\": -1}, \"inbound_nodes\": [[[\"flatten_2\", 0, 0, {}], [\"bio_input\", 0, 0, {}]]]}, {\"name\": \"dense_2\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_2\", \"trainable\": false, \"units\": 200, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"concatenate_2\", 0, 0, {}]]]}, {\"name\": \"dropout_2\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_2\", \"trainable\": false, \"rate\": 0.5, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_2\", 0, 0, {}]]]}, {\"name\": \"mix_output\", \"class_name\": \"Dense\", \"config\": {\"name\": \"mix_output\", \"trainable\": true, \"units\": 1, \"activation\": \"linear\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_2\", 0, 0, {}]]]}], \"input_layers\": [[\"seq_input\", 0, 0], [\"bio_input\", 0, 0]], \"output_layers\": [[\"mix_output\", 0, 0]]}}",
+        "training_config": "{\"optimizer_config\": {\"class_name\": \"Adamax\", \"config\": {\"lr\": 0.0010000000474974513, \"beta_1\": 0.8999999761581421, \"beta_2\": 0.9990000128746033, \"decay\": 0.0, \"epsilon\": 1e-07}}, \"loss\": \"mse\", \"metrics\": [], \"sample_weight_mode\": null, \"loss_weights\": null}"
+      }
+    },
+    "models/DeepWt_U6.hd5": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/models/DeepWt_U6.hd5",
+      "datasets": [
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_33/backward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_33/backward_lstm_2/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_33/backward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_33/forward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_33/forward_lstm_2/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Bidirectional/Bidirectional_33/forward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/Embbeding/Embbeding_33/embeddings:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2_33/bias:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2_33/kernel:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_69/bias:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_69/kernel:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/Adamax_46/iterations:0",
+          "shape": [],
+          "dtype": "int64"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_10:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_11:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_12:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_13:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_14:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_15:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_16:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_17:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_18:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_19:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_1:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_20:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_21:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_2:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_3:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_4:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_5:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_6:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_7:0",
+          "shape": [
+            3531,
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_8:0",
+          "shape": [
+            200
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_64/Adamax/Variable_9:0",
+          "shape": [
+            200,
+            1
+          ],
+          "dtype": "float32"
+        }
+      ],
+      "attrs": {
+        "backend": "tensorflow",
+        "keras_version": "2.1.6",
+        "model_config": "{\"class_name\": \"Model\", \"config\": {\"name\": \"model_2\", \"layers\": [{\"name\": \"seq_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"seq_input\"}, \"inbound_nodes\": []}, {\"name\": \"Embbeding\", \"class_name\": \"Embedding\", \"config\": {\"name\": \"Embbeding\", \"trainable\": false, \"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"input_dim\": 7, \"output_dim\": 44, \"embeddings_initializer\": {\"class_name\": \"RandomUniform\", \"config\": {\"minval\": -0.05, \"maxval\": 0.05, \"seed\": null}}, \"embeddings_regularizer\": null, \"activity_regularizer\": null, \"embeddings_constraint\": null, \"mask_zero\": false, \"input_length\": 22}, \"inbound_nodes\": [[[\"seq_input\", 0, 0, {}]]]}, {\"name\": \"spatial_dropout1d_2\", \"class_name\": \"SpatialDropout1D\", \"config\": {\"name\": \"spatial_dropout1d_2\", \"trainable\": false, \"rate\": 0.2, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"Embbeding\", 0, 0, {}]]]}, {\"name\": \"Bidirectional\", \"class_name\": \"Bidirectional\", \"config\": {\"name\": \"Bidirectional\", \"trainable\": false, \"layer\": {\"class_name\": \"LSTM\", \"config\": {\"name\": \"lstm_2\", \"trainable\": true, \"return_sequences\": true, \"return_state\": false, \"go_backwards\": false, \"stateful\": false, \"unroll\": false, \"units\": 80, \"activation\": \"tanh\", \"recurrent_activation\": \"hard_sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"recurrent_initializer\": {\"class_name\": \"Orthogonal\", \"config\": {\"gain\": 1.0, \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"unit_forget_bias\": true, \"kernel_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"recurrent_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"recurrent_constraint\": null, \"bias_constraint\": null, \"dropout\": 0.5, \"recurrent_dropout\": 0.4, \"implementation\": 1}}, \"merge_mode\": \"concat\"}, \"inbound_nodes\": [[[\"spatial_dropout1d_2\", 0, 0, {}]]]}, {\"name\": \"flatten_2\", \"class_name\": \"Flatten\", \"config\": {\"name\": \"flatten_2\", \"trainable\": false, \"data_format\": \"channels_last\"}, \"inbound_nodes\": [[[\"Bidirectional\", 0, 0, {}]]]}, {\"name\": \"bio_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 11], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"bio_input\"}, \"inbound_nodes\": []}, {\"name\": \"concatenate_2\", \"class_name\": \"Concatenate\", \"config\": {\"name\": \"concatenate_2\", \"trainable\": false, \"axis\": -1}, \"inbound_nodes\": [[[\"flatten_2\", 0, 0, {}], [\"bio_input\", 0, 0, {}]]]}, {\"name\": \"dense_2\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_2\", \"trainable\": false, \"units\": 200, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"concatenate_2\", 0, 0, {}]]]}, {\"name\": \"dropout_2\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_2\", \"trainable\": false, \"rate\": 0.5, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_2\", 0, 0, {}]]]}, {\"name\": \"mix_output\", \"class_name\": \"Dense\", \"config\": {\"name\": \"mix_output\", \"trainable\": true, \"units\": 1, \"activation\": \"linear\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_2\", 0, 0, {}]]]}], \"input_layers\": [[\"seq_input\", 0, 0], [\"bio_input\", 0, 0]], \"output_layers\": [[\"mix_output\", 0, 0]]}}",
+        "training_config": "{\"optimizer_config\": {\"class_name\": \"Adamax\", \"config\": {\"lr\": 0.0010000000474974513, \"beta_1\": 0.8999999761581421, \"beta_2\": 0.9990000128746033, \"decay\": 0.0, \"epsilon\": 1e-07}}, \"loss\": \"mse\", \"metrics\": [], \"sample_weight_mode\": null, \"loss_weights\": null}"
+      }
+    },
+    "models/esp_rnn_model.hd5": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/models/esp_rnn_model.hd5",
+      "datasets": [
+        {
+          "name": "model_weights/bidirectional_1/bidirectional_1/backward_lstm_1/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_1/bidirectional_1/backward_lstm_1/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_1/bidirectional_1/backward_lstm_1/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_1/bidirectional_1/forward_lstm_1/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_1/bidirectional_1/forward_lstm_1/kernel:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_1/bidirectional_1/forward_lstm_1/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_1/dense_1/bias:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_1/dense_1/kernel:0",
+          "shape": [
+            3531,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2/bias:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_2/dense_2/kernel:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_3/dense_3/bias:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_3/dense_3/kernel:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/embedding_1/embedding_1/embeddings:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output/bias:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output/kernel:0",
+          "shape": [
+            300,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/Adamax/iterations:0",
+          "shape": [],
+          "dtype": "int64"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_10:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_11:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_12:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_13:0",
+          "shape": [
+            300,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_14:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_15:0",
+          "shape": [
+            7,
+            44
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_16:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_17:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_18:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_19:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_1:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_20:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_21:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_22:0",
+          "shape": [
+            3531,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_23:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_24:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_25:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_26:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_27:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_28:0",
+          "shape": [
+            300,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_29:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_2:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_3:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_4:0",
+          "shape": [
+            44,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_5:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_6:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_7:0",
+          "shape": [
+            3531,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_8:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training/Adamax/Variable_9:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        }
+      ],
+      "attrs": {
+        "backend": "tensorflow",
+        "keras_version": "2.1.6",
+        "model_config": "{\"class_name\": \"Model\", \"config\": {\"name\": \"model_1\", \"layers\": [{\"name\": \"seq_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"seq_input\"}, \"inbound_nodes\": []}, {\"name\": \"embedding_1\", \"class_name\": \"Embedding\", \"config\": {\"name\": \"embedding_1\", \"trainable\": true, \"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"input_dim\": 7, \"output_dim\": 44, \"embeddings_initializer\": {\"class_name\": \"RandomUniform\", \"config\": {\"minval\": -0.05, \"maxval\": 0.05, \"seed\": null}}, \"embeddings_regularizer\": null, \"activity_regularizer\": null, \"embeddings_constraint\": null, \"mask_zero\": false, \"input_length\": 22}, \"inbound_nodes\": [[[\"seq_input\", 0, 0, {}]]]}, {\"name\": \"spatial_dropout1d_1\", \"class_name\": \"SpatialDropout1D\", \"config\": {\"name\": \"spatial_dropout1d_1\", \"trainable\": true, \"rate\": 0.2, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"embedding_1\", 0, 0, {}]]]}, {\"name\": \"bidirectional_1\", \"class_name\": \"Bidirectional\", \"config\": {\"name\": \"bidirectional_1\", \"trainable\": true, \"layer\": {\"class_name\": \"LSTM\", \"config\": {\"name\": \"lstm_1\", \"trainable\": true, \"return_sequences\": true, \"return_state\": false, \"go_backwards\": false, \"stateful\": false, \"unroll\": false, \"units\": 80, \"activation\": \"tanh\", \"recurrent_activation\": \"hard_sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"recurrent_initializer\": {\"class_name\": \"Orthogonal\", \"config\": {\"gain\": 1.0, \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"unit_forget_bias\": true, \"kernel_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"recurrent_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"recurrent_constraint\": null, \"bias_constraint\": null, \"dropout\": 0.5, \"recurrent_dropout\": 0.4, \"implementation\": 1}}, \"merge_mode\": \"concat\"}, \"inbound_nodes\": [[[\"spatial_dropout1d_1\", 0, 0, {}]]]}, {\"name\": \"flatten_1\", \"class_name\": \"Flatten\", \"config\": {\"name\": \"flatten_1\", \"trainable\": true, \"data_format\": \"channels_last\"}, \"inbound_nodes\": [[[\"bidirectional_1\", 0, 0, {}]]]}, {\"name\": \"bio_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 11], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"bio_input\"}, \"inbound_nodes\": []}, {\"name\": \"concatenate_1\", \"class_name\": \"Concatenate\", \"config\": {\"name\": \"concatenate_1\", \"trainable\": true, \"axis\": -1}, \"inbound_nodes\": [[[\"flatten_1\", 0, 0, {}], [\"bio_input\", 0, 0, {}]]]}, {\"name\": \"dense_1\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_1\", \"trainable\": true, \"units\": 300, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"concatenate_1\", 0, 0, {}]]]}, {\"name\": \"dropout_1\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_1\", \"trainable\": true, \"rate\": 0.4, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_1\", 0, 0, {}]]]}, {\"name\": \"dense_2\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_2\", \"trainable\": true, \"units\": 300, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_1\", 0, 0, {}]]]}, {\"name\": \"dropout_2\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_2\", \"trainable\": true, \"rate\": 0.4, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_2\", 0, 0, {}]]]}, {\"name\": \"dense_3\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_3\", \"trainable\": true, \"units\": 300, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_2\", 0, 0, {}]]]}, {\"name\": \"dropout_3\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_3\", \"trainable\": true, \"rate\": 0.4, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_3\", 0, 0, {}]]]}, {\"name\": \"mix_output\", \"class_name\": \"Dense\", \"config\": {\"name\": \"mix_output\", \"trainable\": true, \"units\": 1, \"activation\": \"linear\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_3\", 0, 0, {}]]]}], \"input_layers\": [[\"seq_input\", 0, 0], [\"bio_input\", 0, 0]], \"output_layers\": [[\"mix_output\", 0, 0]]}}",
+        "training_config": "{\"optimizer_config\": {\"class_name\": \"Adamax\", \"config\": {\"lr\": 0.0010000000474974513, \"beta_1\": 0.8999999761581421, \"beta_2\": 0.9990000128746033, \"decay\": 0.0, \"epsilon\": 1e-07}}, \"loss\": \"mse\", \"metrics\": [], \"sample_weight_mode\": null, \"loss_weights\": null}"
+      }
+    },
+    "models/hf_rnn_model.hd5": {
+      "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/public_benchmarks/sources/DeepHF/models/hf_rnn_model.hd5",
+      "datasets": [
+        {
+          "name": "model_weights/bidirectional_2/bidirectional_2/backward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_2/bidirectional_2/backward_lstm_2/kernel:0",
+          "shape": [
+            48,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_2/bidirectional_2/backward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_2/bidirectional_2/forward_lstm_2/bias:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_2/bidirectional_2/forward_lstm_2/kernel:0",
+          "shape": [
+            48,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/bidirectional_2/bidirectional_2/forward_lstm_2/recurrent_kernel:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_4/dense_4/bias:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_4/dense_4/kernel:0",
+          "shape": [
+            3531,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_5/dense_5/bias:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/dense_5/dense_5/kernel:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/embedding_2/embedding_2/embeddings:0",
+          "shape": [
+            7,
+            48
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_1/bias:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "model_weights/mix_output/mix_output_1/kernel:0",
+          "shape": [
+            300,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/Adamax_1/iterations:0",
+          "shape": [],
+          "dtype": "int64"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable:0",
+          "shape": [
+            7,
+            48
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_10:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_11:0",
+          "shape": [
+            300,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_12:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_13:0",
+          "shape": [
+            7,
+            48
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_14:0",
+          "shape": [
+            48,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_15:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_16:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_17:0",
+          "shape": [
+            48,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_18:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_19:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_1:0",
+          "shape": [
+            48,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_20:0",
+          "shape": [
+            3531,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_21:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_22:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_23:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_24:0",
+          "shape": [
+            300,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_25:0",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_2:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_3:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_4:0",
+          "shape": [
+            48,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_5:0",
+          "shape": [
+            80,
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_6:0",
+          "shape": [
+            320
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_7:0",
+          "shape": [
+            3531,
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_8:0",
+          "shape": [
+            300
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "optimizer_weights/training_1/Adamax/Variable_9:0",
+          "shape": [
+            300,
+            300
+          ],
+          "dtype": "float32"
+        }
+      ],
+      "attrs": {
+        "backend": "tensorflow",
+        "keras_version": "2.1.6",
+        "model_config": "{\"class_name\": \"Model\", \"config\": {\"name\": \"model_2\", \"layers\": [{\"name\": \"seq_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"seq_input\"}, \"inbound_nodes\": []}, {\"name\": \"embedding_2\", \"class_name\": \"Embedding\", \"config\": {\"name\": \"embedding_2\", \"trainable\": true, \"batch_input_shape\": [null, 22], \"dtype\": \"float32\", \"input_dim\": 7, \"output_dim\": 48, \"embeddings_initializer\": {\"class_name\": \"RandomUniform\", \"config\": {\"minval\": -0.05, \"maxval\": 0.05, \"seed\": null}}, \"embeddings_regularizer\": null, \"activity_regularizer\": null, \"embeddings_constraint\": null, \"mask_zero\": false, \"input_length\": 22}, \"inbound_nodes\": [[[\"seq_input\", 0, 0, {}]]]}, {\"name\": \"spatial_dropout1d_2\", \"class_name\": \"SpatialDropout1D\", \"config\": {\"name\": \"spatial_dropout1d_2\", \"trainable\": true, \"rate\": 0.2, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"embedding_2\", 0, 0, {}]]]}, {\"name\": \"bidirectional_2\", \"class_name\": \"Bidirectional\", \"config\": {\"name\": \"bidirectional_2\", \"trainable\": true, \"layer\": {\"class_name\": \"LSTM\", \"config\": {\"name\": \"lstm_2\", \"trainable\": true, \"return_sequences\": true, \"return_state\": false, \"go_backwards\": false, \"stateful\": false, \"unroll\": false, \"units\": 80, \"activation\": \"tanh\", \"recurrent_activation\": \"hard_sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"recurrent_initializer\": {\"class_name\": \"Orthogonal\", \"config\": {\"gain\": 1.0, \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"unit_forget_bias\": true, \"kernel_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"recurrent_regularizer\": {\"class_name\": \"L1L2\", \"config\": {\"l1\": 0.0, \"l2\": 0.009999999776482582}}, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"recurrent_constraint\": null, \"bias_constraint\": null, \"dropout\": 0.5, \"recurrent_dropout\": 0.4, \"implementation\": 1}}, \"merge_mode\": \"concat\"}, \"inbound_nodes\": [[[\"spatial_dropout1d_2\", 0, 0, {}]]]}, {\"name\": \"flatten_2\", \"class_name\": \"Flatten\", \"config\": {\"name\": \"flatten_2\", \"trainable\": true, \"data_format\": \"channels_last\"}, \"inbound_nodes\": [[[\"bidirectional_2\", 0, 0, {}]]]}, {\"name\": \"bio_input\", \"class_name\": \"InputLayer\", \"config\": {\"batch_input_shape\": [null, 11], \"dtype\": \"float32\", \"sparse\": false, \"name\": \"bio_input\"}, \"inbound_nodes\": []}, {\"name\": \"concatenate_2\", \"class_name\": \"Concatenate\", \"config\": {\"name\": \"concatenate_2\", \"trainable\": true, \"axis\": -1}, \"inbound_nodes\": [[[\"flatten_2\", 0, 0, {}], [\"bio_input\", 0, 0, {}]]]}, {\"name\": \"dense_4\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_4\", \"trainable\": true, \"units\": 300, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"concatenate_2\", 0, 0, {}]]]}, {\"name\": \"dropout_4\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_4\", \"trainable\": true, \"rate\": 0.5, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_4\", 0, 0, {}]]]}, {\"name\": \"dense_5\", \"class_name\": \"Dense\", \"config\": {\"name\": \"dense_5\", \"trainable\": true, \"units\": 300, \"activation\": \"sigmoid\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_4\", 0, 0, {}]]]}, {\"name\": \"dropout_5\", \"class_name\": \"Dropout\", \"config\": {\"name\": \"dropout_5\", \"trainable\": true, \"rate\": 0.5, \"noise_shape\": null, \"seed\": null}, \"inbound_nodes\": [[[\"dense_5\", 0, 0, {}]]]}, {\"name\": \"mix_output\", \"class_name\": \"Dense\", \"config\": {\"name\": \"mix_output\", \"trainable\": true, \"units\": 1, \"activation\": \"linear\", \"use_bias\": true, \"kernel_initializer\": {\"class_name\": \"VarianceScaling\", \"config\": {\"scale\": 1.0, \"mode\": \"fan_avg\", \"distribution\": \"uniform\", \"seed\": null}}, \"bias_initializer\": {\"class_name\": \"Zeros\", \"config\": {}}, \"kernel_regularizer\": null, \"bias_regularizer\": null, \"activity_regularizer\": null, \"kernel_constraint\": null, \"bias_constraint\": null}, \"inbound_nodes\": [[[\"dropout_5\", 0, 0, {}]]]}], \"input_layers\": [[\"seq_input\", 0, 0], [\"bio_input\", 0, 0]], \"output_layers\": [[\"mix_output\", 0, 0]]}}",
+        "training_config": "{\"optimizer_config\": {\"class_name\": \"Adamax\", \"config\": {\"lr\": 0.0010000000474974513, \"beta_1\": 0.8999999761581421, \"beta_2\": 0.9990000128746033, \"decay\": 0.0, \"epsilon\": 1e-07}}, \"loss\": \"mse\", \"metrics\": [], \"sample_weight_mode\": null, \"loss_weights\": null}"
+      }
+    }
+  },
+  "protocol_assumptions": {
+    "tokenization": "DeepHF tokenization inferred from repo utilities: PAD=0, START=1, A=2, T=3, C=4, G=5",
+    "canonical_use": "Treat original wt/esp/hf_seq_data_array.pkl files and shipped .hd5 models as canonical public artifacts for WT/ESP/HF alignment.",
+    "risk_note": "Reprocessed CSV mirrors are convenience artifacts only unless feature parity against the original PKL tensors is demonstrated."
+  },
+  "status": "ok"
+}
