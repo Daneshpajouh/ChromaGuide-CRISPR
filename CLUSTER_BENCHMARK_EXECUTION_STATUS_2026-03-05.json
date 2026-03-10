@@ -162,7 +162,13 @@
       "upstream_sota_crispr_hnn_v4_canonical9_run_tag": "sota_hnn_canonical9_v4_bs16_lr2e4_p8_e40",
       "upstream_sota_crispr_hnn_transfer_v3_job_id": "7973285",
       "upstream_sota_crispr_hnn_transfer_v3_state": "PENDING",
-      "upstream_sota_crispr_hnn_transfer_v3_run_tag": "sota_hnn_transfer_wt_hl60_v3_bs16_lr2e4_p8_e40"
+      "upstream_sota_crispr_hnn_transfer_v3_run_tag": "sota_hnn_transfer_wt_hl60_v3_bs16_lr2e4_p8_e40",
+      "upstream_sota_crispr_hnn_transfer_v4_job_id": "8005698",
+      "upstream_sota_crispr_hnn_transfer_v4_state": "PENDING",
+      "upstream_sota_crispr_hnn_transfer_v4_run_tag": "sota_hnn_transfer_wt_hl60_v4_bs16_lr2e4_p8_e40",
+      "upstream_sota_crispr_fmc_canonical9_v2_job_id": "8005699",
+      "upstream_sota_crispr_fmc_canonical9_v2_state": "PENDING",
+      "upstream_sota_crispr_fmc_canonical9_v2_run_tag": "sota_fmc_canonical9_v2_bs4096_e30_s2024"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -276,6 +282,7 @@
     "Harvested cedar completed CPU outputs: off-target LODO AUROC=0.9799565299229684, AUPRC=0.8478942452992994; uncertainty proxy completed with test Spearman=0.25406099959742734; full on-target CPU baseline completed but did not beat the standing bests.",
     "Resubmitted corrected upstream CRISPR-FMC full run on rorqual as 7809985 after provisioning rna-fm into /scratch/amird/env_public_benchmark.",
     "Harvested rorqual tuned upstream HNN runs 7948831, 7949163, 7949371 on 2026-03-09; v3 now holds best completed mean9, v2 holds best completed Sniper-Cas9 and HL60 among upstream HNN reruns.",
-    "Submitted next rorqual HNN tuning wave on 2026-03-09: 7973286 canonical9 v4 (bs16, lr2e-4, p8, e40) and 7973285 WT->HL60 transfer v3 with matched settings."
+    "Submitted next rorqual HNN tuning wave on 2026-03-09: 7973286 canonical9 v4 (bs16, lr2e-4, p8, e40) and 7973285 WT->HL60 transfer v3 with matched settings.",
+    "2026-03-10: submitted focused rorqual wave 8005698 (HNN WT->HL60 transfer v4) and 8005699 (FMC canonical-9 v2 large-batch rerun)."
   ]
 }

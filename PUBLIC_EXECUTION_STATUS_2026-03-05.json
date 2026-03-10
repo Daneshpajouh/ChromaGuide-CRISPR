@@ -26,7 +26,7 @@
       ]
     },
     "rorqual": {
-      "status": "mixed_completed_and_pending",
+      "status": "active_targeted_sota_wave_pending",
       "completed_after_fix": [
         {
           "job_id": 7736376,
@@ -45,7 +45,24 @@
         7738824
       ],
       "notes": [
-        "failures were due to missing folds/thresholds/CCLMoff file in /scratch repo path; folds+thresholds+CCLMoff were synced and jobs resubmitted."
+        "failures were due to missing folds/thresholds/CCLMoff file in /scratch repo path; folds+thresholds+CCLMoff were synced and jobs resubmitted.",
+        "New focused SOTA wave submitted on 2026-03-10: HNN WT->HL60 transfer v4 (8005698) and FMC canonical-9 v2 (8005699), both pending on rorqual."
+      ],
+      "focused_sota_jobs_20260310": [
+        {
+          "job_id": 8005698,
+          "name": "sota_hnn_xfer",
+          "run_tag": "sota_hnn_transfer_wt_hl60_v4_bs16_lr2e4_p8_e40",
+          "state": "PENDING",
+          "goal": "closest strict gap WT->HL60"
+        },
+        {
+          "job_id": 8005699,
+          "name": "sota_fmc_pub",
+          "run_tag": "sota_fmc_canonical9_v2_bs4096_e30_s2024",
+          "state": "PENDING",
+          "goal": "paper-style FMC canonical-9 rerun with large batch regime"
+        }
       ]
     },
     "fir": {
