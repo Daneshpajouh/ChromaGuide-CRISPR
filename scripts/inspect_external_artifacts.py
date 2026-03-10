@@ -2,12 +2,16 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
+import re
 import shutil
 import subprocess
 import sys
+import tarfile
 from datetime import datetime, UTC
 from pathlib import Path
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 
@@ -38,6 +42,41 @@ def fetch_json(url: str) -> dict:
     req = Request(url, headers={"User-Agent": "codex-artifact-inspector/1.0"})
     with urlopen(req, timeout=60) as r:
         return json.load(r)
+
+
+def fetch_bytes(url: str, headers: dict[str, str] | None = None) -> bytes:
+    req = Request(
+        url,
+        headers={"User-Agent": "codex-artifact-inspector/1.0", **(headers or {})},
+    )
+    with urlopen(req, timeout=120) as r:
+        return r.read()
+
+
+def split_image_ref(image: str) -> tuple[str, str]:
+    if ":" in image.rsplit("/", 1)[-1]:
+        repo, ref = image.rsplit(":", 1)
+    else:
+        repo, ref = image, "latest"
+    return repo, ref
+
+
+def docker_registry_token(repo: str, ref: str, action: str = "pull") -> str:
+    probe = Request(f"https://registry-1.docker.io/v2/{repo}/manifests/{ref}")
+    try:
+        urlopen(probe, timeout=60)
+        return ""
+    except HTTPError as exc:
+        auth = exc.headers.get("WWW-Authenticate", "")
+        realm = re.search(r'realm="([^"]+)"', auth)
+        service = re.search(r'service="([^"]+)"', auth)
+        scope = re.search(r'scope="([^"]+)"', auth)
+        if not (realm and service and scope):
+            raise
+        token_payload = fetch_json(
+            f"{realm.group(1)}?service={service.group(1)}&scope={scope.group(1)}"
+        )
+        return token_payload["token"]
 
 
 def ensure_repo(name: str, url: str, dest: Path) -> dict:
@@ -159,19 +198,76 @@ def inspect_zenodo(record_id: int) -> dict:
 
 
 def inspect_docker(image: str) -> dict:
+    registry_repo, registry_ref = split_image_ref(image)
+    image_ref = f"https://registry-1.docker.io/v2/{registry_repo}"
+    token = docker_registry_token(registry_repo, registry_ref)
+    auth_headers = {"Authorization": f"Bearer {token}"} if token else {}
+    registry_payload: dict[str, object] = {
+        "registry_repository": registry_repo,
+        "registry_reference": registry_ref,
+    }
+    try:
+        manifest_bytes = fetch_bytes(f"{image_ref}/manifests/{registry_ref}", headers=auth_headers)
+        manifest = json.loads(manifest_bytes)
+        registry_payload["registry_manifest"] = {
+            "schemaVersion": manifest.get("schemaVersion"),
+            "mediaType": manifest.get("mediaType"),
+            "config": manifest.get("config"),
+            "layers": manifest.get("layers", []),
+        }
+
+        config_digest = manifest.get("config", {}).get("digest")
+        if config_digest:
+            config = json.loads(fetch_bytes(f"{image_ref}/blobs/{config_digest}", headers=auth_headers))
+            registry_payload["registry_config"] = {
+                "created": config.get("created"),
+                "architecture": config.get("architecture"),
+                "os": config.get("os"),
+                "working_dir": config.get("config", {}).get("WorkingDir"),
+                "entrypoint": config.get("config", {}).get("Entrypoint"),
+                "cmd": config.get("config", {}).get("Cmd"),
+            }
+
+        workspace_files: list[dict[str, object]] = []
+        for index, layer in enumerate(manifest.get("layers", []), start=1):
+            layer_digest = layer.get("digest")
+            if not layer_digest:
+                continue
+            blob = fetch_bytes(f"{image_ref}/blobs/{layer_digest}", headers=auth_headers)
+            with tarfile.open(fileobj=io.BytesIO(blob), mode="r:*") as tf:
+                for member in tf.getmembers():
+                    name = member.name
+                    if name == "workspace" or name.startswith("workspace/"):
+                        workspace_files.append(
+                            {
+                                "layer": index,
+                                "digest": layer_digest,
+                                "name": name,
+                                "size": member.size,
+                            }
+                        )
+        registry_payload["workspace_files"] = workspace_files
+    except Exception as exc:  # noqa: BLE001
+        registry_payload["registry_error"] = f"{type(exc).__name__}: {exc}"
+
     docker = shutil.which("docker")
     if not docker:
-        return {"status": "docker_not_installed"}
+        return {"status": "docker_not_installed", **registry_payload}
     code, out, err = run([docker, "manifest", "inspect", image])
     if code != 0:
         return {
             "status": "manifest_inspect_failed",
             "stderr": err[-4000:],
+            **registry_payload,
         }
     try:
         payload = json.loads(out)
     except json.JSONDecodeError:
-        return {"status": "manifest_inspect_unparseable", "stdout": out[-4000:]}
+        return {
+            "status": "manifest_inspect_unparseable",
+            "stdout": out[-4000:],
+            **registry_payload,
+        }
     manifests = payload.get("manifests", []) if isinstance(payload, dict) else []
     return {
         "status": "ok",
@@ -179,6 +275,7 @@ def inspect_docker(image: str) -> dict:
         "mediaType": payload.get("mediaType") if isinstance(payload, dict) else None,
         "manifest_count": len(manifests),
         "manifests": manifests[:10],
+        **registry_payload,
     }
 
 
