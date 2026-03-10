@@ -6,3 +6,8 @@ tqdm
 optuna
 packaging
 PyYAML
+jax
+jaxlib
+numpyro
+matplotlib
+seaborn

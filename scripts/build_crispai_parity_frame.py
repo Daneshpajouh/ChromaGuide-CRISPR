@@ -29,6 +29,9 @@ DATA_MEMBERS = {
 MODEL_MEMBERS = {
     "cli_entry": "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/crispAI.py",
     "model_py": "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/model.py",
+    "utils_py": "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/utils.py",
+    "negative_binomial_py": "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/_negative_binomial.py",
+    "encoding_py": "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/encoding.py",
     "env_yml": "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/crispAI_env.yml",
     "r_env_csv": "furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/R_env.csv",
 }

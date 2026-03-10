@@ -4,7 +4,7 @@
   "repo": {
     "path": "/Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR",
     "branch": "Dev",
-    "head_commit": "7b8d4830ecdfe32c9258ea2b9bfc41661246f653"
+    "head_commit": "22f8884c8c9ec50863b0ad6d1beb446e60e9367b"
   },
   "cluster_state": {
     "nibi": {
@@ -226,21 +226,32 @@
     }
   },
   "uncertainty_and_calibration": {
-    "status": "proxy_ready_runnable_non_claim_valid",
-    "frame_manifest": "data/public_benchmarks/off_target/frames/crispai_change_regression_uncertainty.json",
+    "status": "exact_parity_artifacts_staged_exact_bundle_run_completed_target_missed",
+    "frame_manifest": "data/public_benchmarks/off_target/crispai_parity/crispai_parity_manifest.json",
     "claim_valid_for_frozen_thresholds": false,
-    "latest_patch": "train_public_off_target_uncertainty.py now skips malformed/missing activity rows and reports skip counts.",
+    "latest_patch": "Exact crispAI Zenodo train/test bundle and best checkpoint are staged locally; exact-bundle parity runner added.",
     "upstream_crispai_runtime_smoke": {
       "status": "passed",
       "artifact": "results/public_benchmarks/sota_crispai_upstream_smoke.json",
       "note": "Upstream CLI now runs end-to-end on the example input with local compatibility shims; this is runtime reproduction, not a frozen claim-valid benchmark result."
+    },
+    "exact_bundle_public_parity_attempt": {
+      "status": "completed_exact_bundle_public_parity_attempt",
+      "artifact": "results/public_benchmarks/crispai_parity_eval_exact_bundle.json",
+      "rows": 168465,
+      "preds_mean_spearman": 0.45398406235826966,
+      "preds_median_spearman": 0.33062395802954836,
+      "frozen_target_spearman": 0.5114,
+      "gap_mean_vs_target": -0.05741593764173031,
+      "gap_median_vs_target": -0.1807760419704516,
+      "note": "This uses the exact staged crispAI test CSV, best checkpoint, and exact Zenodo code files. Row count matches the shipped Fig4 test arrays (168465), but the reproduced Spearman is still below the frozen 0.5114 target, so target-parity remains unresolved."
     }
   },
   "next_actions": [
-    "Harvest the pending upstream matched jobs on rorqual: CRISPR_HNN (7805038) and CRISPR-FMC (7807077).",
-    "Harvest the live trillium on-target jobs and any cedar CPU completions as soon as they materialize.",
-    "Keep the corrected submit helper for comma-valued env vars; it is required for full multi-dataset upstream jobs.",
-    "Recompute SOTA gap tables after the next completed batch lands."
+    "Diagnose the crispAI exact-bundle parity gap: reconcile reproduced test Spearman 0.45398406235826966 vs frozen target 0.5114 and shipped Fig4 arrays.",
+    "Keep CCLMoff primary off-target frames blocked until a source-backed per-row Method provenance artifact exists.",
+    "Continue on-target claim-valid runs on the closest remaining gaps: WT->HL60 (-0.002649450820594701), Sniper-Cas9 (-0.007531774539858427), ESP (-0.014802168043017039).",
+    "Recompute SOTA gap tables after the next completed claim-valid batch lands."
   ],
   "sota_source_repro": {
     "registry": "sota_model_source_registry.json",
