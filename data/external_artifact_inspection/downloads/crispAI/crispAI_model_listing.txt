@@ -1,0 +1,40 @@
+Archive:  /Users/studio/Desktop/Projects/PhD/ChromaGuide-CRISPR/data/external_artifact_inspection/downloads/crispAI/crispAI_model.zip
+cc8b72b1a2040db70722cd69ec814f84e2a34859
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+        0  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/
+     1069  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/LICENSE
+     6439  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/README.md
+        0  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/
+        0  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/__pycache__/
+    17366  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/__pycache__/_negative_binomial.cpython-38.pyc
+     5514  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/__pycache__/annotate_pi.cpython-38.pyc
+     2131  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/__pycache__/encoding.cpython-38.pyc
+    14763  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/__pycache__/loss_functions.cpython-38.pyc
+    14424  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/__pycache__/model.cpython-38.pyc
+     5987  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/__pycache__/utils.cpython-38.pyc
+    19810  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/_negative_binomial.py
+     7335  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/annotate_pi.py
+        0  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/casoffinder/
+   112536  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/casoffinder/cas-offinder
+      414  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/casoffinder/casoffinder_input.txt
+   289205  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/casoffinder/casoffinder_output.txt
+    11076  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/crispAI.py
+     1992  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/encoding.py
+      336  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/example_agg_input.txt
+     3753  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/example_offt_input.txt
+    17875  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/loss_functions.py
+     8864  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/model.py
+        0  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/model_checkpoint/
+ 10201336  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/model_checkpoint/epoch:19-best_valid_loss:0.270.pt
+      437  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/nupop.R
+     3297  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/crispAI_score/utils.py
+        0  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/
+      598  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/R_env.csv
+    14442  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/crispAI_env.yml
+      428  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/env/restore_environment.R
+        0  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/img/
+   107743  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/img/agg.jpg
+    41044  01-02-2024 15:11   furkanozdenn-crispr-offtarget-uncertainty-cc8b72b/img/offt.jpg
+---------                     -------
+ 10910214                     34 files
