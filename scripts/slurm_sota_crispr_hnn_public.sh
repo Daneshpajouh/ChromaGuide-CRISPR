@@ -3,7 +3,7 @@
 #SBATCH --account=def-kwiese_gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem=64G
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --cpus-per-task=8
 #SBATCH --output=slurm_logs/sota_crispr_hnn_%j.out
 #SBATCH --error=slurm_logs/sota_crispr_hnn_%j.err

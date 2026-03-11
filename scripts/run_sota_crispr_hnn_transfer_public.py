@@ -22,10 +22,10 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--source-dataset", required=True)
     p.add_argument("--target-dataset", required=True)
     p.add_argument("--folds", type=int, default=5)
-    p.add_argument("--epochs", type=int, default=20)
-    p.add_argument("--batch-size", type=int, default=64)
-    p.add_argument("--lr", type=float, default=1e-4)
-    p.add_argument("--patience", type=int, default=5)
+    p.add_argument("--epochs", type=int, default=200)   # upstream protocol: 200
+    p.add_argument("--batch-size", type=int, default=16)  # upstream protocol: 16
+    p.add_argument("--lr", type=float, default=1e-4)      # upstream protocol: 1e-4
+    p.add_argument("--patience", type=int, default=10)    # upstream protocol: 10
     p.add_argument("--seed", type=int, default=2024)
     p.add_argument("--max-rows", type=int, default=0)
     p.add_argument("--output-root", default="results/public_benchmarks/sota_crispr_hnn_transfer")
