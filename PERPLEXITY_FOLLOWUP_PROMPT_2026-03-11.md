@@ -42,6 +42,7 @@ The goal is to continue the work until we can honestly say that we:
 - do so for real
 - do so claim-validly
 - do so significantly, not just by a fragile or ambiguous edge
+- do so with statistical significance wherever significance testing is applicable
 - do so with full experiment logging and reproducibility
 - do so with documentation that is strong enough for a PhD thesis record
 
@@ -169,7 +170,8 @@ Split blockers into:
 - artifact blockers
 - execution blockers
 - reporting / claim blockers
-- significance / robustness blockers
+- significance blockers
+- robustness blockers
 
 ### 4. The Best Next Actions To Actually Win
 Give an ordered list of the highest-value next actions.
@@ -178,6 +180,7 @@ Each item must include:
 - what exact metric or blocker it targets
 - what success would look like numerically
 - what success would look like robustly
+- what success would look like statistically
 - what failure would mean
 - whether it is research, implementation, execution, harvesting, or documentation
 
@@ -208,7 +211,8 @@ This must include:
 - when to mark a line item blocked
 - when to freeze a result as claim-valid
 - when to require repeat confirmation for a SOTA pass
-- when to require significance / robustness evidence before calling a result real
+- when to require statistical significance before calling a result real
+- when to require robustness evidence before calling a result real
 
 ### 8. Exact Path To Real, Significant Outperformance
 Answer directly:
@@ -240,6 +244,7 @@ For each experiment, provide:
 - exact stop condition
 - exact success criterion
 - exact robustness criterion
+- exact statistical significance criterion
 - whether it is claim-valid, proxy-valid, or only exploratory
 
 Do not give vague ideas.
@@ -253,13 +258,14 @@ If you do recommend research, it must be one of:
 - targeted protocol clarification
 - targeted parity reconciliation
 - targeted upstream model recovery
-- targeted significance / robustness methodology clarification
+- targeted statistical-significance methodology clarification
+- targeted robustness methodology clarification
 
 Do not recommend another broad literature survey.
 
 ## Success Standard For Your Response
 Your answer should function like a thesis-continuation operating memo.
-It must help me continue the work correctly, document it correctly, and move toward a real, significant, claim-valid SOTA outperformance result.
+It must help me continue the work correctly, document it correctly, and move toward a real, statistically significant, robust, claim-valid SOTA outperformance result.
 
 It must be:
 - exact
@@ -268,4 +274,5 @@ It must be:
 - claim-safe
 - documentation-aware
 - significance-aware
+- robustness-aware
 - thesis-grade
