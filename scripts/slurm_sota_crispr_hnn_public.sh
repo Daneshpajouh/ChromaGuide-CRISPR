@@ -57,6 +57,14 @@ then
   python -m pip install 'tensorflow>=2.16,<2.18' >/dev/null
 fi
 
+if ! python - <<'PY' >/dev/null 2>&1
+import keras_multi_head
+print(keras_multi_head.__version__)
+PY
+then
+  python -m pip install 'keras-multi-head==0.29.0' >/dev/null
+fi
+
 unset PYTHONPATH
 export PYTHONNOUSERSITE=1
 export PYTHONUNBUFFERED=1
