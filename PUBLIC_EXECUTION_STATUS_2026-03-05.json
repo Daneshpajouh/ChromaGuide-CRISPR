@@ -47,7 +47,8 @@
       "notes": [
         "failures were due to missing folds/thresholds/CCLMoff file in /scratch repo path; folds+thresholds+CCLMoff were synced and jobs resubmitted.",
         "New focused SOTA wave submitted on 2026-03-10: HNN WT->HL60 transfer v4 (8005698) and FMC canonical-9 v2 (8005699), both pending on rorqual.",
-        "2026-03-11: 8005698 failed due to generic env selection; corrected HNN reruns submitted as 8032851 and 8032850. FMC 8005699 completed at mean9=0.5945087755724462 and did not improve the board."
+        "2026-03-11: 8005698 failed due to generic env selection; corrected HNN reruns submitted as 8032851 and 8032850. FMC 8005699 completed at mean9=0.5945087755724462 and did not improve the board.",
+        "2026-03-11 update: HNN transfer v5 (8032851) completed at mean_scc=0.4585020062225119; canonical9 v5 (8032850) remains running."
       ],
       "focused_sota_jobs_20260310": [
         {
@@ -74,14 +75,17 @@
           "job_id": 8032851,
           "name": "sota_hnn_xfer",
           "run_tag": "sota_hnn_transfer_wt_hl60_v5_bs16_lr2e4_p8_e40_envfix",
-          "state": "PENDING",
-          "goal": "rerun WT->HL60 transfer with dedicated HNN env fixed"
+          "state": "COMPLETED",
+          "goal": "rerun WT->HL60 transfer with dedicated HNN env fixed",
+          "mean_scc": 0.4585020062225119,
+          "summary": "results/public_benchmarks/cluster_harvest_20260311/rorqual/sota_hnn_transfer_wt_hl60_v5_bs16_lr2e4_p8_e40_envfix_SUMMARY.json",
+          "note": "Completed; still below standing WT->HL60 best and below frozen target."
         },
         {
           "job_id": 8032850,
           "name": "sota_hnn_pub",
           "run_tag": "sota_hnn_canonical9_v5_bs16_lr2e4_p8_e40_s220_envfix",
-          "state": "PENDING",
+          "state": "RUNNING",
           "goal": "fresh canonical-9 HNN run in dedicated env with smaller batch and seed 220"
         }
       ]
@@ -300,7 +304,7 @@
     }
   },
   "next_actions": [
-    "Harvest corrected HNN reruns 8032851 and 8032850 on rorqual; the FMC large-batch canonical-9 rerun completed but did not improve the board.",
+    "Harvest canonical HNN v5 job 8032850 on rorqual; HNN transfer v5 completed at 0.4585020062225119 and did not beat the standing WT->HL60 best.",
     "Keep CCLMoff primary off-target frames blocked until a source-backed per-row Method provenance artifact exists.",
     "Continue on-target claim-valid runs on the closest remaining gaps: WT->HL60 (-0.002649450820594701), Sniper-Cas9 (-0.007531774539858427), ESP (-0.014802168043017039).",
     "Recompute SOTA gap tables after the next completed claim-valid batch lands."
