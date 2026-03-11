@@ -86,6 +86,21 @@
         "Sniper_Cas9_scc": 0.917174318917507,
         "HL60_scc": 0.2811572207427854,
         "note": "Completed canonical-9 rerun. Stronger than the FMC threshold-set run, but still below both the frozen mean9 target and the standing strict best."
+      },
+      "canonical9_public_run_v2": {
+        "status": "completed",
+        "host": "rorqual",
+        "job_id": "8005699",
+        "run_tag": "sota_fmc_canonical9_v2_bs4096_e30_s2024",
+        "summary": "results/public_benchmarks/cluster_harvest_20260311/rorqual/sota_fmc_canonical9_v2_bs4096_e30_s2024_SUMMARY.json",
+        "mean9_scc": 0.5945087755724462,
+        "mean9_gap_vs_0_716": -0.12149122442755378,
+        "WT_scc": 0.7404842039870346,
+        "ESP_scc": 0.7371299436354073,
+        "HF_scc": 0.7174789739321505,
+        "Sniper_Cas9_scc": 0.9043398453158235,
+        "HL60_scc": 0.2545666123071556,
+        "note": "Paper-style large-batch rerun completed on GPU but underperformed the earlier FMC canonical-9 run and did not move the strict board."
       }
     },
     "CRISPR_HNN": {
@@ -279,6 +294,49 @@
         "lr": 0.0002,
         "patience": 8,
         "note": "Next transfer-focused rerun opened because WT->HL60 remains the closest strict gap."
+      },
+      "transfer_v4_failed_job": {
+        "status": "failed",
+        "host": "rorqual",
+        "job_id": "8005698",
+        "run_tag": "sota_hnn_transfer_wt_hl60_v4_bs16_lr2e4_p8_e40",
+        "reason": "wrapper used generic env_public_benchmark; keras_multi_head missing in transfer job env"
+      },
+      "transfer_v5_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "8032851",
+        "run_tag": "sota_hnn_transfer_wt_hl60_v5_bs16_lr2e4_p8_e40_envfix",
+        "source_dataset": "WT",
+        "target_dataset": "HL60",
+        "folds": 5,
+        "epochs": 40,
+        "batch_size": 16,
+        "lr": 0.0002,
+        "patience": 8,
+        "seed": 2024
+      },
+      "canonical9_v5_public_run": {
+        "status": "submitted",
+        "host": "rorqual",
+        "job_id": "8032850",
+        "run_tag": "sota_hnn_canonical9_v5_bs16_lr2e4_p8_e40_s220_envfix",
+        "datasets": [
+          "WT",
+          "ESP",
+          "HF",
+          "xCas9",
+          "SpCas9-NG",
+          "Sniper-Cas9",
+          "HCT116",
+          "HELA",
+          "HL60"
+        ],
+        "epochs": 40,
+        "batch_size": 16,
+        "lr": 0.0002,
+        "patience": 8,
+        "seed": 220
       }
     },
     "CCLMoff": {

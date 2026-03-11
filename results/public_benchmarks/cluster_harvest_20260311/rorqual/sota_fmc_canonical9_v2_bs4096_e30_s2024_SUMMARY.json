@@ -1,0 +1,651 @@
+{
+  "model": "CRISPR-FMC-upstream",
+  "timestamp": "2026-03-10 19:49:38",
+  "device": "cuda:0",
+  "datasets": [
+    "WT",
+    "ESP",
+    "HF",
+    "xCas9",
+    "SpCas9-NG",
+    "Sniper-Cas9",
+    "HCT116",
+    "HELA",
+    "HL60"
+  ],
+  "config": {
+    "folds": 5,
+    "epochs": 30,
+    "batch_size": 4096,
+    "embed_batch_size": 256,
+    "lr": 0.0003,
+    "weight_decay": 1e-06,
+    "max_rows": 0,
+    "seed": 2024
+  },
+  "dataset_summaries": {
+    "WT": {
+      "dataset": "WT",
+      "folds": [
+        {
+          "dataset": "WT",
+          "fold": 0,
+          "test_scc": 0.7620673534950341,
+          "test_pcc": 0.7690695524215698,
+          "best_val_scc": 0.7546072117634094,
+          "train_rows": 33361,
+          "val_rows": 11121,
+          "test_rows": 11121,
+          "duration_sec": 25.364851713180542,
+          "epochs": 30
+        },
+        {
+          "dataset": "WT",
+          "fold": 1,
+          "test_scc": 0.7088270370184578,
+          "test_pcc": 0.7208221554756165,
+          "best_val_scc": 0.7077643169487209,
+          "train_rows": 33361,
+          "val_rows": 11121,
+          "test_rows": 11121,
+          "duration_sec": 22.31601047515869,
+          "epochs": 30
+        },
+        {
+          "dataset": "WT",
+          "fold": 2,
+          "test_scc": 0.7292569882202448,
+          "test_pcc": 0.7323752641677856,
+          "best_val_scc": 0.7266353207691103,
+          "train_rows": 33362,
+          "val_rows": 11120,
+          "test_rows": 11121,
+          "duration_sec": 22.36824131011963,
+          "epochs": 30
+        },
+        {
+          "dataset": "WT",
+          "fold": 3,
+          "test_scc": 0.7539348793693975,
+          "test_pcc": 0.7635190486907959,
+          "best_val_scc": 0.7516962702223029,
+          "train_rows": 33363,
+          "val_rows": 11120,
+          "test_rows": 11120,
+          "duration_sec": 22.316471576690674,
+          "epochs": 30
+        },
+        {
+          "dataset": "WT",
+          "fold": 4,
+          "test_scc": 0.748334761832039,
+          "test_pcc": 0.7503742575645447,
+          "best_val_scc": 0.7522895027562957,
+          "train_rows": 33362,
+          "val_rows": 11121,
+          "test_rows": 11120,
+          "duration_sec": 22.35459017753601,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.7404842039870346,
+      "std_scc": 0.019165650856438572,
+      "mean_pcc": 0.7472320556640625,
+      "std_pcc": 0.01827688661013098
+    },
+    "ESP": {
+      "dataset": "ESP",
+      "folds": [
+        {
+          "dataset": "ESP",
+          "fold": 0,
+          "test_scc": 0.7352833595733801,
+          "test_pcc": 0.7385729551315308,
+          "best_val_scc": 0.7263857177324655,
+          "train_rows": 35169,
+          "val_rows": 11723,
+          "test_rows": 11724,
+          "duration_sec": 23.078527688980103,
+          "epochs": 30
+        },
+        {
+          "dataset": "ESP",
+          "fold": 1,
+          "test_scc": 0.7255622359465602,
+          "test_pcc": 0.7275457978248596,
+          "best_val_scc": 0.7331622038076078,
+          "train_rows": 35170,
+          "val_rows": 11723,
+          "test_rows": 11723,
+          "duration_sec": 23.128517389297485,
+          "epochs": 30
+        },
+        {
+          "dataset": "ESP",
+          "fold": 2,
+          "test_scc": 0.728938421405756,
+          "test_pcc": 0.7281815409660339,
+          "best_val_scc": 0.7341042367204169,
+          "train_rows": 35170,
+          "val_rows": 11723,
+          "test_rows": 11723,
+          "duration_sec": 23.133607387542725,
+          "epochs": 30
+        },
+        {
+          "dataset": "ESP",
+          "fold": 3,
+          "test_scc": 0.7493465177616073,
+          "test_pcc": 0.7498582005500793,
+          "best_val_scc": 0.7468541359032553,
+          "train_rows": 35170,
+          "val_rows": 11723,
+          "test_rows": 11723,
+          "duration_sec": 23.1289165019989,
+          "epochs": 30
+        },
+        {
+          "dataset": "ESP",
+          "fold": 4,
+          "test_scc": 0.7465191834897323,
+          "test_pcc": 0.7472162246704102,
+          "best_val_scc": 0.7494836173132228,
+          "train_rows": 35169,
+          "val_rows": 11724,
+          "test_rows": 11723,
+          "duration_sec": 23.181851625442505,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.7371299436354073,
+      "std_scc": 0.009399205059307952,
+      "mean_pcc": 0.7382749438285827,
+      "std_pcc": 0.009286533318953065
+    },
+    "HF": {
+      "dataset": "HF",
+      "folds": [
+        {
+          "dataset": "HF",
+          "fold": 0,
+          "test_scc": 0.7654367219772887,
+          "test_pcc": 0.7748254537582397,
+          "best_val_scc": 0.7756985634070408,
+          "train_rows": 34131,
+          "val_rows": 11378,
+          "test_rows": 11378,
+          "duration_sec": 22.762502908706665,
+          "epochs": 30
+        },
+        {
+          "dataset": "HF",
+          "fold": 1,
+          "test_scc": 0.7402668346968674,
+          "test_pcc": 0.7472503781318665,
+          "best_val_scc": 0.733327671355958,
+          "train_rows": 34132,
+          "val_rows": 11377,
+          "test_rows": 11378,
+          "duration_sec": 22.79346466064453,
+          "epochs": 30
+        },
+        {
+          "dataset": "HF",
+          "fold": 2,
+          "test_scc": 0.7312460658671801,
+          "test_pcc": 0.7366775274276733,
+          "best_val_scc": 0.7313930883840952,
+          "train_rows": 34133,
+          "val_rows": 11377,
+          "test_rows": 11377,
+          "duration_sec": 22.849700927734375,
+          "epochs": 30
+        },
+        {
+          "dataset": "HF",
+          "fold": 3,
+          "test_scc": 0.6311963607671706,
+          "test_pcc": 0.639411985874176,
+          "best_val_scc": 0.6202226086606535,
+          "train_rows": 34133,
+          "val_rows": 11377,
+          "test_rows": 11377,
+          "duration_sec": 22.79183316230774,
+          "epochs": 30
+        },
+        {
+          "dataset": "HF",
+          "fold": 4,
+          "test_scc": 0.7192488863522464,
+          "test_pcc": 0.7264225482940674,
+          "best_val_scc": 0.7266129591018998,
+          "train_rows": 34132,
+          "val_rows": 11378,
+          "test_rows": 11377,
+          "duration_sec": 22.897214889526367,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.7174789739321505,
+      "std_scc": 0.04573092376213938,
+      "mean_pcc": 0.7249175786972046,
+      "std_pcc": 0.045697522154587375
+    },
+    "xCas9": {
+      "dataset": "xCas9",
+      "folds": [
+        {
+          "dataset": "xCas9",
+          "fold": 0,
+          "test_scc": 0.8311042575332939,
+          "test_pcc": 0.8232246041297913,
+          "best_val_scc": 0.8252632774968657,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "duration_sec": 14.858133316040039,
+          "epochs": 30
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 1,
+          "test_scc": 0.8302956279408451,
+          "test_pcc": 0.8231891393661499,
+          "best_val_scc": 0.8288015052191211,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "duration_sec": 14.91342806816101,
+          "epochs": 30
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 2,
+          "test_scc": 0.8273914430372252,
+          "test_pcc": 0.8190643787384033,
+          "best_val_scc": 0.8358920445697123,
+          "train_rows": 22643,
+          "val_rows": 7547,
+          "test_rows": 7548,
+          "duration_sec": 14.938584089279175,
+          "epochs": 30
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 3,
+          "test_scc": 0.8207645657030773,
+          "test_pcc": 0.8118565678596497,
+          "best_val_scc": 0.8233427065948056,
+          "train_rows": 22644,
+          "val_rows": 7547,
+          "test_rows": 7547,
+          "duration_sec": 15.06174349784851,
+          "epochs": 30
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 4,
+          "test_scc": 0.8321764219428728,
+          "test_pcc": 0.8246732950210571,
+          "best_val_scc": 0.830804877276066,
+          "train_rows": 22643,
+          "val_rows": 7548,
+          "test_rows": 7547,
+          "duration_sec": 14.98428988456726,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.828346463231463,
+      "std_scc": 0.0041102430562913895,
+      "mean_pcc": 0.8204015970230103,
+      "std_pcc": 0.004664608051479147
+    },
+    "SpCas9-NG": {
+      "dataset": "SpCas9-NG",
+      "folds": [
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 0,
+          "test_scc": 0.7476866722697653,
+          "test_pcc": 0.7761522531509399,
+          "best_val_scc": 0.7524198575363095,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "duration_sec": 12.208528518676758,
+          "epochs": 30
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 1,
+          "test_scc": 0.8074759816919924,
+          "test_pcc": 0.8331538438796997,
+          "best_val_scc": 0.8098123486635527,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "duration_sec": 12.24719524383545,
+          "epochs": 30
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 2,
+          "test_scc": 0.7803856179369401,
+          "test_pcc": 0.8043100237846375,
+          "best_val_scc": 0.7846009145820324,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "duration_sec": 12.169944763183594,
+          "epochs": 30
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 3,
+          "test_scc": 0.8049190500139469,
+          "test_pcc": 0.8264859914779663,
+          "best_val_scc": 0.8074113381598776,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "duration_sec": 12.289791584014893,
+          "epochs": 30
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 4,
+          "test_scc": 0.7697397548917764,
+          "test_pcc": 0.788379430770874,
+          "best_val_scc": 0.7596844815944548,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "duration_sec": 12.294228792190552,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.7820414153608842,
+      "std_scc": 0.02238135036155636,
+      "mean_pcc": 0.8056963086128235,
+      "std_pcc": 0.02172912521717188
+    },
+    "Sniper-Cas9": {
+      "dataset": "Sniper-Cas9",
+      "folds": [
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 0,
+          "test_scc": 0.9120512705560485,
+          "test_pcc": 0.9393680691719055,
+          "best_val_scc": 0.9158588305018933,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "duration_sec": 14.83246636390686,
+          "epochs": 30
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 1,
+          "test_scc": 0.9004803084818751,
+          "test_pcc": 0.9286413192749023,
+          "best_val_scc": 0.9003589848781589,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "duration_sec": 14.956196546554565,
+          "epochs": 30
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 2,
+          "test_scc": 0.907401481155668,
+          "test_pcc": 0.9395338892936707,
+          "best_val_scc": 0.9067482117571546,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "duration_sec": 14.886690139770508,
+          "epochs": 30
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 3,
+          "test_scc": 0.9020016143950838,
+          "test_pcc": 0.9288350939750671,
+          "best_val_scc": 0.9009970201440807,
+          "train_rows": 22677,
+          "val_rows": 7558,
+          "test_rows": 7559,
+          "duration_sec": 15.025503873825073,
+          "epochs": 30
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 4,
+          "test_scc": 0.8997645519904421,
+          "test_pcc": 0.9257383346557617,
+          "best_val_scc": 0.8966268667993811,
+          "train_rows": 22677,
+          "val_rows": 7559,
+          "test_rows": 7558,
+          "duration_sec": 15.119997262954712,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.9043398453158235,
+      "std_scc": 0.004693321865714874,
+      "mean_pcc": 0.9324233412742615,
+      "std_pcc": 0.005842219805550569
+    },
+    "HCT116": {
+      "dataset": "HCT116",
+      "folds": [
+        {
+          "dataset": "HCT116",
+          "fold": 0,
+          "test_scc": 0.19555732282543084,
+          "test_pcc": 0.19906875491142273,
+          "best_val_scc": 0.1429392223157262,
+          "train_rows": 2543,
+          "val_rows": 848,
+          "test_rows": 848,
+          "duration_sec": 1.926936149597168,
+          "epochs": 30
+        },
+        {
+          "dataset": "HCT116",
+          "fold": 1,
+          "test_scc": 0.13677524523649123,
+          "test_pcc": 0.16572648286819458,
+          "best_val_scc": 0.19635792717111805,
+          "train_rows": 2543,
+          "val_rows": 848,
+          "test_rows": 848,
+          "duration_sec": 2.051055431365967,
+          "epochs": 30
+        },
+        {
+          "dataset": "HCT116",
+          "fold": 2,
+          "test_scc": 0.11498681826223883,
+          "test_pcc": 0.11046629399061203,
+          "best_val_scc": 0.11506227870117391,
+          "train_rows": 2543,
+          "val_rows": 848,
+          "test_rows": 848,
+          "duration_sec": 1.933358907699585,
+          "epochs": 30
+        },
+        {
+          "dataset": "HCT116",
+          "fold": 3,
+          "test_scc": 0.16916911366427567,
+          "test_pcc": 0.16700270771980286,
+          "best_val_scc": 0.2460736763627773,
+          "train_rows": 2544,
+          "val_rows": 847,
+          "test_rows": 848,
+          "duration_sec": 1.9797711372375488,
+          "epochs": 30
+        },
+        {
+          "dataset": "HCT116",
+          "fold": 4,
+          "test_scc": 0.18190941038816785,
+          "test_pcc": 0.1798781007528305,
+          "best_val_scc": 0.2568724107076679,
+          "train_rows": 2544,
+          "val_rows": 848,
+          "test_rows": 847,
+          "duration_sec": 2.0294322967529297,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.1596795820753209,
+      "std_scc": 0.029642808710400672,
+      "mean_pcc": 0.16442846804857253,
+      "std_pcc": 0.02952581381115701
+    },
+    "HELA": {
+      "dataset": "HELA",
+      "folds": [
+        {
+          "dataset": "HELA",
+          "fold": 0,
+          "test_scc": 0.2756627510060622,
+          "test_pcc": 0.2850770950317383,
+          "best_val_scc": 0.27411353439108255,
+          "train_rows": 4860,
+          "val_rows": 1620,
+          "test_rows": 1621,
+          "duration_sec": 3.96199107170105,
+          "epochs": 30
+        },
+        {
+          "dataset": "HELA",
+          "fold": 1,
+          "test_scc": 0.22575277448832973,
+          "test_pcc": 0.24843743443489075,
+          "best_val_scc": 0.25253016518513566,
+          "train_rows": 4861,
+          "val_rows": 1620,
+          "test_rows": 1620,
+          "duration_sec": 3.9661166667938232,
+          "epochs": 30
+        },
+        {
+          "dataset": "HELA",
+          "fold": 2,
+          "test_scc": 0.11096365348139878,
+          "test_pcc": 0.11187507957220078,
+          "best_val_scc": 0.1258870179021785,
+          "train_rows": 4861,
+          "val_rows": 1620,
+          "test_rows": 1620,
+          "duration_sec": 3.9239754676818848,
+          "epochs": 30
+        },
+        {
+          "dataset": "HELA",
+          "fold": 3,
+          "test_scc": 0.26846386478767803,
+          "test_pcc": 0.2630837857723236,
+          "best_val_scc": 0.2787517392024372,
+          "train_rows": 4861,
+          "val_rows": 1620,
+          "test_rows": 1620,
+          "duration_sec": 3.9526047706604004,
+          "epochs": 30
+        },
+        {
+          "dataset": "HELA",
+          "fold": 4,
+          "test_scc": 0.25171665777041463,
+          "test_pcc": 0.2505836486816406,
+          "best_val_scc": 0.1881951629061039,
+          "train_rows": 4860,
+          "val_rows": 1621,
+          "test_rows": 1620,
+          "duration_sec": 3.931529998779297,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.2265119403067767,
+      "std_scc": 0.060271098983658435,
+      "mean_pcc": 0.23181140869855882,
+      "std_pcc": 0.0613656902160516
+    },
+    "HL60": {
+      "dataset": "HL60",
+      "folds": [
+        {
+          "dataset": "HL60",
+          "fold": 0,
+          "test_scc": 0.337188877257786,
+          "test_pcc": 0.3144093155860901,
+          "best_val_scc": 0.3176585236287344,
+          "train_rows": 1245,
+          "val_rows": 415,
+          "test_rows": 416,
+          "duration_sec": 1.099510908126831,
+          "epochs": 30
+        },
+        {
+          "dataset": "HL60",
+          "fold": 1,
+          "test_scc": 0.3023293971172904,
+          "test_pcc": 0.29519811272621155,
+          "best_val_scc": 0.24052094666290583,
+          "train_rows": 1246,
+          "val_rows": 415,
+          "test_rows": 415,
+          "duration_sec": 1.0774738788604736,
+          "epochs": 30
+        },
+        {
+          "dataset": "HL60",
+          "fold": 2,
+          "test_scc": 0.2782140266752629,
+          "test_pcc": 0.25307875871658325,
+          "best_val_scc": 0.26033548911364524,
+          "train_rows": 1246,
+          "val_rows": 415,
+          "test_rows": 415,
+          "duration_sec": 1.0642502307891846,
+          "epochs": 30
+        },
+        {
+          "dataset": "HL60",
+          "fold": 3,
+          "test_scc": 0.20505231628856566,
+          "test_pcc": 0.2052856683731079,
+          "best_val_scc": 0.15282552252595355,
+          "train_rows": 1246,
+          "val_rows": 415,
+          "test_rows": 415,
+          "duration_sec": 1.0199556350708008,
+          "epochs": 30
+        },
+        {
+          "dataset": "HL60",
+          "fold": 4,
+          "test_scc": 0.15004844419687308,
+          "test_pcc": 0.15981733798980713,
+          "best_val_scc": 0.34504920623278956,
+          "train_rows": 1245,
+          "val_rows": 416,
+          "test_rows": 415,
+          "duration_sec": 1.0732669830322266,
+          "epochs": 30
+        }
+      ],
+      "mean_scc": 0.2545666123071556,
+      "std_scc": 0.06788613328218689,
+      "mean_pcc": 0.24555783867835998,
+      "std_pcc": 0.056981625244567756
+    }
+  },
+  "mean_scc_across_datasets": 0.5945087755724462,
+  "mean_pcc_across_datasets": 0.6011937267250484
+}

@@ -164,11 +164,25 @@
       "upstream_sota_crispr_hnn_transfer_v3_state": "PENDING",
       "upstream_sota_crispr_hnn_transfer_v3_run_tag": "sota_hnn_transfer_wt_hl60_v3_bs16_lr2e4_p8_e40",
       "upstream_sota_crispr_hnn_transfer_v4_job_id": "8005698",
-      "upstream_sota_crispr_hnn_transfer_v4_state": "PENDING",
+      "upstream_sota_crispr_hnn_transfer_v4_state": "FAILED",
       "upstream_sota_crispr_hnn_transfer_v4_run_tag": "sota_hnn_transfer_wt_hl60_v4_bs16_lr2e4_p8_e40",
       "upstream_sota_crispr_fmc_canonical9_v2_job_id": "8005699",
-      "upstream_sota_crispr_fmc_canonical9_v2_state": "PENDING",
-      "upstream_sota_crispr_fmc_canonical9_v2_run_tag": "sota_fmc_canonical9_v2_bs4096_e30_s2024"
+      "upstream_sota_crispr_fmc_canonical9_v2_state": "COMPLETED",
+      "upstream_sota_crispr_fmc_canonical9_v2_run_tag": "sota_fmc_canonical9_v2_bs4096_e30_s2024",
+      "upstream_sota_crispr_hnn_transfer_v4_failure": "wrapper used generic env_public_benchmark; keras_multi_head missing in transfer job env",
+      "upstream_sota_crispr_fmc_canonical9_v2_summary": "results/public_benchmarks/cluster_harvest_20260311/rorqual/sota_fmc_canonical9_v2_bs4096_e30_s2024_SUMMARY.json",
+      "upstream_sota_crispr_fmc_canonical9_v2_mean9_scc": 0.5945087755724462,
+      "upstream_sota_crispr_fmc_canonical9_v2_wt_mean_scc": 0.7404842039870346,
+      "upstream_sota_crispr_fmc_canonical9_v2_esp_mean_scc": 0.7371299436354073,
+      "upstream_sota_crispr_fmc_canonical9_v2_hf_mean_scc": 0.7174789739321505,
+      "upstream_sota_crispr_fmc_canonical9_v2_sniper_mean_scc": 0.9043398453158235,
+      "upstream_sota_crispr_fmc_canonical9_v2_hl60_mean_scc": 0.2545666123071556,
+      "upstream_sota_crispr_hnn_transfer_v5_job_id": "8032851",
+      "upstream_sota_crispr_hnn_transfer_v5_state": "PENDING",
+      "upstream_sota_crispr_hnn_transfer_v5_run_tag": "sota_hnn_transfer_wt_hl60_v5_bs16_lr2e4_p8_e40_envfix",
+      "upstream_sota_crispr_hnn_v5_canonical9_job_id": "8032850",
+      "upstream_sota_crispr_hnn_v5_canonical9_state": "PENDING",
+      "upstream_sota_crispr_hnn_v5_canonical9_run_tag": "sota_hnn_canonical9_v5_bs16_lr2e4_p8_e40_s220_envfix"
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -283,6 +297,7 @@
     "Resubmitted corrected upstream CRISPR-FMC full run on rorqual as 7809985 after provisioning rna-fm into /scratch/amird/env_public_benchmark.",
     "Harvested rorqual tuned upstream HNN runs 7948831, 7949163, 7949371 on 2026-03-09; v3 now holds best completed mean9, v2 holds best completed Sniper-Cas9 and HL60 among upstream HNN reruns.",
     "Submitted next rorqual HNN tuning wave on 2026-03-09: 7973286 canonical9 v4 (bs16, lr2e-4, p8, e40) and 7973285 WT->HL60 transfer v3 with matched settings.",
-    "2026-03-10: submitted focused rorqual wave 8005698 (HNN WT->HL60 transfer v4) and 8005699 (FMC canonical-9 v2 large-batch rerun)."
+    "2026-03-10: submitted focused rorqual wave 8005698 (HNN WT->HL60 transfer v4) and 8005699 (FMC canonical-9 v2 large-batch rerun).",
+    "2026-03-11: harvested FMC canonical-9 v2 (8005699, mean9=0.5945087755724462, no board improvement); corrected HNN reruns submitted as 8032851 and 8032850 with explicit env_public_benchmark_hnn."
   ]
 }
