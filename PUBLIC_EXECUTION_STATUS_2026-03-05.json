@@ -88,7 +88,30 @@
           "state": "RUNNING",
           "goal": "fresh canonical-9 HNN run in dedicated env with smaller batch and seed 220"
         }
-      ]
+      ],
+      "protocol_aligned_heavy_wave_20260311": {
+        "description": "Protocol-aligned CRISPR_HNN v6 retrain wave: 200 epochs, bs=16, lr=1e-4, patience=10, 3 seeds x 3 groups + 3 transfer",
+        "wrapper_fix": "REPO_DIR and VENV_DIR defaults corrected from $HOME to /scratch/amird/ in commit b733a2f",
+        "smoke_test": {"job_id": 8053659, "state": "COMPLETED", "test_scc": 0.2417, "note": "WT 500-row 5-epoch smoke passed cleanly from /scratch"},
+        "invalid_submissions_cancelled": [8053762,8053763,8053764,8053765,8053766,8053767,8053768,8053769,8053770,8053771,8053772,8053773],
+        "cancellation_reason": "--export comma conflict mangled DATASETS env var; resubmitted with inline env vars",
+        "canonical_jobs": [
+          {"job_id": 8053822, "seed": 2024, "group": "A", "datasets": "WT,ESP,HF", "tag": "sota_hnn_v6_groupA_e200_s2024"},
+          {"job_id": 8053823, "seed": 2024, "group": "B", "datasets": "xCas9,SpCas9-NG,Sniper-Cas9", "tag": "sota_hnn_v6_groupB_e200_s2024"},
+          {"job_id": 8053824, "seed": 2024, "group": "C", "datasets": "HCT116,HELA,HL60", "tag": "sota_hnn_v6_groupC_e200_s2024"},
+          {"job_id": 8053825, "seed": 220, "group": "A", "datasets": "WT,ESP,HF", "tag": "sota_hnn_v6_groupA_e200_s220"},
+          {"job_id": 8053826, "seed": 220, "group": "B", "datasets": "xCas9,SpCas9-NG,Sniper-Cas9", "tag": "sota_hnn_v6_groupB_e200_s220"},
+          {"job_id": 8053827, "seed": 220, "group": "C", "datasets": "HCT116,HELA,HL60", "tag": "sota_hnn_v6_groupC_e200_s220"},
+          {"job_id": 8053828, "seed": 42, "group": "A", "datasets": "WT,ESP,HF", "tag": "sota_hnn_v6_groupA_e200_s42"},
+          {"job_id": 8053829, "seed": 42, "group": "B", "datasets": "xCas9,SpCas9-NG,Sniper-Cas9", "tag": "sota_hnn_v6_groupB_e200_s42"},
+          {"job_id": 8053830, "seed": 42, "group": "C", "datasets": "HCT116,HELA,HL60", "tag": "sota_hnn_v6_groupC_e200_s42"}
+        ],
+        "transfer_jobs": [
+          {"job_id": 8053831, "seed": 2024, "source": "WT", "target": "HL60", "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s2024"},
+          {"job_id": 8053833, "seed": 220, "source": "WT", "target": "HL60", "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s220"},
+          {"job_id": 8053834, "seed": 42, "source": "WT", "target": "HL60", "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s42"}
+        ]
+      }
     },
     "fir": {
       "status": "running_plus_pending",
