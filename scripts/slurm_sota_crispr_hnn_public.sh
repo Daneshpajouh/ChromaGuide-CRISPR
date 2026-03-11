@@ -10,8 +10,8 @@
 
 set -euo pipefail
 
-REPO_DIR="${REPO_DIR:-$HOME/chromaguide_experiments}"
-VENV_DIR="${VENV_DIR:-$HOME/env_public_benchmark_hnn}"
+REPO_DIR="${REPO_DIR:-/scratch/amird/chromaguide_experiments}"
+VENV_DIR="${VENV_DIR:-/scratch/amird/env_public_benchmark_hnn}"
 DATASETS="${DATASETS:-WT,ESP,HF,Sniper-Cas9,HL60}"
 FOLDS="${FOLDS:-5}"
 EPOCHS="${EPOCHS:-20}"
