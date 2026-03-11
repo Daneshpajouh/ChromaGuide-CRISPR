@@ -8,6 +8,7 @@ You are continuing a live CRISPR benchmarking and SOTA-outperformance project th
 This is not a casual analysis task.
 This is a thesis-grade continuation task.
 You must operate with the rigor required for results that may appear in a dissertation, paper, appendix, defense, or publication.
+The ambition is not merely incremental improvement. The ambition is a breakthrough-quality PhD thesis: work that is genuinely excellent, technically deep, practically important, and defensible under scrutiny.
 
 You must treat:
 
@@ -45,6 +46,7 @@ The goal is to continue the work until we can honestly say that we:
 - do so with statistical significance wherever significance testing is applicable
 - do so with full experiment logging and reproducibility
 - do so with documentation that is strong enough for a PhD thesis record
+- do so in a way that could support a breakthrough-quality thesis narrative rather than a narrow benchmark anecdote
 
 ## Critical Constraint
 You must not fake completeness.
@@ -92,7 +94,7 @@ That means you must:
 ## What You Must Optimize For
 You must optimize for this objective:
 
-> Achieve a real, defensible, significant, claim-valid result that outperforms all relevant SOTA across all tracked aspects, while maintaining a complete, auditable experiment history.
+> Achieve a real, defensible, statistically significant, robust, claim-valid result that outperforms all relevant SOTA across all tracked aspects, while maintaining a complete, auditable experiment history and aiming for breakthrough-quality thesis impact.
 
 This includes:
 
@@ -103,6 +105,7 @@ This includes:
 - upstream public repro parity
 - artifact/provenance defensibility
 - significance / robustness where appropriate
+- thesis-level novelty, coherence, and impact
 
 ## Hard Truths You Must Preserve
 You must preserve these exact distinctions if still true in the handover:
@@ -265,7 +268,7 @@ Do not recommend another broad literature survey.
 
 ## Success Standard For Your Response
 Your answer should function like a thesis-continuation operating memo.
-It must help me continue the work correctly, document it correctly, and move toward a real, statistically significant, robust, claim-valid SOTA outperformance result.
+It must help me continue the work correctly, document it correctly, and move toward a real, statistically significant, robust, claim-valid SOTA outperformance result that can anchor a breakthrough-quality PhD thesis.
 
 It must be:
 - exact
