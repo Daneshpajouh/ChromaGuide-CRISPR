@@ -102,12 +102,14 @@ def build_arrays(rows: list[tuple[str, float]]) -> tuple[np.ndarray, np.ndarray,
 
 
 def corr(y_true: np.ndarray, y_pred: np.ndarray) -> tuple[float, float]:
-    import scipy as sp
-
     y_true = np.asarray(y_true, dtype=np.float64).flatten()
     y_pred = np.asarray(y_pred, dtype=np.float64).flatten()
-    scc = float(sp.stats.spearmanr(y_true, y_pred)[0])
-    pcc = float(sp.stats.pearsonr(y_true, y_pred)[0])
+    # Avoid importing SciPy in cluster envs where local/source-directory
+    # collisions can break `import scipy` even though correlation is simple.
+    y_true_s = np.argsort(np.argsort(y_true)).astype(np.float64)
+    y_pred_s = np.argsort(np.argsort(y_pred)).astype(np.float64)
+    scc = float(np.corrcoef(y_true_s, y_pred_s)[0, 1])
+    pcc = float(np.corrcoef(y_true, y_pred)[0, 1])
     return scc, pcc
 
 

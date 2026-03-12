@@ -56,13 +56,32 @@ echo "ACTIVATING_VENV"
 source "$VENV_DIR/bin/activate"
 echo "PYTHON_BIN=$(command -v python)"
 
+run_import_check() {
+  local label="$1"
+  shift
+  echo "${label}_CHECK_START"
+  if command -v timeout >/dev/null 2>&1; then
+    if timeout 120 "$@"; then
+      echo "${label}_CHECK_OK"
+      return 0
+    fi
+  else
+    if "$@"; then
+      echo "${label}_CHECK_OK"
+      return 0
+    fi
+  fi
+  echo "${label}_CHECK_FAIL"
+  return 1
+}
+
 if [ "$VENV_BOOTSTRAP" = "1" ]; then
   echo "BOOTSTRAP_REQUIREMENTS"
   python -m pip install --upgrade pip >/dev/null
   python -m pip install -r requirements-public-benchmark.txt >/dev/null
 fi
 
-if ! python - <<'PY' >/dev/null 2>&1
+if ! run_import_check TENSORFLOW python - <<'PY' >/dev/null 2>&1
 import tensorflow as tf
 print(tf.__version__)
 PY
@@ -71,7 +90,7 @@ then
   python -m pip install 'tensorflow>=2.16,<2.18' >/dev/null
 fi
 
-if ! python - <<'PY' >/dev/null 2>&1
+if ! run_import_check KERAS_MULTI_HEAD python - <<'PY' >/dev/null 2>&1
 import keras_multi_head
 print(keras_multi_head.__version__)
 PY
