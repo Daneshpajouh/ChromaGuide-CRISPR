@@ -91,3 +91,11 @@ This note records the real execution readiness state of the accessible Alliance 
 2. Use `fir` and `nibi` as the next rerun targets if the current pending GPU-check smokes confirm real GPU visibility to TensorFlow.
 3. Treat `narval` as usable but wait for the current smoke disposition before launching repaired reruns.
 4. Do not schedule HNN GPU work on `trillium`, `killarney`, `tamia`, or `vulcan` until their current submission blockers are explicitly resolved.
+
+
+## 2026-03-12 live submission probes
+- `fir`: held GPU-model probe accepted (`27282317`, canceled immediately); live TensorFlow GPU-check smoke accepted as `27283173` and remains pending.
+- `nibi`: held GPU-model probe accepted (`10195672`, canceled immediately); live TensorFlow GPU-check smoke accepted as `10195699` and remains pending.
+- `narval`: held GPU-model probe accepted (`57703527`, canceled immediately); live HNN wrapper smoke accepted as `57703551` and is running on `ng10102`.
+- `trillium`: current GPU path is blocked by login/account mismatch (`def-kwiese` vs `def-kwiese_gpu`, GPU jobs require GPU login path).
+- `tamia` / `vulcan`: scheduler is reachable, but current Alliance account mapping is rejected for GPU submission.
