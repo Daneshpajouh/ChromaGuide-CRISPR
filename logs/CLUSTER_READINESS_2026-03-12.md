@@ -138,3 +138,8 @@ This note records the real execution readiness state of the accessible Alliance 
 - `narval`: fixed-wrapper HNN smoke submitted as `57704059`.
 - `nibi`: fixed-wrapper HNN smoke submitted as `10196105`.
 - these are the first secondary-cluster smokes that exercise the real HNN wrapper path after removing the generic `#SBATCH --gres=gpu:1` conflict, using explicit cluster-appropriate `--gpus=...` requests and explicit `CUDA_MODULE` selection.
+
+
+- `fir` fixed-wrapper smoke `27292872` completed and emitted a valid HNN `SUMMARY.json`, but stderr still showed TensorFlow CPU-only runtime (`Could not find cuda drivers on your machine`, `CUDA_ERROR_NO_DEVICE`). This makes `fir` functionally usable for CPU fallback/smoke execution, but not a GPU-faithful promotion target for the repaired HNN reruns.
+- `narval` fixed-wrapper smoke `57704322` is now the primary promotion gate.
+- `nibi` fixed-wrapper smoke `10196299` is pending on unavailable nodes.
