@@ -143,3 +143,10 @@ This note records the real execution readiness state of the accessible Alliance 
 - `fir` fixed-wrapper smoke `27292872` completed and emitted a valid HNN `SUMMARY.json`, but stderr still showed TensorFlow CPU-only runtime (`Could not find cuda drivers on your machine`, `CUDA_ERROR_NO_DEVICE`). This makes `fir` functionally usable for CPU fallback/smoke execution, but not a GPU-faithful promotion target for the repaired HNN reruns.
 - `narval` fixed-wrapper smoke `57704322` is now the primary promotion gate.
 - `nibi` fixed-wrapper smoke `10196299` is pending on unavailable nodes.
+
+
+## 2026-03-12 nibi promotion result
+- fixed-wrapper smoke `10196496` completed and emitted a valid HNN `SUMMARY.json`.
+- wrapper phase reported `TENSORFLOW_GPU_COUNT=1`, so TensorFlow did see a GPU during the explicit visibility query.
+- the same stderr later still logged `CUDA_ERROR_NO_DEVICE` during the runner path, so runtime GPU semantics are inconsistent, but the real HNN code path completed successfully and produced metrics.
+- repaired reruns were promoted to `nibi` immediately after this smoke: `10196523`–`10196531`.

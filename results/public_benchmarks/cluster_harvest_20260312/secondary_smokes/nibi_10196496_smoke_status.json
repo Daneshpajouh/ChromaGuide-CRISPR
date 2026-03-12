@@ -1,0 +1,8 @@
+{
+  "cluster": "nibi",
+  "job_id": "10196496",
+  "status": "completed_real_hnn_path",
+  "tf_gpu_query_count": 1,
+  "summary_mean_scc": 0.11988599714992877,
+  "notes": "wrapper smoke completed and emitted summary; TensorFlow wrapper query reported GPU_COUNT=1, but later stderr still logged CUDA_ERROR_NO_DEVICE during the runner path"
+}

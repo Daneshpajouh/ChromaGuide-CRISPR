@@ -1,0 +1,39 @@
+{
+  "model": "CRISPR_HNN_reconstructed_upstream_arch",
+  "generated_at_utc": "2026-03-12T09:05:07.891910+00:00",
+  "config": {
+    "datasets": [
+      "WT"
+    ],
+    "folds": 1,
+    "epochs": 1,
+    "batch_size": 16,
+    "lr": 0.0001,
+    "patience": 2,
+    "seed": 2024,
+    "max_rows": 200
+  },
+  "dataset_summaries": {
+    "WT": {
+      "dataset": "WT",
+      "folds": [
+        {
+          "dataset": "WT",
+          "fold": 0,
+          "test_scc": 0.11988599714992877,
+          "test_pcc": 0.11787836711904655,
+          "best_val_mae": 0.2363976687192917,
+          "train_rows": 200,
+          "val_rows": 200,
+          "test_rows": 200,
+          "epochs_ran": 1
+        }
+      ],
+      "mean_scc": 0.11988599714992877,
+      "std_scc": 0.0,
+      "mean_pcc": 0.11787836711904655,
+      "std_pcc": 0.0
+    }
+  },
+  "mean_scc_across_datasets": 0.11988599714992877
+}
