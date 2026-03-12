@@ -99,3 +99,25 @@ This note records the real execution readiness state of the accessible Alliance 
 - `narval`: held GPU-model probe accepted (`57703527`, canceled immediately); live HNN wrapper smoke accepted as `57703551` and is running on `ng10102`.
 - `trillium`: current GPU path is blocked by login/account mismatch (`def-kwiese` vs `def-kwiese_gpu`, GPU jobs require GPU login path).
 - `tamia` / `vulcan`: scheduler is reachable, but current Alliance account mapping is rejected for GPU submission.
+
+
+## 2026-03-12 direct GPU diagnostics
+- `fir`: submitted direct TensorFlow+nvidia-smi GPU diagnostic as job `27286411` after the earlier smoke showed `Could not find cuda drivers on your machine` despite H100 allocation.
+- `narval`: submitted direct TensorFlow+nvidia-smi GPU diagnostic as job `57703637` after wrapper smoke `57703551` timed out with no summary.
+- `nibi`: submitted direct TensorFlow+nvidia-smi GPU diagnostic as job `10195871`; the earlier GPU-check job `10195699` remains pending.
+
+
+## 2026-03-12 direct GPU diagnostic outcomes
+- `fir`:
+  - direct diagnostic `27286411` failed due to a malformed heredoc in the `sbatch --wrap` payload, not a cluster/runtime problem.
+  - corrected diagnostic `27286895` started on `fc10517` and proved the current TensorFlow environment still reports `Could not find cuda drivers on your machine` even with an allocated H100. This means `fir` is not yet a usable HNN rerun target without additional CUDA/runtime environment work.
+- `narval`:
+  - wrapper smoke `57703551` timed out after `00:10:26` with no `SUMMARY.json`.
+  - first direct diagnostic `57703637` failed due to the same malformed heredoc payload, not a cluster/runtime problem.
+  - corrected diagnostic `57703655` is pending with `ReqNodeNotAvail` and is the current gate for deciding whether `narval` is promotion-ready.
+- `nibi`:
+  - original direct diagnostic `10195871` was superseded and canceled.
+  - corrected diagnostic `10195896` is pending with `ReqNodeNotAvail` and is the current gate for deciding whether `nibi` is promotion-ready.
+- `rorqual`:
+  - all original v6 jobs are done; no jobs remain in queue.
+  - Group C summaries were harvestable for `s2024` and `s42`; `s220` remains on a flaky remote file path state (`Cannot send after transport endpoint shutdown`) and may need reconstruction from already observed metrics if the file remains unreadable.
