@@ -27,24 +27,37 @@ CUDA_MODULE="${CUDA_MODULE:-cuda/12.2}"
 
 mkdir -p "$REPO_DIR/slurm_logs"
 cd "$REPO_DIR"
+mkdir -p "$OUTPUT_ROOT" "$(dirname "$SUMMARY_JSON")"
+
+echo "HNN_PUBLIC_START $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "REPO_DIR=$REPO_DIR"
+echo "VENV_DIR=$VENV_DIR"
+echo "CUDA_MODULE=$CUDA_MODULE"
+echo "HOSTNAME=$(hostname)"
 
 if ! command -v module >/dev/null 2>&1 && [ -f /etc/profile.d/modules.sh ]; then
+  echo "SOURCING_MODULES_SH"
   . /etc/profile.d/modules.sh
 fi
 if command -v module >/dev/null 2>&1; then
+  echo "LOADING_MODULES"
   module load "$CUDA_MODULE" python/3.11 || true
 fi
 
 if [ ! -f "$VENV_DIR/bin/activate" ]; then
+  echo "BOOTSTRAP_VENV"
   if [ -d "$VENV_DIR" ]; then
     python -m venv --clear "$VENV_DIR"
   else
     python -m venv "$VENV_DIR"
   fi
 fi
+echo "ACTIVATING_VENV"
 source "$VENV_DIR/bin/activate"
+echo "PYTHON_BIN=$(command -v python)"
 
 if [ "$VENV_BOOTSTRAP" = "1" ]; then
+  echo "BOOTSTRAP_REQUIREMENTS"
   python -m pip install --upgrade pip >/dev/null
   python -m pip install -r requirements-public-benchmark.txt >/dev/null
 fi
@@ -54,6 +67,7 @@ import tensorflow as tf
 print(tf.__version__)
 PY
 then
+  echo "INSTALL_TENSORFLOW"
   python -m pip install 'tensorflow>=2.16,<2.18' >/dev/null
 fi
 
@@ -62,6 +76,7 @@ import keras_multi_head
 print(keras_multi_head.__version__)
 PY
 then
+  echo "INSTALL_KERAS_MULTI_HEAD"
   python -m pip install 'keras-multi-head==0.29.0' >/dev/null
 fi
 
