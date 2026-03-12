@@ -59,15 +59,23 @@ echo "PYTHON_BIN=$(command -v python)"
 
 run_import_check() {
   local label="$1"
+  local py_script="$2"
+  shift
   shift
   echo "${label}_CHECK_START"
   if command -v timeout >/dev/null 2>&1; then
-    if timeout 120 "$@" >/dev/null 2>&1; then
+    if timeout 120 "$@" - <<PY >/dev/null 2>&1
+${py_script}
+PY
+    then
       echo "${label}_CHECK_OK"
       return 0
     fi
   else
-    if "$@" >/dev/null 2>&1; then
+    if "$@" - <<PY >/dev/null 2>&1
+${py_script}
+PY
+    then
       echo "${label}_CHECK_OK"
       return 0
     fi
@@ -82,19 +90,25 @@ if [ "$VENV_BOOTSTRAP" = "1" ]; then
   python -m pip install -r requirements-public-benchmark.txt >/dev/null
 fi
 
-if ! run_import_check TENSORFLOW python - <<'PY'
-import importlib.util
-raise SystemExit(0 if importlib.util.find_spec("tensorflow") else 1)
-PY
+if ! run_import_check TENSORFLOW 'import importlib.util
+raise SystemExit(0 if importlib.util.find_spec("tensorflow") else 1)' python
 then
   echo "INSTALL_TENSORFLOW"
   python -m pip install 'tensorflow>=2.16,<2.18' >/dev/null
 fi
 
-if ! run_import_check KERAS_MULTI_HEAD python - <<'PY'
-import importlib.util
-raise SystemExit(0 if importlib.util.find_spec("keras_multi_head") else 1)
+echo "TENSORFLOW_GPU_QUERY_START"
+python - <<'PY' || true
+import tensorflow as tf
+gpus = tf.config.list_physical_devices("GPU")
+print("TENSORFLOW_GPU_COUNT=%d" % len(gpus))
+for gpu in gpus:
+    print("TENSORFLOW_GPU_DEVICE=%s" % gpu)
 PY
+echo "TENSORFLOW_GPU_QUERY_END"
+
+if ! run_import_check KERAS_MULTI_HEAD 'import importlib.util
+raise SystemExit(0 if importlib.util.find_spec("keras_multi_head") else 1)' python
 then
   echo "INSTALL_KERAS_MULTI_HEAD"
   python -m pip install 'keras-multi-head==0.29.0' >/dev/null
