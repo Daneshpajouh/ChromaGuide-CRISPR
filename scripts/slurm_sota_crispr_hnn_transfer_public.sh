@@ -83,8 +83,8 @@ if [ "$VENV_BOOTSTRAP" = "1" ]; then
 fi
 
 if ! run_import_check TENSORFLOW python - <<'PY'
-import tensorflow as tf
-print(tf.__version__)
+import importlib.util
+raise SystemExit(0 if importlib.util.find_spec("tensorflow") else 1)
 PY
 then
   echo "INSTALL_TENSORFLOW"
@@ -92,8 +92,8 @@ then
 fi
 
 if ! run_import_check KERAS_MULTI_HEAD python - <<'PY'
-import keras_multi_head
-print(keras_multi_head.__version__)
+import importlib.util
+raise SystemExit(0 if importlib.util.find_spec("keras_multi_head") else 1)
 PY
 then
   echo "INSTALL_KERAS_MULTI_HEAD"
