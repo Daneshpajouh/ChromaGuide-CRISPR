@@ -130,3 +130,11 @@ This note records the real execution readiness state of the accessible Alliance 
 
 
 - follow-up from the verbose diagnostics: the staged logs proved `nvidia-smi` sees the GPU on both `fir` and `narval`, but the diagnostic still leaked the wrong Python path because the wrap payload allowed local shell expansion. Those jobs were superseded by explicit-venv-Python diagnostics to get a definitive TensorFlow GPU verdict.
+
+
+## 2026-03-12 fixed-wrapper secondary smoke wave
+- previous ad hoc direct diagnostics were superseded after hardening the wrappers and helper scripts.
+- `fir`: fixed-wrapper HNN smoke submitted as `27292872`.
+- `narval`: fixed-wrapper HNN smoke submitted as `57704059`.
+- `nibi`: fixed-wrapper HNN smoke submitted as `10196105`.
+- these are the first secondary-cluster smokes that exercise the real HNN wrapper path after removing the generic `#SBATCH --gres=gpu:1` conflict, using explicit cluster-appropriate `--gpus=...` requests and explicit `CUDA_MODULE` selection.
