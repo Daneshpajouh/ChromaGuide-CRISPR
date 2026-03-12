@@ -92,25 +92,213 @@
       "protocol_aligned_heavy_wave_20260311": {
         "description": "Protocol-aligned CRISPR_HNN v6 retrain wave: 200 epochs, bs=16, lr=1e-4, patience=10, 3 seeds x 3 groups + 3 transfer",
         "wrapper_fix": "REPO_DIR and VENV_DIR defaults corrected from $HOME to /scratch/amird/ in commit b733a2f",
-        "smoke_test": {"job_id": 8053659, "state": "COMPLETED", "test_scc": 0.2417, "note": "WT 500-row 5-epoch smoke passed cleanly from /scratch"},
-        "invalid_submissions_cancelled": [8053762,8053763,8053764,8053765,8053766,8053767,8053768,8053769,8053770,8053771,8053772,8053773],
+        "smoke_test": {
+          "job_id": 8053659,
+          "state": "COMPLETED",
+          "test_scc": 0.2417,
+          "note": "WT 500-row 5-epoch smoke passed cleanly from /scratch"
+        },
+        "invalid_submissions_cancelled": [
+          8053762,
+          8053763,
+          8053764,
+          8053765,
+          8053766,
+          8053767,
+          8053768,
+          8053769,
+          8053770,
+          8053771,
+          8053772,
+          8053773
+        ],
         "cancellation_reason": "--export comma conflict mangled DATASETS env var; resubmitted with inline env vars",
         "canonical_jobs": [
-          {"job_id": 8053822, "seed": 2024, "group": "A", "datasets": "WT,ESP,HF", "tag": "sota_hnn_v6_groupA_e200_s2024"},
-          {"job_id": 8053823, "seed": 2024, "group": "B", "datasets": "xCas9,SpCas9-NG,Sniper-Cas9", "tag": "sota_hnn_v6_groupB_e200_s2024"},
-          {"job_id": 8053824, "seed": 2024, "group": "C", "datasets": "HCT116,HELA,HL60", "tag": "sota_hnn_v6_groupC_e200_s2024"},
-          {"job_id": 8053825, "seed": 220, "group": "A", "datasets": "WT,ESP,HF", "tag": "sota_hnn_v6_groupA_e200_s220"},
-          {"job_id": 8053826, "seed": 220, "group": "B", "datasets": "xCas9,SpCas9-NG,Sniper-Cas9", "tag": "sota_hnn_v6_groupB_e200_s220"},
-          {"job_id": 8053827, "seed": 220, "group": "C", "datasets": "HCT116,HELA,HL60", "tag": "sota_hnn_v6_groupC_e200_s220"},
-          {"job_id": 8053828, "seed": 42, "group": "A", "datasets": "WT,ESP,HF", "tag": "sota_hnn_v6_groupA_e200_s42"},
-          {"job_id": 8053829, "seed": 42, "group": "B", "datasets": "xCas9,SpCas9-NG,Sniper-Cas9", "tag": "sota_hnn_v6_groupB_e200_s42"},
-          {"job_id": 8053830, "seed": 42, "group": "C", "datasets": "HCT116,HELA,HL60", "tag": "sota_hnn_v6_groupC_e200_s42"}
+          {
+            "job_id": 8053822,
+            "seed": 2024,
+            "group": "A",
+            "datasets": "WT,ESP,HF",
+            "tag": "sota_hnn_v6_groupA_e200_s2024"
+          },
+          {
+            "job_id": 8053823,
+            "seed": 2024,
+            "group": "B",
+            "datasets": "xCas9,SpCas9-NG,Sniper-Cas9",
+            "tag": "sota_hnn_v6_groupB_e200_s2024"
+          },
+          {
+            "job_id": 8053824,
+            "seed": 2024,
+            "group": "C",
+            "datasets": "HCT116,HELA,HL60",
+            "tag": "sota_hnn_v6_groupC_e200_s2024"
+          },
+          {
+            "job_id": 8053825,
+            "seed": 220,
+            "group": "A",
+            "datasets": "WT,ESP,HF",
+            "tag": "sota_hnn_v6_groupA_e200_s220"
+          },
+          {
+            "job_id": 8053826,
+            "seed": 220,
+            "group": "B",
+            "datasets": "xCas9,SpCas9-NG,Sniper-Cas9",
+            "tag": "sota_hnn_v6_groupB_e200_s220"
+          },
+          {
+            "job_id": 8053827,
+            "seed": 220,
+            "group": "C",
+            "datasets": "HCT116,HELA,HL60",
+            "tag": "sota_hnn_v6_groupC_e200_s220"
+          },
+          {
+            "job_id": 8053828,
+            "seed": 42,
+            "group": "A",
+            "datasets": "WT,ESP,HF",
+            "tag": "sota_hnn_v6_groupA_e200_s42"
+          },
+          {
+            "job_id": 8053829,
+            "seed": 42,
+            "group": "B",
+            "datasets": "xCas9,SpCas9-NG,Sniper-Cas9",
+            "tag": "sota_hnn_v6_groupB_e200_s42"
+          },
+          {
+            "job_id": 8053830,
+            "seed": 42,
+            "group": "C",
+            "datasets": "HCT116,HELA,HL60",
+            "tag": "sota_hnn_v6_groupC_e200_s42"
+          }
         ],
         "transfer_jobs": [
-          {"job_id": 8053831, "seed": 2024, "source": "WT", "target": "HL60", "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s2024"},
-          {"job_id": 8053833, "seed": 220, "source": "WT", "target": "HL60", "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s220"},
-          {"job_id": 8053834, "seed": 42, "source": "WT", "target": "HL60", "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s42"}
-        ]
+          {
+            "job_id": 8053831,
+            "seed": 2024,
+            "source": "WT",
+            "target": "HL60",
+            "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s2024"
+          },
+          {
+            "job_id": 8053833,
+            "seed": 220,
+            "source": "WT",
+            "target": "HL60",
+            "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s220"
+          },
+          {
+            "job_id": 8053834,
+            "seed": 42,
+            "source": "WT",
+            "target": "HL60",
+            "tag": "sota_hnn_transfer_WT_HL60_v6_e200_s42"
+          }
+        ],
+        "current_status": "mixed_partial_completion_harvested_2026_03_12",
+        "harvested_groupC_summaries": [
+          {
+            "job_id": 8053824,
+            "seed": 2024,
+            "summary": "results/public_benchmarks/cluster_harvest_20260312/rorqual/sota_hnn_v6_groupC_e200_s2024_SUMMARY.json",
+            "mean_scc_across_datasets": 0.30525786242176106,
+            "HCT116_scc": 0.30298200209058507,
+            "HELA_scc": 0.3031317587811267,
+            "HL60_scc": 0.30965982639357154
+          },
+          {
+            "job_id": 8053827,
+            "seed": 220,
+            "summary_remote": "/scratch/amird/chromaguide_experiments/results/public_benchmarks/sota_hnn_v6_groupC_e200_s220/SUMMARY.json",
+            "mean_scc_across_datasets": 0.3034365107561279,
+            "harvest_status": "remote_summary_present_but_filesystem_transport_errors_blocked_copy"
+          },
+          {
+            "job_id": 8053830,
+            "seed": 42,
+            "summary_remote": "/scratch/amird/chromaguide_experiments/results/public_benchmarks/sota_hnn_v6_groupC_e200_s42/SUMMARY.json",
+            "mean_scc_across_datasets": 0.29922285505636853,
+            "harvest_status": "remote_summary_present_but_filesystem_transport_errors_blocked_copy"
+          }
+        ],
+        "groupA_partial_jobs": [
+          {
+            "job_id": 8053822,
+            "seed": 2024,
+            "artifacts": [
+              "WT_fold0.json"
+            ],
+            "status": "partial_only_no_summary"
+          },
+          {
+            "job_id": 8053825,
+            "seed": 220,
+            "artifacts": [
+              "WT_fold0.json"
+            ],
+            "status": "partial_only_no_summary"
+          },
+          {
+            "job_id": 8053828,
+            "seed": 42,
+            "artifacts": [
+              "WT_fold0.json"
+            ],
+            "status": "partial_only_no_summary"
+          }
+        ],
+        "groupB_partial_or_failed_jobs": [
+          {
+            "job_id": 8053823,
+            "seed": 2024,
+            "artifacts": [
+              "xCas9_fold0.json",
+              "xCas9_fold1.json",
+              "xCas9_fold2.json",
+              "xCas9_fold3.json"
+            ],
+            "status": "failed_node_failure",
+            "failure": "slurm node failure on rg31903"
+          },
+          {
+            "job_id": 8053826,
+            "seed": 220,
+            "artifacts": [
+              "xCas9_fold0.json",
+              "xCas9_fold1.json"
+            ],
+            "status": "failed_node_failure",
+            "failure": "slurm node failure on rg31902"
+          },
+          {
+            "job_id": 8053829,
+            "seed": 42,
+            "artifacts": [
+              "xCas9_fold0.json",
+              "xCas9_fold1.json",
+              "xCas9_fold2.json"
+            ],
+            "status": "partial_only_no_summary"
+          }
+        ],
+        "transfer_wave_status": {
+          "jobs": [
+            8053831,
+            8053833,
+            8053834
+          ],
+          "status": "completed_or_terminated_without_emitted_summary",
+          "artifact_dirs_present_but_empty": true,
+          "note": "transfer result directories exist but emitted no files; logs show startup plus CUDA_ERROR_NO_DEVICE warnings"
+        },
+        "runtime_issue": "TensorFlow reported CUDA_ERROR_NO_DEVICE on multiple jobs despite GPU partitions; group B also had explicit node failures.",
+        "board_movement": "none_so_far"
       }
     },
     "fir": {
@@ -327,10 +515,10 @@
     }
   },
   "next_actions": [
-    "Harvest canonical HNN v5 job 8032850 on rorqual; HNN transfer v5 completed at 0.4585020062225119 and did not beat the standing WT->HL60 best.",
-    "Keep CCLMoff primary off-target frames blocked until a source-backed per-row Method provenance artifact exists.",
-    "Continue on-target claim-valid runs on the closest remaining gaps: WT->HL60 (-0.002649450820594701), Sniper-Cas9 (-0.007531774539858427), ESP (-0.014802168043017039).",
-    "Recompute SOTA gap tables after the next completed claim-valid batch lands."
+    "Harvest remaining reachable v6 artifacts from rorqual and diagnose why transfer directories are empty despite completed jobs.",
+    "Treat protocol-aligned HNN v6 on rorqual as mixed: group C completed at mean_scc~0.299-0.305, group A stalled after WT_fold0, group B had partial xCas9 outputs plus node failures.",
+    "Do not rerun blindly; first isolate the CUDA_ERROR_NO_DEVICE / node-failure pattern and then move repaired reruns onto the secondary ready clusters (trillium, fir, nibi, narval, killarney, tamia, vulcan) as appropriate.",
+    "Keep CCLMoff primary off-target frames blocked until a source-backed per-row Method provenance artifact exists."
   ],
   "sota_source_repro": {
     "registry": "sota_model_source_registry.json",

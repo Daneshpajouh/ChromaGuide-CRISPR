@@ -75,3 +75,16 @@ Split into 3 groups to limit per-job runtime and isolate failures:
 - DeepHF: canonical WT/ESP/HF anchor
 - CRISPR_HNN / CRISPR-FMC: retrain-capable repos, not frozen public checkpoint repos
 - WT→HL60 and HL60: key on-target pressure points
+
+
+## 2026-03-12 Outcome Snapshot
+- `squeue` on rorqual is now empty for the v6 wave.
+- **Group C completed on all 3 seeds**:
+  - `8053824` seed 2024: mean_scc_across_datasets `0.3052578624`
+  - `8053827` seed 220: mean_scc_across_datasets `0.3034365108`
+  - `8053830` seed 42: mean_scc_across_datasets `0.2992228551`
+- These runs produced HCT116/HELA/HL60 summaries but **did not move the strict board**; best standing HL60 remains above them.
+- **Group A** only emitted `WT_fold0.json` for all three seeds and never produced `SUMMARY.json`.
+- **Group B** emitted partial `xCas9` folds only; jobs `8053823` and `8053826` were explicitly cancelled by Slurm due to node failure.
+- **Transfer jobs** `8053831`, `8053833`, `8053834` emitted no result artifacts despite log startup; transfer directories exist but are empty.
+- Multiple jobs logged `CUDA_ERROR_NO_DEVICE`, so the next step is failure isolation and repaired reruns, not blind duplication.

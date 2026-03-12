@@ -185,7 +185,36 @@
       "upstream_sota_crispr_hnn_v5_canonical9_run_tag": "sota_hnn_canonical9_v5_bs16_lr2e4_p8_e40_s220_envfix",
       "upstream_sota_crispr_hnn_transfer_v5_summary": "results/public_benchmarks/cluster_harvest_20260311/rorqual/sota_hnn_transfer_wt_hl60_v5_bs16_lr2e4_p8_e40_envfix_SUMMARY.json",
       "upstream_sota_crispr_hnn_transfer_v5_mean_scc": 0.4585020062225119,
-      "upstream_sota_crispr_hnn_transfer_v5_gap_vs_0_468": -0.009497993777488112
+      "upstream_sota_crispr_hnn_transfer_v5_gap_vs_0_468": -0.009497993777488112,
+      "protocol_aligned_hnn_v6_wave_status": {
+        "canonical_groupC_completed": [
+          8053824,
+          8053827,
+          8053830
+        ],
+        "canonical_groupC_mean_sccs": [
+          0.30525786242176106,
+          0.3034365107561279,
+          0.29922285505636853
+        ],
+        "canonical_groupA_partial": [
+          8053822,
+          8053825,
+          8053828
+        ],
+        "canonical_groupB_partial_or_failed": [
+          8053823,
+          8053826,
+          8053829
+        ],
+        "transfer_jobs_no_summary": [
+          8053831,
+          8053833,
+          8053834
+        ],
+        "harvested_summary_local": "results/public_benchmarks/cluster_harvest_20260312/rorqual/sota_hnn_v6_groupC_e200_s2024_SUMMARY.json",
+        "note": "Wave is mixed. Group C completed on all three seeds but did not beat the standing board. Group A stopped after WT_fold0. Group B emitted partial xCas9 folds, with 8053823 and 8053826 explicitly cancelled due to node failure. Transfer jobs emitted no result files."
+      }
     },
     "fir": {
       "repo_dir": "/scratch/amird/chromaguide_experiments",
@@ -302,6 +331,7 @@
     "Submitted next rorqual HNN tuning wave on 2026-03-09: 7973286 canonical9 v4 (bs16, lr2e-4, p8, e40) and 7973285 WT->HL60 transfer v3 with matched settings.",
     "2026-03-10: submitted focused rorqual wave 8005698 (HNN WT->HL60 transfer v4) and 8005699 (FMC canonical-9 v2 large-batch rerun).",
     "2026-03-11: harvested FMC canonical-9 v2 (8005699, mean9=0.5945087755724462, no board improvement); corrected HNN reruns submitted as 8032851 and 8032850 with explicit env_public_benchmark_hnn.",
-    "2026-03-11 update: transfer v5 completed at 0.4585020062225119 (below target and below standing transfer best); canonical9 v5 remains running."
+    "2026-03-11 update: transfer v5 completed at 0.4585020062225119 (below target and below standing transfer best); canonical9 v5 remains running.",
+    "2026-03-12: rorqual protocol-aligned HNN v6 wave produced mixed outcomes. Group C completed for seeds 2024/220/42 at mean_scc 0.3053/0.3034/0.2992 (no board movement); Group A stalled after WT_fold0; Group B had partial xCas9 artifacts plus node failures on 8053823 and 8053826; transfer jobs 8053831/33/34 emitted no summaries. Multiple jobs logged CUDA_ERROR_NO_DEVICE despite GPU partitions."
   ]
 }
