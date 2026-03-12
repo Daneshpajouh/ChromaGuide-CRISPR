@@ -102,7 +102,7 @@ import tensorflow as tf
 gpus = tf.config.list_physical_devices("GPU")
 print("TENSORFLOW_GPU_COUNT=%d" % len(gpus))
 for gpu in gpus:
-    print("TENSORFLOW_GPU_DEVICE=%s" % gpu)
+    print(f"TENSORFLOW_GPU_DEVICE={gpu}")
 PY
 echo "TENSORFLOW_GPU_QUERY_END"
 
