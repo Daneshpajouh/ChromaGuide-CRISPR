@@ -1,7 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=sota_hnn_xfer
 #SBATCH --account=def-kwiese_gpu
-#SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --time=24:00:00
 #SBATCH --cpus-per-task=8
@@ -25,6 +24,7 @@ RUN_TAG="${RUN_TAG:-sota_crispr_hnn_transfer_${SLURM_JOB_ID:-local}}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-results/public_benchmarks/${RUN_TAG}}"
 SUMMARY_JSON="${SUMMARY_JSON:-results/public_benchmarks/${RUN_TAG}/SUMMARY.json}"
 VENV_BOOTSTRAP="${VENV_BOOTSTRAP:-0}"
+CUDA_MODULE="${CUDA_MODULE:-cuda/12.2}"
 
 mkdir -p "$REPO_DIR/slurm_logs"
 cd "$REPO_DIR"
@@ -33,7 +33,7 @@ if ! command -v module >/dev/null 2>&1 && [ -f /etc/profile.d/modules.sh ]; then
   . /etc/profile.d/modules.sh
 fi
 if command -v module >/dev/null 2>&1; then
-  module load cuda/12.2 python/3.11 || true
+  module load "$CUDA_MODULE" python/3.11 || true
 fi
 
 if [ ! -f "$VENV_DIR/bin/activate" ]; then
@@ -72,7 +72,7 @@ export PYTHONUNBUFFERED=1
 export PYTHONPATH="$REPO_DIR/src${PYTHONPATH:+:$PYTHONPATH}"
 
 CMD=(
-  python
+  "$VENV_DIR/bin/python"
   scripts/run_sota_crispr_hnn_transfer_public.py
   --repo-root .
   --source-dataset "$SOURCE_DATASET"

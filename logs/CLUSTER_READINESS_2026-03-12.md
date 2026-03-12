@@ -121,3 +121,12 @@ This note records the real execution readiness state of the accessible Alliance 
 - `rorqual`:
   - all original v6 jobs are done; no jobs remain in queue.
   - Group C summaries were harvestable for `s2024` and `s42`; `s220` remains on a flaky remote file path state (`Cannot send after transport endpoint shutdown`) and may need reconstruction from already observed metrics if the file remains unreadable.
+
+
+## 2026-03-12 verbose GPU diagnostics in flight
+- `fir`: verbose diagnostic `27290050` is running on `fc10417` with a 10-minute limit. It prints explicit stage markers (`START`, `AFTER_MODULE`, `nvidia-smi`, Python path, TensorFlow GPU list) and is the current gate for deciding whether `module load cuda/12.6` is sufficient to make the H100 visible.
+- `narval`: verbose diagnostic `57703927` is running on `ng31002` with a 10-minute limit. It uses the same staged logging approach with `cuda/12.2` and is the current gate for deciding whether Narval is the first promotable rerun target.
+- `nibi`: corrected diagnostic `10195896` remains pending with `ReqNodeNotAvail` and will be evaluated once it starts.
+
+
+- follow-up from the verbose diagnostics: the staged logs proved `nvidia-smi` sees the GPU on both `fir` and `narval`, but the diagnostic still leaked the wrong Python path because the wrap payload allowed local shell expansion. Those jobs were superseded by explicit-venv-Python diagnostics to get a definitive TensorFlow GPU verdict.

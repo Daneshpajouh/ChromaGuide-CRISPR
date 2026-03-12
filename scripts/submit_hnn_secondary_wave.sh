@@ -16,6 +16,7 @@ case "$cluster" in
     VENV_DIR=/scratch/amird/env_public_benchmark_hnn
     GPU_ARGS=(--gpus=h100:1)
     ACCOUNT=def-kwiese_gpu
+    CUDA_MODULE=cuda/12.6
     ;;
   nibi)
     SSH_HOST=nibi
@@ -24,6 +25,7 @@ case "$cluster" in
     VENV_DIR=/scratch/amird/env_public_benchmark_hnn
     GPU_ARGS=(--gpus=h100:1)
     ACCOUNT=def-kwiese_gpu
+    CUDA_MODULE=cuda/12.6
     ;;
   narval)
     SSH_HOST=narval
@@ -32,6 +34,7 @@ case "$cluster" in
     VENV_DIR=/scratch/amird/env_public_benchmark_hnn
     GPU_ARGS=(--gpus=a100:1)
     ACCOUNT=def-kwiese_gpu
+    CUDA_MODULE=cuda/12.2
     ;;
   *)
     echo "Unsupported cluster: $cluster" >&2
@@ -52,7 +55,7 @@ else
   echo "Unsupported kind: $kind" >&2
   exit 1
 fi
-ENVVARS=(REPO_DIR="$REPO_DIR" VENV_DIR="$VENV_DIR" RUN_TAG="$run_tag" OUTPUT_ROOT="$OUTPUT_ROOT" SUMMARY_JSON="$SUMMARY_JSON")
+ENVVARS=(REPO_DIR="$REPO_DIR" VENV_DIR="$VENV_DIR" CUDA_MODULE="$CUDA_MODULE" RUN_TAG="$run_tag" OUTPUT_ROOT="$OUTPUT_ROOT" SUMMARY_JSON="$SUMMARY_JSON")
 for kv in "${defaults[@]}"; do ENVVARS+=("$kv"); done
 for kv in "$@"; do ENVVARS+=("$kv"); done
 remote_env=""
