@@ -62,12 +62,12 @@ run_import_check() {
   shift
   echo "${label}_CHECK_START"
   if command -v timeout >/dev/null 2>&1; then
-    if timeout 120 "$@"; then
+    if timeout 120 "$@" >/dev/null 2>&1; then
       echo "${label}_CHECK_OK"
       return 0
     fi
   else
-    if "$@"; then
+    if "$@" >/dev/null 2>&1; then
       echo "${label}_CHECK_OK"
       return 0
     fi
@@ -82,7 +82,7 @@ if [ "$VENV_BOOTSTRAP" = "1" ]; then
   python -m pip install -r requirements-public-benchmark.txt >/dev/null
 fi
 
-if ! run_import_check TENSORFLOW python - <<'PY' >/dev/null 2>&1
+if ! run_import_check TENSORFLOW python - <<'PY'
 import tensorflow as tf
 print(tf.__version__)
 PY
@@ -91,7 +91,7 @@ then
   python -m pip install 'tensorflow>=2.16,<2.18' >/dev/null
 fi
 
-if ! run_import_check KERAS_MULTI_HEAD python - <<'PY' >/dev/null 2>&1
+if ! run_import_check KERAS_MULTI_HEAD python - <<'PY'
 import keras_multi_head
 print(keras_multi_head.__version__)
 PY
