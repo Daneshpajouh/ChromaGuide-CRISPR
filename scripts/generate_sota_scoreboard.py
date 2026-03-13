@@ -9,7 +9,10 @@ from typing import Any
 
 
 def load_json(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text())
+    text = path.read_text().strip()
+    if not text:
+        raise ValueError(f"Empty JSON file: {path}")
+    return json.loads(text)
 
 
 def metric_record(
@@ -99,7 +102,10 @@ def best_on_target_values(summary_files: list[Path]) -> tuple[dict[str, float], 
     best_src: dict[str, str] = {}
 
     for path in summary_files:
-        data = load_json(path)
+        try:
+            data = load_json(path)
+        except Exception:
+            continue
         current = _extract_on_target_candidates(data)
         if not current:
             continue
@@ -130,7 +136,10 @@ def best_transfer_value(transfer_fold_files: list[Path], fallback: float | None)
     grouped: dict[Path, list[float]] = {}
 
     for path in transfer_fold_files:
-        data = load_json(path)
+        try:
+            data = load_json(path)
+        except Exception:
+            continue
         if "gold_rho" in data:
             val = float(data["gold_rho"])
         elif "metrics" in data and "gold_rho" in data["metrics"]:
@@ -156,7 +165,10 @@ def best_transfer_value(transfer_fold_files: list[Path], fallback: float | None)
 def best_lodo_by_method(sweep_files: list[Path]) -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for path in sweep_files:
-        data = load_json(path)
+        try:
+            data = load_json(path)
+        except Exception:
+            continue
         for split in data.get("splits", []):
             m = split["held_out_method"]
             cand = {
@@ -452,7 +464,14 @@ def main() -> None:
         )
 
     # Uncertainty
-    uncertainty_candidates = [load_json(p) for p in uncertainty_files if p.exists()]
+    uncertainty_candidates = []
+    for p in uncertainty_files:
+        if not p.exists():
+            continue
+        try:
+            uncertainty_candidates.append(load_json(p))
+        except Exception:
+            continue
     if crispai_topology_files:
         topology_path = crispai_topology_files[0]
         best_u_val, topology_note = crispai_topology_candidate(topology_path)
@@ -469,7 +488,13 @@ def main() -> None:
         )
     elif uncertainty_candidates:
         best_u = max(uncertainty_candidates, key=lambda x: float(x["metrics"]["test"]["spearman"]))
-        best_u_src = next(str(p) for p in uncertainty_files if p.exists() and load_json(p)["metrics"]["test"]["spearman"] == best_u["metrics"]["test"]["spearman"])
+        best_u_src = next(
+            str(p)
+            for p in uncertainty_files
+            if p.exists()
+            and p.read_text().strip()
+            and load_json(p)["metrics"]["test"]["spearman"] == best_u["metrics"]["test"]["spearman"]
+        )
         rows.append(
             metric_record(
                 "uncertainty.CHANGE_seq_test_spearman",

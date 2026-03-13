@@ -1,0 +1,213 @@
+{
+  "model": "CRISPR_HNN_reconstructed_upstream_arch",
+  "generated_at_utc": "2026-03-12T14:34:59.361165+00:00",
+  "config": {
+    "datasets": [
+      "xCas9",
+      "SpCas9-NG",
+      "Sniper-Cas9"
+    ],
+    "folds": 5,
+    "epochs": 200,
+    "batch_size": 16,
+    "lr": 0.0001,
+    "patience": 10,
+    "seed": 220,
+    "max_rows": 0
+  },
+  "dataset_summaries": {
+    "xCas9": {
+      "dataset": "xCas9",
+      "folds": [
+        {
+          "dataset": "xCas9",
+          "fold": 0,
+          "test_scc": 0.856179395304373,
+          "test_pcc": 0.8434933893578986,
+          "best_val_mae": 0.09336491674184799,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "epochs_ran": 55
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 1,
+          "test_scc": 0.8532296453863307,
+          "test_pcc": 0.8429427469731754,
+          "best_val_mae": 0.09574668109416962,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "epochs_ran": 51
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 2,
+          "test_scc": 0.8463073343261714,
+          "test_pcc": 0.8344297941766728,
+          "best_val_mae": 0.0932670533657074,
+          "train_rows": 22643,
+          "val_rows": 7547,
+          "test_rows": 7548,
+          "epochs_ran": 33
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 3,
+          "test_scc": 0.8523375329561165,
+          "test_pcc": 0.8401691830376523,
+          "best_val_mae": 0.09585830569267273,
+          "train_rows": 22644,
+          "val_rows": 7547,
+          "test_rows": 7547,
+          "epochs_ran": 38
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 4,
+          "test_scc": 0.8555717456465245,
+          "test_pcc": 0.844575678057024,
+          "best_val_mae": 0.09405238926410675,
+          "train_rows": 22643,
+          "val_rows": 7548,
+          "test_rows": 7547,
+          "epochs_ran": 36
+        }
+      ],
+      "mean_scc": 0.8527251307239032,
+      "std_scc": 0.0035107844703574443,
+      "mean_pcc": 0.8411221583204845,
+      "std_pcc": 0.0036485607564856627
+    },
+    "SpCas9-NG": {
+      "dataset": "SpCas9-NG",
+      "folds": [
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 0,
+          "test_scc": 0.8266615790267585,
+          "test_pcc": 0.8537932612740872,
+          "best_val_mae": 0.09081140905618668,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 49
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 1,
+          "test_scc": 0.8283016892315209,
+          "test_pcc": 0.8525339837621214,
+          "best_val_mae": 0.09005742520093918,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 44
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 2,
+          "test_scc": 0.8317844792942639,
+          "test_pcc": 0.8541336384737088,
+          "best_val_mae": 0.08932841569185257,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 49
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 3,
+          "test_scc": 0.8338606796979567,
+          "test_pcc": 0.8563421100558312,
+          "best_val_mae": 0.09179385006427765,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 37
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 4,
+          "test_scc": 0.8370620523409387,
+          "test_pcc": 0.8567625307320068,
+          "best_val_mae": 0.09278591722249985,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 38
+        }
+      ],
+      "mean_scc": 0.8315340959182878,
+      "std_scc": 0.0037476355206024015,
+      "mean_pcc": 0.8547131048595512,
+      "std_pcc": 0.0015990163606105908
+    },
+    "Sniper-Cas9": {
+      "dataset": "Sniper-Cas9",
+      "folds": [
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 0,
+          "test_scc": 0.926405774103119,
+          "test_pcc": 0.9518162802400559,
+          "best_val_mae": 0.05820149928331375,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 32
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 1,
+          "test_scc": 0.9317973019823673,
+          "test_pcc": 0.9546384575432793,
+          "best_val_mae": 0.05678898096084595,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 41
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 2,
+          "test_scc": 0.9316452230239513,
+          "test_pcc": 0.9566512585296573,
+          "best_val_mae": 0.05588855966925621,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 42
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 3,
+          "test_scc": 0.9302723081034098,
+          "test_pcc": 0.9556353204777374,
+          "best_val_mae": 0.06080576032400131,
+          "train_rows": 22677,
+          "val_rows": 7558,
+          "test_rows": 7559,
+          "epochs_ran": 41
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 4,
+          "test_scc": 0.9291411036532797,
+          "test_pcc": 0.9547433235710111,
+          "best_val_mae": 0.06348150223493576,
+          "train_rows": 22677,
+          "val_rows": 7559,
+          "test_rows": 7558,
+          "epochs_ran": 37
+        }
+      ],
+      "mean_scc": 0.9298523421732255,
+      "std_scc": 0.0019777944018893423,
+      "mean_pcc": 0.9546969280723483,
+      "std_pcc": 0.0016126804470578686
+    }
+  },
+  "mean_scc_across_datasets": 0.8713705229384722
+}

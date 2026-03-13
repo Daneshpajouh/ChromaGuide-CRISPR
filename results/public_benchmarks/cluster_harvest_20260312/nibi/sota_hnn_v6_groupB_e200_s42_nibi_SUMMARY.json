@@ -1,0 +1,213 @@
+{
+  "model": "CRISPR_HNN_reconstructed_upstream_arch",
+  "generated_at_utc": "2026-03-12T14:16:18.197734+00:00",
+  "config": {
+    "datasets": [
+      "xCas9",
+      "SpCas9-NG",
+      "Sniper-Cas9"
+    ],
+    "folds": 5,
+    "epochs": 200,
+    "batch_size": 16,
+    "lr": 0.0001,
+    "patience": 10,
+    "seed": 42,
+    "max_rows": 0
+  },
+  "dataset_summaries": {
+    "xCas9": {
+      "dataset": "xCas9",
+      "folds": [
+        {
+          "dataset": "xCas9",
+          "fold": 0,
+          "test_scc": 0.8556199316151982,
+          "test_pcc": 0.8441562091138686,
+          "best_val_mae": 0.09298200905323029,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "epochs_ran": 41
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 1,
+          "test_scc": 0.8510227563637913,
+          "test_pcc": 0.8398179270209128,
+          "best_val_mae": 0.09779056906700134,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "epochs_ran": 34
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 2,
+          "test_scc": 0.846293434452927,
+          "test_pcc": 0.8342118353986632,
+          "best_val_mae": 0.09241326153278351,
+          "train_rows": 22643,
+          "val_rows": 7547,
+          "test_rows": 7548,
+          "epochs_ran": 41
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 3,
+          "test_scc": 0.8465496896465148,
+          "test_pcc": 0.8345565750436448,
+          "best_val_mae": 0.09616038203239441,
+          "train_rows": 22644,
+          "val_rows": 7547,
+          "test_rows": 7547,
+          "epochs_ran": 29
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 4,
+          "test_scc": 0.8562016148149845,
+          "test_pcc": 0.8454946212352684,
+          "best_val_mae": 0.0920027643442154,
+          "train_rows": 22643,
+          "val_rows": 7548,
+          "test_rows": 7547,
+          "epochs_ran": 38
+        }
+      ],
+      "mean_scc": 0.8511374853786832,
+      "std_scc": 0.00424884909143972,
+      "mean_pcc": 0.8396474335624715,
+      "std_pcc": 0.004690635277449369
+    },
+    "SpCas9-NG": {
+      "dataset": "SpCas9-NG",
+      "folds": [
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 0,
+          "test_scc": 0.8206662308197527,
+          "test_pcc": 0.8484745212268998,
+          "best_val_mae": 0.0907464474439621,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 41
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 1,
+          "test_scc": 0.8297514534423447,
+          "test_pcc": 0.8526653698311771,
+          "best_val_mae": 0.09115686267614365,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 41
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 2,
+          "test_scc": 0.8370929068177795,
+          "test_pcc": 0.8591945572979937,
+          "best_val_mae": 0.088778555393219,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 35
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 3,
+          "test_scc": 0.8354040845836835,
+          "test_pcc": 0.857560745685823,
+          "best_val_mae": 0.09161689132452011,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 30
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 4,
+          "test_scc": 0.8363792015094701,
+          "test_pcc": 0.8566812074971388,
+          "best_val_mae": 0.093626007437706,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 40
+        }
+      ],
+      "mean_scc": 0.8318587754346062,
+      "std_scc": 0.006166254310871659,
+      "mean_pcc": 0.8549152803078064,
+      "std_pcc": 0.003872329328819561
+    },
+    "Sniper-Cas9": {
+      "dataset": "Sniper-Cas9",
+      "folds": [
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 0,
+          "test_scc": 0.9284338071882494,
+          "test_pcc": 0.9533533469395731,
+          "best_val_mae": 0.056928496807813644,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 37
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 1,
+          "test_scc": 0.930534678764569,
+          "test_pcc": 0.9549227883232203,
+          "best_val_mae": 0.05764410272240639,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 36
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 2,
+          "test_scc": 0.9229979920033774,
+          "test_pcc": 0.9505694330911105,
+          "best_val_mae": 0.060237638652324677,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 22
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 3,
+          "test_scc": 0.9270784061201831,
+          "test_pcc": 0.9554649181033649,
+          "best_val_mae": 0.05833662673830986,
+          "train_rows": 22677,
+          "val_rows": 7558,
+          "test_rows": 7559,
+          "epochs_ran": 34
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 4,
+          "test_scc": 0.9145527800771293,
+          "test_pcc": 0.9490548583407457,
+          "best_val_mae": 0.06298226118087769,
+          "train_rows": 22677,
+          "val_rows": 7559,
+          "test_rows": 7558,
+          "epochs_ran": 21
+        }
+      ],
+      "mean_scc": 0.9247195328307016,
+      "std_scc": 0.0056480545996574014,
+      "mean_pcc": 0.9526730689596029,
+      "std_pcc": 0.0024833513217509453
+    }
+  },
+  "mean_scc_across_datasets": 0.8692385978813304
+}

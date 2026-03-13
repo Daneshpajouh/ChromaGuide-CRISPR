@@ -8,7 +8,7 @@
   },
   "cluster_state": {
     "nibi": {
-      "status": "blocked_by_torch_namespace_in_venv",
+      "status": "secondary_hnn_rerun_wave_completed_and_harvested",
       "smoke_job": {
         "job_id": 9846200,
         "state": "PENDING"
@@ -23,7 +23,47 @@
         "resubmitted after REPO_DIR env propagation fix.",
         "on-target-full and uncertainty jobs fail on nibi with ModuleNotFoundError: torch.nn inside /scratch venv.",
         "optuna jobs complete but return scout score -1.0 and are not valid for promotion."
-      ]
+      ],
+      "secondary_hnn_smoke": {
+        "job_id": 10196496,
+        "state": "COMPLETED",
+        "summary": "results/public_benchmarks/cluster_harvest_20260312/secondary_smokes/nibi_10196496_SUMMARY.json",
+        "mean_scc": 0.11988599714992877,
+        "note": "Promotion smoke completed real HNN path on nibi; wrapper logged TENSORFLOW_GPU_COUNT=1 and emitted SUMMARY.json."
+      },
+      "secondary_hnn_rerun_wave": {
+        "status": "COMPLETED",
+        "scope": "repair_failed_or_missing_rorqual_v6_components_only",
+        "groupA_jobs": [
+          10196523,
+          10196526,
+          10196529
+        ],
+        "groupB_jobs": [
+          10196524,
+          10196527,
+          10196530
+        ],
+        "transfer_jobs": [
+          10196525,
+          10196528,
+          10196531
+        ],
+        "best_groupA": {
+          "WT_scc": 0.8472109768183778,
+          "ESP_scc": 0.8352057605500296,
+          "HF_scc": 0.8398865386407317
+        },
+        "best_groupB": {
+          "xCas9_scc": 0.8527251307239032,
+          "SpCas9_NG_scc": 0.8332838530650581,
+          "Sniper_Cas9_scc": 0.9298523421732255
+        },
+        "best_transfer": {
+          "WT_to_HL60_scc": 0.4630754298926173
+        },
+        "note": "WT, HF, and Sniper-Cas9 improved strict bests; no frozen target flipped and WT->HL60 stayed below standing best."
+      }
     },
     "rorqual": {
       "status": "active_targeted_sota_wave_pending",
@@ -378,9 +418,9 @@
     "meets_frozen_on_target_claim": false,
     "best_completed_per_dataset": {
       "WT_scc": {
-        "value": 0.8453855978444285,
-        "source": "results/public_benchmarks/cluster_harvest_20260306/nibi/wave4_nibi_on_gate_d128_e20_FINAL_SUMMARY.json",
-        "gap_vs_target_0_861": -0.015614402155571527
+        "value": 0.8472109768183778,
+        "source": "results/public_benchmarks/cluster_harvest_20260312/nibi/sota_hnn_v6_groupA_e200_s42_nibi_SUMMARY.json",
+        "gap_vs_target_0_861": -0.013789023181622229
       },
       "ESP_scc": {
         "value": 0.8361978319569829,
@@ -388,14 +428,14 @@
         "gap_vs_target_0_851": -0.014802168043017039
       },
       "HF_scc": {
-        "value": 0.8383885437299339,
-        "source": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v3_bs32_lr2e4_p7_SUMMARY.json",
-        "gap_vs_target_0_865": -0.026611456270066114
+        "value": 0.8398865386407317,
+        "source": "results/public_benchmarks/cluster_harvest_20260312/nibi/sota_hnn_v6_groupA_e200_s220_nibi_SUMMARY.json",
+        "gap_vs_target_0_865": -0.025113461359268285
       },
       "Sniper_scc": {
-        "value": 0.9274682254601416,
-        "source": "results/public_benchmarks/cluster_harvest_20260309/rorqual/sota_hnn_canonical9_v2_bs32_p7_SUMMARY.json",
-        "gap_vs_target_0_935": -0.007531774539858427
+        "value": 0.9298523421732255,
+        "source": "results/public_benchmarks/cluster_harvest_20260312/nibi/sota_hnn_v6_groupB_e200_s220_nibi_SUMMARY.json",
+        "gap_vs_target_0_935": -0.00514765782677451
       },
       "HL60_scc": {
         "value": 0.3130585941476802,

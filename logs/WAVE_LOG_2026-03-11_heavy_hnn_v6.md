@@ -88,3 +88,14 @@ Split into 3 groups to limit per-job runtime and isolate failures:
 - **Group B** emitted partial `xCas9` folds only; jobs `8053823` and `8053826` were explicitly cancelled by Slurm due to node failure.
 - **Transfer jobs** `8053831`, `8053833`, `8053834` emitted no result artifacts despite log startup; transfer directories exist but are empty.
 - Multiple jobs logged `CUDA_ERROR_NO_DEVICE`, so the next step is failure isolation and repaired reruns, not blind duplication.
+
+## 2026-03-12 Nibi Repaired Rerun Wave
+- Promotion smoke `10196496` completed with real `SUMMARY.json`; wrapper logged `TENSORFLOW_GPU_COUNT=1`.
+- Repaired reruns moved only the failed or missing `rorqual` v6 components to `nibi`: Group A, Group B, and WT→HL60 transfer.
+- Completed jobs: `10196523`–`10196531`.
+- Best repaired outcomes:
+  - `WT`: `0.8472109768` (new strict best, still below `0.861`)
+  - `HF`: `0.8398865386` (new strict best, still below `0.865`)
+  - `Sniper-Cas9`: `0.9298523422` (new strict best, still below `0.935`)
+  - `WT→HL60`: `0.4630754299` (below standing best `0.4653505492`)
+- No frozen threshold flipped in this rerun wave.

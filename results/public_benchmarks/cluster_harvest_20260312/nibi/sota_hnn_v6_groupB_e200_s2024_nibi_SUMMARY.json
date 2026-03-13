@@ -1,0 +1,213 @@
+{
+  "model": "CRISPR_HNN_reconstructed_upstream_arch",
+  "generated_at_utc": "2026-03-12T13:12:41.277518+00:00",
+  "config": {
+    "datasets": [
+      "xCas9",
+      "SpCas9-NG",
+      "Sniper-Cas9"
+    ],
+    "folds": 5,
+    "epochs": 200,
+    "batch_size": 16,
+    "lr": 0.0001,
+    "patience": 10,
+    "seed": 2024,
+    "max_rows": 0
+  },
+  "dataset_summaries": {
+    "xCas9": {
+      "dataset": "xCas9",
+      "folds": [
+        {
+          "dataset": "xCas9",
+          "fold": 0,
+          "test_scc": 0.8551274609004543,
+          "test_pcc": 0.8447141680781971,
+          "best_val_mae": 0.0952136367559433,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "epochs_ran": 44
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 1,
+          "test_scc": 0.8494796093244392,
+          "test_pcc": 0.8422300179396243,
+          "best_val_mae": 0.09491080045700073,
+          "train_rows": 22642,
+          "val_rows": 7548,
+          "test_rows": 7548,
+          "epochs_ran": 28
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 2,
+          "test_scc": 0.8474453491317924,
+          "test_pcc": 0.8361523104076414,
+          "best_val_mae": 0.09257692098617554,
+          "train_rows": 22643,
+          "val_rows": 7547,
+          "test_rows": 7548,
+          "epochs_ran": 48
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 3,
+          "test_scc": 0.8496490699339241,
+          "test_pcc": 0.8370528266925219,
+          "best_val_mae": 0.09570952504873276,
+          "train_rows": 22644,
+          "val_rows": 7547,
+          "test_rows": 7547,
+          "epochs_ran": 25
+        },
+        {
+          "dataset": "xCas9",
+          "fold": 4,
+          "test_scc": 0.8539128832668269,
+          "test_pcc": 0.8430202035052901,
+          "best_val_mae": 0.09412103146314621,
+          "train_rows": 22643,
+          "val_rows": 7548,
+          "test_rows": 7547,
+          "epochs_ran": 29
+        }
+      ],
+      "mean_scc": 0.8511228745114874,
+      "std_scc": 0.0029057692381771276,
+      "mean_pcc": 0.840633905324655,
+      "std_pcc": 0.00339998105271873
+    },
+    "SpCas9-NG": {
+      "dataset": "SpCas9-NG",
+      "folds": [
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 0,
+          "test_scc": 0.8281590104232283,
+          "test_pcc": 0.8532782108025051,
+          "best_val_mae": 0.09159641712903976,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 47
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 1,
+          "test_scc": 0.8300271780394788,
+          "test_pcc": 0.8534869250506595,
+          "best_val_mae": 0.09083760529756546,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 39
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 2,
+          "test_scc": 0.8359795593632269,
+          "test_pcc": 0.8593393866326136,
+          "best_val_mae": 0.08952409774065018,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 42
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 3,
+          "test_scc": 0.8353166755370971,
+          "test_pcc": 0.8565806809219588,
+          "best_val_mae": 0.09212052077054977,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 47
+        },
+        {
+          "dataset": "SpCas9-NG",
+          "fold": 4,
+          "test_scc": 0.8369368419622597,
+          "test_pcc": 0.8553042568465077,
+          "best_val_mae": 0.09233853965997696,
+          "train_rows": 18351,
+          "val_rows": 6117,
+          "test_rows": 6117,
+          "epochs_ran": 33
+        }
+      ],
+      "mean_scc": 0.8332838530650581,
+      "std_scc": 0.00351036954913984,
+      "mean_pcc": 0.855597892050849,
+      "std_pcc": 0.002231052669642152
+    },
+    "Sniper-Cas9": {
+      "dataset": "Sniper-Cas9",
+      "folds": [
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 0,
+          "test_scc": 0.929467444189953,
+          "test_pcc": 0.9534233509695779,
+          "best_val_mae": 0.0561860129237175,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 41
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 1,
+          "test_scc": 0.9322224757585105,
+          "test_pcc": 0.9563494097951925,
+          "best_val_mae": 0.057211603969335556,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 43
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 2,
+          "test_scc": 0.9246386349818287,
+          "test_pcc": 0.9557038424340885,
+          "best_val_mae": 0.05910300835967064,
+          "train_rows": 22676,
+          "val_rows": 7559,
+          "test_rows": 7559,
+          "epochs_ran": 38
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 3,
+          "test_scc": 0.9312588252634275,
+          "test_pcc": 0.9550086696731053,
+          "best_val_mae": 0.056412223726511,
+          "train_rows": 22677,
+          "val_rows": 7558,
+          "test_rows": 7559,
+          "epochs_ran": 51
+        },
+        {
+          "dataset": "Sniper-Cas9",
+          "fold": 4,
+          "test_scc": 0.9278197552125134,
+          "test_pcc": 0.9539720691682875,
+          "best_val_mae": 0.0717245489358902,
+          "train_rows": 22677,
+          "val_rows": 7559,
+          "test_rows": 7558,
+          "epochs_ran": 30
+        }
+      ],
+      "mean_scc": 0.9290814270812465,
+      "std_scc": 0.0026865024246377454,
+      "mean_pcc": 0.9548914684080504,
+      "std_pcc": 0.0010770278137798705
+    }
+  },
+  "mean_scc_across_datasets": 0.871162718219264
+}
